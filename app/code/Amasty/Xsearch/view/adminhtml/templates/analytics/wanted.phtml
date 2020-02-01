@@ -1,0 +1,38 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+?>
+<?php
+/** @var Amasty\Xsearch\Block\Adminhtml\Analytics\Wanted\QueryList $block */
+?>
+<div class="amxsearch-2column">
+    <p class="amxsearch-title"><?= $block->escapeHtml(__('Most Wanted Search Terms')); ?></p>
+
+    <table class="amxsearch-table">
+        <thead class="amxsearch-thead">
+        <tr>
+            <th class="amxsearch-cell"><?= $block->escapeHtml(__('Search Query')); ?></th>
+            <th class="amxsearch-cell"><?= $block->escapeHtml(__('Total Searches')); ?></th>
+            <th class="amxsearch-cell"><?= $block->escapeHtml(__('Users')); ?></th>
+            <th class="amxsearch-cell"><?= $block->escapeHtml(__('Engagement')); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($block->getWantedQueries() as $query) : ?>
+            <tr class="amxsearch-row">
+                <td class="amxsearch-cell"><?= $block->escapeHtml($query->getQueryText()); ?></td>
+                <td class="amxsearch-cell"><?= (int)$query->getTotalSearches(); ?></td>
+                <td class="amxsearch-cell"><?= (int)$query->getUserKey(); ?></td>
+                <td class="amxsearch-cell"><?= (float)$query->getProductClick(); ?>%</td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <a href="<?= $block->getMoreUrl() ?>"
+       class="amxsearch-more-link"
+       title="<?= $block->escapeHtml(__("View more")); ?>"
+       target="_blank"><?= $block->escapeHtml(__("View more")); ?></a>
+</div>

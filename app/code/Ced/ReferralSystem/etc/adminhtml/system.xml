@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_ReferralSystem
+ * @author 		CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+	<system>
+	    <tab id="csmarketplace" sortOrder="1">
+            <label>Cedcommerce</label>
+        </tab>
+
+		<tab id="ced_referral_system" translate="label" sortOrder="100">
+            <label>Refer A Friend</label>
+        </tab>
+	  	<section id="referral" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+	  		<label>Configuration</label>
+            <tab>ced_referral_system</tab>
+            <resource>Ced_ReferralSystem::ced_referral_system</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+		       	<field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Enabled</label>
+		       	 <source_model>Ced\ReferralSystem\Model\Source</source_model>
+		       	 <config_path>advanced/modules_disable_output/Ced_ReferralSystem</config_path>
+		       	</field>
+            </group>
+		    <group id="system" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+		       	<label>Refer A Friend Configuration</label>
+		       	<field id="signup_bonus" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+			       <label>Signup Bonus</label>
+			       <validate>required-entry validate-number validate-zero-or-greater</validate>
+		       	</field>
+		       	<field id="referral_reward" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+			       <label>Referral Reward</label>
+			       <validate>required-entry validate-number validate-zero-or-greater</validate>
+		       	</field>
+		       	<field id="referral_reward_denomination_range" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+			       <label>Denomination Range</label>
+			       <validate>required-entry validate-number validate-zero-or-greater</validate>
+		       	</field>
+		        <field id="referral_reward_max_denomination_range" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+			       <label>Max Denomination Range</label>
+			       <validate>required-entry validate-number validate-zero-or-greater</validate>
+		       	</field>
+		       	<field id="discount_code_expiration_days" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+			       <label>Discount Coupon Validity(In Days)</label>
+			       <validate>required-entry validate-number validate-zero-or-greater</validate>
+		       	</field>
+		       	<field id="support_email" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+			       <label>Sender Email Id</label>
+			       <validate>required-entry validate-email</validate>
+		       	</field>
+		       	<field id="default_email_subject" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+			       <label>Default Email Subject</label>
+			       <validate>required-entry</validate>
+		       	</field>
+		       	<field id="default_message" translate="label" type="textarea" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+			       <label>Default Email Message</label>
+			       <validate>required-entry</validate>
+		       	</field>
+		   	</group>
+		</section>
+	</system>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<!-- <block class="Amasty\Xsearch\Block\Jsinit" name="amasty.xsearch.autocomplete.mobile"  template="Amasty_Xsearch::jsinit.phtml" /> -->
+           <!-- <block class="Magento\Framework\View\Element\Template" name="top.search.mobile" as="topSearchmob" template="Magento_Search::form.mini.phtml" /> -->
+            <!-- <move element="amasty.xsearch.autocomplete.mobile" destination="navigation.sections" before="-" /> -->
+    </body>
+</page>

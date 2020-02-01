@@ -1,0 +1,55 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/** @var \Aheadworks\Blog\Block\Post\PrevNext $block */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+$prevPost = $block->getPrevPost();
+$nextPost = $block->getNextPost();
+?>
+<div class="block prev-next">
+    <?php if ($prevPost): ?>
+        <div class="prev-post-container">
+            <div class="post-featured-title">
+                <a href="<?= /* @noEscape */ $block->getPostUrl($prevPost) ?>" class="post-link">
+                    <div><span class="post-arrow">&#8592;</span> <span><?= /* @noEscape */ __('PREVIOUS') ?></span></div>
+                    <div><span><?= $block->escapeHtml($prevPost->getTitle()) ?></span></div>
+                </a>
+            </div>
+            <?php if ($block->isFeaturedImageLoaded($prevPost)): ?>
+                <a href="<?= /* @noEscape */ $block->getPostUrl($prevPost) ?>" class="post-featured-image-link">
+                    <img class="post-featured-image"
+                         src="<?= /* @noEscape */ $block->getFeaturedImageUrl($prevPost) ?>"
+                         title="<?= $block->escapeHtml($prevPost->getFeaturedImageTitle()) ?>"
+                         alt="<?= $block->escapeHtml($prevPost->getFeaturedImageAlt()) ?>"
+                    />
+                </a>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+    <div class="delimiter"></div>
+    <?php if ($nextPost): ?>
+        <div class="next-post-container">
+            <div class="post-featured-title">
+                <a href="<?= /* @noEscape */ $block->getPostUrl($nextPost) ?>" class="post-link">
+                    <div><span><?= /* @noEscape */ __('NEXT') ?></span> <span class="post-arrow">&#8594;</span></div>
+                    <div><span><?= $block->escapeHtml($nextPost->getTitle()) ?></span></div>
+                </a>
+            </div>
+            <?php if ($block->isFeaturedImageLoaded($nextPost)): ?>
+                <a href="<?= /* @noEscape */ $block->getPostUrl($nextPost) ?>" class="post-featured-image-link">
+                    <img class="post-featured-image"
+                         src="<?= /* @noEscape */ $block->getFeaturedImageUrl($nextPost) ?>"
+                         title="<?= $block->escapeHtml($nextPost->getFeaturedImageTitle()) ?>"
+                         alt="<?= $block->escapeHtml($nextPost->getFeaturedImageAlt()) ?>"
+                    />
+                </a>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+</div>

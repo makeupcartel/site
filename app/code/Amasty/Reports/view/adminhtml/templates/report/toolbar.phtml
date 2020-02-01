@@ -1,0 +1,26 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+?>
+<?php /** @var \Amasty\Reports\Block\Adminhtml\Report\Toolbar $block */ ?>
+<h1 class="amreport-main-title"><?= $block->escapeHtml($block->getCurrentTitle()) ?></h1>
+<?= $block->getChildHtml('additional_info') ?>
+<div class="toolbar amreports-toolbar" data-role="<?= $block->escapeHtmlAttr($block->getDataRole()) ?>"
+     id="<?= $block->escapeHtmlAttr($block->getDataRole()) ?>">
+    <?= $block->getFormHtml();?>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#amreports-toolbar": {
+             "amreports_toolbar": {}
+        },
+
+        "#amreports-toolbar_on_button #submit": {
+             "amreports_toolbar": {}
+        }
+    }
+</script>

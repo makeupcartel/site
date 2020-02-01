@@ -1,0 +1,235 @@
+"NOT LOGGED IN","NOT LOGGED IN"
+Dashboard,Dashboard
+"Sales and Orders","Sales and Orders"
+Overview,Overview
+"Sales Comparison","Sales Comparison"
+Orders,Orders
+"Order Items","Order Items"
+"Sales By","Sales By"
+Hour,Hour
+Week,Week
+Country,Country
+"Country - State","Country - State"
+"Payment Type","Payment Type"
+"Customer Group","Customer Group"
+Coupon,Coupon
+Category,Category
+"Cart Price Rules","Cart Price Rules"
+Catalog,Catalog
+"By Product","By Product"
+"By Product Attributes","By Product Attributes"
+"By Brands","By Brands"
+"Product Performance","Product Performance"
+Bestsellers,Bestsellers
+Customers,Customers
+"New vs Returning Customers","New vs Returning Customers"
+"Abandoned Carts","Abandoned Carts"
+"Conversion Rate","Conversion Rate"
+"Custom Reports","Custom Reports"
+"New Rule","New Rule"
+Attributes,Attributes
+Other,Other
+"Attribute Set","Attribute Set"
+Quantity,Quantity
+Total,Total
+"Invalid SKU.","Invalid SKU."
+"Product SKU","Product SKU"
+"Show Report","Show Report"
+"Collection is not specified for chart block","Collection is not specified for chart block"
+Qty,Qty
+Day,Day
+Month,Month
+Year,Year
+Line,Line
+Columns,Columns
+Multi-linear,Multi-linear
+Multi-column,Multi-column
+Pie,Pie
+Horizontal-columns,Horizontal-columns
+"Items Ordered","Items Ordered"
+"By Status","By Status"
+"Range #%1   ","Range #%1   "
+From,From
+To,To
+Compare,Compare
+Display,Display
+Conditions,Conditions
+"Rule won't work if no conditions are applied","Rule won't work if no conditions are applied"
+Delete,Delete
+"Are you sure you want to delete this?","Are you sure you want to delete this?"
+"Reindex Now","Reindex Now"
+"Save and Continue Edit","Save and Continue Edit"
+Save,Save
+Installed,Installed
+"Not Installed","Not Installed"
+"Please update Amasty Base module. Re-upload it and replace all the files.","Please update Amasty Base module. Re-upload it and replace all the files."
+"Please enter a valid date.","Please enter a valid date."
+"Advanced Reports","Advanced Reports"
+Sales,Sales
+"We can't change item right now. Please review the log and try again.","We can't change item right now. Please review the log and try again."
+"A total of %1 record(s) have been changed.","A total of %1 record(s) have been changed."
+"No records have been changed.","No records have been changed."
+"The rule has been deleted.","The rule has been deleted."
+"Can't delete item right now. Please review the log and try again.","Can't delete item right now. Please review the log and try again."
+"This Rule no longer exists.","This Rule no longer exists."
+"Edit Rule # %1","Edit Rule # %1"
+"Advanced Reports Rules","Advanced Reports Rules"
+"We can't delete item right now. Please review the log and try again.","We can't delete item right now. Please review the log and try again."
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"No records have been deleted.","No records have been deleted."
+"The rule has been reindexed.","The rule has been reindexed."
+"Can't reindex item right now. Please review the log and try again.","Can't reindex item right now. Please review the log and try again."
+"The Rule was successfully saved.","The Rule was successfully saved."
+"Something went wrong while saving the rule data. Please review the error log.","Something went wrong while saving the rule data. Please review the error log."
+"All results","All results"
+Processing,Processing
+Indexed,Indexed
+"Unable to save rule with ID %1. Error: %2","Unable to save rule with ID %1. Error: %2"
+"Unable to save new rule. Error: %1","Unable to save new rule. Error: %1"
+"Rule with specified ID ""%1"" not found.","Rule with specified ID ""%1"" not found."
+"Unable to remove rule with ID %1. Error: %2","Unable to remove rule with ID %1. Error: %2"
+"Unable to remove rule. Error: %1","Unable to remove rule. Error: %1"
+GUEST,GUEST
+"All Countries","All Countries"
+Complete,Complete
+"Empty cart","Empty cart"
+"Average Order Value","Average Order Value"
+Refunded,Refunded
+"Abandoned Cart","Abandoned Cart"
+"Items purchased","Items purchased"
+"Orders placed","Orders placed"
+Revenue,Revenue
+"Unique visitors right now","Unique visitors right now"
+"Active shopping carts","Active shopping carts"
+"Qty of items added to shopping cart","Qty of items added to shopping cart"
+"Amasty Customers Report","Amasty Customers Report"
+test,test
+"View Customer","View Customer"
+"Create Quote","Create Quote"
+Guest,Guest
+SKU,SKU
+"View Order","View Order"
+"Show More","Show More"
+"View Products","View Products"
+N/A,N/A
+"View Product","View Product"
+Edit,Edit
+"Delete %1","Delete %1"
+"Are you sure you wan't to delete a %1 rule?","Are you sure you wan't to delete a %1 rule?"
+"Total Overview","Total Overview"
+"Today & Live","Today & Live"
+statistics,statistics
+"Go to statistic","Go to statistic"
+Details,Details
+"Sales Overview","Sales Overview"
+"We couldn't find any records","We couldn't find any records"
+"Conversion Funnel","Conversion Funnel"
+"Conversion Overview","Conversion Overview"
+funnel_from,funnel_from
+funnel_to,funnel_to
+"Products viewed:","Products viewed:"
+"Added to cart:","Added to cart:"
+Ordered:,Ordered:
+"Unique visitors:","Unique visitors:"
+"Go to report","Go to report"
+"Please kindly keep in mind that the current tab is displaying data from All Store Views","Please kindly keep in mind that the current tab is displaying data from All Store Views"
+"Bestsellers (Last 30 days)","Bestsellers (Last 30 days)"
+Name,Name
+"Last Orders","Last Orders"
+Order,Order
+Customer,Customer
+Status,Status
+Date,Date
+Items,Items
+"Grand Total","Grand Total"
+Views,Views
+"Send catchy reminders to your customers using <a href=""%1"" target=""_blank"">Abandoned Cart Email extension</a> extension.","Send catchy reminders to your customers using <a href=""%1"" target=""_blank"">Abandoned Cart Email extension</a> extension."
+"Create personal offer with <a href=""%1"" target=""_blank"">Custom Quote extension</a>.","Create personal offer with <a href=""%1"" target=""_blank"">Custom Quote extension</a>."
+"To get more relevant and accurate results please refresh Amasty Customers Report statistics <a href=""%1"" target=""_blank"">here</a>.","To get more relevant and accurate results please refresh Amasty Customers Report statistics <a href=""%1"" target=""_blank"">here</a>."
+"Number Of Orders -","Number Of Orders -"
+"Total -","Total -"
+Accounts,Accounts
+Reviews,Reviews
+"New customers","New customers"
+"Returning customers","Returning customers"
+Interested,Interested
+"Not interested","Not interested"
+"Lost orders","Lost orders"
+"Abandoned carts","Abandoned carts"
+Ordered,Ordered
+Image,Image
+Print,Print
+"Number of Abandoned Carts","Number of Abandoned Carts"
+"This is a required field.","This is a required field."
+Information,Information
+General,General
+"Order Status used in Sales Reports","Order Status used in Sales Reports"
+"Please select an Order Status to be used in Sales Reports.","Please select an Order Status to be used in Sales Reports."
+"Product Attribute used in Brands Report","Product Attribute used in Brands Report"
+"Please choose an attribute to be used as Brand in Brands Report.","Please choose an attribute to be used as Brand in Brands Report."
+"Amasty Reports","Amasty Reports"
+"Indexed rule/product association","Indexed rule/product association"
+"Indexed product/rule association","Indexed product/rule association"
+"Number of Orders","Number of Orders"
+Subtotal,Subtotal
+Tax,Tax
+Discounts,Discounts
+Invoiced,Invoiced
+"All Customer Groups","All Customer Groups"
+"Number of orders","Number of orders"
+"Quantity Sold","Quantity Sold"
+"Quantity Ordered","Quantity Ordered"
+"Quantity Cancelled","Quantity Cancelled"
+"Quantity Refunded","Quantity Refunded"
+Brand,Brand
+"Customer Name","Customer Name"
+"Customer Email","Customer Email"
+"Order Number","Order Number"
+"Date of Purchase","Date of Purchase"
+"Items Quantity","Items Quantity"
+ID,ID
+"Coupon Code","Coupon Code"
+"Abandoned Cart: Created At","Abandoned Cart: Created At"
+"Abandoned Cart: Items Qty","Abandoned Cart: Items Qty"
+"Abandoned Products","Abandoned Products"
+"Abandoned Carts: Grand Total","Abandoned Carts: Grand Total"
+Period,Period
+Visitors,Visitors
+"Orders Placed","Orders Placed"
+"New Accounts","New Accounts"
+"New Customers","New Customers"
+"Returning Customers","Returning Customers"
+"Percent of Returning","Percent of Returning"
+"Cart Price Rule","Cart Price Rule"
+Shipping,Shipping
+"Order ID","Order ID"
+"Order Status","Order Status"
+"Order Date","Order Date"
+"Payment Method","Payment Method"
+"Product Name","Product Name"
+"Original Price","Original Price"
+Price,Price
+"Qty Ordered","Qty Ordered"
+"Row Total","Row Total"
+Condition,Condition
+CSV,CSV
+"Excel XML","Excel XML"
+"Number of Orders, %","Number of Orders, %"
+"Items Ordered, %","Items Ordered, %"
+"Subtotal, %","Subtotal, %"
+"Tax, %","Tax, %"
+"Shipping, %","Shipping, %"
+"Discounts, %","Discounts, %"
+"Total, %","Total, %"
+"Invoiced, %","Invoiced, %"
+"Refunded, %","Refunded, %"
+State,State
+"Day Of Week","Day Of Week"
+"Custom Menu Item","Custom Menu Item"
+Back,Back
+Title,Title
+"Last Updated","Last Updated"
+"Pin in Custom Reports Tab","Pin in Custom Reports Tab"
+"Add New Rule","Add New Rule"
+"Delete items","Delete items"
+"Are you sure to delete selected links?","Are you sure to delete selected links?"

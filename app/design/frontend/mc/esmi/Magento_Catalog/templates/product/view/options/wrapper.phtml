@@ -1,0 +1,51 @@
+<?php
+/** @var \Magento\Catalog\Model\Product $_product */
+$_product = $block->getProduct();
+$swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+?>
+<?php
+$required = '';
+if ($block->hasRequiredOptions()) {
+    $required = ' data-hasrequired="' . __('* Required Fields') . '"';
+?>
+<div class="product-swatch" id="product-options-wrapper"<?= /* @escapeNotVerified */ $required ?>>
+    <div class="fieldset" tabindex="0">
+        <?= $block->getChildHtml('', true) ?>
+        <?php if ($_product->getData('enable_shade_finder')): ?>
+            <a href="#shade-popup" title="" class="try-our-shade-finder">Try our shade finder</a>
+            <div id="shade-popup" class="white-popup mfp-hide">
+                <?php echo $this->getLayout()
+                                ->createBlock('Magento\Cms\Block\Block')
+                                ->setBlockId('shade-finder')
+                                ->toHtml(); ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+<?php
+}
+?>
+
+<?php if ($_product->getData('enable_shade_finder')): ?>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'magnificPopup'
+        ], function (jQuery) {
+            (function ($) {
+                $(document).ready(function () {
+                    $('.try-our-shade-finder').magnificPopup({
+                  type:'inline',
+                  removalDelay: 500,
+                  callbacks: {
+                    beforeOpen: function() {
+                       this.st.mainClass = 'mfp-move-from-top';
+                    }
+                  },
+                  midClick: true
+                });
+                });
+            })(jQuery);
+        });
+    </script>
+<?php endif; ?>

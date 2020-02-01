@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Oaction
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Sales::sales" title="Sales" sortOrder="20">
+                    <resource id="Magento_Sales::sales_operation" title="Operations" sortOrder="10">
+                        <resource id="Magento_Sales::sales_order"  title="Orders" sortOrder="10">
+                            <resource id="Amasty_Oaction::oaction" title="Amasty Mass Order Actions" sortOrder="10"/>
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Amasty_Oaction::config"
+                                      title="Amasty Mass Order Actions Settings"
+                                      sortOrder="130115" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::system">
+                    <resource id="Magento_Backend::convert">
+                        <resource id="Amasty_Oaction::tracking_import" title="Amasty Import tracking numbers" sortOrder="60" />
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,399 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_SocialLogin
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amsociallogin" translate="label" type="text" sortOrder="190520" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Social Login</label>
+            <tab>amasty</tab>
+            <resource>Amasty_SocialLogin::config</resource>
+            <group id="amasty_information" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Information</label>
+                <frontend_model>Amasty\SocialLogin\Block\Adminhtml\System\Config\Information</frontend_model>
+            </group>
+            <group id="general" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Social Login</label>
+                    <comment>Set 'Yes' to allow login via social networks. Set 'No' to disable social login buttons. Note that the AJAX Pop-up can still be applied for standard login and registration.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <backend_model>Amasty\SocialLogin\Model\Config\Backend\Social</backend_model>
+                </field>
+                <field id="login_position" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Social Login to</label>
+                    <comment>Choose where to place the social login.</comment>
+                    <source_model>Amasty\SocialLogin\Model\Source\LoginPosition</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="button_shape" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Buttons Shape</label>
+                    <source_model>Amasty\SocialLogin\Model\Source\Shape</source_model>
+                    <tooltip><![CDATA[<img src="Amasty_SocialLogin::images/button_shape.gif">]]></tooltip>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="popup_enabled" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Ajax Popup</label>
+                    <comment>Set 'Yes' to activate AJAX Pop-up for the registration and login.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <tooltip><![CDATA[<img src="Amasty_SocialLogin::images/popup.png">]]></tooltip>
+                </field>
+                <field id="button_position" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Buttons Position</label>
+                    <comment>Please configure the Social Login Buttons position in the Ajax pop-up. Note that the bottom position is the only available option for the registration pop-up.</comment>
+                    <source_model>Amasty\SocialLogin\Model\Source\ButtonPosition</source_model>
+                    <tooltip><![CDATA[<img src="Amasty_SocialLogin::images/button.gif">]]></tooltip>
+                    <depends>
+                        <field id="popup_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="redirect_type" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Redirect after Login</label>
+                    <source_model>Amasty\SocialLogin\Model\Source\RedirectType</source_model>
+                </field>
+                <field id="custom_url" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Redirect Url after Login</label>
+                    <depends>
+                        <field id="redirect_type">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="google" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Google</label>
+                <depends>
+                    <field id="*/general/enabled">1</field>
+                </depends>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment><![CDATA[See how to configure app <a target="_blank" href="https://amasty.com/docs/doku.php?id=magento_2:social_login#google">here</a>.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="info" translate="label" type="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment>Copy/paste API codes from application settings of corresponding social networks.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Key (API Key)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Secret (API Secret)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Amasty\SocialLogin\Block\Adminhtml\System\Config\RedirectUrl</frontend_model>
+                    <label>Valid Redirect URI</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="facebook" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Facebook</label>
+                <depends>
+                    <field id="*/general/enabled">1</field>
+                </depends>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment><![CDATA[See how to configure app <a target="_blank" href="https://amasty.com/docs/doku.php?id=magento_2:social_login#facebook">here</a>.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <backend_model>Amasty\SocialLogin\Model\Config\Backend\Social\Facebook</backend_model>
+                </field>
+                <field id="info" translate="label" type="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment>Copy/paste API codes from application settings of corresponding social networks.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Key (API Key)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Secret (API Secret)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Amasty\SocialLogin\Block\Adminhtml\System\Config\RedirectUrl</frontend_model>
+                    <label>Valid Redirect URI</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="twitter" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Twitter</label>
+                <depends>
+                    <field id="*/general/enabled">1</field>
+                </depends>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment><![CDATA[See how to configure app <a target="_blank" href="https://amasty.com/docs/doku.php?id=magento_2:social_login#twitter">here</a>.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="info" translate="label" type="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment>Copy/paste API codes from application settings of corresponding social networks.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Key (API Key)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Secret (API Secret)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Amasty\SocialLogin\Block\Adminhtml\System\Config\RedirectUrl</frontend_model>
+                    <label>Valid Callback URL</label>
+                    <comment>For using in twitter app</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="instagram" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Instagram</label>
+                <depends>
+                    <field id="*/general/enabled">1</field>
+                </depends>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment><![CDATA[See how to configure app <a target="_blank" href="https://amasty.com/docs/doku.php?id=magento_2:social_login#instagram">here</a>.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="info" translate="label" type="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment>Copy/paste API codes from application settings of corresponding social networks.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Key (API Key)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Secret (API Secret)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Amasty\SocialLogin\Block\Adminhtml\System\Config\RedirectUrl</frontend_model>
+                    <label>Valid Callback URL</label>
+                    <comment>For using in instagram app</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="linkedin" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>LinkedIn</label>
+                <depends>
+                    <field id="*/general/enabled">1</field>
+                </depends>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment><![CDATA[See how to configure app <a target="_blank" href="https://amasty.com/docs/doku.php?id=magento_2:social_login#linkedin">here</a>.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="info" translate="label" type="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment>Copy/paste API codes from application settings of corresponding social networks.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Key (API Key)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Secret (API Secret)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Amasty\SocialLogin\Block\Adminhtml\System\Config\RedirectUrl</frontend_model>
+                    <label>Valid Callback URL</label>
+                    <comment>For using in linkedin app</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="amazon" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Amazon</label>
+                <depends>
+                    <field id="*/general/enabled">1</field>
+                </depends>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment><![CDATA[See how to configure app <a target="_blank" href="https://amasty.com/docs/doku.php?id=magento_2:social_login#amazon">here</a>.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="info" translate="label" type="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment>Copy/paste API codes from application settings of corresponding social networks.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Key (API Key)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_secret" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Secret (API Secret)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Amasty\SocialLogin\Block\Adminhtml\System\Config\RedirectUrl</frontend_model>
+                    <label>Valid Callback URL</label>
+                    <comment>For using in amazon app</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="paypal" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Paypal</label>
+                <depends>
+                    <field id="*/general/enabled">1</field>
+                </depends>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment><![CDATA[See how to configure app <a target="_blank" href="https://amasty.com/docs/doku.php?id=magento_2:social_login#paypal">here</a>.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="info" translate="label" type="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment>Copy/paste API codes from application settings of corresponding social networks.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Key (API Key)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_secret" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consumer Secret (API Secret)</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="redirect_url" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Amasty\SocialLogin\Block\Adminhtml\System\Config\RedirectUrl</frontend_model>
+                    <label>Valid Callback URL</label>
+                    <comment>For using in paypal app</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="abandoned_cart" translate="label" type="text" sortOrder="999" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Abandoned Cart Email</label>
+                <field id="status" translate="label comment" type="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Status</label>
+                    <comment><![CDATA[Power it with the Abandoned Cart Emails Extension. See more details <a target="_blank" href="https://amasty.com/magento-2-abandoned-cart-emails.html?utm_source=extension&utm_medium=backend&utm_campaign=social_to_acart_m2">here</a>.]]></comment>
+                    <frontend_model>Amasty\SocialLogin\Block\Adminhtml\System\Config\Form\Field\AbandonedCart</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

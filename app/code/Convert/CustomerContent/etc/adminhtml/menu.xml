@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Convert_CustomerContent::menu_top" module="Convert_CustomerContent" resource="Magento_Backend::content" sortOrder="9999" title="Customer Marketing Content" parent="Magento_Backend::marketing"/>
+		<add action="ccc/category/index" id="Convert_CustomerContent::menu_top_category" module="Convert_CustomerContent" parent="Convert_CustomerContent::menu_top" resource="Magento_Backend::content" sortOrder="10" title="Content Categories"/>
+		<add action="ccc/content" id="Convert_CustomerContent::menu_top_content" module="Convert_CustomerContent" parent="Convert_CustomerContent::menu_top" resource="Magento_Backend::content" sortOrder="20" title="Contents"/>
+	</menu>
+</config>

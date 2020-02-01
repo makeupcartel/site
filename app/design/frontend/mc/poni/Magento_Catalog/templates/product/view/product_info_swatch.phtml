@@ -1,0 +1,26 @@
+<?php
+$_product = $block->getProduct();
+$mediaUrl = $block->getBaseURLMedia();
+?>
+<?php
+    $data = explode(',',$_product->getData('desc_icon'));
+    foreach($data as $value):
+?>
+    <?php
+    $attr = $_product->getResource()->getAttribute('desc_icon');
+    // var_dump($attr->usesSource());die();
+    if ($attr->usesSource()): ?>
+        <?php
+            $option_value = $attr->getSource()->getOptionText($value);
+            $optionName = str_replace('_', ' ', $option_value);
+        ?>
+        <?php if ($option_value): ?>
+            <div class="icon-content">
+                <img src="<?php echo $mediaUrl. '/attribute/swatch/'. $option_value . '.jpg' ?>" alt=""class="icon-attribute">
+                <p class="attribute-name"><?php echo $optionName;?></p>
+            </div>
+        <?php endif ?>
+    <?php endif;?>
+<?php endforeach;?>
+
+

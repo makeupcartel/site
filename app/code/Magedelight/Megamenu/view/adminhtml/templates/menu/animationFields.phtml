@@ -1,0 +1,37 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Megamenu
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+$selectedOptions = $block->getAnimationOption();
+$optionGroups = $block->getOptions();
+    ?>
+    <select class="admin__control-select animationFields">
+    <?php
+    foreach ($optionGroups as $optionGroup) {
+        ?>
+        <optgroup label="<?php echo $optionGroup['label']; ?>">
+            <?php
+            $optionValues = $optionGroup['value'];
+            foreach ($optionValues as $optionValue) {
+                $selected = '';
+                if ($selectedOptions == $optionValue['value']) {
+                    $selected = 'selected';
+                }
+            ?>
+                <option <?php echo $selected; ?> value="<?php echo $optionValue['label']; ?>"><?php echo $optionValue['value']; ?></option>
+            <?php
+            }
+            ?>
+        </optgroup>
+        <?php
+    }
+?>
+    </select>

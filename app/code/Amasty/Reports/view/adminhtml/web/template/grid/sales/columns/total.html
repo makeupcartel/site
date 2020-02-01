@@ -1,0 +1,4 @@
+<th data-bind="attr: {'class': $col.get('index')}">
+    <div if="$parent.totals[$col.get('index')]"  class="data-grid-cell-content" text="'&Sigma;\:&nbsp;' + $parent.totals[$col.get('index')]"/>
+    <div if="!$parent.totals[$col.get('index')] && $col.get('index') != 'ids'"  class="data-grid-cell-content" translate="'N/A'"/>
+</th>

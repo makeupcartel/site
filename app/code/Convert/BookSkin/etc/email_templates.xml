@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:Magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="bookskin_email_template" label="Book Skin Consultation Form" file="bookskin.html" type="html" module="Convert_BookSkin" area="frontend"/>
+</config>

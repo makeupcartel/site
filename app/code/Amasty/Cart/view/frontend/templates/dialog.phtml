@@ -1,0 +1,28 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Cart
+ */
+?>
+<?php
+/** @var $block \Amasty\Cart\Block\Product */
+$product = $this->getProduct();
+$name = $block->escapeHtml($product->getName());
+?>
+
+<a href="<?= $block->escapeUrl($product->getProductUrl()) ?>"
+   title="<?= $name; ?>"
+   class="added-item">
+    <?= $name;?>
+</a>
+<p class="text"><?= __('has been added to your cart')?></p>
+<div class="am-photo-container">
+    <a href="<?= $block->escapeUrl($product->getProductUrl()) ?>"
+       title="<?= $name; ?>"
+       tabindex="-1"
+       class="product-item-photo">
+        <?= $block->getImage($product, 'cart_page_product_thumbnail')->toHtml(); ?>
+    </a>
+    <?= $this->getQtyHtml(); ?>
+</div>

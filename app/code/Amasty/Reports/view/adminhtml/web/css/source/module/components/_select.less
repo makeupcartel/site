@@ -1,0 +1,102 @@
+//
+// Select Styles
+// _______________________________________________
+
+//
+//  Variables
+//  ----------------------------------------------
+
+@amrep-select__background: #ededed;
+@amrep-select__border-color: #ccc;
+@amrep-select__active__color: @amrep__button-color__active;
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    .amreports-body-container {
+        .admin__control-select {
+            & {
+                border: 1px solid @amrep-select__border-color;
+                border-radius: 1px;
+                background: #fff;
+            }
+            
+            &:after,
+            &:before {
+                display: block;
+                width: 100%;
+                height: 100%;
+                content: '';
+            }
+            
+            &:before {
+                box-sizing: border-box;
+                border-left: 1px solid @amrep-select__border-color;
+                border-radius: 1px;
+                background: @amrep-select__background;
+            }
+        }
+    }
+
+    .amreports-select-block {
+        & {
+            .mage-icon(@icon-caret-down__content);
+
+            flex-basis: 180px;
+            max-width: 300px;
+            height: 26px;
+            background: #fff;
+        }
+
+        &:after {
+            .am-flex(center, center);
+
+            position: absolute;
+            top: 1px;
+            right: 0;
+            z-index: 1;
+            width: @amrep__indent__xxl;
+            height: 100%;
+            font-weight: 600;
+            font-size: 10px;
+        }
+
+        &:before {
+            .transition(.1);
+
+            position: absolute;
+            right: 0;
+            z-index: 1;
+            width: @amrep__indent__xxl;
+            height: 100%;
+            border: 1px solid @amrep-select__border-color;
+            background: @amrep-select__background;
+            content: '';
+        }
+
+        &:hover:after,
+        &:focus:after,
+        &:active:after {
+            color: @amrep-select__active__color;
+        }
+
+        &:focus:after,
+        &:active:after {
+            transform: translateY(-1px) rotate(180deg);
+        }
+
+        .amreports-select {
+            z-index: 2;
+            padding: 0 @amrep__indent__xxl 0 @amrep__indent;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        .admin__field-label {
+            margin: 0 @amrep__indent 0 0;
+        }
+    }
+}

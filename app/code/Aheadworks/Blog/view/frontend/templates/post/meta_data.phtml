@@ -1,0 +1,21 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/** @var \Aheadworks\Blog\Block\Post\MetaData $block */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+    $openGraphData = $block->getOpenGraphMetaData();
+    $twitterMetaData = $block->getTwitterMetaData();
+?>
+
+<?php foreach ($openGraphData as $property => $content): ?>
+<meta property="<?php /* @noEscape */ echo $property ?>" content="<?php /* @noEscape */ echo $content ?>"/>
+<?php endforeach; ?>
+<?php foreach ($twitterMetaData as $name => $content): ?>
+<meta name="<?php /* @noEscape */ echo $name ?>" content="<?php /* @noEscape */ echo $content ?>"/>
+<?php endforeach; ?>

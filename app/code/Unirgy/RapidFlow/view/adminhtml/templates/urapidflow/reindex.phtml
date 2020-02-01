@@ -1,0 +1,249 @@
+<?php
+/** @var $block \Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\Reindex */
+
+?>
+
+<style type="text/css">
+    #reindex-columns-container .even td {
+        background: #EEE !important;
+    }
+
+    #reindex-columns-new-options {
+        height: 250px;
+    }
+
+    #reindex-columns-new-options option.required {
+        color: #A00;
+    }
+
+    #refresh-columns-container .even td {
+        background: #EEE !important;
+    }
+
+    #refresh-columns-new-options {
+        height: 250px;
+    }
+
+    #refresh-columns-new-options option.required {
+        color: #A00;
+    }
+
+    .sortable-handle {
+        float: left;
+        cursor: pointer;
+        height: 16px;
+        padding-left: 12px;
+        font-weight: bold;
+        text-align: right;
+        background: url('<?php echo $block->getViewFileUrl('Unirgy_RapidFlow::arrow_sort_move.gif')?>') no-repeat 0 50%;
+    }
+</style>
+
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?= __("Reindex") ?></h4>
+</div>
+
+<fieldset>
+
+    <div class="grid tier form-list">
+        <table id="reindex-columns-table" class="border" cellspacing="0" cellpadding="0">
+            <thead>
+            <tr class="headings">
+                <th class="type-title" style="width:10px">&nbsp;</th>
+                <th class="type-title" width="30%"><?= __("Title") ?></th>
+                <th class="type-title" style="width:70px">&nbsp;</th>
+                <th class="type-title">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody id="reindex-columns-container">
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <button class="add add-select-row f-right" type="button" id="urf-add-index">
+                        <span><?php echo __('Add Reindex') ?></span></button>
+                    <select style="width: 250px" id="reindex-columns-new-options" multiple="multiple"></select>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</fieldset>
+
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend">Refresh</h4>
+</div>
+
+<fieldset>
+
+    <div class="grid tier form-list">
+        <table id="refresh-columns-table" class="border" cellspacing="0" cellpadding="0">
+            <thead>
+            <tr class="headings">
+                <th class="type-title" style="width:10px">&nbsp;</th>
+                <th class="type-title" width="30%">Title</th>
+                <th class="type-title" style="width:70px">&nbsp;</th>
+                <th class="type-title">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody id="refresh-columns-container">
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <button class="add add-select-row f-right" type="button" id="urf-add-cache">
+                        <span><?php echo __('Add Cache') ?></span></button>
+                    <select style="width: 250px" id="refresh-columns-new-options" multiple="multiple""></select>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</fieldset>
+
+
+<script type="text/javascript">
+    require(["jquery", "urapidflow"], function ($) {
+        var columnsFieldsIdx = {};
+        columnsFieldsIdx['reindex'] = <?php echo \Zend\Json\Json::encode($block->getReindexColumnsFields()) ?>;
+        columnsFieldsIdx['refresh'] = <?php echo \Zend\Json\Json::encode($block->getRefreshColumnsFields()) ?>;
+
+        var columnsIdx = {};
+        columnsIdx['reindex'] = <?php echo \Zend\Json\Json::encode($block->getReindexColumns()) ?>;
+        columnsIdx['refresh'] = <?php echo \Zend\Json\Json::encode($block->getRefreshColumns()) ?>;
+
+        fillColumnsFieldsSelectIdx('#reindex-columns-new-options', 'reindex');
+        fillColumnsFieldsSelectIdx('#refresh-columns-new-options', 'refresh');
+        fillColumnsLinesIdx('reindex');
+        fillColumnsLinesIdx('refresh');
+        $("#urf-add-index").on("click", function () {
+            addColumnsIdx('reindex');
+        });
+
+        $("#reindex-columns-new-options").on("dblclick", function () {
+            addColumnsIdx('reindex');
+        });
+
+        $("#urf-add-cache").on("click", function () {
+            addColumnsIdx('refresh');
+        });
+
+        $("#refresh-columns-new-options").on("dblclick", function () {
+            addColumnsIdx('refresh');
+        });
+
+        var sortColumnsIdx = {};
+        sortColumnsIdx['reindex'] = new UnirgySortable({
+            container: '#reindex-columns-container',
+            tag: 'tr',
+            ondrop: function () {
+                redecorateColumnsTableIdx('reindex')
+            }
+        });
+        sortColumnsIdx['refresh'] = new UnirgySortable({
+            container: '#refresh-columns-container',
+            tag: 'tr',
+            ondrop: function () {
+                redecorateColumnsTableIdx('refresh')
+            }
+        });
+
+        function fillColumnsLinesIdx(idxType) {
+            for (var i = 0; i < columnsIdx[idxType].length; i++) {
+                addColumnLineIdx(columnsIdx[idxType][i], idxType);
+            }
+            redecorateColumnsTableIdx(idxType);
+        }
+
+        function fillColumnsFieldsSelectIdx(select, idxType) {
+            var i, j, label, html = '', optgroup, opt;
+            select = $(select);
+            for (i = 0; i < columnsFieldsIdx[idxType].length; i++) {
+                opt = document.createElement('option');
+                opt.value = columnsFieldsIdx[idxType][i].value;
+                opt.innerHTML = escapeHTML(columnsFieldsIdx[idxType][i].label);
+                select.append(opt);
+            }
+        }
+
+        function updatePrevHidden(select) {
+            var selected = [];
+            for (i = 0; i < select.options.length; i++) {
+                if (select.options[i].selected) {
+                    selected.push(select.options[i].value);
+                }
+            }
+            $(select).prev().val(selected.join(','));
+        }
+
+        function addColumnsIdx(idxType) {
+            $('#' + idxType + '-columns-new-options option').each(function () {
+                var el = this;
+                if (el.selected) {
+                    addColumnLineIdx(el.value, idxType);
+                    el.selected = false;
+                }
+            });
+            redecorateColumnsTableIdx(idxType);
+        }
+
+        function addColumnLineIdx(field, idxType) {
+            var tds = '', labelEsc = '', noteEsc = '';
+            var columnField;
+            for (i = 0; i < columnsFieldsIdx[idxType].length; i++) {
+                if (field == columnsFieldsIdx[idxType][i].value) {
+                    labelEsc = escapeHTML(columnsFieldsIdx[idxType][i].label);
+                    noteEsc = typeof columnsFieldsIdx[idxType][i].note == 'string' ? '<br>' + escapeHTML(columnsFieldsIdx[idxType][i].note) : '';
+                }
+            }
+            $('#' + idxType + '-columns-new-options option').each(function () {
+                var el = this;
+                if (el.value == field) {
+                    el.remove();
+                }
+            });
+            var $node = $('<tr>'
+                + '<td><div class="sortable-handle">&nbsp;</div></td>'
+                + '<td><input type="hidden" name="options[' + idxType + '][]" class="idx-field-value" value="' + field + '" />' + labelEsc + noteEsc + '</td>'
+                + '<td><button class="delete delete-select-row icon-btn" type="button"><span><?php echo __('Delete') ?></span></button></td>'
+                + '<td>&nbsp</td>'
+                + '</tr>');
+            $('#' + idxType + '-columns-container').append($node);
+            $node.find(".delete-select-row").on("click", function () {
+                deleteColumnLineIdx(this, idxType);
+            });
+            $node.find(".sortable-handle").on("mousedown", function (event) {
+                sortColumnsIdx[idxType].drag(event, this);
+            });
+            $node.find(".sortable-handle").on("selectstart", function (event) {
+                event.preventDefault();
+                return false;
+            });
+        }
+
+        function deleteColumnLineIdx(button, idxType) {
+            var idxField = $(button.parentNode.parentNode).find('input.idx-field-value')
+            if (idxField.length) {
+                for (i = 0; i < columnsFieldsIdx[idxType].length; i++) {
+                    if (idxField[0].value == columnsFieldsIdx[idxType][i].value) {
+                        opt = document.createElement('option');
+                        opt.value = columnsFieldsIdx[idxType][i].value;
+                        opt.innerHTML = escapeHTML(columnsFieldsIdx[idxType][i].label);
+                        $('#' + idxType + '-columns-new-options').append(opt);
+                    }
+                }
+            }
+            $(button.parentNode.parentNode).remove();
+            redecorateColumnsTableIdx(idxType);
+        }
+
+        function redecorateColumnsTableIdx(idxType) {
+            $('#' + idxType + '-columns-container tr').each(function (tr) {
+                $(tr).removeClass(['odd', 'even', 'first', 'last']);
+            });
+//            decorateTable('#' + idxType + '-columns-table');
+        }
+    });
+</script>

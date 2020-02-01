@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+
+    <actionGroup name="CheckPopUpInCart">
+        <amOnPage url="{{FrontCartPage.url}}" stepKey="navigateToStorefrontCartPage"/>
+        <waitForPageLoad stepKey="waitForPageLoadForShipping"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoadForPopUp"/>
+        <waitForElementNotVisible selector="{{FrontCartSection.CartTotalLoader}}" stepKey="waitWhenNotVisibleLoaderTotals"/>
+        <waitForElementVisible selector="{{FrontCartSection.PopUpForAddProduct}}" time="80" stepKey="checkPopUpForAddInCart"/>
+        <click selector="{{FrontCartSection.PopUpForAddProduct}}" stepKey="clickForOpenPopUp"/>
+        <waitForElementVisible selector="{{FrontCartSection.OpenPopUp}}" stepKey="waitWhenOpenPopUp"/>
+        <waitForPageLoad time="5" stepKey="waitWhileOpenPopUp"/>
+        <seeElement selector="{{FrontCartSection.PopUpProductsContainer}}" stepKey="seeHaveProducts"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckOneByOnePopUpInCart" extends="CheckPopUpInCart">
+        <seeElement selector="{{FrontCartSection.OneByOnePopUpAddButton}}" stepKey="seeHaveOneByOneButton"/>
+        <click selector="{{FrontCartSection.PopUpCloseButton}}" stepKey="closePopUp"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckMultiplePopUpInCart" extends="CheckPopUpInCart">
+        <seeElement selector="{{FrontCartSection.MultiplePopUpAddButton}}" stepKey="seeDontHaveMultipleButton"/>
+        <seeElement selector="{{FrontCartSection.MultiplePopUpCheckbox}}" stepKey="seeDontHaveMultipleCheck"/>
+        <click selector="{{FrontCartSection.PopUpCloseButton}}" stepKey="closePopUp"/>
+    </actionGroup>
+
+
+    <actionGroup name="AddFreeGiftOneByOneInCart" extends="CheckPopUpInCart">
+        <arguments>
+            <argument name="products"/>
+        </arguments>
+        <click selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//button" stepKey="addFreeGift"/>
+    </actionGroup>
+
+
+    <actionGroup name="AddFreeGiftMultipleInCart" extends="CheckPopUpInCart">
+        <arguments>
+            <argument name="addProductQty"/>
+            <argument name="products"/>
+        </arguments>
+        <click selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//input[@type='checkbox']" stepKey="chooseAddFreeGift"/>
+        <fillField selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//div[@class='ampromo-item-qty-input']/input"
+                   userInput="{{addProductQty.qty}}"
+                   stepKey="enterQtyAddFreeGift"/>
+        <waitForPageLoad time="5" stepKey="waitWhileActivateAddButton"/>
+        <click selector="{{FrontCartSection.MultiplePopUpAddButton}}" stepKey="AddFreeGift"/>
+    </actionGroup>
+
+
+    <actionGroup name="AddFreeGiftFromAutoOneByOneInCart" extends="CheckAutoOpenPopUpInCart">
+        <arguments>
+            <argument name="products"/>
+        </arguments>
+        <click selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//button" stepKey="addFreeGift"/>
+    </actionGroup>
+
+
+    <actionGroup name="AddConfigurableFreeGiftOneByOnePopUp" extends="CheckPopUpInCart">
+        <arguments>
+            <argument name="products"/>
+            <argument name="size"/>
+            <argument name="color"/>
+        </arguments>
+        <selectOption selector="//div[@data-product-sku='{{products.productSKU}}']//div[@id='ampromo-options']//span[contains(string(), 'Size')]/parent::label/following-sibling::div/select"
+                      userInput="{{size}}"
+                      stepKey="selectSize"/>
+        <selectOption selector="//div[@data-product-sku='{{products.productSKU}}']//div[@id='ampromo-options']//span[contains(string(), 'Color')]/parent::label/following-sibling::div/select"
+                      userInput="{{color}}"
+                      stepKey="selectColor"/>
+        <click selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//button" stepKey="addFreeGift"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckNoPopUpInCart">
+        <amOnPage url="{{FrontCartPage.url}}" stepKey="navigateToStorefrontCartPage"/>
+        <waitForElementNotVisible selector="{{FrontCartSection.CartTotalLoader}}" stepKey="waitWhenNotVisibleLoaderTotals1"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <waitForPageLoad time="5" stepKey="waitLoadTotals1"/>
+        <click selector="{{FrontCartSection.EstimateShippingAndTax}}" stepKey="OpenTabWithShippingInCart"/>
+        <click selector="{{FrontCartSection.ShippingFlatRate}}" stepKey="chooseShippingMethod"/>
+        <waitForPageLoad time="15" stepKey="waitLoadTotals2"/>
+        <click selector="{{FrontCartSection.EstimateShippingAndTax}}" stepKey="CloseTabWithShippingInCart"/>
+        <waitForElementNotVisible selector="{{FrontCartSection.CartTotalLoader}}" stepKey="waitWhenNotVisibleLoaderTotals2"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad2"/>
+        <waitForPageLoad time="15" stepKey="waitLoadTotals3"/>
+        <dontSeeElement selector="{{FrontCartSection.PopUpForAddProduct}}" stepKey="checkPopUpForAddInCart"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckAutoOpenPopUpInCart">
+        <amOnPage url="{{FrontCartPage.url}}" stepKey="navigateToStorefrontCartPage"/>
+        <waitForElementNotVisible selector="{{FrontCartSection.CartTotalLoader}}" stepKey="waitWhenNotVisibleLoaderTotals1"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <waitForElementVisible selector="{{FrontCartSection.OpenPopUp}}" stepKey="waitWhenOpenPopUp"/>
+        <waitForPageLoad time="5" stepKey="waitWhileOpenPopUp"/>
+        <seeElement selector="{{FrontCartSection.PopUpProductsContainer}}" stepKey="seeHaveProducts"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckOriginAndSpecialPriceInPopUp" extends="CheckPopUpInCart">
+        <arguments>
+            <argument name="cartRulePromo"/>
+            <argument name="products"/>
+        </arguments>
+        <see selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//span[@data-price-type='basePrice']/span"
+             userInput="{{cartRulePromo.originalPriceGift}}" stepKey="checkOriginalPrice"/>
+        <see selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//span[@data-price-type='newPrice']/span"
+             userInput="{{cartRulePromo.discountPriceGift}}" stepKey="checkDiscountPrice"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckNoPriceInPopUp" extends="CheckPopUpInCart">
+        <dontSeeElement selector="{{FrontCartSection.PriceInPopUp}}" stepKey="checkNoPriceInPopUp"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckPopUpOnCheckoutShippingPage">
+        <amOnPage url="{{CheckoutShippingPage.url}}" stepKey="navigateToStorefrontCheckoutShippingPage"/>
+        <waitForElementNotVisible selector="{{CheckoutShippingAddressSection.CheckoutTotalLoader}}" stepKey="waitWhenNotVisibleLoaderTotals"/>
+        <waitForElementVisible selector="{{CheckoutShippingAddressSection.PopUpForAddProductOnCheckout}}" stepKey="checkPopUpForAddOnCheckout"/>
+        <click selector="{{CheckoutShippingAddressSection.PopUpForAddProductOnCheckout}}" stepKey="clickForOpenPopUpOnCheckout"/>
+        <waitForElementVisible selector="{{CheckoutShippingAddressSection.OpenPopUpOnCheckout}}" stepKey="waitWhenOpenPopUpOnCheckout"/>
+        <waitForPageLoad time="5" stepKey="waitWhilePopUpOpen"/>
+        <seeElement selector="{{CheckoutShippingAddressSection.PopUpProductsContainerOnCheckout}}" stepKey="seeHaveProducts"/>
+    </actionGroup>
+
+
+    <actionGroup name="AddFreeGiftMultipleOnCheckoutShippingPage" extends="CheckPopUpOnCheckoutShippingPage">
+        <arguments>
+            <argument name="products"/>
+            <argument name="addProductQty"/>
+        </arguments>
+        <click selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//input[@type='checkbox']" stepKey="chooseAddFreeGift"/>
+        <fillField selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//div[@class='ampromo-item-qty-input']/input"
+                   userInput="{{addProductQty.qty}}"
+                   stepKey="enterQtyAddFreeGift"/>
+        <waitForPageLoad time="5" stepKey="waitWhileActivateAddButton"/>
+        <click selector="{{FrontCartSection.MultiplePopUpAddButton}}" stepKey="AddFreeGift"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckPopUpOnCheckoutPaymentsPage">
+        <amOnPage url="{{CheckoutPaymentsPage.url}}" stepKey="navigateToStorefrontCheckoutPaymentsPage"/>
+        <waitForElementNotVisible selector="{{CheckoutShippingAddressSection.CheckoutTotalLoader}}" stepKey="waitWhenNotVisibleLoaderTotals"/>
+        <waitForElementVisible selector="{{CheckoutShippingAddressSection.PopUpForAddProductOnCheckout}}" stepKey="checkPopUpForAddOnCheckout"/>
+        <click selector="{{CheckoutShippingAddressSection.PopUpForAddProductOnCheckout}}" stepKey="clickForOpenPopUpOnCheckout"/>
+        <waitForElementVisible selector="{{CheckoutShippingAddressSection.OpenPopUpOnCheckout}}" stepKey="waitWhenOpenPopUpOnCheckout"/>
+        <waitForPageLoad time="5" stepKey="waitWhilePopUpOpen"/>
+        <seeElement selector="{{CheckoutShippingAddressSection.PopUpProductsContainerOnCheckout}}" stepKey="seeHaveProducts"/>
+    </actionGroup>
+
+
+    <actionGroup name="AddFreeGiftMultipleOnCheckoutPaymentsPage" extends="CheckPopUpOnCheckoutPaymentsPage">
+        <arguments>
+            <argument name="products"/>
+            <argument name="addProductQty"/>
+        </arguments>
+        <click selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//input[@type='checkbox']" stepKey="chooseAddFreeGift"/>
+        <fillField selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//div[@class='ampromo-item-qty-input']/input"
+                   userInput="{{addProductQty.qty}}"
+                   stepKey="enterQtyAddFreeGift"/>
+        <waitForPageLoad time="5" stepKey="waitWhileActivateAddButton"/>
+        <click selector="{{FrontCartSection.MultiplePopUpAddButton}}" stepKey="AddFreeGift"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckNoPopUpOnCheckoutPaymentsPage">
+        <amOnPage url="{{CheckoutPaymentsPage.url}}" stepKey="navigateToStorefrontCheckoutPaymentsPage"/>
+        <waitForElementNotVisible selector="{{CheckoutShippingAddressSection.CheckoutTotalLoader}}" stepKey="waitWhenNotVisibleLoaderTotals"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <waitForPageLoad time="5" stepKey="waitLoadTotals1"/>
+        <dontSeeElement selector="{{CheckoutShippingAddressSection.PopUpForAddProductOnCheckout}}" stepKey="checkPopUpForAddOnCheckout"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckAutoOpenPopUpOnCheckoutShippingPage">
+        <amOnPage url="{{CheckoutShippingPage.url}}" stepKey="navigateToStorefrontCheckoutShippingPage"/>
+        <waitForElementNotVisible selector="{{CheckoutShippingAddressSection.CheckoutTotalLoader}}" stepKey="waitWhenNotVisibleLoaderTotals1"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <waitForElementVisible selector="{{CheckoutShippingAddressSection.OpenPopUpOnCheckout}}" stepKey="waitWhenOpenPopUpOnCheckout"/>
+        <waitForPageLoad time="5" stepKey="waitWhileOpenPopUp"/>
+        <seeElement selector="{{CheckoutShippingAddressSection.PopUpProductsContainerOnCheckout}}" stepKey="seeHaveProducts"/>
+    </actionGroup>
+
+
+    <actionGroup name="AddFreeGiftFromAutoOpenPopUpOnCheckoutShippingPage" extends="CheckAutoOpenPopUpOnCheckoutShippingPage">
+        <arguments>
+            <argument name="products"/>
+        </arguments>
+        <click selector="//div[@class='slick-track']/div[@data-product-sku='{{products.productSKU}}']//button" stepKey="addFreeGift"/>
+    </actionGroup>
+
+</actionGroups>

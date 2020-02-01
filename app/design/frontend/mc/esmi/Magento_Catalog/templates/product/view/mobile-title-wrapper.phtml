@@ -1,0 +1,12 @@
+<?php
+  $_product = $block->getProduct();
+  $helper = $this->helper('Convert\Catalog\Helper\Data');
+?>
+<h2 class="product-title-name"><?php echo $_product->getName(); ?></h2>
+
+<?php if ($_product->isSaleable()): ?>
+  <div class="sticky-buttons">
+    <a href="#" class="sticky-atc-button" data-text="<?php echo __('Add to bag') ?>"><?php echo __('Add to bag') ?></a>
+  </div>
+<?php endif; ?>
+

@@ -1,0 +1,198 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+$blockObj = $block->getLayout()->createBlock('Amasty\Promo\Block\Items');
+
+$helper = $this->helper('Amasty\Promo\Helper\Data');
+
+
+$blockCheck = $block->hasItems();
+if($blockCheck){
+    $productsCount = $blockObj->getItems();
+}else{
+    $productsCount = [];
+}
+
+
+// echo "<pre>";
+//         print_r($helper->getNewItems());
+//         echo count($helper->getNewItems());
+//         echo "</pre>";
+
+// 
+// var_dump($helper->getNewItems());
+
+?>
+
+<?php /** @var \Amasty\Promo\Block\Add $block */ ?>
+<div class="ampromo-items-add"><?= $block->getMessage()?></div>
+<?php ?> 
+<script>
+    require([
+        'jquery',
+        'domReady!'
+    ], function ($) {
+        var products_count = <?php  echo count($productsCount); ?> ;
+        // alert(products_count);
+        // var products_count = 1;
+        if(products_count == 1){
+            var applyPopup = function() {
+                var autoOpen = ((<?= $block->isOpenAutomatically() ? "true" : "false" ?>) || (window.location.hash == "#choose-gift")),
+                    overlay = $('[data-role=ampromo-overlay]');
+
+                overlay.ampromoPopup({
+                    sourceUrl: '<?= $block->getUrl('amasty_promo/popup/reload') ?>',
+                    uenc:   '<?= $block->getCurrentBase64Url() ?>',
+                    slickSettings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false,
+                        infinite: false,
+                        respondTo: 'slider',
+                    },
+                    commonQty: '<?= $block->getAvailableProductQty()['common_qty'] ?>',
+                    products: <?= \Zend_Json::encode($block->getAvailableProductQty()) ?>,
+                    formUrl: '<?= $block->getFormActionUrl() ?>',
+                    selectionMethod: '<?= $block->getSelectionMethod() ?>',
+                    giftsCounter: '<?= $block->getGiftsCounter() ?>',
+                    autoOpenPopup: autoOpen
+                });
+
+                overlay.on('reloaded', function (e, itemsCount) {
+                    $('.ampromo-items-add').toggle(itemsCount > 0)
+                });
+
+                $('[data-role=ampromo-popup-show]').click(function (){
+                    overlay.ampromoPopup('show');
+                    return false;
+                });
+            };
+        }else if( products_count == 2 ){
+            var applyPopup = function() {
+                var autoOpen = ((<?= $block->isOpenAutomatically() ? "true" : "false" ?>) || (window.location.hash == "#choose-gift")),
+                    overlay = $('[data-role=ampromo-overlay]');
+
+                overlay.ampromoPopup({
+                    sourceUrl: '<?= $block->getUrl('amasty_promo/popup/reload') ?>',
+                    uenc:   '<?= $block->getCurrentBase64Url() ?>',
+                    slickSettings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        dots: false,
+                        infinite: false,
+                        respondTo: 'slider',
+                        responsive: [
+                            {
+                                breakpoint: 399,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1
+                                }
+                            }
+                        ]
+                    },
+                    commonQty: '<?= $block->getAvailableProductQty()['common_qty'] ?>',
+                    products: <?= \Zend_Json::encode($block->getAvailableProductQty()) ?>,
+                    formUrl: '<?= $block->getFormActionUrl() ?>',
+                    selectionMethod: '<?= $block->getSelectionMethod() ?>',
+                    giftsCounter: '<?= $block->getGiftsCounter() ?>',
+                    autoOpenPopup: autoOpen
+                });
+
+                overlay.on('reloaded', function (e, itemsCount) {
+                    $('.ampromo-items-add').toggle(itemsCount > 0)
+                });
+
+                $('[data-role=ampromo-popup-show]').click(function (){
+                    overlay.ampromoPopup('show');
+                    return false;
+                });
+            };
+        }else{
+            var applyPopup = function() {
+                var autoOpen = ((<?= $block->isOpenAutomatically() ? "true" : "false" ?>) || (window.location.hash == "#choose-gift")),
+                    overlay = $('[data-role=ampromo-overlay]');
+
+                overlay.ampromoPopup({
+                    sourceUrl: '<?= $block->getUrl('amasty_promo/popup/reload') ?>',
+                    uenc:   '<?= $block->getCurrentBase64Url() ?>',
+                    slickSettings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        dots: false,
+                        infinite: false,
+                        respondTo: 'slider',
+                        responsive: [
+                            {
+                              breakpoint: 1024,
+                              settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 3,
+                              }
+                            },
+                            {
+                              breakpoint: 600,
+                              settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                              }
+                            },
+                            {
+                              breakpoint: 480,
+                              settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                              }
+                            }
+                            // You can unslick at a given breakpoint now by adding:
+                            // settings: "unslick"
+                            // instead of a settings object
+                          ]
+                    },
+                    commonQty: '<?= $block->getAvailableProductQty()['common_qty'] ?>',
+                    products: <?= \Zend_Json::encode($block->getAvailableProductQty()) ?>,
+                    formUrl: '<?= $block->getFormActionUrl() ?>',
+                    selectionMethod: '<?= $block->getSelectionMethod() ?>',
+                    giftsCounter: '<?= $block->getGiftsCounter() ?>',
+                    autoOpenPopup: autoOpen
+                });
+
+                overlay.on('reloaded', function (e, itemsCount) {
+                    $('.ampromo-items-add').toggle(itemsCount > 0)
+                });
+
+                $('[data-role=ampromo-popup-show]').click(function (){
+                    overlay.ampromoPopup('show');
+                    return false;
+                });
+            };
+        }
+        
+
+        require(['Amasty_Promo/js/popup'],  applyPopup);
+    });
+</script>
+
+<?php if(count($productsCount) == 1){ ?>
+<style>
+    @media screen and (max-width: 767px){
+        .ampromo-overlay .ampromo-items-content {
+            width: 90vw;
+            max-width: 400px;
+        }
+    }
+</style>
+<?php } ?>
+
+<style>
+    .ampromo-items-form .product-info-price{
+        padding-bottom: 0;
+    }
+    .ampromo-overlay .ampromo-items-content .ampromo-item-title {
+        min-height: 34px;
+        margin-bottom: 8px;
+    }
+</style>

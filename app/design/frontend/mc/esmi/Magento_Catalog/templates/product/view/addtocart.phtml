@@ -1,0 +1,150 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php
+$buttonTitle = __('Add to Cart');
+$buttonOutOfStock = __('Out of stock');
+?>
+<input type="hidden" id="myaddcart">
+<input type="hidden" id="checkbutton">
+<?php if ($_product->getTypeId() == "simple" && !$_product->getSubscriptionEnabled()): ?>
+<div class="product-options-bottom">
+	<?php endif ?>
+	<?php if (!$_product->getSubscriptionEnabled()) : ?>
+        <ul class="tabs not--subscription">
+            <li class="tab-link active" data-tab="tab-1"><p><?= __('One time order') ?></p></li>
+        </ul>
+        <div id="tab-1" class="tab-content current"></div>
+	<?php endif ?>
+
+    <div class="box-tocart">
+        <div class="fieldset">
+			<?php if ($block->shouldRenderQuantity()): ?>
+                <div class="field qty">
+                    <div class="control">
+                        <button type="button" id="<?= /* @escapeNotVerified */
+						$_product->getId() ?>-upt"
+                                class="decreaseQty"></button>
+                        <input type="number"
+                               name="qty"
+                               id="qty"
+                               value="<?= /* @escapeNotVerified */
+						       $block->getProductDefaultQty() * 1 ?>"
+                               title="<?= /* @escapeNotVerified */
+						       __('Qty') ?>"
+                               class="input-text qty"
+                               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                        />
+                        <button type="button" id="<?= /* @escapeNotVerified */
+						$_product->getId() ?>-dec"
+                                class="increaseQty"></button>
+                    </div>
+                </div>
+			<?php endif; ?>
+
+            <div class="actions">
+				<?php if ($_product->isSaleable()): ?>
+                    <button
+                            onclick="checkButton()"
+                            type="submit"
+                            title="<?= /* @escapeNotVerified */
+							$buttonTitle ?>"
+                            class="action primary tocart"
+                            id="product-addtocart-button">
+                        <span><?= /* @escapeNotVerified */
+	                        $buttonTitle ?></span>
+                    </button>
+				<?php else: ?>
+                    <button type="submit"
+                            title="<?= /* @escapeNotVerified */
+					        $buttonOutOfStock ?>"
+                            class="action primary tocart disabled"
+                            id="product-addtocart-button" disabled>
+                        <span><?= /* @escapeNotVerified */
+	                        $buttonOutOfStock ?></span>
+                    </button>
+				<?php endif; ?>
+				<?= $block->getChildHtml('', true) ?>
+            </div>
+
+        </div>
+    </div>
+
+	<?php if ($_product->getTypeId() == "simple" && !$_product->getSubscriptionEnabled()): ?>
+</div>
+<?php endif ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+
+
+
+
+
+
+
+</script>
+
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function (jQuery) {
+        (function ($) {
+
+            $(document).ready(function () {
+
+                $('.increaseQty, .decreaseQty').click(function () {
+                    var $this = $(this);
+                    var currentQty = parseInt($("#qty").val());
+                    if ($this.hasClass('increaseQty')) {
+                        var newAdd = parseInt(currentQty) + parseInt(1);
+                        $("#qty").val(newAdd);
+                        $("#myaddcart").val(newAdd);
+                    } else {
+                        if (currentQty > 1) {
+                            var newAdd = parseInt(currentQty) - parseInt(1);
+                            $("#qty").val(newAdd);
+                            $("#myaddcart").val(newAdd);
+                        }
+                    }
+                });
+
+
+                $("input#qty").change(function () {
+                    var currentQty = $("#qty").val();
+                    $("#myaddcart").val(currentQty);
+                });
+            });
+        })(jQuery);
+    });
+</script>
+
+<script type="text/javascript">
+    function checkButton() {
+        require([
+            'jquery',
+        ], function ($) {
+            $("#checkbutton").val(9);
+            var a = $(".manghv[value='[]']").length;
+            if (a != 0) {
+                $(".mage-error.manghv").css('display', 'block');
+                $("div#amprogress").css('display', 'none');
+                return false;
+            } else {
+                $("div#amprogress").css('display', 'block');
+            }
+        });
+    }
+</script>
+

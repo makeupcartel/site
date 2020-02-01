@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Email Order Items List" design_abstraction="custom">
+    <body>
+        <referenceBlock name="order_totals">
+            <arguments>
+                <argument name="label_properties" xsi:type="string">colspan="5"</argument>
+            </arguments>
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">order/totals-email.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="tax">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">order/tax-email.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

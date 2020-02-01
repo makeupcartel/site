@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_SocialLogin
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="social-login-popup" remove="true" />
+        <referenceContainer name="content">
+            <container name="customer.create.am-social-below_registration" htmlTag="div" htmlClass="am-sl-registration-page" after="-">
+                <block class="Amasty\SocialLogin\Block\Social"
+                       name="amsociallogin-social-below_registration" template="Amasty_SocialLogin::social.phtml"/>
+            </container>
+            <container name="customer.create.am-social-above_registration" htmlTag="div" htmlClass="am-sl-registration-page" before="-">
+                <block class="Amasty\SocialLogin\Block\Social"
+                       name="amsociallogin-social-above_registration" template="Amasty_SocialLogin::social.phtml"/>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="RemindedAboutAvailablePromos">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Setting Reminded About Available Promos"/>
+            <description value="Check Setting Reminded About Available Promos"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-9"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="RemindedAboutAvailablePromos"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="EditGeneralSettingPromo" stepKey="settingGeneralPromoConfiguration">
+                <argument name="settingAddProductAuto" value="addSimpleProductsAutomatically.no"/>
+                <argument name="settingBasedOnCart" value="autoAddFreeItemsBasedOnCartAmount.default"/>
+            </actionGroup>
+            <actionGroup ref="EditMessagesSettingPromo" stepKey="settingMessage">
+                <argument name="settingGiftsSelectionMethod" value="giftsSelectionMethod.default"/>
+                <argument name="settingOpenPopupAutomatically" value="openPopUpAutomatically.default"/>
+                <argument name="settingShowOriginalPriceInThePopup" value="showOriginalPriceInThePopup.default"/>
+                <argument name="settingReminderAboutAvailablePromos" value="reminderAboutAvailablePromos.yes"/>
+            </actionGroup>
+            <magentoCLI command="indexer:reindex" stepKey="reindexForMessage"/>
+            <magentoCLI command="cache:flush" stepKey="cleanCacheForMessage"/>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <!-- Return default setting Promo-->
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfiguration"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create new Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromoWithPromoItems" stepKey="CreateCartRule1">
+            <argument name="actionsRulePromo" value="applyAutoAddPromoItemsWithProducts"/>
+            <argument name="cartRulePromo" value="remindedAboutAvailablePromos"/>
+        </actionGroup>
+
+        <!--Add product to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+        </actionGroup>
+
+        <!--Check reminded on the product page and click to link-->
+        <actionGroup ref="CheckRemindedAboutPromos" stepKey="checkRemindedAndLink">
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+        </actionGroup>
+
+    </test>
+</tests>

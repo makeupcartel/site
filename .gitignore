@@ -1,0 +1,14 @@
+# 2020-02-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# http://stackoverflow.com/questions/987142
+# http://stackoverflow.com/questions/9162919
+# http://stackoverflow.com/questions/8024924#comment15884195_8025106
+*
+!*/
+!/.gitignore
+!/composer.json
+!app/code/**/*
+!app/design/frontend/mc/**/*
+!app/etc/config.php
+/pub/media/
+/update/
+/vendor/

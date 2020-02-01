@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Xtento_ProductExport::configuration" title="Product Feed Export" module="Xtento_ProductExport" sortOrder="152" parent="Xtento_XtCore::extensions" action="adminhtml/system_config/edit/section/productexport" resource="Xtento_ProductExport::configuration"/>
+        <add id="Xtento_ProductExport::menu" title="Product Export" module="Xtento_ProductExport" sortOrder="100" parent="Magento_Catalog::catalog" resource="Xtento_ProductExport::menu"/>
+        <add id="Xtento_ProductExport::manual" title="Manual Export" module="Xtento_ProductExport" sortOrder="10" parent="Xtento_ProductExport::menu" action="xtento_productexport/manual/index" resource="Xtento_ProductExport::manual"/>
+        <add id="Xtento_ProductExport::log" title="Execution Log" module="Xtento_ProductExport" sortOrder="20" parent="Xtento_ProductExport::menu" action="xtento_productexport/log/index" resource="Xtento_ProductExport::log"/>
+        <add id="Xtento_ProductExport::profile" title="Export Profiles" module="Xtento_ProductExport" sortOrder="30" parent="Xtento_ProductExport::menu" action="xtento_productexport/profile/index" resource="Xtento_ProductExport::profile"/>
+        <add id="Xtento_ProductExport::destination" title="Export Destinations" module="Xtento_ProductExport" sortOrder="40" parent="Xtento_ProductExport::menu" action="xtento_productexport/destination/index" resource="Xtento_ProductExport::destination"/>
+    </menu>
+</config>
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2017-08-03T15:39:08+00:00
+ * File:          app/code/Xtento/ProductExport/etc/adminhtml/menu.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

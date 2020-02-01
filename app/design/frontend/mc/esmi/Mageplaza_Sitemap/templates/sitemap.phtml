@@ -1,0 +1,45 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Sitemap
+ * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Sitemap\Block\Sitemap $block */
+?>
+
+<div id="mageplaza-seo-html-sitemap">
+    <?= $block->renderHtmlSiteMap() ?>
+</div>
+
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        $(document).ready(function () {
+        	var items = $("div#mageplaza-seo-html-sitemap ul.mp-sitemap-listing li a");
+        	items.each(function () {
+                if($(this).text() == "Home page"){
+                    var oldUrl = $(this).attr("href");
+                    var newUrl = oldUrl.replace("home/", "");
+                    $(this).attr("href", newUrl);
+                }
+            });
+        });
+    });
+
+</script>

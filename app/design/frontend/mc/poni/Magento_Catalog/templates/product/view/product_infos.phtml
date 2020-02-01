@@ -1,0 +1,100 @@
+<?php
+$_product = $block->getProduct();
+$mediaUrl = $block->getBaseURLMedia();
+/*$cHelper = $this->helper(\Amasty\ShopbyBase\Helper\OptionSetting::class);*/
+?>
+<?php if ($_product->getData('description')): ?>
+    <div class="description pro-info">
+        <span class="title show">Description <!-- <i class="fa fa-plus"></i> --></span>
+        <div class="content product-info-description">
+			<?php if ($_product->getData('description')): ?>
+                <div class="description-text"><?php echo $_product->getData('description'); ?></div>
+			<?php endif ?>
+        </div>
+    </div>
+<?php endif ?>
+
+<?php if ($_product->getData('ingredients_icons') || $_product->getData('ingredients_text')): ?>
+    <div class="ingredient pro-info">
+        <span class="title show">Ingredients <!-- <i class="fa fa-plus"></i> --></span>
+		<?php if ($_product->getData('ingredients_icons')): ?>
+            <!--<div class="content">
+				<?php
+			/*				    $data = explode(',',$_product->getData('ingredients_icons'));
+								foreach($data as $value):
+								$setting = $cHelper->getSettingByValue($value, 'attr_ingredients_icons', $_product->getStoreId());
+							*/ ?>
+
+					<div class="icon-content">
+					    <?php
+			/*					    $attr = $_product->getResource()->getAttribute('ingredients_icons');
+
+									if ($attr->usesSource()): */ ?>
+					        <?php
+			/*					            $option_value = $attr->getSource()->getOptionText($value);
+											$optionValue = strtolower($option_value);
+											$optionName = str_replace(' ', '_', $optionValue);
+										*/ ?>
+                            <?php /*if($setting->getImage()) : */ ?>
+                                <img src="<?php /*echo $setting->getImageUrl() */ ?>" alt="">
+                            <?php /*else : */ ?>
+                                <img src="<?php /*echo $mediaUrl. '/default_ingredients_icons.png' */ ?>" alt="">
+                            <?php /*endif; */ ?>
+					        <p class="ingredient-icon-name"><?php /*echo $option_value;*/ ?></p>
+
+					    <?php /*endif;*/ ?>
+				    </div>
+				<?php /*endforeach;*/ ?>
+			</div>
+
+
+		-->
+            <div class="content">
+				<?php $data = explode(',', $_product->getData('ingredients_icons')); ?>
+				<?php foreach ($data as $value): ?>
+					<?php
+					$attr = $_product->getResource()->getAttribute('ingredients_icons');
+					?>
+					<?php if ($attr->usesSource()): ?>
+						<?php
+						$option_value = $attr->getSource()->getOptionText($value);
+						$optionValue = strtolower($option_value);
+						$optionName = str_replace(' ', '-', $optionValue);
+						$optionName = str_replace('-&-', '-', $optionName);
+						$special_character = array("'", ")", "(", "/");
+						$optionName = str_replace($special_character, "", $optionName);
+						$className = str_replace(' ', '-', $optionValue);
+						?>
+						<?php if ($option_value): ?>
+                            <div class="icon-content">
+                                <img src="<?php echo $mediaUrl . $optionName . '.png' ?>"
+                                     alt=""
+                                     class="icon-attribute">
+                                <p class="attribute-name <?php echo $className; ?>"><?php echo $option_value; ?></p>
+                            </div>
+						<?php endif; ?>
+					<?php endif; ?>
+				<?php endforeach; ?>
+            </div>
+		<?php endif; ?>
+		<?php if ($_product->getData('ingredients_text')): ?>
+            <div class="content"><?php echo $_product->getData('ingredients_text'); ?></div>
+		<?php endif ?>
+    </div>
+<?php endif ?>
+
+
+<?php if ($_product->getData('how_to_use')): ?>
+    <div class="how-to-use pro-info">
+        <span class="title show">How to use <!-- <i class="fa fa-plus"></i> --></span>
+        <div class="content"><?php echo $_product->getData('how_to_use'); ?></div>
+    </div>
+<?php endif ?>
+<?php if ($this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('shipping_returns')): ?>
+    <div class="shipping-return pro-info">
+        <span class="title show">Shipping & Returns <!-- <i class="fa fa-plus"></i> --></span>
+        <div class="content">
+			<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('shipping_returns')->toHtml(); ?>
+        </div>
+    </div>
+<?php endif ?>

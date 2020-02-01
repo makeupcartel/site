@@ -1,0 +1,88 @@
+.amasty-ogrid-tabs {
+    min-width: 320px;
+    max-width: 800px;
+    padding: 0px;
+    margin: 0 auto;
+}
+
+.amasty-ogrid-content{
+    display: none;
+}
+
+.amasty-ogrid-content.amasty-active{
+    display: block;
+}
+
+.amasty-ogrid-tabs input.amasty-ogrid-tab{
+    display: none;
+}
+
+.amasty-ogrid-tabs label.amasty-ogrid-label {
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 10px 13px;
+    border-radius: 3px 3px 0 0;
+    float: right;
+    margin-top: -6px;
+}
+
+.amasty-ogrid-tabs label.amasty-ogrid-label:before {
+    margin-right: 10px;
+}
+
+
+.amasty-ogrid-tabs label.amasty-ogrid-label:hover {
+    color: #888;
+    cursor: pointer;
+}
+
+.amasty-ogrid-tabs input.amasty-ogrid-tab + label
+{
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+    margin-left: 5px;
+}
+
+.amasty-ogrid-tabs input.amasty-ogrid-tab._selected + label
+{
+    color: #555;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+    background: #E3E3E3;
+    font-weight: bold;
+}
+
+.admin__data-grid-action-columns-menu._overflow .admin__action-dropdown-menu-content{
+    width: 60rem;
+}
+
+.amasty-ogrid-table label {
+    text-align: left;
+}
+
+.amasty-ogrid-table td {
+    padding: 3px 0px;
+}
+
+.amasty-ogrid-cell-label{
+    width: 100%;
+}
+
+.amasty-ogrid-table td.amasty-ogrid-cell-title{
+    padding-right: 2rem;
+}
+
+.data-grid tr._odd-row td.amasty-ogrid-table-data-grid-th,
+.data-grid tr:hover td.amasty-ogrid-table-data-grid-th{
+    background-color: #514943;
+}
+
+.data-grid td.amasty-ogrid-table-data-grid-th{
+    background-color: #514943;
+    border: .1rem solid #8a837f;
+    background-clip: padding-box;
+    color: #fff;
+    padding: 1rem 1rem;
+    position: relative;
+    vertical-align: middle;
+}

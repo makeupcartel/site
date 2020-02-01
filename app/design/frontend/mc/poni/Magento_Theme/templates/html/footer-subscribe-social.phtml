@@ -1,0 +1,13 @@
+<?php 
+echo $this->getLayout()
+->createBlock('Magento\Cms\Block\Block')
+->setBlockId('footer-poni-m-logo')
+->toHtml();
+?>
+<div>
+<h4><?php echo __('Stay up to date') ?></h4>
+<div>
+<p><?php echo __('Sign up for our newsletter to get the latest news, announcements and event information.') ?></p>
+<?php echo $block->getChildHtml() ?>
+</div>
+</div>

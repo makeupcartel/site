@@ -1,0 +1,84 @@
+<?php
+$blockCategory = $block->getLayout()->createBlock('Convert\CategoryThumbnail\Block\HomeFavorites');
+$cat_id = $this->getData('category_id');
+$_category = $blockCategory->getCategoryFavorites($cat_id);
+$subcats = $_category->getChildrenCategories();
+$objectHelper = $this->Helper('Convert\CategoryThumbnail\Helper\Data');
+$mediaUrl = $objectHelper->getMediaUrl();
+$count = count($subcats);
+$currentCategory = $blockCategory->getCurrentCategory();
+if(!$currentCategory || $currentCategory->getName()!="XMAS"){
+    $xmasId = $this->getData('xmas_id');
+    if($xmasId){
+       $xmasCategory = $blockCategory->getCategoryFavorites($xmasId);
+    }
+}
+?>
+
+<?php foreach ($subcats as $subcat): ?>
+	<?php
+
+	$categoryName = $subcat->getName();
+	$category = $objectHelper->getLoadCategory($subcat->getId());
+
+	if ($categoryName == "Shop All") {
+		$a = "shopall";
+		$link = $block->getBaseUrl() . "shop";
+	} else {
+		$a = "";
+        if (strpos($category->getUrl(), 'shop/e-gift-card') !== false) {
+            $link = str_replace('shop/e-gift-card', 'shop/e-gift-card/gift-card-online', $category->getUrl());
+        } else {
+            $link = $category->getUrl();
+        }
+	}
+	?>
+    <?php if($category->getIncludeInMenu()):?>
+    <div class="mega-category-with-thumbnail <?= $a ?>">
+        <div class="item">
+
+			<?php if ($category->getCategoryThumbnail()): ?>
+                <a class="cat_img" href="<?php echo $link ?>">
+                    <img src="<?php echo $category->getCategoryThumbnail() ?>"
+                         title="<?php echo $categoryName; ?>"/>
+                </a>
+			<?php else: ?>
+                <a class="cat_img" href="<?php echo $link ?>">
+                    <img src="<?php echo $mediaUrl . 'default_thumbnail.jpg' ?>"
+                         title="<?php echo $categoryName; ?>"/>
+                </a>
+			<?php endif; ?>
+        </div>
+        <div class="content">
+            <div class="text">
+                <a class="cat_name" href="<?php echo $link ?>"><?php echo $categoryName; ?></a>
+            </div>
+        </div>
+    </div>
+    <?php endif;?>
+<?php endforeach; ?>
+<?php if(isset($xmasCategory) && $xmasCategory->getIncludeInMenu()):?>
+    <div class="mega-category-with-thumbnail only-mobile">
+        <div class="item">
+
+            <?php if ($xmasCategory->getCategoryThumbnail()): ?>
+                <a class="cat_img" href="<?php echo $block->getBaseUrl() . "xmas" ?>">
+                    <img src="<?php echo $xmasCategory->getCategoryThumbnail() ?>"
+                         title="<?php echo $xmasCategory->getName(); ?>"/>
+                </a>
+            <?php else: ?>
+                <a class="cat_img" href="<?php echo $block->getBaseUrl() . "xmas" ?>">
+                    <img src="<?php echo $mediaUrl . 'default_thumbnail.jpg' ?>"
+                         title="<?php echo $xmasCategory->getName(); ?>"/>
+                </a>
+            <?php endif; ?>
+        </div>
+        <div class="content">
+            <div class="text">
+                <a class="cat_name" href="<?php echo $block->getBaseUrl() . "xmas" ?>"><?php echo $xmasCategory->getName(); ?></a>
+            </div>
+        </div>
+    </div>
+<?php endif;?>
+
+

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015-2017 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Success Page</title>
+        <css src="Plumrocket_Checkoutspage::css/checkoutspage.css" />
+        <css src="Plumrocket_Checkoutspage::css/checkoutspage-custom.css" />
+    </head>
+
+    <update handle="checkoutspage_bottom_section"/>
+    <update handle="checkoutspage_right_section"/>
+    <update handle="checkoutspage_left_section"/>
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Js\Components" name="head.components" as="components" template="Plumrocket_Checkoutspage::js/components.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle" ifconfig="prcheckoutspage/general/enabled">
+                <argument translate="true" name="title" xsi:type="string">Thank You!</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="checkout.success">
+            <action method="setTemplate" ifconfig="prcheckoutspage/general/enabled">
+                <argument name="template" xsi:type="string">Plumrocket_Checkoutspage::page.phtml</argument>
+            </action>
+            <block class="Plumrocket\Checkoutspage\Block\Page" name="checkout.success.style" template="Plumrocket_Checkoutspage::style.phtml" />
+
+            <container name="checkoutspage.left.section" />
+            <container name="checkoutspage.right.section" />
+            <container name="checkoutspage.bottom.section" />
+        </referenceBlock>
+
+        <container name="order.success.additional.info" label="Order Success Additional Info"/>
+    </body>
+</page>

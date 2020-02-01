@@ -1,0 +1,52 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_creditmemo = $block->getCreditmemo() ?>
+<?php $_order      = $block->getOrder() ?>
+<?php if ($_creditmemo && $_order): ?>
+	<table style="width:100%;">
+		<tr><td style="width:100%;height:30px;border-top:solid 1px #eee;"></td></tr>
+	</table>
+    <table class="email-items">
+        <thead>
+            <tr>
+                <th class="item-info" style="padding-left:20px !important; width:30% !important; padding-top:10px !important;padding-bottom:10px !important;font-size:13px !important; color:#222222;font-weight:bold;background-color:#f2f2f2;text-transform: capitalize; ">
+                    <?= /* @escapeNotVerified */  __('Item'); ?>
+                </th>
+				<th class="item-info" style="width:40% !important; padding-top:10px !important;padding-bottom:10px !important;font-size:13px !important; color:#222222;font-weight:bold;background-color:#f2f2f2;text-transform: capitalize; ">
+                    <?= /* @escapeNotVerified */  __('Sku'); ?>
+                </th>
+                <th class="item-qty" style="width:20% !important;padding-top:10px !important;padding-bottom:10px !important; text-align:center !important;font-size:13px !important; color:#222222;font-weight:bold;background-color:#f2f2f2;text-transform: capitalize;">
+                    <?= /* @escapeNotVerified */  __('Subtotal'); ?>
+                </th>
+				<th class="item-qty" style="width:20% !important;padding-top:10px !important;padding-bottom:10px !important; text-align:center !important;font-size:13px !important; color:#222222;font-weight:bold;background-color:#f2f2f2;text-transform: capitalize;">
+                    <?= /* @escapeNotVerified */  __('Qty'); ?>
+                </th>
+                <th class="item-subtotal" style="text-align:right !important;width:20% !important; padding-top:10px !important;padding-bottom:10px !important;padding-right:20px !important;font-size:13px !important; color:#222222;font-weight:bold;background-color:#f2f2f2;text-transform: capitalize;" align="right">
+                    <p style="text-align:right;font-size:13px !important;"><?= /* @escapeNotVerified */  __('Total'); ?></p>
+                </th> 
+            </tr>
+        </thead>
+        <?php foreach ($_creditmemo->getAllItems() as $_item): ?>
+            <?php
+                if ($_item->getOrderItem()->getParentItem()) {
+                    continue;
+                }
+            ?>
+            <tbody>
+                <?= $block->getItemHtml($_item) ?>
+            </tbody>
+        <?php endforeach; ?>
+        <tfoot class="order-totals">
+			<tr><td colspan="5" style="display:inline-block;width:100%;height:16px;padding:0px !important;background-color:#fff !important;"></td></tr>
+            <?= $block->getChildHtml('creditmemo_totals') ?>
+			<tr style="line-height:10px;"><td colspan="5" style="display:inline-block;width:100%;height:10px;padding:0px !important;background-color:#fff !important;"></td></tr>
+        </tfoot>
+    </table>
+<?php endif; ?>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">quiz_edit.quiz_edit_data_source</item>
+			<item name="deps" xsi:type="string">quiz_edit.quiz_edit_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">Information</item>
+		<item name="config" xsi:type="array">
+			<item name="dataScope" xsi:type="string">data</item>
+			<item name="namespace" xsi:type="string">quiz_edit</item>
+		</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Magento\Cms\Block\Adminhtml\Block\Edit\BackButton"/>
+		</buttons>
+		<namespace>quiz_edit</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>quiz_edit.quiz_edit_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="quiz_edit_data_source" >
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Convert\SkinQuiz\Ui\Component\DataProvider</argument>
+			<argument name="name" xsi:type="string">quiz_edit_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">id</argument>
+			<argument name="requestFieldName" xsi:type="string">id</argument>
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="submit_url" xsi:type="url" path="checkdelivery/zipcode/save"/>
+				</item>
+			</argument>
+		</argument>
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+	</dataSource>
+	<fieldset name="quiz_edit_fieldset">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="label" xsi:type="string" translate="true">General</item>
+			</item>
+		</argument>
+		<field name="fullname">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">Full name</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">quiz_edit</item>
+					<item name="dataScope" xsi:type="string">fullname</item>
+				</item>
+			</argument>
+		</field>
+		<field name="emailquiz">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">Email</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">quiz_edit</item>
+					<item name="dataScope" xsi:type="string">emailquiz</item>
+				</item>
+			</argument>
+		</field>
+		<field name="customer-guest">
+			<argument name="data" xsi:type="array">
+
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">User</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">quiz_edit</item>
+					<item name="dataScope" xsi:type="string">customer-guest</item>
+				</item>
+			</argument>
+		</field>
+
+		<field name="age-range">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">Age</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">quiz_edit</item>
+					<item name="dataScope" xsi:type="string">age-range</item>
+				</item>
+			</argument>
+		</field>
+		<field name="skin-type">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Convert\SkinQuiz\Model\Grid\SkinType</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">Skin Type</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="source" xsi:type="string">data</item>
+					<item name="dataScope" xsi:type="string">skin-type</item>
+				</item>
+			</argument>
+		</field>
+<!-- 		<field name="skin-concern">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Convert\SkinQuiz\Model\Grid\SkinConcern</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">Skin Concern</item>
+					<item name="formElement" xsi:type="string">multiselect</item>
+					<item name="source" xsi:type="string">data</item>
+					<item name="dataScope" xsi:type="string">skin-concern</item>
+				</item>
+			</argument>
+		</field> -->
+		<field name="skin-concern-dehydration">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Convert\SkinQuiz\Model\Grid\SkinConcernDehydration</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">My Skin Concern (Dehydration)</item>
+					<item name="formElement" xsi:type="string">multiselect</item>
+					<item name="source" xsi:type="string">data</item>
+					<item name="dataScope" xsi:type="string">skin-concern-dehydration</item>
+				</item>
+			</argument>
+		</field>
+		<field name="skin-concern-finelines">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Convert\SkinQuiz\Model\Grid\SkinConcernFinelines</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">My Skin Concern (Finelines)</item>
+					<item name="formElement" xsi:type="string">multiselect</item>
+					<item name="source" xsi:type="string">data</item>
+					<item name="dataScope" xsi:type="string">skin-concern-finelines</item>
+				</item>
+			</argument>
+		</field>
+		<field name="skin-concern-congestion">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Convert\SkinQuiz\Model\Grid\SkinConcernCongestion</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">My Skin Concern (Congestion)</item>
+					<item name="formElement" xsi:type="string">multiselect</item>
+					<item name="source" xsi:type="string">data</item>
+					<item name="dataScope" xsi:type="string">skin-concern-congestion</item>
+				</item>
+			</argument>
+		</field>
+		<field name="skin-concern-pigmentation">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Convert\SkinQuiz\Model\Grid\SkinConcernPigmentation</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">My Skin Concern (Pigmentation)</item>
+					<item name="formElement" xsi:type="string">multiselect</item>
+					<item name="source" xsi:type="string">data</item>
+					<item name="dataScope" xsi:type="string">skin-concern-pigmentation</item>
+				</item>
+			</argument>
+		</field>
+		<field name="skin-concern-acne">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Convert\SkinQuiz\Model\Grid\SkinConcernAcne</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">My Skin Concern (Acne)</item>
+					<item name="formElement" xsi:type="string">multiselect</item>
+					<item name="source" xsi:type="string">data</item>
+					<item name="dataScope" xsi:type="string">skin-concern-acne</item>
+				</item>
+			</argument>
+		</field>
+		<field name="skin-concern-coarse">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Convert\SkinQuiz\Model\Grid\SkinConcernCoarse</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">My Skin Concern (coarse)</item>
+					<item name="formElement" xsi:type="string">multiselect</item>
+					<item name="source" xsi:type="string">data</item>
+					<item name="dataScope" xsi:type="string">skin-concern-coarse</item>
+				</item>
+			</argument>
+		</field>
+		<field name="skin-sensitivity">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Convert\SkinQuiz\Model\Grid\SkinSensitivity</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">Skin Sensitivity</item>
+					<item name="formElement" xsi:type="string">multiselect</item>
+					<item name="source" xsi:type="string">data</item>
+					<item name="dataScope" xsi:type="string">skin-sensitivity</item>
+				</item>
+			</argument>
+		</field>
+	</fieldset>
+</form>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="amasty_reports_general_layout"/>
+    <body>
+        <attribute name="class" value="amreports-other-pages"/>
+        <attribute name="class" value="amreports-attributes-container"/>
+        <referenceContainer name="amreports.container">
+            <container name="amreports.container.content" htmlTag="div" htmlClass="amreports-container-content">
+                <block class="Amasty\Reports\Block\Adminhtml\Report\Catalog\ByAttributes\Toolbar"
+                       template="Amasty_Reports::report/toolbar.phtml"
+                       name="amreports.report.toolbar" />
+
+                <block class="Amasty\Reports\Block\Adminhtml\Report\Chart"
+                       template="Amasty_Reports::report/catalog/attributes.phtml"
+                       name="amreports.report.content">
+                    <arguments>
+                        <argument name="collection" xsi:type="object">\Amasty\Reports\Model\ResourceModel\Catalog\ByAttributes\Collection</argument>
+                    </arguments>
+                </block>
+                <uiComponent name="amasty_report_catalog_by_attributes_listing" />
+            </container>
+        </referenceContainer>
+    </body>
+</page>

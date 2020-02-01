@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="AutoAddPromoItemsForTheWholeCartWithConditions">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Rule Auto Add Promo Items For The Whole Cart With Conditions"/>
+            <description value="Check Rule Auto Add Promo Items For The Whole Cart With Conditions"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-13"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="AutoAddPromoItemsForTheWholeCartWithConditions"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfiguration"/>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <!-- Return default setting Promo-->
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfiguration"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create First Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromoWithPromoItems" stepKey="CreateCartRule1">
+            <argument name="actionsRulePromo" value="applyAutoAddPromoItemsForTheWholeCart"/>
+            <argument name="cartRulePromo" value="autoAddPromoItemsForTheWholeCartWithConditions"/>
+        </actionGroup>
+        <actionGroup ref="EditRuleAddGlobalConditions" stepKey="AddSubtotalConditions">
+            <argument name="ruleName" value="autoAddPromoItemsForTheWholeCartWithConditions.name"/>
+            <argument name="actionsConditionOptions" value="_subtotal"/>
+            <argument name="actionsConditionOptionsParamIs" value="_equalsOrGreaterThan"/>
+            <argument name="conditionsData" value="autoAddPromoItemsForTheWholeCartWithConditions.conditionSubtotal"/>
+        </actionGroup>
+
+        <!--Add product to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+        <actionGroup ref="CheckNoProductInCart" stepKey="CheckNoThirdFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+        </actionGroup>
+
+        <!--Add product to cart-->
+        <actionGroup ref="ChangeQtyProductInCart" stepKey="ChangeQtyWatchClamberToTwo">
+            <argument name="products" value="_theWatchClamberData"/>
+            <argument name="addProductQty" value="_enterQty2"/>
+        </actionGroup>
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddTwoSecondFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!-- Check No Free Gift PopUp-->
+        <actionGroup ref="CheckNoPopUpInCart" stepKey="checkNoPopUp"/>
+    </test>
+</tests>

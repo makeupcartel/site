@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+
+    <actionGroup name="CreateWizardStep1">
+        <arguments>
+            <argument name="scenario"/>
+        </arguments>
+        <amOnPage url="{{AdminSalesRuleWizard.url}}" stepKey="navigateToSalesRuleWizard"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad1"/>
+        <click selector="//label[@for='{{scenario}}']" stepKey="chooseScenario"/>
+        <wait time="1" stepKey="waitForClick1"/>
+        <click selector="{{AdminSalesRuleWizardSection.ButtonNext}}" stepKey="clickButtonNextStep"/>
+        <wait time="1" stepKey="waitForClick2"/>
+    </actionGroup>
+
+
+    <actionGroup name="CreateWizardStep2TheSameProduct">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <fillField selector="{{AdminSalesRuleWizardSection.CustomerAddsHowManyProducts}}"
+                   userInput="{{cartRulePromo.discountQtyStep}}" stepKey="inputQtyStep"/>
+        <fillField selector="{{AdminSalesRuleWizardSection.CustomerAddsHowManyFree}}"
+                   userInput="{{cartRulePromo.numberOfGiftItems}}" stepKey="inputQtyFreeGift"/>
+        <selectOption selector="{{AdminSalesRuleWizardSection.CustomerAddsWhichProductsGifted}}"
+                      userInput="1" stepKey="selectTheSameProduct"/>
+        <wait time="1" stepKey="waitForClick1"/>
+        <click selector="{{AdminSalesRuleWizardSection.ButtonNext}}" stepKey="clickButtonNextStep"/>
+        <wait time="1" stepKey="waitForClick2"/>
+    </actionGroup>
+
+
+    <actionGroup name="CreateWizardStep3Base">
+        <arguments>
+            <argument name="doesCouponCode"/>
+            <argument name="howManyTimes"/>
+            <argument name="extraCriteria"/>
+        </arguments>
+
+        <selectOption selector="{{AdminSalesRuleWizardSection.DoesCouponCode}}"
+                      userInput="{{doesCouponCode}}" stepKey="selectDoesCoupon"/>
+        <click selector="{{AdminSalesRuleWizardSection.CustomerGroupsRetailer}}" stepKey="selectCustomerRetailer"/>
+        <selectOption selector="{{AdminSalesRuleWizardSection.HowManyTriggered}}"
+                      userInput="{{howManyTimes}}" stepKey="selectHowManyTimesTriggered"/>
+        <selectOption selector="{{AdminSalesRuleWizardSection.ExtraCriteria}}"
+                      userInput="{{extraCriteria}}" stepKey="selectExtraCriteria"/>
+    </actionGroup>
+
+
+    <actionGroup name="CreateWizardStep3" extends="CreateWizardStep3Base">
+        <click selector="{{AdminSalesRuleWizardSection.ButtonNext}}" stepKey="clickButtonNextStep"/>
+    </actionGroup>
+
+
+    <actionGroup name="CreateWizardStep3WithCouponCode" extends="CreateWizardStep3Base">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <fillField selector="{{AdminSalesRuleWizardSection.CouponCode}}"
+                   userInput="{{cartRulePromo.couponCode}}" stepKey="inputCouponCode"/>
+        <click selector="{{AdminSalesRuleWizardSection.ButtonNext}}" stepKey="clickButtonNextStep"/>
+    </actionGroup>
+
+
+    <actionGroup name="CreateWizardStep4Active">
+        <conditionalClick stepKey="enableRule"
+                          selector="{{AdminSalesRuleWizardSection.ActivateRule}}"
+                          dependentSelector="{{AdminSalesRuleWizardSection.ActivateRuleEnable}}"
+                          visible="false"/>
+        <click selector="{{AdminSalesRuleWizardSection.ButtonNext}}" stepKey="clickSaveRule"/>
+    </actionGroup>
+
+</actionGroups>

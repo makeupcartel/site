@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Ogrid
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_columns">
+        <column name="increment_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array"><item name="tab" xsi:type="string">general</item>
+                </item>
+            </argument>
+        </column>
+        <column name="store_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                </item>
+            </argument>
+        </column>
+        <column name="created_at">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                </item>
+            </argument>
+        </column>
+        <column name="billing_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">billing</item>
+                </item>
+            </argument>
+        </column>
+        <column name="shipping_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                </item>
+            </argument>
+        </column>
+        <column name="base_grand_total">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                </item>
+            </argument>
+        </column>
+        <column name="grand_total">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                </item>
+            </argument>
+        </column>
+        <column name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                </item>
+            </argument>
+        </column>
+        <column name="billing_address">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">billing</item>
+                </item>
+            </argument>
+        </column>
+        <column name="shipping_address">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                </item>
+            </argument>
+        </column>
+        <column name="shipping_information">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                </item>
+            </argument>
+        </column>
+        <column name="customer_email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">customer</item>
+                </item>
+            </argument>
+        </column>
+        <column name="customer_group">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">customer</item>
+                </item>
+            </argument>
+        </column>
+        <column name="subtotal">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                </item>
+            </argument>
+        </column>
+        <column name="shipping_and_handling">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                </item>
+            </argument>
+        </column>
+        <column name="customer_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">customer</item>
+                </item>
+            </argument>
+        </column>
+        <column name="payment_method">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                </item>
+            </argument>
+        </column>
+        <column name="total_refunded">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_coupon_code">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Coupon Code</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_tax_amount" class="Amasty\Ogrid\Ui\Component\Listing\Column\OrderTax">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Order Tax</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_order_comments" class="Amasty\Ogrid\Ui\Component\Listing\Column\OrderComments">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="resizeEnabled" xsi:type="boolean">true</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">200</item>
+                    <item name="label" xsi:type="string" translate="true">Order Comments</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_shipping_description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Shipping Method</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_base_subtotal" class="Magento\Sales\Ui\Component\Listing\Column\Price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Subtotal (Base)</item>
+                </item>
+            </argument>
+        </column>
+
+        <column name="amasty_ogrid_total_due" class="Magento\Sales\Ui\Component\Listing\Column\Price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Total Due</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_total_paid" class="Magento\Sales\Ui\Component\Listing\Column\Price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Total Paid</item>
+                </item>
+            </argument>
+        </column>
+
+        <column name="amasty_ogrid_subtotal" class="Magento\Sales\Ui\Component\Listing\Column\PurchasedPrice">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Subtotal (Purchased)</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_weight">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Weight</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_sales_shipment_track" class="Amasty\Ogrid\Ui\Component\Listing\Column\Track">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <!--<item name="filter" xsi:type="string">text</item>-->
+                    <item name="label" xsi:type="string" translate="true">Tracking Number</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_shipping_fax">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Fax</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_shipping_region">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Region</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_shipping_postcode">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Postcode</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_shipping_city">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">City</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_shipping_company">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Company</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_shipping_telephone">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Telephone</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_shipping_country_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">shipping</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Country</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_billing_fax">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">billing</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Fax</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_billing_region">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">billing</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Region</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_billing_postcode">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">billing</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Postcode</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_billing_city">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">billing</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">City</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_billing_company">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">billing</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Company</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_billing_telephone">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">billing</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Telephone</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_billing_country_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">billing</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Country</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_items_ordered">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="filter" xsi:type="boolean">false</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="component" xsi:type="string">Amasty_Ogrid/js/grid/columns/items_ordered</item>
+                    <item name="columnsControlsProvider" xsi:type="string">sales_order_grid.sales_order_grid.listing_top.columns_controls</item>
+
+                    <item name="label" xsi:type="string" translate="true">Product Details</item>
+                    <item name="listingFiltersProvider" xsi:type="string">sales_order_grid.sales_order_grid.listing_top.listing_filters</item>
+                </item>
+            </argument>
+        </column>
+        <column name="amasty_ogrid_items_sku" class="Amasty\Ogrid\Ui\Component\Listing\Column\OrderItemsSku">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="sortable" xsi:type="boolean">true</item>
+                    <item name="filter" xsi:type="string">false</item>
+                    <item name="label" xsi:type="string" translate="true">Items Sku</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="tab" xsi:type="string">general</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

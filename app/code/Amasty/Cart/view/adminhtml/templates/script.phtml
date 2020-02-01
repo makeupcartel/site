@@ -1,0 +1,24 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Cart
+ */
+?>
+<script>
+    require([
+        'jquery',
+        'domReady!'
+    ], function ($) {
+        $(document).on('keyup', '[id*="amasty_cart_visual"]', function(){
+            var element = $('#' + this.id);
+            element.css('background', '#' + element.val());
+        });
+        $('[id*="amasty_cart_visual"]').each(function(i, element){
+            var element = $('#' + element.id);
+            element.css('background', '#' + element.val());
+        });
+    });
+</script>
+
+

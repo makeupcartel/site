@@ -1,0 +1,57 @@
+<?php
+/** @var $block \Xtento\ProductExport\Block\Adminhtml\Profile\Edit\DefaultTemplatePopup */
+?>
+<div id="load_default_template_window" style="display: none;">
+    <section class="admin__page-section" id="default_template">
+        <div class="admin__page-section-title">
+            <span class="title">
+                <?= __('New Product Export Profile') ?>
+            </span>
+        </div>
+        <div class="admin__control-table-wrapper admin__page-subsection">
+            <p><?= __('Would you like to load one of our ready-to-use export profiles? This will overwrite any settings you have made in this profile, if any.') ?></p>
+            <br/>
+            <div id="profile_service_response"><strong><?= __('Loading...')?></strong></div>
+            <table class="data-table admin__control-table" id="profile_table" style="display:none;">
+                <thead>
+                <tr>
+                    <th class="col-template"><?= __('Select Profile') ?></th>
+                    <th class="col-options"><?= __('Options') ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="col-template">
+                        <div class="admin__control-addon">
+                            <select id="profile_name" class="admin__control-select" style="background-color: #fff; max-width: 350px;">
+                                <option value=""><?= __('Please select...')?></option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="col-options">
+                        <div class="admin__field admin__field-option">
+                            <input type="checkbox" id="create_folder" name="create_folder" value="1" checked="checked" class="admin__control-checkbox"/>
+                            <label for="create_folder" class="admin__field-label"><span><?= __('Create Feed Folder (/feeds/)') ?></span></label>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="page-main-actions">
+            <div class="page-actions">
+                <div class="page-actions-buttons">
+                    <button class="action-secondary" type="button" onclick="defaultTemplateModal.close()"><span><?= __('Cancel / Start With Empty Profile')?></span>
+                    </button>
+                    <button class="action-primary" type="button" onclick="defaultTemplateModal.loadProfile()"><span><?= __('Load Profile')?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script type="text/javascript">
+    window.createFeedDestinationUrl = '<?php echo $block->getUrl('xtento_productexport/profile/createFeedDestination'); ?>';
+    window.isDemoEnvironment = <?php if ($block->isDemoEnvironment()): ?>true<?php else: ?>false<?php endif; ?>;
+</script>

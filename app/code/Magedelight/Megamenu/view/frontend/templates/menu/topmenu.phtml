@@ -1,0 +1,69 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Megamenu
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+$columnsLimit = $block->getColumnsLimit() ? : 0;
+?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+<?php $menuDesign = $block->getMenuDesign(); ?>
+
+<div class="menu-container horizontal-menu">
+    <div class="menu <?php echo $menuDesign; ?> <?php
+    if ($block->isSticky() === '1') :
+        echo "stickymenu";
+    endif;
+            ?>">
+        <ul>
+            <?php echo $_menu; ?>
+        </ul>
+        <?php
+        echo $block->menuStyleHtml();
+        ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var animation_time = '<?php echo $block->animationTime(); ?>';
+    require(['jquery'], function ($) {
+        var nav = $('.horizontal-menu');
+        if (nav.length) {
+            var stickyHeaderTop = nav.offset().top;
+            $(window).scroll(function () {
+                if ($(window).width() >= 768) {
+                    if ($(window).scrollTop() > stickyHeaderTop) {
+
+                        if ($('.horizontal-menu .stickymenu').hasClass('vertical-right')) {
+                            var outerWidth = $('.section-items.nav-sections-items').width();
+                            var innerWidth = $('.menu-container.horizontal-menu').width();
+                            var rightMargin = ((outerWidth - innerWidth) / 2) + 'px';
+                            $('.horizontal-menu .stickymenu').css({position: 'fixed', top: '0px', right: rightMargin});
+                        } else {
+                            $('.horizontal-menu .stickymenu').css({position: 'fixed', top: '0px'});
+                        }
+
+                        $('.stickyalias').css('display', 'block');
+                    } else {
+                        $('.horizontal-menu .stickymenu').css({position: 'static', top: '0px'});
+                        $('.stickyalias').css('display', 'none');
+                    }
+                }
+            });
+
+            $('.section-item-content .menu-container.horizontal-menu .menu > ul li.dropdown').each(function (e) {
+                $(this).children('a').after('<span class="plus"></span>');
+            });
+
+            $('.section-item-content .menu-container.horizontal-menu .menu > ul li.dropdown span.plus').click(function (e) {
+                $(this).siblings('a').toggleClass('active');
+                $(this).toggleClass('active').siblings('ul').slideToggle('500');
+            });
+        }
+    });
+</script>

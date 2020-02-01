@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+  <body>
+
+   <referenceBlock  name="checkout.cart.summary.title" remove="true" />
+   <move element="checkout.cart.coupon" destination="cart.summary" before="-" />
+   <move element="checkout.cart.giftcardaccount" destination="cart.summary" after="checkout.cart.coupon" />
+
+   <block class="Magento\Cms\Block\Block" name="payment.method.cart">
+    <arguments>
+      <argument name="block_id" xsi:type="string">payment-method-cart</argument>
+    </arguments>
+  </block>
+<block class="Convert\FreeShip\Block\Cart\Sidebar" name="amountdisplay" template="Convert_FreeShip::amount.phtml" />
+  <block class="Magento\Cms\Block\Block" name="got.any.question">
+    <arguments>
+      <argument name="block_id" xsi:type="string">get_any_questions</argument>
+    </arguments>
+  </block>
+  <move element="payment.method.cart" destination="cart.summary" after="-" />
+  <move element="got.any.question" destination="cart.summary" before="payment.method.cart" />
+  <move element="amountdisplay" destination="checkout.cart.container" before="-" />
+  </body>
+</page>

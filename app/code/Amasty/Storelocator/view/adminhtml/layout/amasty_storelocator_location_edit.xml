@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Storelocator
+ */
+-->
+<!--
+/**
+ * Copyright © 2015 Amasty. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Amasty_Storelocator/style.css" />
+    </head>
+    <body>
+        <referenceContainer name="left">
+            <block class="Amasty\Storelocator\Block\Adminhtml\Location\Edit\Tabs" name="amasty_storelocator_location_edit_tabs" >
+                <arguments>
+                    <argument name="id" xsi:type="string">amasty_storelocator_location_edit_tabs</argument>
+                    <argument name="dest_element_id" xsi:type="string">edit_form</argument>
+                    <argument name="title" xsi:type="string" translate="true">Store Locator Options</argument>
+                </arguments>
+                <block class="Amasty\Storelocator\Block\Adminhtml\Location\Edit\Tab\General" name="amasty_storelocator_location_edit_tab_general"/>
+                <block class="Amasty\Storelocator\Block\Adminhtml\Location\Edit\Tab\Map" name="amasty_storelocator_location_edit_tab_map"/>
+                <block class="Amasty\Storelocator\Block\Adminhtml\Location\Edit\Tab\Actions" name="amasty_storelocator_location_edit_tab_actions"/>
+                <block class="Amasty\Storelocator\Block\Adminhtml\Location\Edit\Tab\Schedule" name="amasty_storelocator_location_edit_tab_schedule"/>
+                <block class="Amasty\Storelocator\Block\Adminhtml\Location\Edit\Tab\Attribute" name="amasty_storelocator_location_edit_tab_attribute"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general</argument>
+                    <argument name="block" xsi:type="string">amasty_storelocator_location_edit_tab_general</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">map</argument>
+                    <argument name="block" xsi:type="string">amasty_storelocator_location_edit_tab_map</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">actions</argument>
+                    <argument name="block" xsi:type="string">amasty_storelocator_location_edit_tab_actions</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">schedule</argument>
+                    <argument name="block" xsi:type="string">amasty_storelocator_location_edit_tab_schedule</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">attribute</argument>
+                    <argument name="block" xsi:type="string">amasty_storelocator_location_edit_tab_attribute</argument>
+                </action>
+
+            </block>
+
+            <block class="Amasty\Storelocator\Block\Location" template="Amasty_Storelocator::rule_js.phtml" name="storelocator_location_edit_jsinit"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Amasty\Storelocator\Block\Adminhtml\Location\Edit" name="amasty_storelocator_location_edit"/>
+        </referenceContainer>
+    </body>
+</page>

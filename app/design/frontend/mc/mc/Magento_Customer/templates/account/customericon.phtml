@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/** @var Magento\Customer\Block\Account\Customer $block */
+?>
+<?php if(!$block->customerLoggedIn()): ?>
+    <div class="customer-account-icon">
+        <a class="account-link-icon" href="<?php echo $this->getBaseUrl().'customer/account/login';?>"><img src="<?php echo $this->getViewFileUrl('images/account_icon.png'); ?>" width="27"></a>
+    </div>
+    <?php else: ?>
+    	<div class="customer-account-icon">
+    		<a class="account-link-icon" href="<?php echo $this->getBaseUrl().'customer/account';?>"><img src="<?php echo $this->getViewFileUrl('images/account_icon.png'); ?>" width="27"></a>
+    	</div>
+<?php endif; ?>
+    

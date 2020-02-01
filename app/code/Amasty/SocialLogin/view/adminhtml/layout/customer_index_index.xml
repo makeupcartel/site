@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_SocialLogin
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="formkey"/>
+    <head>
+        <css src="Amasty_SocialLogin::css/dashboard.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="am-social-analytic" htmlTag="div" htmlClass="am-social-analytic" before="-">
+                <block class="Amasty\SocialLogin\Block\Adminhtml\Analytic" name="amsociallogin-analytic"
+                       template="Amasty_SocialLogin::analytic.phtml" />
+            </container>
+        </referenceContainer>
+    </body>
+</page>

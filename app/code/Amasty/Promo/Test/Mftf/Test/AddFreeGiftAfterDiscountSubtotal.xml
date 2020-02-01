@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="AddFreeGiftAfterDiscountSubtotal">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Add Free Gift After Discount Subtotal"/>
+            <description value="Check Add Free Gift After Discount Subtotal"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-6"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="AddFreeGiftAfterDiscount"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="EditGeneralSettingPromo" stepKey="settingGeneralPromoConfiguration">
+                <argument name="settingAddProductAuto" value="addSimpleProductsAutomatically.no"/>
+                <argument name="settingBasedOnCart" value="autoAddFreeItemsBasedOnCartAmount.afterDiscount"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <!-- Return default setting Promo-->
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfiguration"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create first Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromoWithPromoItems" stepKey="CreateFirstCartRule">
+            <argument name="actionsRulePromo" value="applyAutoAddPromoItemsForEveryXSpent"/>
+            <argument name="cartRulePromo" value="addFreeGiftAfterDiscountSubtotalFirst"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleChangeDiscountQtyStep" stepKey="ChangeQtyStep">
+            <argument name="cartRulePromo" value="addFreeGiftAfterDiscountSubtotalFirst"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleChangePriority" stepKey="ChangePriorityRule">
+            <argument name="cartRulePromo" value="addFreeGiftAfterDiscountSubtotalFirst"/>
+        </actionGroup>
+
+        <!--Create second magento Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromo" stepKey="CreateSecondCartRule">
+            <argument name="actionsRulePromo" value="defaultMagentoActionFixedWholeCart"/>
+            <argument name="cartRulePromo" value="addFreeGiftAfterDiscountSubtotalSecond"/>
+        </actionGroup>
+
+        <!--Add two first products to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductsToCart">
+            <argument name="addProductQty" value="_enterQty2"/>
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+        </actionGroup>
+
+        <!--Check default magento rule discount-->
+        <actionGroup ref="CheckPromoDiscountAmount" stepKey="CheckDiscountFromTheFirstRule1">
+            <argument name="discountAmount" value="addFreeGiftAfterDiscountSubtotalSecond.discountAmount"/>
+        </actionGroup>
+
+        <!-- Check No Free Gift PopUp-->
+        <actionGroup ref="CheckNoPopUpInCart" stepKey="checkNoPopUp1"/>
+
+        <!--Add two second products to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddSecondProductsToCart">
+            <argument name="addProductQty" value="_enterQty2"/>
+            <argument name="products" value="_theFitnessSpriteFoamYogaBrick"/>
+        </actionGroup>
+
+        <!--Check default magento rule discount-->
+        <actionGroup ref="CheckPromoDiscountAmount" stepKey="CheckDiscountFromTheFirstRule2">
+            <argument name="discountAmount" value="addFreeGiftAfterDiscountSubtotalSecond.discountAmount"/>
+        </actionGroup>
+
+        <!-- Check have PopUp-->
+        <actionGroup ref="CheckPopUpInCart" stepKey="checkPopUpInCart"/>
+
+        <!-- Add Free Gift-->
+        <actionGroup ref="AddFreeGiftOneByOneInCart" stepKey="AddFreeGift">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+        </actionGroup>
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!--Change Qty Second Product-->
+        <actionGroup ref="ChangeQtyProductInCart" stepKey="ChangeQtySecondProduct">
+            <argument name="products" value="_theFitnessSpriteFoamYogaBrick"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!-- Check No Free Gift In The Cart-->
+        <actionGroup ref="CheckNoProductInCart" stepKey="CheckNoFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+        </actionGroup>
+
+        <!-- Check No Free Gift PopUp-->
+        <actionGroup ref="CheckNoPopUpInCart" stepKey="checkNoPopUp2"/>
+    </test>
+</tests>

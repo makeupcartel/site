@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="adminhtml.productexport.history.grid.container">
+                <block class="Xtento\ProductExport\Block\Adminhtml\History\Grid" name="adminhtml.block.productexport.history.grid" as="grid">
+                    <arguments>
+                        <argument name="id" xsi:type="string">xtento_productexport_history_grid</argument>
+                        <argument name="dataSource" xsi:type="object">Xtento\ProductExport\Model\ResourceModel\History\Collection</argument>
+                        <argument name="default_sort" xsi:type="string">history_history_id</argument>
+                        <argument name="default_dir" xsi:type="string">DESC</argument>
+                        <!--<argument name="use_ajax" xsi:type="boolean">false</argument>-->
+                        <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                        <!--<argument name="grid_url" xsi:type="url" path="*/log/grid">
+                            <param name="_current">1</param>
+                        </argument>--> <!-- Only enabled when use_ajax is true, but ajax cannot be used as after filtering, mass actions don't work anymore -->
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\Massaction" name="adminhtml.productexport.history.grid.massaction" as="grid.massaction">
+                        <arguments>
+                            <argument name="massaction_id_field" xsi:type="string">history_id</argument>
+                            <argument name="form_field_name" xsi:type="string">history</argument>
+                            <argument name="use_select_all" xsi:type="string">1</argument>
+                            <argument name="options" xsi:type="array">
+                                <item name="delete" xsi:type="array">
+                                    <item name="label" xsi:type="string" translate="true">Delete Entries</item>
+                                    <item name="url" xsi:type="string">*/history/massDelete</item>
+                                    <item name="confirm" xsi:type="string" translate="true">Are you sure? These objects will eventually be re-exported.</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet" name="adminhtml.productexport.history.grid.columnSet">
+                        <arguments>
+                             <argument name="rowUrl" xsi:type="null"/>
+                         </arguments>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="history_history_id">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">History ID</argument>
+                                <argument name="type" xsi:type="string">number</argument>
+                                <argument name="id" xsi:type="string">history_id</argument>
+                                <argument name="index" xsi:type="string">history_id</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="history_log_id">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Log / Export ID</argument>
+                                <argument name="type" xsi:type="string">number</argument>
+                                <argument name="id" xsi:type="string">log_id</argument>
+                                <argument name="index" xsi:type="string">log_id</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="history_profile">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Profile</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="id" xsi:type="string">profile</argument>
+                                <argument name="index" xsi:type="string">profile</argument>
+                                <argument name="filter_index" xsi:type="string">name</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="history_entity">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Entity</argument>
+                                <argument name="type" xsi:type="string">options</argument>
+                                <argument name="id" xsi:type="string">entity</argument>
+                                <argument name="index" xsi:type="string">entity</argument>
+                                <argument name="filter_index" xsi:type="string">main_table.entity</argument>
+                                <argument name="options" xsi:type="options" model="Xtento\ProductExport\Model\System\Config\Source\Export\Entity"/>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="history_entity_id">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Entity ID</argument>
+                                <argument name="type" xsi:type="string">number</argument>
+                                <argument name="id" xsi:type="string">entity_id</argument>
+                                <argument name="index" xsi:type="string">entity_id</argument>
+                                <argument name="filter_index" xsi:type="string">main_table.entity_id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="history_exported_at">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Exported At</argument>
+                                <argument name="type" xsi:type="string">datetime</argument>
+                                <argument name="id" xsi:type="string">exported_at</argument>
+                                <argument name="index" xsi:type="string">exported_at</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="history_view_log_entry" name="adminhtml.productexport.history.grid.column.viewentry">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Log Entry</argument>
+                                <argument name="sortable" xsi:type="string">0</argument>
+                                <argument name="filter" xsi:type="string">0</argument>
+                                <argument name="type" xsi:type="string">action</argument>
+                                <argument name="id" xsi:type="string">view_log_entry</argument>
+                                <argument name="index" xsi:type="string">log_id</argument>
+                                <argument name="actions" xsi:type="array">
+                                    <item name="view" xsi:type="array">
+                                        <item name="caption" xsi:type="string" translate="true">View Execution Log Entry</item>
+                                        <item name="url" xsi:type="array">
+                                            <item name="base" xsi:type="string">*/log/</item>
+                                            <item name="target" xsi:type="string">_blank</item>
+                                        </item>
+                                        <item name="field" xsi:type="string">log_id</item>
+                                    </item>
+                                </argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="history_actions" name="adminhtml.productexport.history.grid.column.actions">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Action</argument>
+                                <argument name="sortable" xsi:type="string">0</argument>
+                                <argument name="filter" xsi:type="string">0</argument>
+                                <argument name="type" xsi:type="string">action</argument>
+                                <argument name="id" xsi:type="string">actions</argument>
+                                <argument name="index" xsi:type="string">history_id</argument>
+                                <argument name="actions" xsi:type="array">
+                                    <item name="delete" xsi:type="array">
+                                        <item name="caption" xsi:type="string" translate="true">Delete entry</item>
+                                        <item name="url" xsi:type="array">
+                                            <item name="base" xsi:type="string">*/history/delete</item>
+                                        </item>
+                                        <item name="field" xsi:type="string">id</item>
+                                    </item>
+                                </argument>
+                            </arguments>
+                        </block>
+                    </block>
+                </block>
+        </referenceBlock>
+    </body>
+</page>
+
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2019-02-08T15:45:12+00:00
+ * File:          app/code/Xtento/ProductExport/view/adminhtml/layout/xtento_productexport_history_grid_block.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

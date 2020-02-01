@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+<requests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:framework:Search/etc/search_request.xsd">
+    <!-- Layred navigation -->
+    <request query="catalog_view_container" index="catalogsearch_fulltext">
+        <dimensions>
+            <!-- avoid error "Element 'dimensions': This element is not expected." -->
+            <dimension name="scope" value="default"/>
+        </dimensions>
+        <queries>
+            <query xsi:type="boolQuery" name="catalog_view_container" boost="1">
+                <queryReference clause="not" ref="entity"/>
+            </query>
+            <query xsi:type="filteredQuery" name="entity">
+                <filterReference clause="not" ref="entity_filter"/>
+            </query>
+        </queries>
+        <filters>
+            <!-- @see Amasty\Groupcat\Plugin\Catalog\Model\Layer -->
+            <filter xsi:type="termFilter" name="entity_filter" field="entity_id" value="$amasty_groupcat_entity_id$"/>
+        </filters>
+        <aggregations>
+            <!-- avoid error "Element 'aggregations': This element is not expected." -->
+            <bucket name="price_bucket" field="price" xsi:type="dynamicBucket" method="$price_dynamic_algorithm$">
+                <metrics>
+                    <metric type="count"/>
+                </metrics>
+            </bucket>
+            <bucket name="category_bucket" field="category_ids" xsi:type="termBucket">
+                <metrics>
+                    <metric type="count"/>
+                </metrics>
+            </bucket>
+        </aggregations>
+        <from>0</from>
+        <size>10000</size>
+    </request>
+    <request query="quick_search_container" index="catalogsearch_fulltext">
+        <dimensions>
+            <!-- avoid error "Element 'dimensions': This element is not expected." -->
+            <dimension name="scope" value="default"/>
+        </dimensions>
+        <queries>
+            <query xsi:type="boolQuery" name="quick_search_container" boost="1">
+                <queryReference clause="not" ref="entity"/>
+            </query>
+            <query xsi:type="filteredQuery" name="entity">
+                <filterReference clause="not" ref="entity_filter"/>
+            </query>
+        </queries>
+        <filters>
+            <!-- @see Amasty\Groupcat\Plugin\Catalog\Model\Layer -->
+            <filter xsi:type="termFilter" name="entity_filter" field="entity_id" value="$amasty_groupcat_entity_id$"/>
+        </filters>
+        <aggregations>
+            <!-- avoid error "Element 'aggregations': This element is not expected." -->
+            <bucket name="price_bucket" field="price" xsi:type="dynamicBucket" method="$price_dynamic_algorithm$">
+                <metrics>
+                    <metric type="count"/>
+                </metrics>
+            </bucket>
+            <bucket name="category_bucket" field="category_ids" xsi:type="termBucket">
+                <metrics>
+                    <metric type="count"/>
+                </metrics>
+            </bucket>
+        </aggregations>
+        <from>0</from>
+        <size>10000</size>
+    </request>
+    <request query="advanced_search_container" index="catalogsearch_fulltext">
+        <dimensions>
+            <!-- avoid error "Element 'dimensions': This element is not expected." -->
+            <dimension name="scope" value="default"/>
+        </dimensions>
+        <queries>
+            <query xsi:type="boolQuery" name="advanced_search_container" boost="1">
+                <queryReference clause="not" ref="entity"/>
+            </query>
+            <query xsi:type="filteredQuery" name="entity">
+                <filterReference clause="not" ref="entity_filter"/>
+            </query>
+        </queries>
+        <filters>
+            <!-- @see Amasty\Groupcat\Plugin\Catalog\Model\Layer -->
+            <filter xsi:type="termFilter" name="entity_filter" field="entity_id" value="$amasty_groupcat_entity_id$"/>
+        </filters>
+        <from>0</from>
+        <size>10000</size>
+    </request>
+</requests>

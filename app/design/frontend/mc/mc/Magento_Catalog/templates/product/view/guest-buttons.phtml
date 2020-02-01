@@ -1,0 +1,46 @@
+<?php
+$helper = $this->helper('Convert\Catalog\Helper\Data');
+$_product = $block->getProduct();
+$_attributeValue = $_product->getResource()->getAttribute('brand')->getFrontend()->getValue($_product);
+
+?>
+<?php if (!$helper->isCustomerLoggedIn()): ?>
+
+    <div class="wholesale-only">
+		<?php
+
+		$informationProduct = $block->getProduct()->getData();
+
+		$urlKey = $block->getProduct()->getUrlKey();
+		$product_redirect_to = $block->getProduct()->getProduct_redirect_to();
+		$websiteIds = $block->getProduct()->getWebsite_ids();
+
+
+		if (empty($http_response_header) || !isset($product_redirect_to)) {
+			$http_response_header = "1";
+		}
+
+
+		$link = $helper->getBaseUrlMedia($urlKey, $websiteIds, $product_redirect_to);
+		if ($link == 1) {
+			$a = "none";
+			$b = 0;
+		} else {
+			$a = "block";
+			$b = 1;
+		}
+
+		?>
+
+    </div>
+    <script>
+        window.productUrlWebsite = '<?php echo $link?>';
+        window.showProductUrlWebsite = <?php echo $b ?>;
+    </script>
+    <div class="guest-buttons">
+        <div><a class="btn btn-login" href="<?= $helper->getUrlMedia() ?>customer/account/login/">SIGN
+                IN FOR PRICE</a>
+            <a style="display: <?= $a ?>" class="btn-hollow btn-retail" href="<?= $link ?>">GO
+                TO <?= strtoupper($_attributeValue) ?> WEBSITE</a></div>
+    </div>
+<?php endif; ?>

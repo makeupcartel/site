@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_xsearch>
+            <general>
+                <popup_width>900</popup_width>
+                <min_chars>3</min_chars>
+                <four_zero_four_redirect>1</four_zero_four_redirect>
+                <enable_seo_url>0</enable_seo_url>
+                <seo_key>search</seo_key>
+            </general>
+            <recent_searches>
+                <enabled>1</enabled>
+                <first_click>1</first_click>
+                <title>Recent Searches</title>
+                <position>5</position>
+                <limit>4</limit>
+            </recent_searches>
+            <popular_searches>
+                <first_click>1</first_click>
+                <enabled>4</enabled>
+                <title>Popular Searches</title>
+                <position>2</position>
+                <limit>4</limit>
+            </popular_searches>
+            <category>
+                <enabled>1</enabled>
+                <title>Categories</title>
+                <position>3</position>
+                <limit>4</limit>
+                <name_length>50</name_length>
+                <desc_length>100</desc_length>
+            </category>
+            <page>
+                <enabled>1</enabled>
+                <title>Pages</title>
+                <position>2</position>
+                <limit>4</limit>
+                <name_length>50</name_length>
+                <desc_length>100</desc_length>
+            </page>
+            <product>
+                <enabled>1</enabled>
+                <title>Products</title>
+                <position>1</position>
+                <limit>4</limit>
+                <name_length>50</name_length>
+                <desc_length>100</desc_length>
+                <reviews>1</reviews>
+                <add_to_cart>1</add_to_cart>
+                <redirect_single_product>1</redirect_single_product>
+                <out_of_stock_last>0</out_of_stock_last>
+            </product>
+            <landing_page>
+                <title>Landing Pages</title>
+                <limit>4</limit>
+            </landing_page>
+            <brand>
+                <title>Brands</title>
+                <limit>4</limit>
+            </brand>
+            <blog>
+                <title>Blog</title>
+                <limit>4</limit>
+            </blog>
+            <layout>
+                <enabled>0</enabled>
+                <border>000000</border>
+                <hover>B0B0B0</hover>
+                <highlight>00E66B</highlight>
+                <background>E6E6E6</background>
+                <text>54A1FF</text>
+                <hover_text>3C00FF</hover_text>
+            </layout>
+        </amasty_xsearch>
+    </default>
+</config>

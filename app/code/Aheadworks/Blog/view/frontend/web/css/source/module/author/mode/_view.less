@@ -1,0 +1,81 @@
+& when (@media-common = true) {
+  .author-view {
+    padding-bottom: 50px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid @aw-author__border-color;
+    padding-top: 30px;
+
+    .author-name {
+      font-size: 29px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.3;
+      letter-spacing: normal;
+      text-align: left;
+      margin: 0 0 15px 0;
+    }
+
+    .author-image-wrapper {
+      min-width: 143px;
+      padding: 0 15px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .author-image {
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .author-info {
+      font-size: 14px;
+      line-height: 1.4;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+  .author-view {
+    .lib-vendor-prefix-display(flex);
+    .lib-vendor-prefix-flex-wrap(nowrap);
+
+    .author-image-wrapper {
+      max-width: 200px;
+      margin-bottom: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .author-image {
+      max-width: 150px;
+    }
+
+    .author-name {
+      font-size: 41px;
+      margin-top: -3px;
+    }
+
+    .author-info {
+      font-size: 16px;
+    }
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}

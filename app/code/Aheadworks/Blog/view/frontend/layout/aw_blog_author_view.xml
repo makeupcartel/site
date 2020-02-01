@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Aheadworks\Blog\Block\Author" name="aw_blog_author.view">
+                <arguments>
+                    <argument name="mode" xsi:type="string">view</argument>
+                </arguments>
+                <block class="Aheadworks\Blog\Block\Author\PostList" name="aw_blog_post.list" as="post_list" template="post/list.phtml">
+                    <block class="Aheadworks\Blog\Block\Html\Pager" name="aw_blog_post.list.pager" as="pager" template="Aheadworks_Blog::pager.phtml">
+                        <arguments>
+                            <argument name="repository" xsi:type="string">Aheadworks\Blog\Api\PostRepositoryInterface</argument>
+                        </arguments>
+                    </block>
+                    <arguments>
+                        <argument name="social_icons_block" xsi:type="string">Aheadworks\Blog\Block\Sharethis</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

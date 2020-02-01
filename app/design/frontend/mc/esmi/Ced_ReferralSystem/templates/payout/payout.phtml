@@ -1,0 +1,86 @@
+<?php
+/**
+ * CedCommerce
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the End User License Agreement (EULA)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* https://cedcommerce.com/license-agreement.txt
+*
+* @category    Ced
+* @package     Ced_ReferralSystem
+* @author 		CedCommerce Core Team <connect@cedcommerce.com>
+* @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+* @license      https://cedcommerce.com/license-agreement.txt
+*/
+
+
+    $earnedAmount = $block->pendingamount();
+    
+    $priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
+    $amount = (int)$block->getDenominationRange();
+    $maxAmount = (int)$block->getMaxDenominationRange();
+
+    if($amount!=0){
+        $gap=intval($earnedAmount/$amount);
+        
+        for($i=1; $gap>=$i; $i++){
+            if(($amount*$i)>$maxAmount){
+                break;
+            }else{
+                 $options[]=$amount*$i;
+            }
+        }
+    }
+ 
+?>
+<div class="col-md-12">
+	<div class="refer-heading">
+        <strong>
+            <?php echo __('Your Current Balance: ')?>
+            <?php echo $priceHelper->currency($earnedAmount, true, false); ?>
+        </strong>
+	</div>
+</div>
+
+<div class="col-md-12">
+    <form action="<?php echo $this->getUrl('referralsystem/payout/save') ?>" method="post" id="form-validate" class="form">
+        <fieldset class="fieldset" data-hasrequired="* Required Fields">
+            <legend class="legend"><span><?php echo __('Create Discount Coupon'); ?></span></legend>
+            <?php if(isset($options)): ?>
+                <div class="field firstname required">
+                    <label for="discount_coupon" class="label"><?php echo __('Select Coupon Amount');?></label>
+                    <div class="control">
+                        <select name="discount_coupon" >
+                            <?php
+                            
+                            foreach ($options as $key => $value): ?>
+                                <?php
+
+                                    $cartPrice = $block->getDenominationRule($value);
+                                    $notice = __('  (Applicable on purchase of %1 and above)',
+                                        $priceHelper->currency($cartPrice, true, false));
+                                      
+                                ?>
+                                <option value="<?php echo $value ?>">
+                                    <?php echo $priceHelper->currency($value, true, false).$notice; ?>
+                                </option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <button name="submit" class="action primary" type="submit">
+                        <?php echo __('Create Coupon');?>
+                    </button>
+                </div>
+            <?php else: ?>
+                    <label><?php echo __('Minimum balance required to create discount coupon: %1',
+                            $priceHelper->currency($amount, true, false)); ?>
+                    </label>
+            <?php endif ?>
+        </fieldset>
+    </form>
+</div>

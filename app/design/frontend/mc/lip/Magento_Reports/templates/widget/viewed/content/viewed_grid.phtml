@@ -1,0 +1,200 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * @var $block \Magento\Reports\Block\Product\Viewed
+ */
+?>
+<?php $helper = $this->helper('Convert\Catalog\Helper\Data'); ?>
+<?php
+if ($exist = ($block->getRecentlyViewedProducts() && $block->getRecentlyViewedProducts()->getSize())) {
+	$type = 'widget-viewed';
+	$mode = 'grid';
+
+	$type = $type . '-' . $mode;
+
+	$image = 'recently_viewed_products_grid_content_widget';
+	$title = __('Recently Viewed');
+	$items = $block->getRecentlyViewedProducts();
+
+	$showWishlist = true;
+	$showCompare = true;
+	$showCart = true;
+	$rating = 'short';
+	$description = ($mode == 'list') ? true : false;
+}
+?>
+<?php if ($exist): ?>
+    <div class="block widget block-viewed-products-<?= /* @escapeNotVerified */
+	$mode ?>">
+        <div class="block-title">
+            <span><strong role="heading" aria-level="2"><?= /* @escapeNotVerified */
+		            $title ?></strong></span>
+
+        </div>
+        <div class="block-content">
+			<?= /* @escapeNotVerified */
+			'<!-- ' . $image . '-->' ?>
+            <div class="products-<?= /* @escapeNotVerified */
+			$mode ?> <?= /* @escapeNotVerified */
+			$mode ?>">
+                <ol class="product-items <?= /* @escapeNotVerified */
+				$type ?> owl-carousel">
+
+					<?php
+					$a = 0;
+					foreach ($items as $_item):
+						?>
+						<?php
+						$a++;
+						$proId = $_item->getId();
+						$_product = $helper->getLoadProduct($proId);
+						$data = $_product->getData('limited_and_new');
+						$attr = $_product->getResource()->getAttribute('limited_and_new');
+						?>
+                        <li class="product-item">
+                            <div class="product-item-info">
+                                <input type="hidden" value="<?= $block->getProductUrl($_item) ?>"
+                                       id="linkproduct<?= $a ?>">
+                                <a href="<?= /* @escapeNotVerified */
+								$block->getProductUrl($_item) ?>" class="product-item-photo">
+									<?=
+									$block->getImage($_item, $image)->toHtml();
+									?>
+                                </a>
+                                <div class="product-item-details">
+									<?php
+									if ($attr->usesSource() && $data) {
+										$optionValue = $attr->getSource()->getOptionText($data);
+										?>
+                                        <!-- <div class="limited">
+                                            <span class="text-value"><?php echo $optionValue ?></span>
+                                        </div> -->
+										<?php
+									}
+									?>
+
+                             <!--       <div class="align-summary">
+		                            <span class="stamped-product-reviews-badge" data-id="<?php /*echo $_item->getId() */?>"
+                                          style="display: block;"></span>
+                                </div>-->
+                                    <strong class="product-item-name">
+                                        <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                           href="<?= /* @escapeNotVerified */
+										   $block->getProductUrl($_item) ?>" class="product-item-link">
+											<?= $block->escapeHtml($_item->getName()) ?>
+                                        </a>
+                                    </strong>
+									<?php /* @escapeNotVerified */
+									echo $block->getProductPriceHtml(
+										$_item,
+										\Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE,
+										\Magento\Framework\Pricing\Render::ZONE_ITEM_LIST,
+										[
+											'price_id_suffix' => '-' . $type
+										]
+									) ?>
+                                    <!--<div class="align-swatch" id="myswatch<?/*= $a */?>">
+										<?php /*if ($_item->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+											$swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+											echo $swatchBlock->setProduct($_item)->toHtml();
+										} */?></div>-->
+									<?php if ($showWishlist || $showCompare || $showCart): ?>
+                                        <div class="product-item-actions">
+											<?php if ($showCart): ?>
+                                                <div class="actions-primary">
+													<?php if ($_item->isSaleable()): ?>
+														<?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+                                                            <button
+                                                                    class="action tocart primary"
+                                                                    data-mage-init='{"redirectUrl": {"url": "<?= /* @escapeNotVerified */
+																	$block->getProductUrl($_item) ?>"}}'
+                                                                    type="button" title="<?= /* @escapeNotVerified */
+															__('Add to Bag') ?>"
+                                                            >
+                                                                <span><?= /* @escapeNotVerified */
+	                                                                __('Add to Bag') ?></span>
+                                                            </button>
+														<?php else: ?>
+															<?php
+															$postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+															$postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
+															?>
+                                                            <button
+
+                                                                    class="action tocart primary"
+                                                                    data-post='<?= /* @escapeNotVerified */
+																	$postData ?>'
+                                                                    type="button" title="<?= /* @escapeNotVerified */
+															__('Add to Bag') ?>">
+                                                                <span><?= /* @escapeNotVerified */
+	                                                                __('Add to Bag') ?></span>
+                                                            </button>
+														<?php endif; ?>
+                                                        <div class="view-details">
+                                                            <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"> <?= __('View details') ?></a>
+                                                        </div>
+													<?php else: ?>
+														<?php if ($_item->getIsSalable()): ?>
+                                                            <div class="stock available">
+                                                                <span><?= /* @escapeNotVerified */
+	                                                                __('In stock') ?></span></div>
+														<?php else: ?>
+                                                            <div class="stock unavailable">
+                                                                <span><?= /* @escapeNotVerified */
+	                                                                __('Out of stock') ?></span></div>
+                                                            <div class="view-details">
+                                                                <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"> <?= __('View details') ?></a>
+                                                            </div>
+														<?php endif; ?>
+													<?php endif; ?>
+                                                </div>
+											<?php endif; ?>
+                                        </div>
+									<?php endif; ?>
+                                </div>
+                            </div>
+                        </li>
+					<?php endforeach ?>
+                </ol>
+            </div>
+			<?= $block->getPagerHtml() ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    // pls style follow cart page
+    require([
+        'jquery',
+        'owlCarousel'
+    ], function ($) {
+        var owl = jQuery('.block-content ol.owl-carousel');
+        owl.owlCarousel({
+            dots: true,
+            nav: true,
+            loop: true,
+            navText: ["<img src='<?php echo $this->getViewFileUrl('images/owl_prev.png') ?>'>", "<img src='<?php echo $this->getViewFileUrl('images/owl_next.png')?>'>"],
+            responsive: {
+                0: {
+                    items: 2,
+                    margin: 13,
+                    loop: true,
+                },
+                768: {
+                    items: 2,
+                    margin: 24
+                }
+            }
+        });
+    });
+
+</script>
+

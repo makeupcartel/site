@@ -1,0 +1,177 @@
+<?php
+/**
+ * Copyright 2018 aheadWorks. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\Post */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+$post = $block->getPost();
+?>
+<header class="blog-post-header-detail">
+
+
+    <h1 class="blog-post-title">
+		<?php if ($block->isListItemMode()): ?>
+            <a href="<?php /* @noEscape */
+			echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>" class="blog-post-title-link">
+				<?php echo $block->escapeHtml($post->getTitle()) ?>
+            </a>
+		<?php else: ?>
+			<?php echo $block->escapeHtml($post->getTitle()) ?>
+		<?php endif; ?>
+    </h1>
+    <ul class="blog-post-info">
+        <li class="blog-post-info-item"><?= strtoupper(date('M d, Y', strtotime($post->getPublishDate())));
+			?> BY <?= strtoupper($block->getAuthors()) ?></li>
+		<?php if ($block->commentsEnabled()): ?>
+            <li class="blog-post-info-item">
+                <a href="#"
+                   data-url="<?php echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>#disqus_thread"
+                   data-mage-init='{"blogCommentsLink": {}}' class="blog-post-info-comments">
+                    <span class="blog-post-info-comments-icon"></span>
+                    <span class="disqus-comment-count"
+                          data-disqus-identifier="<?php echo $block->escapeHtml($post->getId()) ?>"></span>
+                </a>
+            </li>
+		<?php endif; ?>
+    </ul>
+
+</header>
+<?php if ($post): ?>
+    <article class="blog-posts-post blog-post">
+		<?php if ($block->isFeaturedImageLoaded()): ?>
+            <div class="blog-post-featured-image-wrapper">
+				<?php if ($block->isListItemMode()): ?>
+                    <a href="<?php /* @noEscape */
+					echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>" class="blog-post-featured-image-link">
+                        <img class="blog-post-featured-image img-fluid"
+                             src="<?php /* @noEscape */
+						     echo $block->escapeXssInUrl($block->getFeaturedImageUrl()) ?>"
+                             title="<?php echo $block->escapeHtml($post->getFeaturedImageTitle()) ?>"
+                             alt="<?php echo $block->escapeHtml($post->getFeaturedImageAlt()) ?>"
+                        />
+                    </a>
+				<?php else: ?>
+                    <img class="blog-post-featured-image img-fluid"
+                         src="<?php /* @noEscape */
+					     echo $block->escapeXssInUrl($block->getFeaturedImageUrl()) ?>"
+                         title="<?php echo $block->escapeHtml($post->getFeaturedImageTitle()) ?>"
+                         alt="<?php echo $block->escapeHtml($post->getFeaturedImageAlt()) ?>"
+                    />
+				<?php endif; ?>
+            </div>
+		<?php endif; ?>
+        <header class="blog-post-header">
+            <ul class="blog-post-info">
+                <li class="blog-post-info-item"><?= strtoupper(date('M d, Y', strtotime($post->getPublishDate())));
+					?></li>
+				<?php if ($block->commentsEnabled()): ?>
+                    <li class="blog-post-info-item">
+                        <a href="#"
+                           data-url="<?php echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>#disqus_thread"
+                           data-mage-init='{"blogCommentsLink": {}}' class="blog-post-info-comments">
+                            <span class="blog-post-info-comments-icon"></span>
+                            <span class="disqus-comment-count"
+                                  data-disqus-identifier="<?php echo $block->escapeHtml($post->getId()) ?>"></span>
+                        </a>
+                    </li>
+				<?php endif; ?>
+            </ul>
+            <h1 class="blog-post-title">
+				<?php if ($block->isListItemMode()): ?>
+                    <a href="<?php /* @noEscape */
+					echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>" class="blog-post-title-link">
+						<?php echo $block->escapeHtml($post->getTitle()) ?>
+                    </a>
+				<?php else: ?>
+					<?php echo $block->escapeHtml($post->getTitle()) ?>
+				<?php endif; ?>
+            </h1>
+			<?php if ($block->isListItemMode()): ?>
+                <a href="<?php /* @noEscape */
+				echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>" class="blog-post-title-link-read-more">
+                    <span class="read-more">READ MORE</span>
+                </a>
+			<?php endif; ?>
+        </header>
+        <div class="blog-post-content">
+			<?php /* @noEscape */
+			echo $block->getContent($post) ?>
+        </div>
+		<?php if ($block->showReadMoreButton($post)): ?>
+            <p class="blog-post-read-more-wrapper">
+                <a href="<?php /* @noEscape */
+				echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>"
+                   class="blog-post-read-more action primary">
+					<?php echo $block->escapeHtml(__('Read more')) ?>
+                </a>
+            </p>
+		<?php endif; ?>
+		<?php if ($block->isViewMode()): ?>
+            <div class="blog-post-tags">
+                <div class="blog-tags blog-tags-plain">
+					<?php foreach ($post->getTagNames() as $tagName): ?>
+                        <a href="<?php /* @noEscape */
+						echo $block->escapeXssInUrl($block->getSearchByTagUrl($tagName)) ?>"
+                           class="blog-tags-tag">
+							<?php echo $block->escapeHtml($tagName) ?>
+                        </a>
+					<?php endforeach; ?>
+                </div>
+            </div>
+			<?php if ($socialIconsHtml = $block->getSocialIconsHtml()): ?>
+                <div class="blog-post-share">
+                    <p class="blog-post-share-title"><?php echo $block->escapeHtml(__('Share Via')) ?></p>
+                    <div class="blog-post-share-content">
+                        <div class="container">
+							<?php /* @noEscape */
+							echo $socialIconsHtml ?>
+                        </div>
+                    </div>
+                </div>
+			<?php endif; ?>
+		<?php endif; ?>
+		<?php $categoryLinks = $block->getCategoryLinks() ?>
+		<?php if ($linksCount = count($categoryLinks)): ?>
+            <p class="blog-post-author">
+				<?php echo $block->escapeHtml(__('Posted in')) ?>
+				<?php if ($linksCount == 1): ?>
+					<?php /* @noEscape */
+					echo $categoryLinks[0] ?>
+				<?php elseif ($linksCount == 2): ?>
+					<?php /* @noEscape */
+					echo __('%1 and %2', $categoryLinks[0], $categoryLinks[1]) ?>
+				<?php elseif ($linksCount > 2): ?>
+					<?php /* @noEscape */
+					echo __(
+						'%1, %2 and %3',
+						implode(', ', array_slice($categoryLinks, 0, $linksCount - 2)), $categoryLinks[$linksCount - 2], $categoryLinks[$linksCount - 1]
+					) ?>
+				<?php endif; ?>
+            </p>
+		<?php endif; ?>
+		<?php /* @noEscape */
+		echo $block->getRelatedProductHtml($block->isViewMode(), $block->getPositionAfterPost()) ?>
+		<?php if ($block->isViewMode() && $block->commentsEnabled()): ?>
+			<?php /* @noEscape */
+			echo $block->getDisqusEmbedHtml() ?>
+		<?php endif; ?>
+		<?php /* @noEscape */
+		echo $block->getRelatedProductHtml($block->isViewMode(), $block->getPositionAfterComments()) ?>
+    </article>
+<?php endif; ?>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function ($) {
+        $(".blog-pagination-page-current").css("border", "2px solid #EEEEEE");
+        $(".blog-pagination-page-current").css("color", "#282D2E");
+        $(".blog-pagination-page-current").focus();
+    });
+</script>

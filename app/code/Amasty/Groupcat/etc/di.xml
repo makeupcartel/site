@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\Groupcat\Api\Data\RuleInterface" type="Amasty\Groupcat\Model\Rule" />
+    <preference for="Amasty\Groupcat\Api\RuleRepositoryInterface" type="Amasty\Groupcat\Model\RuleRepository" />
+
+    <type name="Magento\Framework\Module\Setup\Migration">
+        <arguments>
+            <argument name="compositeModules" xsi:type="array">
+                <item name="groupcat" xsi:type="string">Amasty_Groupcat</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Amasty\Groupcat\Api\Data\RuleInterface" xsi:type="string">Amasty\Groupcat\Api\RuleRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Amasty\Groupcat\Api\Data\RuleInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">amasty_groupcat_rule</item>
+                    <item name="identifierField" xsi:type="string">rule_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Amasty\Groupcat\Api\Data\RuleInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\AttributePool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="groupcat" xsi:type="array">
+                    <item name="Amasty\Groupcat\Api\Data\RuleInterface" xsi:type="array">
+                        <item name="read" xsi:type="string">Amasty\Groupcat\Model\ResourceModel\ReadHandler</item>
+                        <item name="create" xsi:type="string">Amasty\Groupcat\Model\ResourceModel\SaveHandler</item>
+                        <item name="update" xsi:type="string">Amasty\Groupcat\Model\ResourceModel\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Amasty\Groupcat\Model\ResourceModel\Rule\AssociatedEntityMap" type="Magento\Framework\DataObject">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="store" xsi:type="array">
+                    <item name="associations_table" xsi:type="string">amasty_groupcat_rule_store</item>
+                    <item name="rule_id_field" xsi:type="string">rule_id</item>
+                    <item name="entity_id_field" xsi:type="string">store_id</item>
+                </item>
+                <item name="customer_group" xsi:type="array">
+                    <item name="associations_table" xsi:type="string">amasty_groupcat_rule_customer_group</item>
+                    <item name="rule_id_field" xsi:type="string">rule_id</item>
+                    <item name="entity_id_field" xsi:type="string">customer_group_id</item>
+                </item>
+                <item name="category" xsi:type="array">
+                    <item name="associations_table" xsi:type="string">amasty_groupcat_rule_category</item>
+                    <item name="rule_id_field" xsi:type="string">rule_id</item>
+                    <item name="entity_id_field" xsi:type="string">category_id</item>
+                </item>
+                <item name="customer" xsi:type="array">
+                    <item name="associations_table" xsi:type="string">amasty_groupcat_rule_customer</item>
+                    <item name="rule_id_field" xsi:type="string">rule_id</item>
+                    <item name="entity_id_field" xsi:type="string">customer_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Amasty\Groupcat\Model\ResourceModel\Rule">
+        <arguments>
+            <argument name="associatedEntityMap" xsi:type="object">Amasty\Groupcat\Model\ResourceModel\Rule\AssociatedEntityMap</argument>
+            <argument name="entityManager" xsi:type="object">Magento\Framework\EntityManager\EntityManager</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\Groupcat\Model\ResourceModel\Rule\Collection">
+        <arguments>
+            <argument name="associatedEntityMap" xsi:type="object">Amasty\Groupcat\Model\ResourceModel\Rule\AssociatedEntityMap</argument>
+        </arguments>
+    </type>
+    <virtualType name="amastyGroupcatRuleSearchResult" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">amasty_groupcat_rule</argument>
+            <argument name="resourceModel" xsi:type="string">\Amasty\Groupcat\Model\ResourceModel\Rule</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="groupcat_rule_data_source" xsi:type="string">amastyGroupcatRuleSearchResult</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist">
+        <plugin name="add_to_wishlist_tohtml" type="Amasty\Groupcat\Plugin\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist"></plugin>
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare">
+        <plugin name="add_to_compare_tohtml" type="Amasty\Groupcat\Plugin\Block\Catalog\Product\ProductList\Item\AddTo\Compare"></plugin>
+    </type>
+    <type name="Magento\Rule\Model\Condition\AbstractCondition">
+        <plugin name="amastyGroupcatAbstractCondition" type="Amasty\Groupcat\Plugin\Model\Condition\AbstractConditionPlugin"/>
+    </type>
+    <type name="Magento\CatalogSearch\Model\Search\TableMapper">
+        <!--compatibility with magento less v2.1.6-->
+        <plugin name="amastyGroupcatTableMapper" type="Amasty\Groupcat\Plugin\CatalogSearch\Model\Search\TableMapperPlugin"/>
+    </type>
+</config>

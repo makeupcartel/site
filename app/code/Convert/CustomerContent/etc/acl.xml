@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::marketing">
+                    <resource id="Convert_CustomerContent::menu_top_category" sortOrder="10" title="Marketing Categories" />
+                    <resource id="Convert_CustomerContent::menu_top_content" sortOrder="20" title="Marketing Content" />
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

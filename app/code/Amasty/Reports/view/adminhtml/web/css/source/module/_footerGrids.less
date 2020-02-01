@@ -1,0 +1,94 @@
+//
+//  Footer magento table
+//  ____________________________________________
+
+//
+//  Common
+//  --------------------------------------------
+
+& when (@media-common = true) {
+    .amreports-other-pages .admin__data-grid-outer-wrap {
+        display: none;
+    }
+}
+
+//
+//  Tablet
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amreports-other-pages .admin__data-grid-outer-wrap {
+        & {
+            display: block;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(23, 63, 224, .1);
+        }
+
+        .admin__data-grid-header-row:first-child {
+            display: none;
+        }
+
+        .selectmenu-value input[type='text'] {
+            max-width: 70px;
+        }
+
+        .col-xs-9,
+        .col-xs-3 {
+            width: auto;
+            margin-right: 12px;
+        }
+    }
+}
+
+//
+//  Desktop
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .amreports-other-pages .admin__data-grid-outer-wrap {
+        .admin__data-grid-header-row:first-child {
+            display: block;
+        }
+
+        .admin__data-grid-header-row.row.row-gutter {
+            position: absolute;
+            top: 5px;
+        }
+
+        .selectmenu-value input[type='text'] {
+            max-width: 60px;
+        }
+
+        .admin__data-grid-pager {
+            margin-left: 1rem;
+        }
+
+        .action-previous,
+        .action-next {
+            margin-right: .5rem;
+        }
+
+        .action-next {
+            margin-left: .5rem;
+        }
+
+        .admin__action-dropdown {
+            padding: .7rem 2.7rem .8rem .7rem;
+        }
+
+        .am_radioset {
+            padding-left: 10px;
+        }
+
+        .admin__data-grid-actions-wrap {
+            margin-left: 0;
+        }
+
+        .data-grid-filters-actions-wrap {
+            margin-top: -3px;
+        }
+    }
+}

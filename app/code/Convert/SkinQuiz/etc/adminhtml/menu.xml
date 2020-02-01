@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+      <menu>
+        <add id="Convert_SkinQuiz::quiz_list" title="List skin concern" module="Convert_SkinQuiz" sortOrder="50" action="quiz/index/index" resource="Convert_SkinQuiz::list" parent="Magento_Customer::customer"/>
+    </menu>
+</config>

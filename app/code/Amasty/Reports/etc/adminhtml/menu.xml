@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Amasty_Reports::reports" title="Advanced Reports" module="Amasty_Reports" sortOrder="100" parent="Magento_Reports::report" resource="Amasty_Reports::reports"/>
+        <add id="Amasty_Reports::index" title="Advanced Reports" module="Amasty_Reports" sortOrder="10" parent="Amasty_Reports::reports" action="amasty_reports/report" resource="Amasty_Reports::reports"/>
+        <add id="Amasty_Reports::rule" title="Advanced Reports Rules" module="Amasty_Reports" sortOrder="20" parent="Amasty_Reports::reports" action="amasty_reports/rule" resource="Amasty_Reports::rule"/>
+    </menu>
+</config>

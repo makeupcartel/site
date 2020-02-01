@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\Sharethis */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+    $shareUrl = $block->escapeXssInUrl($block->getShareUrl());
+    $sharingText = $block->escapeHtml($block->getShareText());
+?>
+<span class='st_facebook' st_url='<?php /* @noEscape */ echo $shareUrl ?>' st_title='<?php /* @noEscape */ echo $sharingText ?>'></span>
+<span class='st_twitter' st_url='<?php /* @noEscape */ echo $shareUrl ?>' st_title='<?php /* @noEscape */ echo $sharingText ?>'></span>
+<span class='st_googleplus' st_url='<?php /* @noEscape */ echo $shareUrl ?>' st_title='<?php /* @noEscape */ echo $sharingText ?>'></span>
+<span class='st_pinterest' st_url='<?php /* @noEscape */ echo $shareUrl ?>' st_title='<?php /* @noEscape */ echo $sharingText ?>'></span>
+<span class='st_linkedin' st_url='<?php /* @noEscape */ echo $shareUrl ?>' st_title='<?php /* @noEscape */ echo $sharingText ?>'></span>
+<script src="<?php /* @noEscape */ echo $block->getEmbedScriptUrl() ?>"></script>

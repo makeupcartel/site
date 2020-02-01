@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Xtento\ProductExport\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Xtento\ProductExport\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">xtentoLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Xtento\ProductExport\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Xtento\ProductExport\Model\Export\Data\Review\General">
+        <arguments>
+            <argument name="urlBuilder" xsi:type="object">Magento\Framework\Url</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="xtentoProductExportExportCommand" xsi:type="object">Xtento\ProductExport\Console\Command\ExportCommand</item>
+                <item name="xtentoProductExportConfigExportCommand" xsi:type="object">Xtento\ProductExport\Console\Command\ConfigExportCommand</item>
+                <item name="xtentoProductExportConfigImportCommand" xsi:type="object">Xtento\ProductExport\Console\Command\ConfigImportCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Xtento\ProductExport\Console\Command\ConfigExportCommand">
+        <arguments>
+            <argument name="toolsHelper" xsi:type="object">\Xtento\ProductExport\Helper\Tools\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Xtento\ProductExport\Console\Command\ConfigImportCommand">
+        <arguments>
+            <argument name="toolsHelper" xsi:type="object">\Xtento\ProductExport\Helper\Tools\Proxy</argument>
+        </arguments>
+    </type>
+    <virtualType name="XtentoProductExportConfigData" type="Magento\Framework\Config\Data">
+        <arguments>
+            <argument name="reader" xsi:type="object">XtentoProductExportConfigDataReader</argument>
+            <argument name="cacheId" xsi:type="string">xtento_product_export_config_data</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="XtentoProductExportConfigDataReader" type="Magento\Framework\Config\Reader\Filesystem">
+        <arguments>
+            <argument name="idAttributes" xsi:type="array">
+                <item name="/config/data/export" xsi:type="string">id</item>
+            </argument>
+            <argument name="fileName" xsi:type="string">xtento/productexport_data.xml</argument>
+            <argument name="converter" xsi:type="object">\Xtento\ProductExport\Model\Export\Data\Config\ConfigDataConverter</argument>
+            <argument name="schemaLocator" xsi:type="object">\Xtento\ProductExport\Model\Export\Data\Config\SchemaLocator</argument>
+        </arguments>
+    </virtualType>
+    <type name="Xtento\ProductExport\Model\Export\Data">
+        <arguments>
+            <argument name="exportConfig" xsi:type="object">XtentoProductExportConfigData</argument>
+        </arguments>
+    </type>
+    <virtualType name="XtentoProductExportConfigSettings" type="Magento\Framework\Config\Data">
+        <arguments>
+            <argument name="reader" xsi:type="object">XtentoProductExportConfigSettingsReader</argument>
+            <argument name="cacheId" xsi:type="string">xtento_product_export_config_settings</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="XtentoProductExportConfigSettingsReader" type="Magento\Framework\Config\Reader\Filesystem">
+        <arguments>
+            <argument name="idAttributes" xsi:type="array">
+                <item name="/config/settings/setting" xsi:type="string">name</item>
+            </argument>
+            <argument name="fileName" xsi:type="string">xtento/productexport_settings.xml</argument>
+            <argument name="converter" xsi:type="object">\Xtento\ProductExport\Model\Export\Settings\ConfigDataConverter</argument>
+            <argument name="schemaLocator" xsi:type="object">\Xtento\ProductExport\Model\Export\Settings\SchemaLocator</argument>
+        </arguments>
+    </virtualType>
+    <type name="Xtento\ProductExport\Model\Output\Xsl">
+        <arguments>
+            <argument name="exportSettings" xsi:type="object">XtentoProductExportConfigSettings</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Asset\Minification">
+        <plugin name="excludeFilesFromMinification" type="Xtento\ProductExport\Plugin\ExcludeFilesFromMinification"/>
+    </type>
+</config>
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2019-08-28T12:41:11+00:00
+ * File:          app/code/Xtento/ProductExport/etc/di.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Xtento_ProductExport" setup_version="2.11.4">
+        <sequence>
+            <module name="Magento_Backend"/>
+            <module name="Xtento_XtCore"/>
+        </sequence>
+    </module>
+</config>
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2019-08-30T12:12:51+00:00
+ * File:          app/code/Xtento/ProductExport/etc/module.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

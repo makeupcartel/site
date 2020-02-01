@@ -1,0 +1,194 @@
+<script type="text/javascript">
+    var downloadFrame = document.createElement("iframe");
+    downloadFrame.style.display = "none";
+    document.body.appendChild(downloadFrame);
+</script>
+<style type="text/css">
+    #editor {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+<div class="entry-edit form-inline">
+    <fieldset class="fieldset" style="padding-bottom:0">
+        <legend class="legend">
+            <span><?php echo __('Output Format') ?></span>
+        </legend>
+    </fieldset>
+    <fieldset class="fieldset fieldset-wide" id="base_fieldset" style="padding-bottom:10px;">
+        <div class="admin__field field" id="output_type_div" style="margin-bottom:10px">
+            <label class="label admin__field-label" for="output_type" style="width: 135px;"><span><?php echo __('Output Type')?></span></label>
+            <div class="admin__field-control control">
+                <select id="output_type" name="output_type" class="select admin__control-select">
+                    <option value="xsl"<?php echo $block->getRegistry()->registry('productexport_profile')->getOutputType() == 'xsl' ? ' selected="selected"' : ''; ?>><?php echo __('XSL Template (Customized Output)')?></option>
+                    <option value="xml"<?php echo $block->getRegistry()->registry('productexport_profile')->getOutputType() == 'xml' ? ' selected="selected"' : ''; ?>><?php echo __('All fields in a XML file')?></option>
+                </select>
+            </div>
+        </div>
+        <div class="admin__field field" id="filename_div" style="margin-bottom:10px">
+            <label class="label admin__field-label" for="filename" style="width: 135px;"><span><?php echo __('Filename')?></span></label>
+            <div class="admin__field-control control">
+                <input id="filename" name="filename" value="<?php echo $block->getRegistry()->registry('productexport_profile')->getFilename() ?>" type="text" class="input-text" style="width:275px !important;">
+            </div>
+        </div>
+        <div class="admin__field field" id="encoding_div" style="margin-bottom:10px">
+            <label class="label admin__field-label" for="encoding" style="width: 135px;"><span><?php echo __('Encoding')?></span></label>
+            <div class="admin__field-control control">
+                <input id="encoding" name="encoding" value="<?php echo $block->getRegistry()->registry('productexport_profile')->getEncoding() ?>" type="text" class="input-text" style="width:275px !important;">
+            </div>
+        </div>
+        <div id="xsl_div" style="width:100%">
+            <a id="page-help-link" href="#" target="_blank" style="color: #EA7601; text-decoration: underline; line-height: 31px;" onclick="showFieldsAvailable(); return false;"><?php echo __(
+                'Looking for certain fields or field names? Please use the "Show fields available for export" function.'
+            ) ?></a><br/>
+            <div name="buttons" style="overflow: auto; margin-bottom:5px; padding:5px; border: 1px solid #ccc;">
+                <button type="button" class="scalable" onclick="validateXslTemplate();">
+                    <span><?php echo __('Test XSL Template')?></span></button>
+                &nbsp;
+                <button type="button" class="scalable" onclick="showFieldsAvailable();">
+                    <span>Show fields available for export</span></button>
+                <div style="float: right; margin-top:-4px; line-height:1;">
+                    <?php echo ucwords(
+                        $block->getRegistry()->registry('productexport_profile')->getEntity()
+                    ); ?> ID to test with/show fields for:
+                    <input type="text" style="width:135px; height: 24px;" name="test_id" id="test_id" value="<?php echo $block->getTestId(
+                    ) ?>"/><br/>
+                    <input type="checkbox" name="serve_to_browser" id="serve_to_browser"/>&nbsp;<label for="serve_to_browser">Serve file to browser after running "Test XSL Template"</label>
+                </div>
+            </div>
+            <textarea name="xsl_template" id="xsl_template" style="width:100%; height:500px;"><?php echo $block->getXslTemplate(
+                ) ?></textarea>
+
+            <div id="editor_div" name="editor_div" style="position:relative; width:100%; height:500px;">
+                <div id="editor"></div>
+            </div>
+
+            <div name="buttons_bottom" style="margin-top:5px; padding:5px; border: 1px solid #ccc;">
+                <button type="button" class="scalable" onclick="validateXslTemplate();">
+                    <span><?php echo __('Test XSL Template')?></span></button>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="entry-edit" id="validation_results" style="display:none;">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend" style="margin-bottom:1px;"><?php echo __('Test / Validation Results') ?></h4>
+        <div class="form-buttons"></div>
+    </div>
+    <div class="fieldset fieldset-wide" id="base_fieldset2">
+        <div class="hor-scroll">
+            <textarea id="validation_results_content" style="width:99%; height: 300px;" wrap="off"></textarea>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(['jquery'], function ($) {
+        var editor = false;
+        $(window).ready(function () {
+            $('#output_type').change(function () {
+                if ($(this.options[this.selectedIndex]).val() == 'xsl') {
+                    $('#xsl_div').show();
+                    $('#filename_div').hide();
+                    $('#encoding_div').hide();
+                } else {
+                    $('#xsl_div').hide();
+                    $('#filename_div').show();
+                    $('#encoding_div').show();
+                }
+            });
+            if ($('#output_type').val() == 'xsl') {
+                $('#xsl_div').show();
+                $('#filename_div').hide();
+                $('#encoding_div').hide();
+            } else {
+                $('#xsl_div').hide();
+                $('#filename_div').show();
+                $('#encoding_div').show();
+            }
+            (function () {
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = '<?php echo $block->getJs('ace/ace.min.js') ?>';
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+                try {
+                    s.onload = function () {
+                        window.require(["ace/ace"], function(a) {
+                            if (typeof ace !== 'undefined' && typeof ace.edit !== 'undefined') {
+                                $('#xsl_template').hide();
+                                ace.config.set("basePath", "<?php echo $block->getJs('ace')?>");
+                                ace.config.set("suffix", ".min.js");
+                                editor = ace.edit("editor");
+                                if (typeof editor !== 'undefined') {
+                                    editor.setTheme("ace/theme/eclipse");
+                                    editor.getSession().setMode("ace/mode/xml");
+                                    editor.getSession().setUseWrapMode(true);
+                                    editor.setBehavioursEnabled(false);
+                                    editor.getSession().setValue($('#xsl_template').val());
+                                    $('#edit_form').on('beforeSubmit', function () {
+                                        $('#xsl_template').val(editor.getSession().getValue());
+                                    });
+                                    window.editor = editor;
+                                } else {
+                                    $('#editor_div').hide();
+                                    $('#xsl_template').show();
+                                }
+                            } else {
+                                $('#editor_div').hide();
+                                $('#xsl_template').show();
+                            }
+                        });
+                    }
+                }
+                catch (err) {
+                }
+            })();
+        });
+
+        window.validateXslTemplate = function() {
+            if (editor !== false) {
+                $('#xsl_template').val(editor.getSession().getValue());
+            }
+            $.ajax({
+                url: '<?php echo $block->getUrl('xtento_productexport/profile/validateXslTemplate') ?>',
+                type: 'POST',
+                showLoader: true,
+                data: {
+                    xsl_template: $('#xsl_template').val(),
+                    test_id: $('#test_id').val(),
+                    profile_id: $('#profile_id').val(),
+                    serve_to_browser: $('#serve_to_browser')[0].checked
+                }
+            }).fail(function(xhr, status, error){
+                $('#validation_results_content').val(xhr.responseText);
+                $('#validation_results').show();
+                alert("There was a problem validating the XSL Template. AJAX request failed.");
+            }).done(function(data){
+                var responseText = data;
+                userAgent = navigator.userAgent;
+                if (userAgent.indexOf("MSIE ") > -1 || userAgent.indexOf("Trident/") > -1) {
+                    responseText = responseText.replace(/\n/g, '<br />'); // Damned IE
+                }
+                $('#validation_results_content').val(responseText);
+                $('#validation_results').show();
+                if ($('#serve_to_browser')[0].checked && !/Error: Please repair the XSL Template/.test(responseText)) {
+                    // Serve file to browser
+                    downloadUrl = '<?php echo $block->getUrl('xtento_productexport/profile/downloadTestExport', ['profile_id' => $block->getRegistry()->registry('productexport_profile')->getId()]
+                    ) ?>';
+                    downloadFrame.src = downloadUrl;
+                }
+            });
+        };
+        window.showFieldsAvailable = function() {
+            var url = '<?php echo $block->getUrl('xtento_productexport/profile/fields', ['test_id' => 'TestIdVariablePlaceholder', 'profile_id' => $block->getRegistry()->registry('productexport_profile')->getId()]
+            ) ?>';
+            url = url.replace(/TestIdVariablePlaceholder/, $('#test_id').val());
+            window.open(url, '_blank', 'width=1000,height=700,toolbar=0,location=1,menubar=0,scrollbars=1');
+        };
+    });
+</script>

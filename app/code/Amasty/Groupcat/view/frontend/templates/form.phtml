@@ -1,0 +1,86 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+?>
+<?php if ($this->helper('Amasty\Groupcat\Helper\Data')->getModuleStoreConfig('frontend/link') == 'AmastyHidePricePopup') :?>
+<?php $isGDPREnabled = $this->helper('Amasty\Groupcat\Helper\Data')->getModuleStoreConfig('gdpr/enabled'); ?>
+    <form class="amhideprice-form" id="amhideprice-form" action="" method="post" style="display: none;">
+        <input name="form_key" type="hidden" value="<?= $block->escapeHtml($block->getFormKey()) ?>" />
+        <input name="product_id" type="hidden" value="" />
+        <fieldset class="fieldset">
+            <legend class="legend amhideprice-form-ledend">
+                <span><?= /* @escapeNotVerified */ __('Get a Quote for') ?></span>
+                <span style="font-weight: bolder;" class="product-name"></span>
+            </legend>
+            <br>
+            <?php if ($isGDPREnabled): ?>
+                <br>
+                <div class="field">
+                    <label class="label" for="amhideprice-gdpr">
+                        <input type="checkbox"
+                               id="amhideprice-gdpr"
+                               name="gdpr"
+                               title="<?= __('GDPR'); ?>"
+                               value="1">
+                        <?= $this->helper('Amasty\Groupcat\Helper\Data')->getModuleStoreConfig('gdpr/text'); ?>
+                    </label>
+                </div>
+            <?php endif; ?>
+            <div class="amhideprice-fields-container<?php if ($isGDPREnabled): ?> amhideprice-hidden<?php endif;?>">
+                <div class="field required">
+                    <label for="name" class="label">
+                        <span><?= /* @escapeNotVerified */ __('Customer Name') ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text" name="name" class="input-text"
+                               data-validate="{required:true}">
+                    </div>
+                </div>
+                <div class="field required">
+                    <label for="email" class="label">
+                        <span><?= /* @escapeNotVerified */ __('Customer Email') ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="email"
+                               name="email"
+                               autocomplete="email"
+                               value="" class="input-text"
+                               data-validate="{required:true, 'validate-email':true}"
+                               aria-required="true">
+                    </div>
+                </div>
+                <div class="field required">
+                    <label for="phone" class="label">
+                        <span><?= /* @escapeNotVerified */ __('Phone Number') ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text" name="phone" class="input-text "
+                               data-validate="{required:true}">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="comment" class="label">
+                        <span><?= /* @escapeNotVerified */ __('Comment') ?></span>
+                    </label>
+                    <div class="control">
+                        <textarea title="<?= __('Comment') ?>"
+                                  type="textarea"
+                                  name="comment" class="input-text"
+                                  data-validate="{'validate-no-html-tags':true}"></textarea>
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="submit" class="action submit primary"
+                                title="<?= /* @escapeNotVerified */ __('Submit') ?>">
+                            <span><?= /* @escapeNotVerified */ __('Submit') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+<?php endif;?>

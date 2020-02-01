@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Wishlist\Model\ItemCarrier" type="Convert\Wishlist\Model\ItemCarrier"/>
+
+    <!-- <type name="Magento\Wishlist\Controller\Index\Add">
+        <plugin name="Convert_Wishlist_Plugin" type="Convert\Wishlist\Plugin\Add" />
+    </type>-->
+
+    <!-- use set redirect will add Wishlist in product detail-->
+    <preference for="Magento\MultipleWishlist\Controller\Index\Add"
+                type="Convert\Wishlist\Controller\MultipleWishlist\Add"/>
+    <preference for="Magento\Wishlist\Controller\Index\Add" type="Convert\Wishlist\Controller\Index\Add"/>
+    <!-- end use set redirect will add Wishlist in product detail -->
+
+    <!--don't delete product in wishlist when add to cart in wishlist-->
+    <preference for="Magento\Wishlist\Model\Item"
+                type="Convert\Wishlist\Model\Item"/>
+</config>

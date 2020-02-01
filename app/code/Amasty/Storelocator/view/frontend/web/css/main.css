@@ -1,0 +1,254 @@
+.amlocator_store_list span {
+    display: block;
+    cursor: pointer;
+    border: 1px solid #E6E6E6;
+    padding: 15px;
+    font-size: 1.3rem;
+}
+
+#amlocator_window_template {
+    display: none;
+}
+
+.amlocator-map-canvas {
+    width: 100%;
+    height: 600px
+}
+
+.amasty-popup {
+    width: 250px
+}
+
+.amasty-popup img {
+    width: 100px;
+    clear: both;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.amlocator_store_list {
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+@media screen and (max-width: 1300px) {
+    .amlocator_store_list {
+        width: 100%;
+        height: 600px;
+    }
+
+}
+
+.amlocator_store_list .active {
+    background: #fff9e9;
+    border: 1px solid #eee2be;
+}
+
+.please-wait {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -150px;
+    width: 150px;
+    height: 100px;
+    background-color: white;
+}
+
+.amlocator_mapblock {
+    width: 70%;
+    float: right;
+}
+
+.amlocator_store_list {
+    width: 30%;
+    float: left;
+}
+
+@media screen and (min-width: 600px) {
+    .amlocator_center {
+        display: flex;
+    }
+}
+
+.amlocator_center {
+    display: block;
+}
+
+.amlocator_group:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media screen and (max-width: 1000px) {
+    .amlocator_mapblock, .amlocator_store_list {
+        float: none;
+        width: auto;
+    }
+
+}
+
+#amasty_locator_filter ul {
+    margin-left: 10px;
+    list-style: outside none none;
+}
+
+.amlocator_default {
+    background: url(../../../images/amasty/amlocator/close.png) no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-position: 0 0px;
+    cursor: pointer;
+    position: relative;
+    top: -10px;
+}
+
+.amlocator_default:hover {
+    background: url(../../../images/amasty/amlocator/close.png) no-repeat;
+    background-position: 0 -14px;
+    cursor: pointer;
+}
+
+#amasty_locator_filter .attributes {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+
+}
+
+#amasty_locator_filter .location-attribute {
+    flex-grow: 1;
+    margin-top: 15px;
+}
+
+.location-attribute {
+    margin-right: 10px;
+}
+
+#amasty_locator_filter .filter-attribute {
+    font-weight: bold;
+    margin: 15px 15px 0 0;
+}
+
+.today_schedule {
+    margin-left: 20px;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.today_schedule:before {
+    width: 18px;
+    content: " ";
+    background-image: url(../images/clock.png);
+    position: absolute;
+    left: -23px;
+    height: 18px;
+}
+
+.amlocator_store_list .today_schedule span {
+    display: inline;
+    border: none;
+    float: right;
+    padding: 0;
+    font-weight: bold;
+}
+
+.all_schedule {
+    display: none;
+    margin-left: 20px;
+}
+
+.all_schedule div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.amlocator_store_list .all_schedule span {
+    display: inline;
+    border: none;
+    float: right;
+    padding: 0 20px 0 0;
+}
+
+#amasty_locator_filter {
+    display: flex;
+    flex-direction: row;
+}
+
+.column_left {
+    width: 48%;
+    padding-right: 35px;
+    order: 1;
+}
+
+.column_right {
+    order: 2;
+    padding-left: 35px;
+    width: 48%;
+}
+
+@media screen and (max-width: 600px) {
+    #amasty_locator_filter {
+        flex-direction: column;
+    }
+
+    .column_left {
+        width: 100%;
+        order: 1;
+    }
+
+    .column_right {
+        order: 2;
+        padding-left: 0px;
+        padding-top: 10px;
+        width: 100%;
+    }
+}
+
+.amlocator_input {
+    margin-top: 15px;
+}
+
+.locateNearBy {
+    margin-left: 25px;
+}
+
+.input-box {
+    margin-top: 5px;
+}
+
+.locator_arrow {
+    width: 14px;
+    content: " ";
+    background-image: url(../images/arrow.png);
+    float: right;
+    left: -23px;
+    height: 7px;
+    margin-left: 6px;
+    background-size: 14px 14px;
+    /*margin-right: 5px;*/
+    margin-top: 5px;
+    background-position-y: 7px;
+}
+
+.arrow_active {
+    background-position-y: 0;
+}
+
+.location_header {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.amasty-popup .header {
+    background-color: blue;
+}
+
+.amlocator-index-index {
+    overflow-x: hidden;
+}

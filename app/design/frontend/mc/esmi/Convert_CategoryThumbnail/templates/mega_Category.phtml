@@ -1,0 +1,42 @@
+<?php
+$blockCategory = $block->getLayout()->createBlock('Convert\CategoryThumbnail\Block\HomeFavorites');
+$cat_id = $this->getData('category_id');
+$_category = $blockCategory->getCategoryFavorites($cat_id);
+$subcats = $_category->getChildrenCategories();
+$objectHelper = $this->Helper('Convert\CategoryThumbnail\Helper\Data');
+$mediaUrl = $objectHelper->getMediaUrl();
+$count = count($subcats);
+$currentCategory = $blockCategory->getCurrentCategory();
+$xmas = false;
+if($currentCategory && $currentCategory->getName()=="XMAS")
+    $xmas = true;
+?>
+<?php foreach ($subcats as $subcat): ?>
+	<?php
+	$categoryName = $subcat->getName();
+	$category = $objectHelper->getLoadCategory($subcat->getId());
+	?>
+    <div class="mega-category-with-thumbnail <?php if(!$xmas) echo 'only-desktop'?>">
+        <div class="item">
+
+			<?php if ($category->getCategoryThumbnail()): ?>
+                <a class="cat_img" href="<?php echo $category->getUrl() ?>">
+                    <img src="<?php echo $category->getCategoryThumbnail() ?>"
+                         title="<?php echo $categoryName; ?>"/>
+                </a>
+			<?php else: ?>
+                <a class="cat_img" href="<?php echo $category->getUrl() ?>">
+                    <img src="<?php echo $mediaUrl . 'default_thumbnail.jpg' ?>"
+                         title="<?php echo $categoryName; ?>"/>
+                </a>
+			<?php endif; ?>
+        </div>
+        <div class="content">
+            <div class="text">
+                <a class="cat_name" href="<?php echo $category->getUrl() ?>"><?php echo $categoryName; ?></a>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+

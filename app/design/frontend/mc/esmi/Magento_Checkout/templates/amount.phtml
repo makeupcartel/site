@@ -1,0 +1,15 @@
+		<div class="divider">
+			<?php
+			$blockObj= $block->getLayout()->createBlock('Convert\FreeShip\Block\Cart\Sidebar');
+			$amout_shipping = $block->getAmountFreeship();
+			$grantotall = $block->getGrandTotal();
+			if ($grantotall < $amout_shipping) {
+				$amount = $amout_shipping - $grantotall;
+				echo "<span>You are <u>$".$amount."</u> away from free shipping</span>";
+			}else{
+				echo "<span>You qualify for free shipping !</span>";
+			}
+			?>
+		</div>
+		<div class="reset"></div>
+		

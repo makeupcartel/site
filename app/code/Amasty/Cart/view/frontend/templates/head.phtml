@@ -1,0 +1,68 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Cart
+ */
+?>
+<?php
+/** @var \Amasty\Cart\Block\Config  $this */
+
+$hlr = $this->getHelper();
+//Visual Options
+$backgroundColor        = $hlr->getBackgroundColor();
+$productNameColor       = $hlr->getProductNameColor();
+$textColor              = $hlr->getTextColor();
+$buttonTextColor        = $hlr->getButtonTextColor();
+$leftButtonColor        = $hlr->getLeftButtonColor();
+$rightButtonColor       = $hlr->getRightButtonColor();
+?>
+
+<style>
+    <?php if ($backgroundColor) : ?>
+    #confirmBox,
+    .am-related-title > .am-title {
+        background-color: #<?= $backgroundColor ?>;
+    }
+    <?php endif; ?>
+
+    <?php if ($productNameColor) : ?>
+    #confirmBox a,
+    #confirmBox a:hover,
+    #confirmBox a:active {
+        color: #<?= $productNameColor ?>;
+    }
+    <?php endif;?>
+
+    <?php if ($buttonTextColor) : ?>
+    .amcart-confirm-buttons .button {
+        color: #<?= $buttonTextColor ?>;
+    }
+    <?php endif;?>
+
+    <?php if ($leftButtonColor) : ?>
+    .amcart-confirm-buttons .am-btn-left {
+        background-color: #<?= $leftButtonColor ?>;
+    }
+    <?php endif;?>
+
+    <?php if ($rightButtonColor) : ?>
+    .amcart-confirm-buttons .am-btn-right {
+        background-color: #<?= $rightButtonColor ?>;
+    }
+    <?php endif;?>
+
+    <?php if ($textColor) : ?>
+    .amcart-confirm-buttons,
+    .amcart-confirm-buttons .checkout,
+    .amcart-confirm-buttons .checkout:hover,
+    .amcart-confirm-buttons .checkout:active,
+    .amcart-message-box,
+    .am-related-box,
+    #am-a-count,
+    #am-a-count:visited,
+    .am-related-title > .am-title {
+        color: #<?= $textColor ?>;
+    }
+    <?php endif;?>
+</style>

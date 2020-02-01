@@ -1,0 +1,216 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+?>
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Amasty\Promo\Block\Items $block */
+
+use Magento\Framework\App\Action\Action;
+
+$products = $block->getItems();
+$imageHelper = $block->getImageHelper();
+$selectionMethod = $block->getSelectionMethod();
+$giftsCounter = $block->getGiftsCounter();
+$isShowPrice = $block->getShowPriceInPopup();
+?>
+
+<?php if ($products) : ?>
+    <div class="ampromo-carousel-product" data-role="ampromo-carousel-product">
+        <div class="ampromo-gallery" data-count="<?= $products ? count($products) : 0 ?>" data-role="ampromo-gallery">
+            <?php foreach ($products as $product) : ?>
+                <?php
+                $product = $block->getProductById($product->getId());
+                $isVisible =
+                    $product->getVisibility() != Magento\Catalog\Model\Product\Visibility::VISIBILITY_NOT_VISIBLE;
+                $optionsBlock = $block->getChildBlock($product->getTypeId() . '_prototype');
+                ?>
+                <div class="ampromo-item"
+                     data-product-id="<?= $block->escapeHtml($product->getId()) ?>"
+                     data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>"
+                     data-role="ampromo-item">
+                    <form method="POST"
+                          action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+                          data-role="ampromo-items-form"
+                          class="ampromo-items-form"
+                          id="ampromo_items_form-<?= $block->escapeHtml($product->getId()) ?>">
+                        <input type="hidden"
+                               name="<?= Action::PARAM_NAME_URL_ENCODED; ?>"
+                               value="<?= $block->escapeHtml($block->getCurrentBase64Url()) ?>">
+                        <input type="hidden"
+                               name="isPromoItems"
+                               value="true">
+                        <?php if ($selectionMethod) : ?>
+                            <div class="ampromo-product-select" data-role="ampromo-product-select">
+                                <input type="checkbox"/>
+                            </div>
+                        <?php endif; ?>
+                        <?php $imageHelper->init($product, 'cart_page_product_thumbnail')
+                            ->keepFrame(false)
+                            ->constrainOnly(true)
+                            ->resize(172, 172);
+                        ?>
+                        <img src="<?= $block->escapeUrl($imageHelper->getUrl()) ?>"
+                        class="ampromo-item-image"
+                        alt="<?= $block->escapeHtml($block->stripTags($product->getName(), null, true)) ?>"/>
+                        
+                        <input type="hidden" value="<?= $block->escapeHtml($product->getId()) ?>" name="product_id"/>
+                        <div class="ampromo-item-title">
+                            <?php if ($isVisible) : ?>
+                                <h4 class="ampromo-title">
+                                    <a title="<?= $block->escapeHtml($product->getName()) ?>"
+                                        href="<?= $block->escapeUrl($product->getProductUrl()) ?>">
+                                        <?= $block->escapeHtml($product->getName()) ?> </a>
+                                </h4>
+                            <?php else : ?>
+                                <h4 class="ampromo-title"><?= $block->escapeHtml($product->getName()) ?></h4>
+                            <?php endif ?>
+                        </div>
+                        <div class="ampromo-options" id="ampromo-options">
+                            <fieldset class="fieldset" tabindex="0">
+                                <?php if ($optionsBlock) :
+                                    echo $optionsBlock->setProduct($product)->toHtml();
+                                    if ($product->getTypeId() === 'giftcard') {
+                                        echo $block->getGiftCardPrice($product);
+                                    }
+                                    ?>
+                                <?php endif ?>
+                                <?= $block->getOptionsHtml($product); ?>
+                            </fieldset>
+                        </div>
+                        <?php if ($isShowPrice) : ?>
+                            <div class="product-info-price">
+                                <div class="price-base-price price-box-<?= $block->escapeHtml($product->getId()) ?>"
+                                     data-product-id="<?= $block->escapeHtml($product->getId()) ?>"
+                                     data-role="priceBox">
+                                    <span class="price-container price-base-price tax weee">
+                                        <span id="product-price-<?= $block->escapeHtml($product->getId()) ?>"
+                                              data-price-amount="<?= $block->escapeHtml($block->getProductPrice($product)) ?>"
+                                              data-price-type="basePrice"
+                                              class="price-wrapper">
+                                            <span class="price"></span>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="price-new-price price-box-<?= $block->escapeHtml($product->getId()) ?>"
+                                     data-product-id="<?= $block->escapeHtml($product->getId()) ?>"
+                                     data-role="priceBox">
+                                    <span class="price-new-price tax weee">
+                                        <span id="product-price-<?= $block->escapeHtml($product->getId()) ?>"
+                                              data-price-amount="<?= $block->escapeHtml($block->getProductPrice($product)) ?>"
+                                              data-price-type="newPrice"
+                                              class="price-wrapper">
+                                            <span class="price"></span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($selectionMethod) : ?>
+                            <div class="ampromo-item-qty-input" data-role="ampromo-item-qty-input">
+                                <input class="ampromo-qty"
+                                       type="number"
+                                       name="ampromo_qty_select_<?= $block->escapeHtml($product->getId()) ?>"
+                                       id="ampromo_qty_select_<?= $block->escapeHtml($product->getId()) ?>"
+                                       min="0"
+                                       value="0"
+                                       data-rule="0"
+                                       data-rule-type="0"
+                                       disabled="disabled"
+                                       data-validate="{
+                                           required:true}"
+                                       title="QTY Select"
+                                       data-am-js="ampromo-qty-input"/>
+                                <?php if ($giftsCounter) : ?>
+                                    <span class="ampromo-item-qty-left">
+                                    <span>1</span><?= __(' left') ?>
+                                </span>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="actions-primary">
+                            <?php if ($product->isSaleable()): ?>
+                                
+                                <div class="product actions product-item-actions">
+                                    <div class="align-swatch">
+                                    <?php if($product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){
+                                        $swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+                                            echo $swatchBlock->setProduct($product)->toHtml();                           
+                                    } ?>
+                                    </div>
+                                    <?php echo $block->getBlockHtml('formkey'); ?>
+                                    <button type="submit" title="<?php echo $block->escapeHtml(__('Add to Bag')); ?>" class="action tocart primary">
+                                        <span><?php /* @escapeNotVerified */echo __('Add to Bag'); ?></span>
+                                    </button>
+                                </form>
+                                </div>
+                            <?php else: ?>
+                                <div class="align-swatch">
+                                    <?php if($product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){
+                                        $swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+                                            echo $swatchBlock->setProduct($product)->toHtml();                           
+                                    } ?>
+                                </div>
+                                <?php if ($product->getIsSalable()): ?>
+                                    <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
+                                <?php else: ?>
+                                    <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <a href="<?= $block->escapeUrl($product->getProductUrl()) ?>" class="link-view-detail"><?php echo __('View details') ?></a>
+                        </div>
+                    </form>
+                    <?php if ($product->getTypeId()
+                        !== \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE
+                    ) : ?>
+                        <script>
+                            require([
+                                'jquery',
+                                'Amasty_Promo/js/price-updater'
+                            ], function ($) {
+                                function alignHeight2409(selector) {
+                                    $(selector).css('height', '');
+                                    var minHeight2409 = 0;
+                                    $(selector).each(function() {
+                                        if (minHeight2409 < $(this).outerHeight()) {
+                                            minHeight2409 = $(this).outerHeight();
+                                        }
+                                    });
+                                    if (minHeight2409 > 0) {
+                                        $(selector).css('height', minHeight2409);
+                                    }
+                                }
+                                $('[data-role="ampromo-popup-show"]').on('click', function () {
+                                    $('.ampromo-items-content').ampromoPriceUpdater({
+                                        productId: <?= $block->escapeHtml($product->getId()) ?>,
+                                        priceConfig: <?= $block->getJsonConfig($product) ?>
+                                    });
+                                    $('#ampromo-options').remove();
+                                    alignHeight2409('.checkout-cart-index .ampromo-items-content .ampromo-title');
+                                    alignHeight2409('.checkout-cart-index .ampromo-items-form .product-info-price');
+                                    alignHeight2409('.checkout-cart-index .ampromo-items-content .ampromo-item-image');
+                                    alignHeight2409('.checkout-cart-index .ampromo-items-content .align-swatch');
+                                })
+                                
+                            });
+                        </script>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach ?>
+        </div>
+        <?php if ($selectionMethod) : ?>
+            <div class="ampromo-item-buttons" data-role="ampromo-item-buttons">
+                <button class="action tocart primary ampromo-button"
+                        type="button"
+                        data-am-js="ampromo-add-button"
+                        title="<?= $block->escapeHtml($block->getAddButtonName()) ?>">
+                        <?= $block->escapeHtml($block->getAddButtonName()) ?>
+                </button>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>

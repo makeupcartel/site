@@ -1,0 +1,68 @@
+<!-- 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ -->
+<div>
+    <!-- ko ifnot: success -->
+    <div class="messages">
+        <p class="message-error error message" style="display:none;"></p>
+    </div>
+    <form method="post" data-bind="submit: createAccount" id="registrationForm" enctype="multipart/form-data" autocomplete="off">
+
+        <!-- ko ifnot: accountCreated -->
+        <div class="field password required">
+            <label for="password" class="label"><span data-bind="i18n: 'Password'"></span> *</label>
+            <div class="control">
+                <input type="password" name="password" id="password" class="input-text" data-validate="{required:true, 'validate-password':true}" autocomplete="off">
+            </div>
+        </div>
+        <div class="field confirmation required">
+            <label for="password-confirmation" class="label"><span data-bind="i18n: 'Confirm Password'"></span> *</label>
+            <div class="control">
+                <input type="password" name="password_confirmation" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
+            </div>
+        </div>
+        <!-- /ko -->
+
+        <!-- ko ifnot: isSubscribed -->
+            <!-- ko ifnot: subscribing -->
+                <!-- ko if: accountCreated -->
+                <input type="checkbox" id="subscribe" name="subscribe" data-bind="click: subscribe" />
+                <!-- /ko -->
+                <!-- ko ifnot: accountCreated -->
+                <input type="checkbox" id="subscribe" name="subscribe" checked="checked" />
+                <!-- /ko -->
+            <!-- /ko -->
+            <!-- ko if: subscribing -->
+            <img class="loader subscribe-loader" data-bind="attr: {src: getLoaderSrc()}" width="30px" />
+            <!-- /ko -->
+            <label for="subscribe"><span data-bind="i18n: 'Sign Up for Newsletter'"></span></label>
+            <br />
+        <!-- /ko -->
+        <!-- ko ifnot: accountCreated -->
+        <input type="submit" class="action primary" data-bind="value: $t('Create an Account')" />
+        <!-- /ko -->
+        <!-- ko if: registering -->
+        <img class="loader register-loader" data-bind="attr: {src: getLoaderSrc()}" width="30px" />
+        <!-- /ko -->
+    </form>
+    <!-- /ko -->
+    <!-- ko if: success -->
+    <div class="messages">
+        <p class="message-success success message"><span data-bind="i18n: 'You successfully registered'"></span></p>
+    </div>
+    <!-- /ko -->
+</div>

@@ -1,0 +1,110 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Oaction
+ */
+?>
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Amasty\Oaction\Block\Adminhtml\Order\Edit\Attribute */
+?>
+
+<form action="<?= /* @escapeNotVerified */ $block->getSaveUrl() ?>" method="post" id="attributes-edit-form" class="attributes-edit-form" enctype="multipart/form-data">
+    <?= /* @escapeNotVerified */ $block->getBlockHtml('formkey') ?>
+    <div class="entry-edit form-inline">
+        <?= /* @escapeNotVerified */ $block->getFormHtml() ?>
+    </div>
+    <?= /* @escapeNotVerified */ $block->getChildHtml('form_after') ?>
+</form>
+<script>
+    require(['jquery', "mage/mage"], function(jQuery){
+
+        jQuery(document).ready(function() {
+            onCompleteDisableInited();
+
+            jQuery( ".checkbox_toggle" ).click(function() {
+                toogleFieldEditModeRewrite(this, jQuery(this).attr('elementid'));
+            });
+        });
+
+        /**
+         * On complete disable.
+         */
+        function onCompleteDisableInited() {
+            var id;
+
+            jQuery.each(jQuery(':radio'), function () {
+                id = jQuery(this).attr('id');
+                disableFieldEditMode(id);
+            });
+
+            jQuery.each(jQuery(':checkbox'), function () {
+                if (jQuery(this).attr('class') != 'checkbox_toggle') {
+                    id = jQuery(this).attr('id');
+                    disableFieldEditMode(id);
+                }
+            });
+        }
+
+        /**
+         * @param {String} toogleIdentifier
+         * @param {String} fieldId
+         */
+        function toogleFieldEditModeRewrite(toogleIdentifier, fieldId) {
+            if (jQuery(toogleIdentifier).is(':checked')) {
+                enableFieldEditMode(fieldId);
+            } else {
+                disableFieldEditMode(fieldId);
+            }
+        }
+
+
+
+        /**
+         * @param {String} fieldId
+         */
+        function enableFieldEditMode(fieldId) {
+
+            var field = byId(fieldId);
+            field.prop('disabled', false);
+
+            if (field.parent().hasClass('_update-attributes-disabled')) {
+                field.parent().removeClass('_update-attributes-disabled');
+            }
+
+            if (byId(fieldId + '_hidden').length) {
+                byId(fieldId + '_hidden').prop('disabled', false);
+            }
+        }
+
+        /**
+         * @param {String} fieldId
+         */
+        function disableFieldEditMode(fieldId) {
+            var field = byId(fieldId);
+
+            field.prop('disabled', true);
+
+            if (field.next().hasClass('addafter')) {
+                field.parent().addClass('_update-attributes-disabled');
+            }
+
+            if (byId(fieldId + '_hidden').length) {
+                byId(fieldId + '_hidden').prop('disabled', true);
+            }
+        }
+
+        /**
+         * @param {String} id
+         * @return {*|jQuery|HTMLElement}
+         */
+        function byId(id) {
+            return jQuery("[id^='" + id + "']");
+        }
+
+        jQuery('#attributes-edit-form').mage('form')
+            .mage('validation', {validationUrl: '<?= /* @escapeNotVerified */ $block->getValidationUrl() ?>'});
+    });
+</script>

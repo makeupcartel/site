@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Aheadworks_Blog::home" title="Blog by Aheadworks" module="Aheadworks_Blog" sortOrder="100" parent="Magento_Backend::content" resource="Aheadworks_Blog::home"/>
+        <add id="Aheadworks_Blog::posts" title="Posts" module="Aheadworks_Blog" sortOrder="10" parent="Aheadworks_Blog::home" action="aw_blog_admin/post/index" resource="Aheadworks_Blog::posts"/>
+        <add id="Aheadworks_Blog::comments" title="Comments" module="Aheadworks_Blog" sortOrder="20" parent="Aheadworks_Blog::home" action="aw_blog_admin/comment/index" resource="Aheadworks_Blog::comments"/>
+        <add id="Aheadworks_Blog::categories" title="Categories" module="Aheadworks_Blog" sortOrder="30" parent="Aheadworks_Blog::home" action="aw_blog_admin/category/index" resource="Aheadworks_Blog::categories"/>
+        <add id="Aheadworks_Blog::authors" title="Authors" module="Aheadworks_Blog" sortOrder="40" parent="Aheadworks_Blog::home" action="aw_blog_admin/author/index" resource="Aheadworks_Blog::authors"/>
+    </menu>
+</config>

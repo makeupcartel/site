@@ -1,0 +1,72 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Megamenu
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php $_menu = $this->getHtml() ?>
+<?php 
+$random_number = mt_rand(100000, 999999);
+?>
+<div class="section-item-content" id="<?php echo 'shortcode_menu_'.$random_number; ?>">
+    <div class="menu-container shortcodemenu">
+        <div class="menu <?php echo $this->getMenuDesign(); ?> <?php
+        if ($this->isStickyEnable() == '1') :
+            echo "stickymenu";
+        endif;
+        ?>">
+            <ul>
+                <?php echo $_menu; ?>
+            </ul>
+            <?php
+            echo $this->menuStyleHtml();
+            ?>
+        </div>
+        <?php
+        if ($this->isStickyEnable() == '1') {
+            ?>            
+            <div class="stickyalias"> </div>
+            <?php
+        }
+        ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var animation_time = '<?php echo $this->animationTime(); ?>';
+    require(['jquery'], function ($) {
+
+        var nav = $('.shortcodemenu');
+        if (nav.length) {
+            var stickyHeaderTop = nav.offset().top;
+            var menuWidth = jQuery('.shortcodemenu .menu.stickymenu').width();
+            //var topMargin;
+            $(window).scroll(function () {
+                if ($(window).width() >= 767) {
+                    if ($(window).scrollTop() > stickyHeaderTop) {
+                        $('.shortcodemenu .stickymenu').css({position: 'fixed', top: '0px', 'max-width': menuWidth});
+                        $('.stickyalias').css('display', 'block');
+                    } else {
+                        $('.shortcodemenu .stickymenu').css({position: 'static', top: '0px'});
+                        $('.stickyalias').css('display', 'none');
+                    }
+                }
+            });
+
+            $('#shortcode_menu_<?php echo $random_number ?>.section-item-content .menu-container.shortcodemenu .menu > ul > li.dropdown').each(function (e) {
+                $(this).children('a').after('<span class="plus"></span>');
+            });
+
+            $('#shortcode_menu_<?php echo $random_number ?>.section-item-content .menu-container.shortcodemenu .menu > ul > li.dropdown span.plus').click(function (e) {
+                $(this).siblings('a').toggleClass('active');
+                $(this).toggleClass('active').siblings('ul').slideToggle('500');
+            });
+        }
+    });
+</script>

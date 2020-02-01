@@ -1,0 +1,114 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_ElasticSearch
+ */
+?>
+<?php
+$_htmlId = $block->getHtmlId() ? $block->getHtmlId() : '_' . uniqid();
+?>
+
+<div class="design_theme_ua_regexp value.with-tooltip" id="grid<?= /* @escapeNotVerified */ $_htmlId ?>"
+     style="position: relative">
+    <div class="tooltip" style="position: absolute; right: -60px">
+        <span class="help">
+            <span></span>
+        </span>
+        <div class="tooltip-content" style="min-width: 200px;">
+            <?= $block->getTooltipText() ?>
+        </div>
+    </div>
+    <div class="admin__control-table-wrapper">
+        <table class="admin__control-table" id="<?= /* @escapeNotVerified */ $block->getElement()->getId() ?>">
+            <thead>
+            <tr>
+                <?php foreach ($block->getColumns() as $columnName => $column) :?>
+                    <th><?= /* @escapeNotVerified */ $column['label'] ?></th>
+                <?php endforeach;?>
+            </tr>
+            </thead>
+            <tbody id="addRow<?= /* @escapeNotVerified */ $_htmlId ?>"></tbody>
+        </table>
+    </div>
+    <input type="hidden" name="<?= /* @escapeNotVerified */ $block->getElement()->getName() ?>[__empty]" value="" />
+
+    <script>
+        require([
+            'mage/template',
+            'prototype'
+        ], function (mageTemplate) {
+            // create row creator
+            window.arrayRow<?= /* @escapeNotVerified */ $_htmlId ?> = {
+                // define row prototypeJS template
+                template: mageTemplate(
+                    '<tr id="<%- _id %>">'
+                    <?php foreach ($block->getColumns() as $columnName => $column) :?>
+                    + '<td>'
+                    + '<?= /* @escapeNotVerified */ $block->renderCellTemplate($columnName) ?>'
+                    + '<\/td>'
+                    <?php endforeach; ?>
+                    +'<\/tr>'
+                ),
+
+                add: function(rowData, insertAfterId) {
+                    // generate default template data
+                    var templateValues;
+
+                    // Prepare template values
+                    if (rowData) {
+                        templateValues = rowData;
+                    } else {
+                        var d = new Date();
+                        templateValues = {
+                        <?php foreach ($block->getColumns() as $columnName => $column) :?>
+                        <?= /* @escapeNotVerified */ $columnName ?>: '',
+                            'option_extra_attrs': {},
+                        <?php endforeach; ?>
+                        _id: '_' + d.getTime() + '_' + d.getMilliseconds()
+                    };
+                    }
+
+                    // Insert new row after specified row or at the bottom
+                    if (insertAfterId) {
+                        Element.insert($(insertAfterId), {after: this.template(templateValues)});
+                    } else {
+                        Element.insert(
+                            $('addRow<?= /* @escapeNotVerified */ $_htmlId ?>'), {bottom: this.template(templateValues)}
+                        );
+                    }
+
+                    // Fill controls with data
+                    if (rowData) {
+                        var rowInputElementNames = Object.keys(rowData.column_values);
+                        for (var i = 0; i < rowInputElementNames.length; i++) {
+                            if ($(rowInputElementNames[i])) {
+                                $(rowInputElementNames[i]).setValue(rowData.column_values[rowInputElementNames[i]]);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // add existing rows
+            <?php
+            foreach ($block->getArrayRows() as $_rowId => $_row) {
+                /* @escapeNotVerified */ echo "arrayRow{$_htmlId}.add(" . $_row->toJson() . ");\n";
+            }
+            ?>
+
+            // Toggle the grid availability, if element is disabled (depending on scope)
+            <?php if ($block->getElement()->getDisabled()) :?>
+            toggleValueElements({checked: true}, $('grid<?= /* @escapeNotVerified */ $_htmlId ?>').parentNode);
+            <?php endif;?>
+
+            jQuery('#amasty_elastic_catalog_query_settings .admin__actions-switch-label').click(function (event) {
+                if (jQuery(this).hasClass('wildcard')) {
+                    jQuery(this).closest('tr').find('.input-spelling').prop('checked', false);
+                } else if(jQuery(this).hasClass('spelling')) {
+                    jQuery(this).closest('tr').find('.input-wildcard').prop('checked', false);
+                }
+            });
+        });
+    </script>
+</div>

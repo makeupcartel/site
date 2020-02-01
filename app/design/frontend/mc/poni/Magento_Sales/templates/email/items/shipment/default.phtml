@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $_item \Magento\Sales\Model\Order\Item */
+$_item = $block->getItem() ?>
+<tr>
+    <td class="item-info<?php if ($block->getItemOptions()): ?> has-extra<?php endif; ?>" style="padding-top:20px !important;padding-bottom:20px !important;border-top:solid 1px #eeeeee;border-bottom:none !important;padding-left:20px !important;">
+        <table>
+			<tr>
+				<td style="border-top:none;">
+					<p class="product-name" style="font-weight:400;font-size:13px;color:#444444;"><?= $block->escapeHtml($_item->getName()) ?></p>
+					<?php if ($block->getItemOptions()): ?>
+						<?php foreach ($block->getItemOptions() as $option): ?>
+							<dl class="item-options" style="padding-left:0px !important;display:inline-block;width:100%;font-size:13px;color:#444444;margin-bottom:0px;">
+								<dt style="margin-bottom:0px;display:inline-block;float:left;font-weight:bold !important;font-size:13px !important;color:#444444;"><?= /* @escapeNotVerified */  $option['label'] ?>: <span style="font-size:13px !important;color:#444444;font-weight:400;"><?= /* @escapeNotVerified */  nl2br($option['value']) ?></span></dt>
+							</dl>
+						<?php endforeach; ?>
+					<?php endif; ?>
+					<?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+					<?php if ($addInfoBlock) :?>
+						<?= $addInfoBlock->setItem($_item->getOrderItem())->toHtml() ?>
+					<?php endif; ?>
+					<?= $block->escapeHtml($_item->getDescription()) ?>
+				</td>
+			</tr>
+		</table>
+    </td>
+	<td style="border-bottom:none;border-top:solid 1px #eeeeee;text-align:left;padding-top:20px !important;padding-bottom:20px !important;font-size:13px;color:#444444;">
+		<p class="sku" style="font-size:13px;color:#444444;"><?= $block->escapeHtml($block->getSku($_item)) ?></p>
+	</td>
+    <td class="item-qty" style="padding-top:20px !important;padding-bottom:20px !important;padding-right:20px !important;border-top:solid 1px #eeeeee;border-bottom:none;text-align:center;font-size:13px;color:#444444;"><?= /* @escapeNotVerified */  $_item->getQty() * 1 ?></td>
+</tr>

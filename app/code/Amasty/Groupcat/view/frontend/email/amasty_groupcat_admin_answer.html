@@ -1,0 +1,17 @@
+<!--@subject Get a Quote Answer from {{var store_name}} @-->
+<!--@vars {
+"var customer_name":"Sender Name",
+"var message":"Message from Admin",
+"var request":"Request Model"
+} @-->
+{{template config_path="design/email/header_template"}}
+<table>
+    <tr class="email-intro">
+        <td valign="top">
+            <p><strong>Hello {{var customer_name}},</strong></p>
+            <p>{{var message}}</p>
+            <p>{{trans "Sincerely"}},  {{var store_name}} Team</p>
+        </td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}

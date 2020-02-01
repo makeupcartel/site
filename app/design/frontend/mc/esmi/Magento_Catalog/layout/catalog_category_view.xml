@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <body>
+        <referenceContainer name="page.top">
+            <container name="category.top.wrapper" htmlTag="div" htmlClass="category-top-wrapper" after="-">
+                <container name="category.top.content" htmlTag="div" htmlClass="category-top-content" before="-" />
+            </container>
+        </referenceContainer>
+        <move element="page.main.title" destination="category.top.content" before="-" />
+        <move element="category.image" destination="category.top.wrapper" />
+        <move element="category.description" destination="category.top.wrapper" />
+        <move element="category.cms" destination="content" after="-" />
+        <referenceBlock name="sidebar.additional" remove="true" />
+        <referenceContainer name="main.content">
+            <block class="Magento\Catalog\Block\Widget\RecentlyViewed" name="recently_viewed" template="Magento_Catalog::product/widget/viewed/grid.phtml" after="columns">
+                <arguments>
+                    <argument name="uiComponent" xsi:type="string">widget_recently_viewed</argument>
+                    <argument name="page_size" xsi:type="number">16</argument>
+                    <!-- 'Product attributes to show' configuration -->
+                    <argument name="show_attributes" xsi:type="string">name,image,price,learn_more</argument>
+                    <!-- 'Buttons to show' configuration -->
+                    <argument name="show_buttons" xsi:type="string">add_to_cart</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        
+        <referenceContainer name="main.content">
+            <block class="Magento\Cms\Block\Block" name="everyon_love_cat" after="columns">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">everyon_love_cat</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

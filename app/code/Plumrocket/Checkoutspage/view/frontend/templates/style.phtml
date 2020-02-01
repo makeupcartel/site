@@ -1,0 +1,42 @@
+<?php 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+<?php $configs = $block->getSettings('design'); ?>
+<style>
+	#csp-extension #suggestion .touchslider-item li button.btn-cart,
+	.mod-checkoutspage .csp-button,
+	.mod-checkoutspage input[type="submit"] {
+		background-color: <?php echo $configs['button_bg_color']; ?>;
+		color: <?php echo $configs['button_text_color']; ?>;
+	}
+
+	#csp-extension #suggestion .touchslider-item li button.btn-cart:hover,
+	.mod-checkoutspage .csp-button:hover,
+	.mod-checkoutspage input[type="submit"]:hover {
+		background-color: <?php echo $configs['button_hover_bg_color']; ?>;
+		color: <?php echo $configs['button_hover_text_color']; ?>;
+	}
+
+	.mod-checkoutspage a {
+		color: <?php echo $configs['link_color']; ?>;
+	}
+	.mod-checkoutspage a:hover {
+		color: <?php echo $configs['link_hover_color']; ?>;
+	}
+
+
+</style>

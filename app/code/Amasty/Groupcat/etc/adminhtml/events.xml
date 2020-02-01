@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- Disabled Events. For avoid not deleted old files on update module from 1.1. Do not delete this file -->
+    <event name="catalog_product_save_after">
+        <observer disabled="true" name="amasty_groupcat_product_update"/>
+    </event>
+    <event name="catalog_category_save_after">
+        <observer disabled="true" name="amasty_groupcat_category_update"/>
+    </event>
+</config>

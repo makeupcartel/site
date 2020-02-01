@@ -1,0 +1,61 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_SocialLogin
+ */
+?>
+<?php /** @var \Amasty\SocialLogin\Block\Account\SocialAccounts $block */
+$socialButtonsType = $block->getButtonShapeClass();
+?>
+<div class="am-sl-accounts">
+    <?php $linked = $block->getLinkedAccountsData();?>
+    <?php if ($linked) :?>
+        <div class="am-accounts-block">
+            <legend class="legend">
+                <span><?= $block->escapeHtml(__('Linked accounts'));?></span>
+            </legend>
+            <div class="am-linked-wrapper <?= $block->getButtonShapeClass();?>">
+                <?php foreach ($block->getLinkedAccountsData() as $key => $data) : ?>
+                    <div class="am-linked -<?= $socialButtonsType ?>">
+                        <span class="am-sl-button -<?= $block->escapeHtml($data['type']);?>">
+                            <span class="am-social-icon"></span>
+                        </span>
+                        <div class="am-name"><?= $block->escapeHtml($data['name'])?></div>
+                        <a class="am-unlink"
+                           title="<?= $block->escapeHtmlAttr(__('Unlink'));?>"
+                           href="<?= $block->escapeUrl($data['url']);?>">
+                                <?= $block->escapeHtml(__('Unlink'));?>
+                        </a>
+                    </div>
+                <?php endforeach;?>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php $unlinked = $block->getUnLinkedAccountsData();?>
+    <?php if ($unlinked) :?>
+        <div class="am-accounts-block">
+            <legend class="legend">
+                <span><?= $block->escapeHtml(__('Link new accounts'));?></span>
+            </legend>
+            <div class="am-social-login">
+                <div class="am-buttons">
+                    <?php foreach ($block->getUnLinkedAccountsData() as $key => $data) : ?>
+                        <div class="am-button-wrapper <?= $block->getButtonShapeClass();?> <?= (count($unlinked) <= 3) ? 'with-label' : ''?>">
+                            <a class="am-sl-button -<?= $block->escapeHtml($data['type']);?>"
+                               title="<?= $block->escapeHtmlAttr(__('Link'));?>"
+                               href="<?= $block->escapeUrl($data['url']);?>">
+                                <span class="am-social-icon"></span>
+                                <?php if ($socialButtonsType && count($unlinked) <= 3) :?>
+                                    <span class="am-sl-text">
+                                    <?= $block->escapeHtml(__('Link  %1', $data['label'])) ?>
+                                </span>
+                                <?php endif;?>
+                            </a>
+                        </div>
+                    <?php endforeach;?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>

@@ -1,0 +1,52 @@
+<?php 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2018 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+<?php $_order = $block->getOrder() ?>
+<?php if ($_order): ?>
+    <?php $_items = $_order->getAllItems(); ?>
+    <table class="email-items" cellpadding="0" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th style="background-color: #e3e3e3; font-weight: bold; padding: 3px;">
+
+                </th>
+                <th class="item-info" style="background-color: #e3e3e3; font-weight: bold; padding: 3px;">
+                    <?= /* @escapeNotVerified */  __('Item'); ?>
+                </th>
+                <th class="item-price" style="background-color: #e3e3e3; font-weight: bold; padding: 3px; padding-right: 5px; padding-left: 0px; width: 20px; text-align: center;">
+                    <?= /* @escapeNotVerified */  __('Qty'); ?>
+                </th>
+                <th class="item-price" style="background-color: #e3e3e3; font-weight: bold; padding: 3px; padding-right: 5px; padding-left: 0px; width: 65px; text-align: right;">
+                    <?= /* @escapeNotVerified */  __('Subtotal'); ?>
+                </th>
+            </tr>
+        </thead>
+        <?php foreach ($_items as $_item): ?>
+            <?php
+                if ($_item->getParentItem()) {
+                    continue;
+                }
+            ?>
+            <tbody>
+                <?php echo $block->getItemHtml($_item) ?>
+            </tbody>
+        <?php endforeach; ?>
+        <tfoot class="order-totals" style="text-align: right;">
+            <?php echo str_ireplace('colspan="2"', 'colspan="3"', $block->getChildHtml('order_totals')) ?>
+        </tfoot>
+    </table>
+<?php endif; ?>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="Customer My Account (All Pages)" design_abstraction="custom">
+    <head>
+        <title>My Account</title>
+    </head>
+    <body>
+        <referenceBlock name="customer_account_navigation"><!--ifconfig="wishlist/general/active"-->
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-logout-link" >
+                <arguments>
+                    <argument name="path" xsi:type="string">customer/account/logout</argument>
+                    <argument name="label" xsi:type="string">Logout</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="sidebar.additional" remove="true"/>
+
+        <!-- Downloadable product link -->
+        <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true"/>
+
+        <!-- Billing agreement link -->
+        <referenceBlock name="customer-account-navigation-billing-agreements-link" remove="true"/>
+
+        <!-- My credit card link -->
+        <referenceBlock name="customer-account-navigation-my-credit-cards-link" remove="true"/>
+
+        <!-- Order by SKU -->
+        <referenceBlock name="customer-account-navigation-checkout-sku-link" remove="true"/>
+
+        <!-- Gift registry -->
+        <referenceBlock name="customer-account-navigation-giftregistry-link" remove="true"/>
+
+        <!-- To Remove My Invitations -->
+        <referenceBlock name="customer-account-navigation-magento-invitation-link-container" remove="true"/>
+
+        <!-- Gift card link -->
+        <referenceBlock name="customer-account-navigation-gift-card-link" remove="true"/>
+
+        <!-- Reward points -->
+        <referenceBlock name="customer-account-navigation-reward-link" remove="true"/>
+
+        <!-- Product review link -->
+        <referenceBlock name="customer-account-navigation-product-reviews-link" remove="true"/>
+
+        <!-- Remove Newsletter Subscriptions-->
+        <referenceBlock name="customer-account-navigation-newsletter-subscriptions-link" remove="true"/>
+
+        <referenceBlock name="media-branding" remove="true"/>
+        <referenceBlock name="training-video-content" remove="true"/>
+
+        <referenceBlock name="customer-account-navigation-account-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">My Dashboard</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="customer-account-navigation-wish-list-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">My Favourites</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="customer-account-navigation-newsletter-subscriptions-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Newsletter</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="customer-account-navigation-customer-balance-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Store Credits</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

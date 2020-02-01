@@ -1,0 +1,84 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+
+$curentcategoryname = '';
+$helper = $this->helper('Convert\Catalog\Helper\Data');
+$blockcategory = $this->getLayout()->createBlock('Convert\Catalog\Block\Product');
+$curentcategory = $blockcategory->getCurrentCategory();
+if ($curentcategory) {
+    $curentcategoryname = strtolower($curentcategory->getName());
+}
+
+?>
+
+    <div class="block filter category-custom" id="layered-filter-block"
+         data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+        <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
+        <div class="block-title filter-title" data-count="<?= /* @escapeNotVerified */
+        $filtered ?>">
+            <strong data-role="title"><?= /* @escapeNotVerified */
+                __('Filter by concern') ?></strong>
+        </div>
+        <div class="block-content filter-content">
+            <div class="block-title filter-title" data-count="<?= /* @escapeNotVerified */
+            $filtered ?>">
+                <strong data-role="title"><?= /* @escapeNotVerified */
+                    __('Filter by concern') ?></strong>
+            </div>
+            <div class="filter-content-area">
+
+                <?php $wrapOptions = false; ?>
+                    <div class="filter-options custom" id="narrow-by-list" data-role="content"
+                         data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
+                        <div data-role="collapsible" class="filter-options-item">
+                            <div data-role="title"
+                                 class="filter-options-title title-first"><?= ucwords($curentcategoryname) ?></div>
+                            <ol class="items">
+                                <?php
+                                $listCategory = $helper->getCategoryConvert();
+                                if (count($listCategory) > 0) : ?>
+                                    <?php foreach ($listCategory as $value): ?>
+                                        <?php if ($value['name'] != "Shop All"): ?>
+                                            <?php $categorynamefilter = strtolower($value['name']); ?>
+                                            <?php if ($curentcategoryname == $categorynamefilter): ?>
+                                                <li class="item <?php echo $value['url'] ?> active">
+                                                    <a href="<?= $block->getBaseUrl() . "" . $value['url_parent'] . "/" . $value['url'] ?>"><?= $value['name'] ?></a>
+                                                </li>
+                                            <?php else: ?>
+                                                <li class="item <?php echo $value['url'] ?>">
+                                                    <a href="<?= $block->getBaseUrl() . "" . $value['url_parent'] . "/" . $value['url'] ?>"><?= $value['name'] ?></a>
+                                                </li>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                                <!-- Load subcategory on sidebar-->
+                            </ol>
+                        </div>
+                    </div>
+            <?php if ($wrapOptions): ?>
+            </div>
+            <?php else: ?>
+                <script>
+                    require([
+                        'jquery'
+                    ], function ($) {
+                        $('#layered-filter-block').addClass('filter-no-options');
+                    });
+                </script>
+            <?php endif; ?>
+        </div>
+    </div>
+

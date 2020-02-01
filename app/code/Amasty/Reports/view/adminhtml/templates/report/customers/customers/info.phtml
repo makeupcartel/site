@@ -1,0 +1,19 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+?>
+<?php
+/** @var \Magento\Backend\Block\Template $block */
+?>
+<div class="amreport-additional-info">
+<?= $block->escapeHtml(
+    __(
+        'To get more relevant and accurate results please refresh Amasty Customers Report statistics <a href="%1" target="_blank">here</a>.',
+        $block->getUrl('reports/report_statistics/index')
+    ),
+    ['a']
+) ?>
+</div>

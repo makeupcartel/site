@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/resources.xsd">
+  <resource name="usimpleup_setup" extends="core_setup"/>
+  <resource name="usimpleup_write" extends="core_write"/>
+  <resource name="usimpleup_read" extends="core_read"/>
+</config>

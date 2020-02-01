@@ -1,0 +1,19 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+?>
+<?php
+/** @var \Amasty\Groupcat\Block\Framework\Pricing\Request\Content $block */
+$url = $block->getImageUrl();
+$text = $block->getText();
+?>
+<?php if ($url) : ?>
+    <img class="amasty-hide-price-image" src="<?= $block->escapeUrl($url) ?>"/>
+<?php endif; ?>
+
+<?php if ($text) : ?>
+    <span class="amasty-hide-price-text"><?= $block->escapeHtml($text) ?></span>
+<?php endif; ?>

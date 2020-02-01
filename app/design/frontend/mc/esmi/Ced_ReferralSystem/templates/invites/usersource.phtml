@@ -1,0 +1,45 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_ReferralSystem
+ * @author   CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+?>
+<?php 
+  $fbcoll = $block->getCount('facebook');
+  $googlecoll = $block->getCount('google');
+  $twittercoll = $block->getCount('twitter');
+  $emailcoll = $block->getCount('email');
+?>
+
+<div class="social-referrel">
+  <ul>
+    <li class="google">
+        <label><? echo __('Google : ') ?></label>
+        <span class="referral-counter"><?php  echo($googlecoll) ?></span>
+    </li>
+    <li class="fb">
+        <label><? echo __('Facebook : ') ?></label>
+        <span class="referral-counter"><?php  echo($fbcoll) ?></span>
+    </li>
+    <li class="twitter">
+        <label><? echo __('Twitter : ') ?></label>
+        <span class="referral-counter"><?php  echo($twittercoll) ?></span>
+    </li>
+    <li class="email">
+        <label><? echo __('Emails : ') ?></label>
+        <span class="referral-counter"><?php  echo($emailcoll) ?></span>
+    </li>
+  </ul>
+</div>

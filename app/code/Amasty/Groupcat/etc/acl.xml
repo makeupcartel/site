@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Amasty_Groupcat::config" title="Amasty Customer Group Catalog" sortOrder="161801" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Customer::customer">
+                    <resource id="Amasty_Groupcat::rule" title="Amasty Customer Group Catalog Rule" sortOrder="161801" />
+                    <resource id="Amasty_Groupcat::request" title="Amasty Customer Group Catalog Request" sortOrder="161802" />
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

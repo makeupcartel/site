@@ -1,0 +1,65 @@
+<div class="entry-edit" style="margin-top:20px;">
+    <div class="entry-edit-head">
+        <h2><?php echo __('Tools - Export Settings')?></h2>
+
+        <div class="form-buttons"></div>
+    </div>
+    <form id="export_form" name="export_form" method="post" action="<?php echo $block->getUrl('*/tools/exportSettings')?>">
+        <input name="form_key" type="hidden" value="<?php echo $block->getFormKey() ?>"/>
+
+        <div class="fieldset fieldset-wide" id="base_fieldset">
+            <div class="hor-scroll">
+                    <?php echo __('<b>Note:</b> You can select profiles and destinations to export here, and later on import them into another Magento installation for example.')?>
+                <div style="position: relative; border: 1px solid #a6a6a6; display:table; width:99.5%; margin-top: 5px;">
+                    <div style="width:48%; float: left; clear: both; padding-left: 10px; border-right: 1px solid #a6a6a6; padding-top: 3px; display:table-row;">
+                        <strong><?php echo __('Select Profiles')?></strong> [<a href="#" onclick="jQuery('#profiles-ul > li > input').each(function(index, el){jQuery(el).attr('checked', true)})"><?php echo __('Select all')?></a>]
+                        <?php
+                        $profileCollection = $block->getProfiles();
+                        ?>
+                        <ul id="profiles-ul" class="checkboxes" style="padding: 2px 8px 0;list-style-type: none;">
+                            <?php
+                            foreach ($profileCollection as $profile) {
+                                ?>
+                                <li>
+                                    <input id="profile_<?php echo $profile->getId()?>" type="checkbox" name="profile_ids[]" value="<?php echo $profile->getId()?>">
+                                    <label for="profile_<?php echo $profile->getId()?>"><b><?php echo $profile->getName()?></b> (<?php echo __('Entity: %1', ucwords($profile->getEntity()))?>)</label>
+                                </li>
+                                <?php
+                            }
+                            if ($profileCollection->getSize() == 0) {
+                                echo "<li>".__('No export profiles found.')."</li>";
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <div style="width:48%; float: left; padding-left:9px; padding-top: 5px;">
+                        <strong><?php echo __('Select Destinations') ?></strong> [<a href="#" onclick="jQuery('#destination-ul > li > input').each(function(index, el){jQuery(el).attr('checked', true)})"><?php echo __('Select all')?></a>]
+                        <?php
+                        $destinationCollection = $block->getDestinations();
+                        ?>
+                        <ul id="destination-ul" class="checkboxes" style="padding: 2px 8px 0;list-style-type: none;">
+                            <?php
+                            foreach ($destinationCollection as $destination) {
+                                ?>
+                                <li>
+                                    <input id="destination_<?php echo $destination->getId()?>" type="checkbox" name="destination_ids[]" value="<?php echo $destination->getId()?>">
+                                    <label for="destination_<?php echo $destination->getId()?>"><b><?php echo $destination->getName()?></b> (<?php echo __('Type: %1', ucwords($destination->getType()))?>)</label>
+                                </li>
+                                <?php
+                            }
+                            if ($destinationCollection->getSize() == 0) {
+                                echo "<li>".__('No export destinations found.')."</li>";
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+                <div style="padding-top:5px; clear:both;">
+                    <button class="scalable save" type="submit" onclick="jQuery('#export_form').submit();">
+                        <span><?php echo __('Export Settings')?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

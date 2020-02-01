@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Bundle\Ui\DataProvider\Product\Form\Modifier\Composite">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="maxOptionSelected" xsi:type="string">Convert\Catalog\Ui\DataProvider\Bundle\Product\Form\Modifier\MaxOptionSelected</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Bundle\Ui\DataProvider\Product\Form\Modifier\Composite" type="Convert\Catalog\Ui\DataProvider\Product\Form\Modifier\Composite"/>
+    <preference for="Magento\Bundle\Model\Product\OptionList" type="Convert\Catalog\Model\Bundle\Product\OptionList"/>
+</config>

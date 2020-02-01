@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Aheadworks\Blog\Block\Product\PostList $block */
+?>
+<?php if ($posts = $block->getPosts()): ?>
+    <ul class="block-product-posts-items">
+        <?php foreach ($posts as $post): ?>
+            <li class="block-product-posts-item">
+                <?php if ($block->isFeaturedImageLoaded($post)): ?>
+                    <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>" class="product-post-featured-image-link">
+                        <img class="product-post-featured-image"
+                             src = "<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getFeaturedImageUrl($post)) ?>"
+                             title = "<?php echo $block->escapeHtml($post->getFeaturedImageTitle()) ?>"
+                             alt = "<?php echo $block->escapeHtml($post->getFeaturedImageAlt()) ?>"
+                        />
+                    </a>
+                <?php endif; ?>
+                <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>" target="_blank">
+                    <?php echo $block->escapeHtml($post->getTitle()) ?>
+                </a>
+            </li>
+        <?php endforeach ?>
+    </ul>
+<?php endif; ?>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <update handle="xtento_productexport_log_grid_block"/>
+    <container name="root" label="Root">
+        <block class="Xtento\ProductExport\Block\Adminhtml\Log" name="adminhtml.productexport.log.grid.container">
+            <action method="removeButton">
+                <argument name="buttonId" xsi:type="string">add</argument>
+            </action>
+            <referenceBlock name="adminhtml.block.productexport.log.grid">
+                <arguments>
+                    <argument name="grid_url" xsi:type="url" path="*/profile/log">
+                        <param name="_current">1</param>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.productexport.log.grid.column.actions">
+                <arguments>
+                    <argument name="actions" xsi:type="array">
+                        <item name="download" xsi:type="array">
+                            <item name="target" xsi:type="string">_blank</item>
+                        </item>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.productexport.log.grid.columnSet">
+                <arguments>
+                    <argument name="rowUrl" xsi:type="null"/>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.productexport.log.grid.massaction" remove="true"/>
+        </block>
+    </container>
+</layout>
+
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2016-04-14T15:37:56+00:00
+ * File:          app/code/Xtento/ProductExport/view/adminhtml/layout/xtento_productexport_profile_log.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

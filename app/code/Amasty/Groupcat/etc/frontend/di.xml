@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="amasty_groupcat_product_getisSalable" type="Amasty\Groupcat\Plugin\Catalog\Model\Product\IsAvailable" />
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="amasty_groupcat_product_load_before" type="Amasty\Groupcat\Plugin\Catalog\Model\ResourceModel\Product\Collection" />
+    </type>
+    <type name="Magento\Catalog\Model\Layer">
+        <plugin name="amasty_groupcat_product_layer" type="Amasty\Groupcat\Plugin\Catalog\Model\Layer" />
+    </type>
+    <type name="Magento\Framework\Pricing\Render">
+        <plugin name="amasty_groupcat_product_price_hide" type="Amasty\Groupcat\Plugin\Framework\Pricing\Render" />
+    </type>
+    <type name="Magento\Catalog\Model\Product\Type\Price">
+        <plugin name="amasty_groupcat_product_price_hide" type="Amasty\Groupcat\Plugin\Catalog\Model\Product\Type\PricePlugin"/>
+    </type>
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="amasty_groupcat_configurableproduct_cache_key" type="Amasty\Groupcat\Plugin\ConfigurableProduct\Block\Product\View\Type\Configurable" />
+    </type>
+    <type name="Magento\ConfigurableProduct\Pricing\Price\ConfigurablePriceResolver">
+        <plugin name="amasty_groupcat_configurableproduct_price" type="Amasty\Groupcat\Plugin\ConfigurableProduct\Pricing\Price\ConfigurablePriceResolver" />
+    </type>
+    <type name="Magento\Bundle\Pricing\Price\BundleOptionPrice">
+        <plugin name="amasty_groupcat_bundle_optionPrice" type="Amasty\Groupcat\Plugin\Bundle\Pricing\Price\BundleOptionPrice" />
+    </type>
+    <type name="Magento\Bundle\Pricing\Adjustment\Calculator">
+        <plugin name="amasty_groupcat_bundle_finalPrice" type="Amasty\Groupcat\Plugin\Bundle\Pricing\Adjustment\Calculator" />
+    </type>
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="amasty_groupcat_topmenu" type="Amasty\Groupcat\Plugin\Theme\Block\Html\Topmenu" />
+    </type>
+    <type name="Magento\Framework\App\PageCache\Identifier">
+        <plugin name="amasty_cache_identifier" type="Amasty\Groupcat\Plugin\Model\App\CacheIdentifierPlugin" sortOrder="10"/>
+    </type>
+    <!--get customer id from session with cache fix -->
+    <type name="Magento\Framework\View\Layout">
+        <plugin name="amasty_customer_data_store" type="Amasty\Groupcat\Plugin\Framework\View\LayoutPlugin" sortOrder="9"/>
+    </type>
+</config>

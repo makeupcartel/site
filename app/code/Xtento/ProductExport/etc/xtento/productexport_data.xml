@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Xtento_ProductExport:etc/xtento/productexport_data.xsd">
+    <data>
+        <!-- General product data -->
+        <export id="product_general" class="\Xtento\ProductExport\Model\Export\Data\Product\General"/>
+        <export id="parent_product" class="\Xtento\ProductExport\Model\Export\Data\Product\ParentProduct"/>
+        <export id="child_products" class="\Xtento\ProductExport\Model\Export\Data\Product\Children"/>
+        <export id="categories" class="\Xtento\ProductExport\Model\Export\Data\Product\Categories"/>
+        <export id="stock" class="\Xtento\ProductExport\Model\Export\Data\Product\Stock"/>
+        <!-- General review data -->
+        <export id="review_general" class="\Xtento\ProductExport\Model\Export\Data\Review\General"/>
+        <!-- General category data -->
+        <export id="category_general" class="\Xtento\ProductExport\Model\Export\Data\Category\General"/>
+        <!-- Third party -->
+        <export id="wyomind_advancedinventory" class="\Xtento\ProductExport\Model\Export\Data\Custom\Product\WyomindAdvancedInventory"/>
+    </data>
+</config>
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2019-06-11T21:23:36+00:00
+ * File:          app/code/Xtento/ProductExport/etc/xtento/productexport_data.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

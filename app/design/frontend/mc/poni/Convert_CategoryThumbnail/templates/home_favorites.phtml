@@ -1,0 +1,41 @@
+<?php
+$blockCategory = $block->getLayout()->createBlock('Convert\CategoryThumbnail\Block\HomeFavorites');
+$cat_id = $this->getData('category_id');
+$_category = $blockCategory->getCategoryFavorites($cat_id);
+$subcats = $_category->getChildrenCategories();
+$objectHelper = $this->Helper('Convert\CategoryThumbnail\Helper\Data');
+$mediaUrl = $objectHelper->getMediaUrl();
+$count = count($subcats);
+?>
+<div class="sub-category-warpper ponieff">
+    <div class="block-title" data-aos="fade-up" data-aos-delay="50" data-aos-once="true">
+        <h2>Discover PoN<span class="text-lowcase">i</span></h2>
+    </div>
+    <div class="sub-category">
+        <?php foreach ($subcats as $subcat): ?>
+            <?php
+            $categoryName = $subcat->getName();
+            ?>
+            <div class="item" data-aos="fade-up" data-aos-delay="50" data-aos-once="true">
+                <?php $category = $objectHelper->getLoadCategory($subcat->getId()); ?>
+                <?php if ($category->getCategoryThumbnail()): ?>
+                    <a class="cat_img" href="<?php echo $category->getUrl() ?>">
+                        <img src="<?php echo $category->getCategoryThumbnail() ?>"
+                             title="<?php echo $categoryName; ?>"/>
+                    </a>
+                <?php else: ?>
+                    <a class="cat_img" href="<?php echo $category->getUrl() ?>">
+                        <img src="<?php echo $this->getViewFileUrl('images/default_thumbnail.jpg'); ?>"
+                             title="<?php echo $categoryName; ?>"/>
+                    </a>
+                <?php endif; ?>
+                <div class="content">
+                    <div class="text">
+                        <p><a class="cat_name" href="<?php echo $category->getUrl() ?>"><?php echo $categoryName; ?></a></p>
+                        <p><a href="<?php echo $category->getUrl() ?>"><span><?php echo __('Discover') ?></span></a></p>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

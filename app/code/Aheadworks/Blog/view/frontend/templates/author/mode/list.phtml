@@ -1,0 +1,56 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\Author */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+$author = $block->getAuthor();
+?>
+<?php if ($author): ?>
+    <div class="blog-author author-list-view">
+        <?php if ($block->isImageLoaded()): ?>
+            <div class="author-image-wrapper">
+                <a class="author-image-link" href="<?= /* @noEscape */ $block->getAuthorUrl($author) ?>">
+                    <img class="author-image"
+                         src="<?= $block->escapeUrl($block->getImageUrl()) ?>"
+                         title="<?= $block->escapeHtml($block->getFullname($author)) ?>"
+                         alt="<?= $block->escapeHtml($block->getAuthorImageAlt($author)) ?>"
+                    />
+                </a>
+            </div>
+        <?php endif; ?>
+       <div>
+           <h2 class="author-name">
+               <a class="author-name-link" href="<?= /* @noEscape */ $block->getAuthorUrl($author) ?>">
+                   <?= $block->escapeHtml($block->getFullname($author)) ?>
+               </a>
+           </h2>
+           <div class="author-position">
+               <?= $block->escapeHtml($author->getJobPosition()) ?>
+           </div>
+           <div class="author-info short-bio">
+               <?= /* @noEscape */ $author->getShortBio() ?>
+           </div>
+           <?php if (!empty($author->getTwitterId())): ?>
+               <div class="author-social-handle">
+                   <a href="https://twitter.com/<?= $block->escapeHtml($author->getTwitterId()) ?>" target="_blank" class="stButton"><span class="chicklets twitter"></span></a>
+               </div>
+           <?php endif; ?>
+           <?php if (!empty($author->getFacebookId())): ?>
+               <div class="author-social-handle">
+                   <a href="https://www.facebook.com/<?= $block->escapeHtml($author->getFacebookId()) ?>" target="_blank" class="stButton"><span class="chicklets facebook"></span></a>
+               </div>
+           <?php endif; ?>
+           <?php if (!empty($author->getLinkedinId())): ?>
+               <div class="author-social-handle">
+                   <a href="https://www.linkedin.com/in/<?= $block->escapeHtml($author->getLinkedinId()) ?>" target="_blank" class="stButton"><span class="chicklets linkedin"></span></a>
+               </div>
+           <?php endif; ?>
+       </div>
+    </div>
+<?php endif; ?>

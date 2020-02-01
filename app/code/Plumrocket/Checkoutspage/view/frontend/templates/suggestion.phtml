@@ -1,0 +1,71 @@
+<?php 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2018 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+
+<?php if ($block->isEnabled()) { ?>
+    <?php $items = $block->getItems(); ?>
+    <?php if (count($items)) { ?>
+      <div>
+          <h2><?php echo __('Based on your selection, you may be interested in the following items:') ?></h2>
+          <div id="slider-container" style="display:none">
+            <ul>
+            <?php foreach ($items as $_item):  ?>
+                <li class="item">
+                    <a class="product-image" target="_blank" href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $_item->getName() ?>">
+                        <?php $productImage = $block->getImage($_item, 'category_page_grid', ['width'  => '125px']); ?>
+                        <?php echo $productImage->toHtml(); ?>
+                    <div class="product-details">
+                        <h3 class="csp-product-name"><a target="_blank" href="<?php echo $_item->getProductUrl() ?>"><?php echo $_item->getName() ?></a></h3>
+                        <br />
+                        <span class="csp-product-price"><?php echo $block->getProductPriceHtml($_item, \Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE); ?></span>
+                        <br />
+                        <button type="button" title="<?php echo __('Add to Cart') ?>" class="button btn-cart" onclick="window.open('<?php echo $block->getProductUrl($_item) ?>')"><span><span><?php echo __('Add to Cart') ?></span></span></button>
+
+                                    <div data-role="add-to-links" class="actions-secondary">
+                            <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+                                <a href="<?php echo $block->getUrl('wishlist/index/add', ['product' => $_item->getId() ]); ?>"
+                                   target="_blank"
+                                   class="action towishlist"
+                                   title="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
+                                   aria-label="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
+                                   role="button">
+                                    <span><?php /* @escapeNotVerified */ echo __('Add to Wish List') ?></span>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+
+                    </div>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        </div>    
+      </div>
+
+      <div id="suggestion" data-bind="scope:'suggestion'">
+
+          <!-- ko template: getTemplate() --><!-- /ko -->
+          <script type="text/x-magento-init">
+              {
+                  "#suggestion": {
+                      "Magento_Ui/js/core/app": <?php /* @escapeNotVerified */ echo $block->getJsLayout();?>
+                  }
+              }
+          </script>
+      </div> 
+    <?php } ?>
+
+<?php } 

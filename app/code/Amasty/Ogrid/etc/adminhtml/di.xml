@@ -1,0 +1,405 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Ogrid
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <plugin name="Amasty_Ogrid::OrderDataProvider" type="Amasty\Ogrid\Plugin\OrderDataProvider" sortOrder="1"/>
+    </type>
+    <virtualType name="Amasty\Ogrid\Model\Column\Order\ShippingMethod" type="Amasty\Ogrid\Model\Column\Order">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">shipping_description</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Amasty\Ogrid\Model\Column\Order\Comments" type="Amasty\Ogrid\Model\Column\Order\Comment">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">comment</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Status\History</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Amasty\Ogrid\Model\Column\Order\OrderTax" type="Amasty\Ogrid\Model\Column\Order">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">tax_amount</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Amasty\Ogrid\Model\Column\Order\BaseSubtotal" type="Amasty\Ogrid\Model\Column\Order">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">base_subtotal</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Amasty\Ogrid\Model\Column\Order\TotalDue" type="Amasty\Ogrid\Model\Column\Order">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">total_due</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Amasty\Ogrid\Model\Column\Order\TotalPaid" type="Amasty\Ogrid\Model\Column\Order">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">total_paid</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Amasty\Ogrid\Model\Column\Order\Subtotal" type="Amasty\Ogrid\Model\Column\Order">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">subtotal</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Order\CouponCode" type="Amasty\Ogrid\Model\Column\Order">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">coupon_code</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Order\Weight" type="Amasty\Ogrid\Model\Column\Order">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">weight</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Shipping\Fax" type="Amasty\Ogrid\Model\Column\Address\Shipping">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">fax</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Shipping\Region" type="Amasty\Ogrid\Model\Column\Address\Shipping">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">region</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Shipping\Postcode" type="Amasty\Ogrid\Model\Column\Address\Shipping">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">postcode</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Shipping\City" type="Amasty\Ogrid\Model\Column\Address\Shipping">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">city</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Shipping\Company" type="Amasty\Ogrid\Model\Column\Address\Shipping">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">company</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Shipping\Telephone" type="Amasty\Ogrid\Model\Column\Address\Shipping">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">telephone</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Shipping\CountryId" type="Amasty\Ogrid\Model\Column\Address\Shipping">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">country_id</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Billing\Fax" type="Amasty\Ogrid\Model\Column\Address\Billing">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">fax</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Billing\Region" type="Amasty\Ogrid\Model\Column\Address\Billing">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">region</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Billing\Postcode" type="Amasty\Ogrid\Model\Column\Address\Billing">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">postcode</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Billing\City" type="Amasty\Ogrid\Model\Column\Address\Billing">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">city</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Billing\Company" type="Amasty\Ogrid\Model\Column\Address\Billing">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">company</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Billing\Telephone" type="Amasty\Ogrid\Model\Column\Address\Billing">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">telephone</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Address\Billing\CountryId" type="Amasty\Ogrid\Model\Column\Address\Billing">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">country_id</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Address</argument>
+            <argument name="foreignKey" xsi:type="string">parent_id</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Amasty\Ogrid\Model\Column\Customer">
+        <arguments>
+            <argument name="resourceModel" xsi:type="string">Magento\Customer\Model\ResourceModel\Customer</argument>
+            <argument name="fieldKey" xsi:type="string">entity_id</argument>
+            <argument name="primaryKey" xsi:type="string">customer_id</argument>
+            <argument name="foreignKey" xsi:type="string">entity_id</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\Ogrid\Model\Column\Customer\Group">
+        <arguments>
+            <argument name="resourceModel" xsi:type="string">Magento\Customer\Model\ResourceModel\Group</argument>
+            <argument name="fieldKey" xsi:type="string">customer_group_code</argument>
+            <argument name="primaryKey" xsi:type="string">group_id</argument>
+            <argument name="foreignKey" xsi:type="string">customer_group_id</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\Name" type="Amasty\Ogrid\Model\Column\Product">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">name</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\Sku" type="Amasty\Ogrid\Model\Column\Product">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">sku</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\Type" type="Amasty\Ogrid\Model\Column\Product">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">product_type</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Amasty\Ogrid\Model\Column\Product\Option">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">product_options</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\Ogrid\Model\Column\Product\Price">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">price</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\Ogrid\Model\Column\Product\BasePrice">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">base_price</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\TaxPercent" type="Amasty\Ogrid\Model\Column\Product\Percent">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">tax_percent</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\DiscountPercent" type="Amasty\Ogrid\Model\Column\Product\Percent">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">discount_percent</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\TaxAmount"  type="Amasty\Ogrid\Model\Column\Product\Price">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">tax_amount</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\BaseTaxAmount" type="Amasty\Ogrid\Model\Column\Product\BasePrice">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">base_tax_amount</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\DiscountAmount"  type="Amasty\Ogrid\Model\Column\Product\Price">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">discount_amount</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\BaseDiscountAmount" type="Amasty\Ogrid\Model\Column\Product\BasePrice">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">base_discount_amount</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\Qty\Ordered" type="Amasty\Ogrid\Model\Column\Product\Qty">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">qty_ordered</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\Qty\Invoiced" type="Amasty\Ogrid\Model\Column\Product\Qty">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">qty_invoiced</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\Qty\Shipped" type="Amasty\Ogrid\Model\Column\Product\Qty">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">qty_shipped</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\Qty\Refunded" type="Amasty\Ogrid\Model\Column\Product\Qty">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">qty_refunded</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\Qty\Canceled" type="Amasty\Ogrid\Model\Column\Product\Qty">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">qty_canceled</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\Qty\Available" type="Amasty\Ogrid\Model\Column\Product\Qty">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">qty_available</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\RowTotal"  type="Amasty\Ogrid\Model\Column\Product\Price">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">row_total</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Product\BaseRowTotal" type="Amasty\Ogrid\Model\Column\Product\BasePrice">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">base_row_total</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Tracking\Number" type="Amasty\Ogrid\Model\Column\Tracking">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">track_number</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Shipment\Track</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\Ogrid\Model\Column\Order\Skus" type="Amasty\Ogrid\Model\Column\Order\ItemsSku">
+        <arguments>
+            <argument name="fieldKey" xsi:type="string">sku</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Item</argument>
+            <argument name="foreignKey" xsi:type="string">order_id</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Amasty\Ogrid\Controller\Adminhtml\Export\GridToCsv">
+        <arguments>
+            <argument name="converter" xsi:type="object">Amasty\Ogrid\Model\Export\ConvertToCsv</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\Ogrid\Controller\Adminhtml\Export\GridToXml">
+        <arguments>
+            <argument name="converter" xsi:type="object">Amasty\Ogrid\Model\Export\ConvertToXml</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Ui\Config\Reader">
+        <plugin name="Amasty_Ogrid::addColumns" type="Amasty\Ogrid\Plugin\Ui\Model\Reader"/>
+    </type>
+    <type name="Magento\Ui\Model\Manager">
+        <plugin name="Amasty_Ogrid::addColumnsOld" type="Amasty\Ogrid\Plugin\Ui\Model\Manager" />
+    </type>
+    <!-- compatibility with magento EE AdminGws module -->
+    <type name="Magento\AdminGws\Model\Collections">
+        <plugin name="Amasty_Ogrid::addStoreFilter" type="Amasty\Ogrid\Plugin\AdminGws\Model\Collections\AddFilter" />
+    </type>
+
+    <!--<virtualType name="Amasty\Ogrid\Controller\Adminhtml\Export\GridToCsv" type="Magento\Ui\Controller\Adminhtml\Export\GridToCsv">-->
+    <!--&lt;!&ndash;<arguments>&ndash;&gt;-->
+    <!--&lt;!&ndash;</arguments>&ndash;&gt;-->
+    <!--</virtualType>-->
+
+</config>

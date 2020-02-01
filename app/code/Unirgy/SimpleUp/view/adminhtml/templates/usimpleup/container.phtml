@@ -1,0 +1,42 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<div class="main-col" id="container">
+    <div class="main-col-inner">
+        <div id="messages"></div>
+        <div class="content-header">
+            <h3 class="icon-head head-adminhtml-modules"><?php echo __('Unirgy Installer') ?></h3>
+        </div>
+        <div class="entry-edit">
+            <form id="edit_form" enctype="multipart/form-data" method="post"
+                  action="<?php echo $this->getUrl('usimpleup/module/post') ?>">
+                <div><input type="hidden" value="<?php echo $this->getFormKey(); ?>" name="form_key"/></div>
+
+                <?php echo $block->getLayout()->createBlock('Magento\Backend\Block\Template')->setTemplate('Unirgy_SimpleUp::usimpleup/ftp.phtml')->toHtml() ?>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="side-col" id="page:left">
+    <?php echo $block->getLayout()->createBlock('Unirgy\SimpleUp\Block\Adminhtml\Module\Tabs')->toHtml(); ?>
+</div>
+
+<script type="text/javascript">
+    function updateMassactionPassword(source) {
+        var formInput = $$('#modules\Grid\massaction-form #ftp_password');
+        if (formInput.length==0) {
+            formInput = document.createElement('input');
+            formInput.type = 'hidden';
+            formInput.id = 'ftp_password';
+            formInput.name = 'ftp_password';
+            $$('#modules\Grid\massaction-form div')[0].appendChild(formInput);
+        } else {
+            formInput = formInput[0];
+        }
+        formInput.value = source.value;
+    }
+
+    function toggleShowPassword() {
+        $('ftp_password_source').type = $('ftp_password_source').type=='text' ? 'password' : 'text';
+    }
+</script>

@@ -1,0 +1,122 @@
+"Save Rule","Save Rule"
+"Delete Rule","Delete Rule"
+"Save and Continue Edit","Save and Continue Edit"
+"Discount Denomination Rule","Discount Denomination Rule"
+"Rule Name","Rule Name"
+"Discount Amount","Discount Amount"
+"Cart Amount","Cart Amount"
+Status,Status
+"Discount Denomination","Discount Denomination"
+"Denomination Rule","Denomination Rule"
+"Payout /Discount Coupons","Payout /Discount Coupons"
+"Referral Report","Referral Report"
+"Transaction Summary","Transaction Summary"
+"Discount Coupons","Discount Coupons"
+"Denomination rule has been deleted successfully.","Denomination rule has been deleted successfully."
+"Denomination Rules","Denomination Rules"
+"Edit Discount Denomination Rule","Edit Discount Denomination Rule"
+"New Discount Denomination Rule","New Discount Denomination Rule"
+"New Rule","New Rule"
+Rules,Rules
+"Add Discount Denomination Rule","Add Discount Denomination Rule"
+"A total of %1 rules(s) have been deleted.","A total of %1 rules(s) have been deleted."
+"A total of %1 record(s) have been updated.","A total of %1 record(s) have been updated."
+"Rule already exists for Discount amount %1","Rule already exists for Discount amount %1"
+"Discount Rule successfully saved.","Discount Rule successfully saved."
+"Something went wrong while saving the data.","Something went wrong while saving the data."
+"Please login first","Please login first"
+"You have insufficient balance","You have insufficient balance"
+"Discount coupon code for ","Discount coupon code for "
+"Generated automatically for the Discount coupon code","Generated automatically for the Discount coupon code"
+"Discount Coupon for ","Discount Coupon for "
+"Discount Coupon Generated: ","Discount Coupon Generated: "
+"""Discount Coupon Generated SuccessFully:"" .","""Discount Coupon Generated SuccessFully:"" ."
+"Please enter an email address.","Please enter an email address."
+"Please enter a valid email address.","Please enter a valid email address."
+"Unable To Send Email","Unable To Send Email"
+"User(s) are  already registered %1","User(s) are  already registered %1"
+"Your invitation is successfully sent to %1 recipients, and these are already registered %2","Your invitation is successfully sent to %1 recipients, and these are already registered %2"
+"Your invitation is successfully sent to %1 recipients","Your invitation is successfully sent to %1 recipients"
+Unused,Unused
+Used,Used
+Edit,Edit
+"Referral URL and Code","Referral URL and Code"
+"Referral URL","Referral URL"
+"Referral Url","Referral Url"
+"Referral Code","Referral Code"
+"Share Referral URL on Social Network","Share Referral URL on Social Network"
+Facebook,Facebook
+Twitter,Twitter
+Google,Google
+Whatsapp,Whatsapp
+"Send Invitation Email","Send Invitation Email"
+"Enter Email Adresses","Enter Email Adresses"
+Subject,Subject
+Message,Message
+Send,Send
+"Referrals Acknowledged:","Referrals Acknowledged:"
+"Referrals Pending:","Referrals Pending:"
+"Email Invitation Summary","Email Invitation Summary"
+"Email Id","Email Id"
+"Invited Date","Invited Date"
+Pending,Pending
+Joined,Joined
+"You have not send any email invitation yet!","You have not send any email invitation yet!"
+"Google : ","Google : "
+"Facebook : ","Facebook : "
+"Twitter : ","Twitter : "
+"Emails : ","Emails : "
+"Your Discount Coupons","Your Discount Coupons"
+S.No,S.No
+"Coupon Code","Coupon Code"
+Amount,Amount
+"Created At","Created At"
+"Valid Till","Valid Till"
+"Purchase Required","Purchase Required"
+"No discount coupons are currently available!","No discount coupons are currently available!"
+"Your Current Balance: ","Your Current Balance: "
+"Create Discount Coupon","Create Discount Coupon"
+"Select Coupon Amount","Select Coupon Amount"
+"  (Applicable on purchase of %1 and above)","  (Applicable on purchase of %1 and above)"
+"Create Coupon","Create Coupon"
+"Minimum balance required to create discount coupon: %1","Minimum balance required to create discount coupon: %1"
+"Enter Your Referral Code","Enter Your Referral Code"
+Description,Description
+"Transaction Type","Transaction Type"
+Date,Date
+CREDIT,CREDIT
+DEBIT,DEBIT
+"To view transaction details you need to invite some friends first.","To view transaction details you need to invite some friends first."
+%subject,%subject
+"Message from %name: ","Message from %name: "
+"%message ","%message "
+%referral_url,%referral_url
+"Refer A Friend","Refer A Friend"
+Configuration,Configuration
+"General Configuration","General Configuration"
+Enabled,Enabled
+"Refer A Friend Configuration","Refer A Friend Configuration"
+"Signup Bonus","Signup Bonus"
+"Referral Reward","Referral Reward"
+"Denomination Range","Denomination Range"
+"Discount Coupon Validity(In Days)","Discount Coupon Validity(In Days)"
+"Support Email Id","Support Email Id"
+"Default Email Subject","Default Email Subject"
+"Default Email Message","Default Email Message"
+Email,Email
+" Coupon Code "," Coupon Code "
+"Date of Creation","Date of Creation"
+"Date of Expiry","Date of Expiry"
+"Required Cart Amount","Required Cart Amount"
+"Add New Rule","Add New Rule"
+Delete,Delete
+"Delete items","Delete items"
+"Are you sure to delete selected rules?","Are you sure to delete selected rules?"
+"Change Status","Change Status"
+Enable,Enable
+Disable,Disable
+"View All Registered Sources","View All Registered Sources"
+"Customer's Email Id","Customer's Email Id"
+"Pending Invitations","Pending Invitations"
+"Referrals Acknowledged","Referrals Acknowledged"
+"Balance Referral Amount","Balance Referral Amount"

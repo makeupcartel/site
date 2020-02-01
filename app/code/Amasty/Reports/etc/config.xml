@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amreports>
+            <widgets>
+                <total>
+                    <widget1>total_orders</widget1>
+                    <widget2>total_sales</widget2>
+                    <widget3>average_sales</widget3>
+                    <widget4>total_customers</widget4>
+                    <widget5>total_items</widget5>
+                    <widget6>total_refunded</widget6>
+                </total>
+                <live>
+                    <widget1>items_purchased</widget1>
+                    <widget2>orders_placed</widget2>
+                    <widget3>revenue</widget3>
+                    <widget4>unique_visitors</widget4>
+                    <widget5>active_carts</widget5>
+                    <widget6>items_active_carts</widget6>
+                </live>
+            </widgets>
+        </amreports>
+        <amasty_reports>
+            <general>
+                <report_brand>manufacturer</report_brand>
+            </general>
+        </amasty_reports>
+    </default>
+</config>

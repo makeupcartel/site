@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category   Emarsys
+* @package    Emartech_Emarsys
+* @copyright  Copyright (c) 2019 Emarsys. (http://www.emarsys.net/)
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="order.success.additional.info">
+            <referenceBlock name="emarsys.success" remove="true" />
+        </referenceContainer>
+        <referenceBlock name="checkout.success">
+            <block class="Emartech\Emarsys\Block\Success" name="emarsys.success.plumrocket" template="Emartech_Emarsys::emarsys/order/success.phtml" before="-" cacheable="false" />
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="amasty.groupcat.adminhtml.rule.grid.container">
+            <block class="Magento\Backend\Block\Widget\Grid" name="amasty.groupcat.adminhtml.rule.grid" as="grid">
+                <arguments>
+                    <argument name="id" xsi:type="string">amasty_groupcat_rule_grid</argument>
+                    <argument name="dataSource" xsi:type="object">Amasty\Groupcat\Model\ResourceModel\Rule\Collection</argument>
+                    <argument name="default_sort" xsi:type="string">name</argument>
+                    <argument name="default_dir" xsi:type="string">ASC</argument>
+                    <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                </arguments>
+                <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet"
+                       name="amasty.groupcat.block.adminhtml.rulecolumnSet">
+                    <arguments>
+                        <argument name="rowUrl" xsi:type="array">
+                            <item name="path" xsi:type="string">amasty_groupcat/*/edit</item>
+                            <item name="extraParamsTemplate" xsi:type="array">
+                                <item name="id" xsi:type="string">getId</item>
+                            </item>
+                        </argument>
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="id">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Rule ID</argument>
+                            <argument name="index" xsi:type="string">rule_id</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="name">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Name</argument>
+                            <argument name="index" xsi:type="string">name</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column\Multistore" as="rule_store">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Stores</argument>
+                            <argument name="index" xsi:type="string">store_ids</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="type" xsi:type="string">store</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="price_action">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Hide price</argument>
+                            <argument name="index" xsi:type="string">price_action</argument>
+                            <argument name="type" xsi:type="string">options</argument>
+                            <argument name="options" xsi:type="array">
+                                <item name="show" xsi:type="array">
+                                    <item name="value" xsi:type="string">0</item>
+                                    <item name="label" xsi:type="string" translate="true">Show</item>
+                                </item>
+                                <item name="hide" xsi:type="array">
+                                    <item name="value" xsi:type="string">1</item>
+                                    <item name="label" xsi:type="string" translate="true">Hide</item>
+                                </item>
+                                <item name="replace" xsi:type="array">
+                                    <item name="value" xsi:type="string">2</item>
+                                    <item name="label" xsi:type="string" translate="true">Replace</item>
+                                </item>
+                                <item name="replace_request" xsi:type="array">
+                                    <item name="value" xsi:type="string">3</item>
+                                    <item name="label" xsi:type="string" translate="true">Replace to request form</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="allow_direct_links">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Allow Direct Links</argument>
+                            <argument name="index" xsi:type="string">allow_direct_links</argument>
+                            <argument name="type" xsi:type="string">options</argument>
+                            <argument name="options" xsi:type="array">
+                                <item name="show404" xsi:type="array">
+                                    <item name="value" xsi:type="string">0</item>
+                                    <item name="label" xsi:type="string" translate="true">Deny</item>
+                                </item>
+                                <item name="allow" xsi:type="array">
+                                    <item name="value" xsi:type="string">1</item>
+                                    <item name="label" xsi:type="string" translate="true">Allow</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="priority">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Priority</argument>
+                            <argument name="index" xsi:type="string">priority</argument>
+                            <argument name="type" xsi:type="string">number</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="is_active">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Status</argument>
+                            <argument name="index" xsi:type="string">is_active</argument>
+                            <argument name="type" xsi:type="string">options</argument>
+                            <argument name="options" xsi:type="array">
+                                <item name="active" xsi:type="array">
+                                    <item name="value" xsi:type="string">1</item>
+                                    <item name="label" xsi:type="string" translate="true">Active</item>
+                                </item>
+                                <item name="inactive" xsi:type="array">
+                                    <item name="value" xsi:type="string">0</item>
+                                    <item name="label" xsi:type="string" translate="true">Inactive</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="edit_action">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Action</argument>
+                            <argument name="type" xsi:type="string">action</argument>
+                            <argument name="index" xsi:type="string">rule_id</argument>
+                            <argument name="actions" xsi:type="array">
+                                <item name="edit" xsi:type="array">
+                                    <item name="url" xsi:type="array">
+                                        <item name="base" xsi:type="string">*/*/edit</item>
+                                    </item>
+                                    <item name="field" xsi:type="string">id</item>
+                                    <item name="caption" xsi:type="string">Edit</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

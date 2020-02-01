@@ -1,0 +1,26 @@
+<div class="entry-edit form-inline">
+    <fieldset id="category-mapping" class="fieldset">
+        <legend class="legend">
+            <span><?php echo __('Category Mapping') ?></span>
+        </legend>
+        <div class="admin__field field" style="margin-bottom:10px">
+            <label class="label admin__field-label" for="taxonomy_source" style="width: 135px;"><span><?php echo __('Taxonomy') ?></span></label>
+            <div class="admin__field-control control">
+                <select id="taxonomy_source" name="taxonomy_source" class="select admin__control-select">
+                    <?php foreach ($this->getTaxonomies() as $code => $label): ?>
+                        <option value="<?php echo $code ?>"<?php if ($this->getProfile()->getTaxonomySource() == $code): echo ' selected="selected"'; endif; ?>><?php echo $label ?></option>
+                    <?php endforeach; ?>
+                    <option value=""><?php echo __('No taxonomy') ?></option>
+                </select>
+            </div>
+        </div>
+        <div id="category_tree"></div>
+        <input type="hidden" id="category_mapping" value=""/>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+    window.xtentoCategoryTree = <?php echo json_encode([$this->getCategoryTree()]) ?>;
+    window.xtentoMappedCategories = {};
+    window.xtentoTaxonomyUrl = '<?php echo $block->getUrl('xtento_productexport/profile/searchTaxonomy'); ?>';
+</script>

@@ -1,0 +1,209 @@
+.offer-wraper{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-bottom: 13px;
+	.widget.block.block-static-block{
+		width: calc(~'(50% - 11px)');
+		border: 1px solid #EEEEEE;	
+		background-color: #FFFFFF;
+		padding-bottom: 21.9px;
+		margin-bottom: 24px;
+
+		.offer-item{
+			.offer-detail{
+				box-sizing: border-box;
+				padding-left: 23px;
+
+				p{
+					margin: 0px;
+					margin-top:  16px;
+					color: #ED8C85;
+					font-family: Montserrat;
+					font-size: 11px;
+					font-weight: 600;
+					text-transform: uppercase;
+					line-height: 16px;
+				}
+
+				h5{
+					margin: 0px;
+					margin-top: 4px;
+					line-height: 24px;
+					a{
+						color: #333333;
+						font-family: Montserrat;
+						font-size: 16px;
+						font-weight: 600;
+						letter-spacing: initial;
+					}
+				}
+
+				a.button-primary{
+					color: #FFFFFF;
+					font-family: Montserrat;
+					font-size: 13px;
+					font-weight: bold;
+					padding: 12px 19.99px;
+					display: inline-block;
+					margin-top: 9px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 425px){
+	.widget.block.block-static-block{
+		width: 100%!important;
+	}
+}
+
+body.account.referralsystem-referral-index.page-layout-2columns-left{
+	.form{
+		.referral-url{
+			display: none;
+
+		}
+
+		.refer-email
+		{
+			width: 100%;
+			.label-refer{
+				font-style: italic;
+			}
+
+			.title-page-refer{
+				height: 28px;
+				width: 192px;
+				color: #333333;
+				font-family: Didot;
+				font-size: 32px;
+				line-height: 28px;
+			}
+
+			.label-page-refer{
+				height: 16px;
+				width: 517px;
+				color: #282D2E;
+				font-family: Montserrat;
+				font-size: 13px;
+				line-height: 16px;
+			}
+
+			.legend-refer-friend{
+				height: 18px;
+				width: 455px;
+				color: #282D2E;
+				font-family: Montserrat;
+				font-size: 14px;
+				font-weight: 600;
+				letter-spacing: 0.5px;
+				line-height: 18px;
+				margin-top: 24px;
+				text-transform: uppercase;
+			}
+
+			.field.emails.required{
+				border-top: solid 1px #EBEBEB;
+				margin-top: 12px;
+				padding-top: 16px;
+				margin-bottom: 14px;
+				input#email_address{
+					height: 40px;
+					width: 348px;
+					border: 1px solid #E4E4E4;
+					border-radius: 3px;
+					background-color: #FFFFFF;
+				}
+			}
+
+			::placeholder {
+				color: #888888;	
+				font-family: Montserrat;
+			}
+
+			.subject-mail{
+				display: none;
+			}
+
+			.message-mail{
+				height: 22px;
+				width: 66px;
+				color: #282D2E;
+				font-family: Montserrat;
+				font-size: 13px;
+				line-height: 22px;
+			}
+			textarea#message{
+				height: 82px;
+				width: 348px;
+				border: 1px solid #E4E4E4;
+				border-radius: 3px;
+				background-color: #FFFFFF;
+			}
+
+			.actions-toolbar{
+				.primary{
+					button.action.submit.primary{
+						height: 40px;	
+						width: 160px;	
+						border-radius: 3px;	
+						background-color: #ED8C85;
+						span{
+								color: #FFFFFF;	
+								font-family: Montserrat;	
+								font-size: 13px;	
+								font-weight: bold;	
+								letter-spacing: 0.5px;
+								text-transform: uppercase;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
+form {
+	.field-select_brand {
+		position: relative;
+
+		input.checkbox {
+			display: initial;
+			visibility: hidden;
+			position: absolute;
+		}
+	}
+}
+
+form.form-edit-account {
+	.field-business_name {
+		display: none;
+	}
+
+	.field-address {
+		display: none;
+	}
+
+	.field-phone {
+		display: none;
+	}
+
+	.field-business_type {
+		display: none;
+	}
+
+	.field-how_did_you_hear_about_us {
+		display: none;
+	}
+
+	.field-why_do_you_want_to_stock_our_brands {
+		display: none;
+	}
+
+	.field-select_brand {
+		display: none;
+	}
+}

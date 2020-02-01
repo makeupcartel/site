@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <block class="Magento\Customer\Block\Account\Navigation" name="top.links3">
+            <arguments>
+                <argument name="css_class" xsi:type="string">header links</argument>
+            </arguments>
+        </block>
+        <referenceBlock name="top.links3">
+            <block class="Magento\Theme\Block\Html\Header" name="header3" as="header" before="-">
+                <arguments>
+                    <argument name="show_part" xsi:type="string">welcome</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceContainer name="header-wrapper">
+            <container name="header-left-wrapper" label="Page Header" htmlTag="div" htmlClass="header--left--wrapper"/>
+            <container name="header-center-wrapper" label="Page Header" htmlTag="div" htmlClass="header--center--wrapper"/>
+            <container name="header-right-wrapper" label="Page Header" htmlTag="div" htmlClass="header--right--wrapper"/>
+        </referenceContainer>
+        <move element="currency" destination="header-left-wrapper" />
+        <move element="logo" destination="header-center-wrapper"/>
+        <referenceContainer name="header.panel">
+            <block class="Magento\Framework\View\Element\Html\Links" name="header.links2">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">header links</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <move element="top.search" destination="header-right-wrapper" before="-" />
+        <move element="header.links2" destination="header-right-wrapper" after="top.search"/>
+        <move element="minicart" destination="header-right-wrapper" />
+        <referenceBlock name="footer_links" remove="true" />
+        <referenceBlock name="copyright" remove="true" />
+        <referenceContainer name="footer-container">
+            <container name="footer-top-heroes" htmlTag="div" htmlClass="footer-top-heroes" before="-">
+               <block class="Magento\Cms\Block\Block" name="footer.heroes">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">heroes_home_recycle</argument>
+                    </arguments>
+                </block>
+            </container>
+            <container name="footer-top-wrapper" as="footer-top" label="Page Footer" htmlTag="div" htmlClass="footer--top">
+                <block class="Magento\Cms\Block\Block" name="footer.heroes.top">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-heroes-top</argument>
+                    </arguments>
+                </block>
+              
+            </container>
+            <container name="footer-bottom-wrapper" as="footer-bottom" label="Page Footer" htmlTag="div" htmlClass="footer--bottom" after="-">
+                <block class="Magento\Cms\Block\Block" name="footer.heroes.copyright">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-heroes-copyright</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="footer.heroes.payment.logo">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-heroes-payment-logo</argument>
+                    </arguments>
+                </block>
+            </container>
+            
+        </referenceContainer>
+        <referenceContainer name="footer">
+            <container name="footer-top-wrapper" as="footer-top" label="Page Footer" htmlTag="div" htmlClass="footer-top-wrapper">
+                <block class="Magento\Cms\Block\Block" name="footer.top.logo">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer_top_logo</argument>
+                </arguments>
+            </block>
+            </container>
+            <container name="footer-middle-wrapper" as="footer-middle" label="Page Footer" htmlTag="div" htmlClass="footer--middle">
+                <container name="footer-middle-wrapper-left" as="footer-middle-left" label="Page Footer" htmlTag="div" htmlClass="footer--middle--left">
+                <container name="footer-middle-logo" as="footer-middle-logo" label="Page Footer" htmlTag="div" htmlClass="footer--middle--logo">
+                    <block class="Magento\Cms\Block\Block" name="footer.heroes.logo">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-heroes-contact</argument>
+                        </arguments>
+                    </block>
+                  
+                    
+                    </container>
+                    <block class="Magento\Cms\Block\Block" name="footer.heroes.link">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-heroes-link</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="footer-middle-wrapper-right" as="footer-middle-right" label="Page Footer" htmlTag="div" htmlClass="footer--middle--right"/>
+            </container>
+            <container name="footer-middle-bottom" htmlTag="div" htmlClass="footer-middle-bottom">
+                
+                <block class="Magento\Cms\Block\Block" name="footer.recycle">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-recycle-icon</argument>
+                    </arguments>
+                </block>
+                 <block class="Magento\Cms\Block\Block" name="footer.heroes.social">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-heroes-social</argument>
+                    </arguments>
+                </block>
+            </container>
+            
+        </referenceContainer>
+        <block class="Magento\Framework\View\Element\Template" name="footer.subscribe.social"
+               template="Magento_Theme::html/footer-subscribe-social.phtml">
+   
+        </block>
+        <move element="form.subscribe" destination="footer.subscribe.social" before="-"/>
+        <move element="footer.subscribe.social" destination="footer-middle-wrapper-right" before="-"/>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Template" name="absolute.footer.default.js" template="Magento_Theme::html/absolute_footer_scriptjs.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="store.menu">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string" />
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="store.settings">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string" />
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="store.links">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">My Account</argument>
+            </arguments>
+        </referenceBlock>
+        <move element="breadcrumbs" destination="main" before="-"/>
+    </body>
+</page>

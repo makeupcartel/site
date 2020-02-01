@@ -1,0 +1,25 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/account.css" media="all" />
+        <css src="css/cart.css" media="all" />
+        <css src="css/category.css" media="all" />
+        <css src="css/checkout.css" media="all" />
+        <css src="css/cms.css" media="all" />
+        <css src="css/header.css" media="all" />
+        <css src="css/footer.css" media="all" />
+        <css src="css/home.css" media="all" />
+        <css src="css/other.css" media="all" />
+        <css src="css/product.css" media="all" />
+        <css src="css/styleguide.css" media="all"/>
+        <css src="css/jquery.scrollbar.css" />
+        <css src="css/owl.carousel.min.css" />
+        <css src="css/magnific-popup.css" />
+        <css src="css/all.css" />
+        <css src="css/skinquiz.css" />
+        <css src="css/rangeslider.css" />
+        <css src="css/aos.css" />
+        <script src="js/website_js_default.js"/>
+        <script src="js/product.js"/>
+        <meta name="og:image" content="https://www.esmi.com.au/media/ESMI_MobileHome_RevieJourney_750x580.jpg" />
+    </head>
+</page>

@@ -1,0 +1,55 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Megamenu
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+$menu_id = $block->getMenuId();
+$menu = $block->getMenu();
+$disabledoption = '';
+if ($menu_id) {
+    $disabledoption = 'disabled';
+}
+?>
+<select <?php echo $disabledoption; ?> class="admin__control-multiselect required-entry" multiple="" name="store_id[]" id="store_id " size="6" placeholder="">
+    <?php
+    $storeId = $menu->getStoreId();
+
+    $defaultSelected = 'selected';
+    if (!empty($storeId)) {
+        if (in_array('0', $storeId)) {
+            $defaultSelected = 'selected';
+        } else {
+            $defaultSelected = '';
+        }
+    }
+    ?>
+    <option <?php echo $defaultSelected; ?> data-title="All Store Views" value="0"><?php echo __('All Store Views'); ?></option>
+    <?php
+    foreach ($block->getContext()->getStoreManager()->getWebsites() as $website) {
+        foreach ($website->getGroups() as $group) {
+            $stores = $group->getStores();
+            foreach ($stores as $store) {
+                $storeselect = '';
+                if (!empty($storeId)) {
+                    if (in_array($store->getStoreId(), $storeId)) {
+                        $storeselect = 'selected';
+                    }
+                }
+                ?>
+                <optgroup label="<?php echo $website->getName(); ?>">
+                </optgroup>
+                <optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $group->getName(); ?>">
+                    <option <?php echo $storeselect; ?> value="<?php echo $store->getStoreId(); ?>">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $store->getName(); ?></option>
+                </optgroup>
+                <?php
+            }
+        }
+    }
+    ?>
+</select>

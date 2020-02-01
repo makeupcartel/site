@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ConvertDigital - Core Module version 2.0.0 for Magento 2
+ *
+ * @category  Integration
+ * @package   Convert
+ * @author    Convert Digital
+ * @copyright 2018 Convert Digital
+ * @version   2.0.0
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="Convert_Core::css/styles.css" />
+	</head>
+</page>

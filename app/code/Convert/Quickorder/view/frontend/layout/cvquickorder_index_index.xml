@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Convert_Quickorder::css/quickorder.css"/>
+        <title>Quick Order</title>
+    </head>
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Quick Order</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Quick Order</item>
+                    <item name="label" xsi:type="string">Quick Order</item>
+                </argument>
+            </action>
+        </referenceBlock>
+
+        <attribute name="class" value="quick-order"/>
+        <referenceContainer name="catalog.leftnav" remove="true" />
+        <referenceContainer name="category.product.addto" remove="true" />
+        <referenceBlock name="quickorder.swatchrenderer">
+            <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml" />
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\ListProduct" name="quick.order.products.list" as="quick_order_product_list" template="Convert_Quickorder::product/list.phtml">
+                <container name="category.product.list.additional" as="additional" />
+                <block class="Magento\Framework\View\Element\RendererList" name="quickorder.swatchrenderer" as="quickorder.toprenderers">
+                    <block class="Magento\Framework\View\Element\Template" as="default"/>
+                </block>
+                <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                    <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                    <block class="Convert\Quickorder\Block\Product\ProductList" name="quickorder.switcher" template="Convert_Quickorder::product/toolbar/switcher.phtml"/>
+                </block>
+                <action method="setToolbarBlockName">
+                    <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

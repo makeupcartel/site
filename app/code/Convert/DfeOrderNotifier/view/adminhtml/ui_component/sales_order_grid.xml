@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="send_netsuite">
+                <settings>
+                    <url path="csales/order/massSend"/>
+                    <type>send_netsuite</type>
+                    <label translate="true">Send to Netsuite</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+</listing>

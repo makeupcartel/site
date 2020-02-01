@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_ElasticSearch
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_elastic>
+            <connection>
+                <server_hostname>localhost</server_hostname>
+                <server_port>9200</server_port>
+                <index_prefix>magento2</index_prefix>
+                <enable_auth>0</enable_auth>
+                <server_timeout>15</server_timeout>
+            </connection>
+            <catalog>
+                <wildcard>1</wildcard>
+                <wildcard_symbols>3</wildcard_symbols>
+                <spellcorrection_symbols>4</spellcorrection_symbols>
+                <max_items>0</max_items>
+            </catalog>
+        </amasty_elastic>
+    </default>
+</config>

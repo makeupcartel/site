@@ -1,0 +1,37 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+?>
+
+ <button 
+		data-mage-init='{"Plumrocket_Checkoutspage/js/preview":{
+			"previewUrl": {
+				"preview_page_new": "<?php echo $block->getPreviewUrl('page','new');  ?>",
+				"preview_page_old": "<?php echo $block->getPreviewUrl('page','old');  ?>",
+				"preview_email_new": "<?php echo $block->getPreviewUrl('email','new');  ?>",
+				"preview_email_old": "<?php echo $block->getPreviewUrl('email','old');  ?>"
+			},
+			"lastOrderId": "<?php echo $block->getLastOrderId(); ?>"
+		}}' 
+		title="Save Config" 
+		type="button" 
+		style="display:none;" 
+		id="preview-button" 
+		class="action-default scalable primary" role="button" aria-disabled="false">
+	<span class="ui-button-text">
+	    <span>Preview</span>
+	</span>
+</button>

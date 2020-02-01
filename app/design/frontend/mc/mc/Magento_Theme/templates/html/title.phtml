@@ -1,0 +1,36 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Theme\Block\Html\Title
+ */
+$cssClass = $block->getCssClass() ? ' ' . $block->getCssClass() : '';
+$title = '';
+if (trim($block->getPageHeading())) {
+    $title = '<span class="base" data-ui-id="page-title-wrapper" ' .  $block->getAddBaseAttribute() . '>'
+        . $block->escapeHtml($block->getPageHeading()) . '</span>';
+}
+?>
+<?php if ($title): ?>
+<div class="page-title-wrapper<?= /* @escapeNotVerified */ $cssClass ?>">
+    <input type="hidden" class="quantity_wishlist">
+    <h1 class="page-title"
+        <?php if ($block->getId()): ?> id="<?= /* @escapeNotVerified */ $block->getId() ?>" <?php endif; ?>
+        <?php if ($block->getAddBaseAttributeAria()): ?>
+            aria-labelledby="<?= /* @escapeNotVerified */ $block->getAddBaseAttributeAria() ?>"
+        <?php endif; ?>>
+        <?= /* @escapeNotVerified */ $title ?>
+    </h1>
+    <p class="content_quickorder" style="display: none">Don't forget to click on the + button to add the product to cart</p>
+    <?= $block->getChildHtml() ?>
+</div>
+<script>
+    var titlePageCms  = '<?= trim($block->getPageHeading()) ?>';
+    var globalTitle = '<?= strtolower(trim(str_replace(' ', '-', $block->getPageHeading()))) ?>';
+</script>
+<?php endif; ?>

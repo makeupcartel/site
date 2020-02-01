@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+
+    <actionGroup name="CreateCartRulePromo">
+        <arguments>
+            <argument name="actionsRulePromo"/>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <amOnPage url="{{AdminCartPriceRulePage.url}}" stepKey="navigateToCartPriceRulePage1"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad1"/>
+        <click selector="{{AdminRuleGridActionSection.AddNewRuleButton}}" stepKey="clickOnAddNewRule"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad2"/>
+        <fillField selector="{{AdminActionsCartPriceRuleSection.RuleName}}"
+                   userInput="{{cartRulePromo.name}}" stepKey="enterRuleName"/>
+        <fillField selector="{{AdminActionsCartPriceRuleSection.Description}}"
+                   userInput="{{cartRulePromo.description}}" stepKey="enterDescription"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.Websites}}" stepKey="selectWebsite"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.CustomerGroupsGeneral}}" stepKey="selectCustomerGeneral"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.CustomerGroupsNotLoggedIn}}" stepKey="selectCustomerNotLoggedIn"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.CustomerGroupsWholesale}}" stepKey="selectCustomerWholesale"/>
+        <conditionalClick stepKey="openActionTab"
+                          selector="{{AdminActionsCartPriceRuleSection.ActionTab}}"
+                          dependentSelector="{{AdminActionsCartPriceRuleSection.ActionTabOpen}}"
+                          visible="false"/>
+        <waitForPageLoad time="5" stepKey="waitForPageLoad3"/>
+        <click selector="//select[@name='simple_action']/option[@value='{{actionsRulePromo.action}}']" stepKey="ChooseAction"/>
+        <fillField selector="{{AdminActionsCartPriceRuleSection.NumberOfGiftItems}}"
+                   userInput="{{cartRulePromo.numberOfGiftItems}}"
+                   stepKey="enterDiscountAmount"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.SaveAndContinueEdit}}" stepKey="clickOnSaveAndContinue"/>
+        <waitForPageLoad time="300" stepKey="waitForPageLoad4"/>
+    </actionGroup>
+
+
+    <actionGroup name="CreateCartRulePromoWithPromoItems" extends="CreateCartRulePromo">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <selectOption selector="{{AdminActionsCartPriceRuleSection.Type}}"
+                      userInput="{{cartRulePromo.typeAddFreeGift}}"
+                      stepKey="selectTypeAddFreeGift"/>
+        <fillField selector="{{AdminActionsCartPriceRuleSection.PromoItems}}" userInput="{{cartRulePromo.promoItems}}"
+                   stepKey="enterPromoItems"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+    </actionGroup>
+
+
+    <actionGroup name="OpenPromoRuleForEdit">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <amOnPage url="{{AdminCartPriceRulePage.url}}" stepKey="navigateToCartPriceRulePage1"/>
+        <waitForPageLoad time="5" stepKey="waitForPageLoad1"/>
+        <click selector="//table[@id='promo_quote_grid_table']//*[contains(text(), '{{cartRulePromo.name}}')]"
+               stepKey="chooseOpenRuleForEdit"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad2"/>
+        <conditionalClick stepKey="openActionTab"
+                          selector="{{AdminActionsCartPriceRuleSection.ActionTab}}"
+                          dependentSelector="{{AdminActionsCartPriceRuleSection.ActionTabOpen}}"
+                          visible="false"/>
+        <waitForPageLoad time="5" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="EditPromoRuleAddDiscountSetting" extends="OpenPromoRuleForEdit">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <conditionalClick stepKey="openDiscountTab"
+                          selector="{{AdminActionsCartPriceRuleSection.DiscountTab}}"
+                          dependentSelector="{{AdminActionsCartPriceRuleSection.DiscountTabOpen}}"
+                          visible="false"/>
+        <fillField selector="{{AdminActionsCartPriceRuleSection.PromoItemsDiscountField}}"
+                   userInput="{{cartRulePromo.discount}}" stepKey="enterDiscount"/>
+        <fillField selector="{{AdminActionsCartPriceRuleSection.MinimalPrice}}"
+                   userInput="{{cartRulePromo.minimalPrice}}" stepKey="enterMinimalPrice"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+    </actionGroup>
+
+
+    <actionGroup name="EditPromoRuleChangeDiscountQtyStep" extends="OpenPromoRuleForEdit">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <conditionalClick stepKey="openActionTab"
+                          selector="{{AdminActionsCartPriceRuleSection.ActionTab}}"
+                          dependentSelector="{{AdminActionsCartPriceRuleSection.ActionTabOpen}}"
+                          visible="false"/>
+        <fillField selector="{{AdminActionsCartPriceRuleSection.DiscountQtyStep}}"
+                   userInput="{{cartRulePromo.discountQtyStep}}" stepKey="enterDiscountAmount"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+    </actionGroup>
+
+
+    <actionGroup name="EditPromoRuleMaximumQtyDiscountIsAppliedTo" extends="OpenPromoRuleForEdit">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <conditionalClick stepKey="openActionTab"
+                          selector="{{AdminActionsCartPriceRuleSection.ActionTab}}"
+                          dependentSelector="{{AdminActionsCartPriceRuleSection.ActionTabOpen}}"
+                          visible="false"/>
+        <fillField selector="{{AdminActionsCartPriceRuleSection.MaxQtyDiscountIsAppliedTo}}"
+                   userInput="{{cartRulePromo.maxQtyDiscount}}" stepKey="enterMaxQtyDiscount"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+    </actionGroup>
+
+
+    <actionGroup name="EditPromoRuleChangePriority" extends="OpenPromoRuleForEdit">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <conditionalClick stepKey="openRuleInformationTab"
+                          selector="{{AdminActionsCartPriceRuleSection.RuleInformationTab}}"
+                          dependentSelector="{{AdminActionsCartPriceRuleSection.RuleInformationTabOpen}}"
+                          visible="false"/>
+        <fillField selector="{{AdminActionsCartPriceRuleSection.Priority}}" userInput="{{cartRulePromo.priority}}"
+                   stepKey="enterNewPriority"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+    </actionGroup>
+
+
+    <actionGroup name="EditPromoRuleDiscardSubsequentRules" extends="OpenPromoRuleForEdit">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <conditionalClick stepKey="openActionTab"
+                          selector="{{AdminActionsCartPriceRuleSection.ActionTab}}"
+                          dependentSelector="{{AdminActionsCartPriceRuleSection.ActionTabOpen}}"
+                          visible="false"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.DiscardSubsequentRules}}" stepKey="clickSwitchDiscardRules"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+    </actionGroup>
+
+
+    <actionGroup name="EditPromoRuleAddCouponCode">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <amOnPage url="{{AdminCartPriceRulePage.url}}" stepKey="navigateToCartPriceRulePage1"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad1"/>
+        <click selector="//table[@id='promo_quote_grid_table']//*[contains(text(), '{{cartRulePromo.name}}')]"
+               stepKey="chooseOpenRuleForEdit"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad2"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.CouponsYes}}" stepKey="clickOnYes"/>
+        <fillField selector="{{AdminActionsCartPriceRuleSection.CouponsCode}}" userInput="{{cartRulePromo.couponCode}}"
+                   stepKey="enterCouponCode"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+    </actionGroup>
+
+
+    <actionGroup name="EditPromoRuleApplyShippingForFreeGiftEnable" extends="OpenPromoRuleForEdit">
+        <conditionalClick stepKey="enableApplyShippingForGift"
+                          selector="{{AdminActionsCartPriceRuleSection.ApplyShippingOnPromoFree}}"
+                          dependentSelector="{{AdminActionsCartPriceRuleSection.ApplyShippingOnPromoFreeEnable}}"
+                          visible="false"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+    </actionGroup>
+
+
+    <actionGroup name="EditPromoRuleApplyTaxForFreeGiftEnable" extends="OpenPromoRuleForEdit">
+        <conditionalClick stepKey="ApplyTaxOnOriginalPrice"
+                          selector="{{AdminActionsCartPriceRuleSection.ApplyTaxOnOriginalPrice}}"
+                          dependentSelector="{{AdminActionsCartPriceRuleSection.ApplyTaxOnOriginalPriceEnable}}"
+                          visible="false"/>
+        <click selector="{{AdminActionsCartPriceRuleSection.SaveAndContinueEdit}}" stepKey="clickOnSave"/>
+    </actionGroup>
+
+</actionGroups>

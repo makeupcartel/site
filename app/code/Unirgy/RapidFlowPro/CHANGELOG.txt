@@ -1,0 +1,451 @@
+===== 2019-03-05 3.0.47 =====
+  * Added percentage_value in CPPT
+
+===== 2019-02-11 3.0.46 =====
+  * Added Multi Source Inventory import/export data type
+
+===== 2018-11-20 3.0.45 =====
+  * Fixed export related, upsell, cross-sell in EE
+
+===== 2018-10-18 3.0.44 =====
+  * Fixed -CCP rows in EE
+
+===== 2018-09-21 3.0.43 =====
+  * Fixed EE error when import CCP rows "Undefined index: entity_id in ResourceModel/ProductExtra.php"
+
+===== 2018-08-28 3.0.42 =====
+  * Fixed CPSA row import in EE 2.2.5
+
+===== 2018-08-20 3.0.41 =====
+  * Fixed CPSA, CPSAL rows import in EE
+
+===== 2018-08-09 3.0.40 =====
+  * Fixed categories url rewrite refresh refresh only one category of many
+
+===== 2018-07-20 3.0.39 =====
+  * Added 'Force URL Rewrites Refresh' for categories import
+  * Added validation to eliminate CPSI with same sku in both sku, linked_sku fields
+
+===== 2018-06-22 3.0.38 =====
+  * Fixed import/export CCP on EE
+
+===== 2018-05-16 3.0.37 =====
+  * Fixed import, delete CCP rows doesn't work in EE
+
+===== 2018-05-08 3.0.36 =====
+  * Fixed product delete don't delete url rewrite in EE
+
+===== 2018-04-24 3.0.34 =====
+  * Fixed delete from url_rewrite use subselect (changed to multiple-table delete for better performance)
+
+===== 2018-01-04 3.0.33 =====
+  * Fixed compatibility with 2.2 bundle option/selection sequence new parent_product_id column
+
+===== 2018-01-02 3.0.32 =====
+  * Added compatibility with EE 2.2 bundle option/selection sequence
+
+===== 2017-12-20 3.0.31 =====
+  * Fixed EASI rows import
+
+===== 2017-12-15 3.0.30 =====
+  * Fixed import/delete of linked products (upsell,crossell,related) in EE > 2.1
+
+===== 2017-12-15 3.0.29 =====
+  * Fixed EAOS option value auto-create
+
+===== 2017-11-21 3.0.28 =====
+  * Fixed -CPV issue "Requested store is not found" error
+
+===== 2017-11-21 3.0.27 =====
+
+  * Fixed url rewrites db entries not deleted after -CP
+
+===== 2017-11-06 3.0.26 =====
+
+  * EAXP: Fixed setting `frontend_input_renderer` and `additional_data` to NULL when empty
+  * Fixed batch image downloading
+
+===== 2017-10-25 3.0.25 =====
+
+  * Fixed errors for existing records during CPCOS import
+  * Fixed Notice: Undefined index: entity_id in Unirgy/RapidFlowPro/Model/ResourceModel/Category/AbstractCategory.php on line 1384
+
+===== 2017-09-30 3.0.24 =====
+
+  * fixes categories issues for EE
+
+===== 2017-07-28 3.0.23 =====
+
+  * added error message for not supported codes
+  * fixes for CPBOS
+
+===== 2017-07-18 3.0.22 =====
+
+  * changed how EAOS works, it now accepts attribute option name for which the swatch should be bound.
+  If swatch for option does not exist, it is added. If exists, its value or sort order can be updated.
+
+===== 2017-04-19 3.0.21 =====
+
+  * fixed issue with EAOL bad left join condition
+  * fixed issue with EAOS not accounting for all possible swatch types
+
+===== 2017-01-26 3.0.20 =====
+
+  * fixed issue with not resetting url updates after each batch
+
+===== 2017-01-13 3.0.19 =====
+
+  * CPBOS & CPBOSL fixed sequence table error
+  * EAV fixed invalid attribute issues
+
+===== 2016-12-23 3.0.18 =====
+
+  * fixed CPV
+
+===== 2016-12-09 3.0.17 =====
+
+  * fixed order of fields in product extra CPV
+
+===== 2016-12-09 3.0.16 =====
+
+  * fixes related to sequence tables
+  * fixed typos in product extra CPV & CPVL sql
+
+===== 2016-11-10 3.0.15 =====
+
+  * added CPBOSL code for import/export of bundle option selection price
+
+===== 2016-10-20 3.0.14 =====
+
+  * added CPV and CPVI codes for importing external videos for products
+  * added category url rewrite updates
+
+===== 2016-10-13 3.0.13 =====
+
+  * fixed sequence_xyz tables being inserted in during dry run
+
+===== 2016-09-20 3.0.12 =====
+
+  * fixed issue with some missing indexes
+
+===== 2016-09-20 3.0.11 =====
+
+  * fixed Magento error when running compiled classes
+  * internal fixes
+
+  ===== 2016-08-08 3.0.10 =====
+
+  * EE updated_in, created_in fields populated for product and category
+
+===== 2016-07-28 3.0.9 =====
+
+  * updated code to provide compatibility with PHP7 with Ion Cube Loader
+
+===== 2016-07-08 3.0.8 =====
+
+  * fix for sequence table
+
+===== 2016-07-06 3.0.7 =====
+
+  * updated to work with Magento 2.1.0 EE
+
+===== 2016-06-06 3.0.6 =====
+
+  * fixed table names for category export
+
+===== 2016-06-02 3.0.5 =====
+
+  * fixed CPI typo
+
+===== 2016-06-01 3.0.4 =====
+
+  * fixed CPI import, missing relation data in gallery_entity_value table
+
+===== 2016-04-20 3.0.3 =====
+
+  * updated config.xml
+
+===== 2016-04-18 3.0.2 =====
+
+  * fixed -CPI SQL and file removal
+  * fixed -CPPT wrong table name
+
+===== 2016-03-22 3.0.1 =====
+
+  * fixed wrong parameter for EAXP import
+  * added additional columns to EAXP
+  * added support for import/export of swatches
+
+===== 2015-12-04 2.0.0.14 =====
+
+  * fix for comparing numeric like values during product sku rename
+
+===== 2015-10-28 2.0.0.13 =====
+
+  * updated routing for patch SUPEE-6788
+
+===== 2015-10-09 2.0.0.12 =====
+
+  * added options to choose what to do when imported image exists.
+
+===== 2015-03-27 2.0.0.11 =====
+
+  * fix for CPI import
+
+===== 2015-03-10 2.0.0.10 =====
+
+  * fixes for category export
+
+===== 2014-07-08 2.0.0.9 =====
+
+  * added check if group price table exist
+
+===== 2014-04-23 2.0.0.8 =====
+
+  * root category prepend fix
+
+===== 2014-02-26 2.0.0.7 =====
+
+  * fixes for ee 1.13 url path issue
+
+===== 2013-10-29 2.0.0.6 =====
+
+  * fix for Unsupported operand types in .../app/code/community/Unirgy/RapidFlowPro/Model/Mysql4/Category/Abstract.php on line 1100
+
+===== 2013-10-03 2.0.0.5 =====
+
+  * added retain image folder structure for exports
+  * changes to enable logging of old values
+
+===== 2013-05-31 2.0.0.4 =====
+
+  * Added compatibility with EE 1.13 new url model
+
+===== 2013-05-18 2.0.0.3 =====
+
+  * _importRowEAXP: added check for category attribute as well, it is part of catalog_eav table too
+
+===== 2013-05-18 2.0.0.2 =====
+
+  * Fixed bug with group prices import which was missing all_groups=0, if it is not set explicitly will use only not logged in group settings
+
+===== 2012-08-08 2.0.0.1 =====
+
+  * Added group prices import CPPG (for Magento 1.7.x and up)
+  * Added export_before_format and export_before_output events to category profile
+  * Added import option for EAV, to allow duplicate attribute option values [EAO] (as does Magento allow)
+  * Fixed bug not allowing all root categories to be used
+  * Fixed missing 'Use Default' option for is shareable column for downloadable options
+
+===== 2012-03-20 2.0.0.0 =====
+
+  * Fixed EAOL when importing option values to update existing options
+  * Added option "Use Prepended Root Category Name To URL Paths" to categories, product extra data type profiles
+    Serves as a workaround when there are multiple root categories with identical trees, or tree elements.
+    Hence subcategories within different root categories have identical url paths.
+  * Added "Retain remote subfolders" option
+  * Added ability to delete gallery images using any filenames
+    filenames will be normalized to match values in db
+    this useful when using same profile for insert and delete images
+
+===== 2011-06-16 1.6.2.3 =====
+
+  * Fixed "Notice: Undefined variable: additionalKey in RapidFlowPro/Model/Mysql4/Category/Abstract.php"
+    when Configuration > Catalog > Search Engine Optimizations > Category URL Suffix is empty
+  * Fixed import of -CPIL row type (rised - SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'value_id' in field list is ambiguous)
+===== 2011-04-29 1.6.2.0 =====
+
+  * Added implementation of CCP export
+
+===== 2011-03-26 1.6.1.0 =====
+
+  * Fixed not updating successfully updated rows count in for some fields (category import)
+  * Fixed redundant check for required attributes when importing existing categories does not allow simple updates
+
+===== 2011-03-25 1.6.0.5 =====
+
+  * Added automatic sort_order for EASI
+
+===== 2011-03-12 1.6.0.4 =====
+
+  * Fixed minor bug in categories import
+
+===== 2011-03-02 1.6.0.3 =====
+
+  * Fixed bug exporting categories for base (admin) store, introduced in 1.6.0.1
+
+===== 2011-02-18 1.6.0.2 =====
+
+  * Fixed export categories to limit to store root
+
+===== 2011-02-17 1.6.0.1 =====
+
+  * Fixed export categories for not default store view
+
+===== 2011-02-12 1.6.0.0 =====
+
+  * Added compatibility with CE 1.5.0.1
+  * Fixed refreshing has_options, required_options on CPCO, CPBO, CPSA
+  * Fixed wildcard delete actions for old version of Zend_Framework
+  * Fixed updating categories children_count
+
+===== 2011-01-12 1.5.9.1 =====
+
+  * Added mapping the same column in import file to multiple attributes
+
+===== 2010-12-31 1.5.7 =====
+
+  * Added deletion of multiple records for -CCP,-CPSA,-CPSI,-CPI row types
+
+===== 2010-12-06 1.5.6.1 =====
+
+  * Fixed recognizing selection_sku column in CPBOS rows
+  * Fixed creating bundle products with "Fixed" price type
+
+===== 2010-11-22 1.5.6 =====
+
+  * Added reindex type (auto/manual)
+
+===== 2010-11-17 1.5.5 =====
+
+  * Fixed deleting CPSI records
+
+===== 2010-11-05 1.5.4 =====
+
+  * Fixed inserting CPGI records in some cases
+
+===== 2010-10-30 1.5.3 =====
+
+  * Worked around a PDO bug on some PHP versions (5.2.0)
+
+===== 2010-10-07 1.5.2 =====
+
+  * Fixed handling missing default attribute values
+
+===== 2010-10-05 1.5.1 =====
+
+  * Added exporting category.entity_id
+
+===== 2010-09-29 1.5.0 =====
+
+  * Fixed issues with reindexing in CE 1.4.1.1
+
+===== 2010-09-20 1.4.14 =====
+
+  * Fixed handling empty const.value in categories export
+
+===== 2010-09-11 1.4.12 =====
+
+  * Fixed importing large text attribute values (>4K)
+  * Fixed handling file names as case sensitive
+
+===== 2010-08-24 1.4.8 =====
+
+  * Fixed some "delete" actions in EAV and Product Extra data type profiles
+
+===== 2010-08-11 1.4.7 =====
+
+  * Fixed throwing correct error message when customer group is invalid
+
+===== 2010-08-05 1.4.6.1 =====
+
+  * Fixed changing file encoding on export
+
+===== 2010-08-05 1.4.6 =====
+
+  * Improved handling of multiple profile invocations in the same PHP script
+
+===== 2010-06-28 1.4.5 =====
+
+  * Version bump with uRapidFlow basic
+
+===== 2010-06-28 1.4.4 =====
+
+  * Version bump with uRapidFlow basic
+
+===== 2010-06-23 1.4.3 =====
+
+  * Added import option for action to take when source image file is missing
+  * Improvements of memory consumption and performance related to ionCube loaders
+
+===== 2010-06-23 1.4.2 =====
+
+  * Added compatibility fixes for EE 1.8.0.0 and CE 1.4.1.0
+
+===== 2010-06-23 1.4.1 =====
+
+  * Work around for Zend_Db bug in CPRI,CPXI,CPGI,CPUI delete actions
+  * Added CCP row type import
+
+===== 2010-06-23 1.4.0 =====
+
+  * Version bump with uRapidFlow basic
+
+===== 2010-06-23 1.3.9 =====
+
+  * Refactoring for easier customization
+
+===== 2010-06-23 1.3.8 =====
+
+  * Fixed using default values during export
+
+===== 2010-06-23 1.3.7 =====
+
+  * Improved performance and memory consumption when only creation of new categories is requested
+
+===== 2010-06-23 1.3.6 =====
+
+  * Fixed category import error when attribute value records have null
+  * Fixed compatibility with extensions that override catalog/product incorrectly
+
+===== 2010-06-23 1.3.5.1 =====
+
+  * Fixed creating/updating categories for non-default store when admin value exists
+
+===== 2010-06-23 1.3.5 =====
+
+  * Improved logic of mapping dropdown attribute values to internal IDs
+
+===== 2010-06-23 1.3.4 =====
+
+  * Fixed importing configurable products for 1.4.x
+
+===== 2010-06-23 1.3.3 =====
+
+  * Fixed updating category position
+
+===== 2010-06-23 1.3.2 =====
+
+  * Fixed importing empty numeric values bug, introduced in 1.3.1
+
+===== 2010-06-23 1.3.1 =====
+
+  * Added importing non-US locale numbers for categories
+
+===== 2010-06-23 1.3.0 =====
+
+  * Worked around ionCube memory leaks
+  * Improved performance for fixed row data types
+
+===== 2010-06-23 1.2.2 =====
+
+  * Category import: Fixed overwriting existing attributes with default values
+  * Category import: Added using Magento default attribute values
+  * Added extension version in admin
+
+===== 2010-06-23 1.2.1 =====
+
+  * Added more import options for Category data type
+
+===== 2010-06-23 1.2.0 =====
+
+  * Added full support for internationalization
+
+===== 2010-06-23 1.1.0 =====
+
+  * Fixed exporting records when no store ids specified
+  * Added having label optional in CPSA
+
+===== 2010-06-23 1.0.0 =====
+
+  * Initial release

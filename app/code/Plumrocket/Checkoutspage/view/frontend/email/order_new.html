@@ -1,0 +1,253 @@
+<!--@subject {{trans "%store_name" store_name=$store.getFrontendName()}}: {{trans 'New Order #%increment_id' increment_id=$order.getIncrementId()}} @-->
+<!--@vars {
+"template config_path=\"design\/email\/footer_template\"":"Email Footer Template",
+"template config_path=\"design\/email\/header_template\"":"Email Header Template"
+} @-->
+
+
+<style type="text/css">
+    {{css file="Plumrocket_Checkoutspage::css/email-inline.css"}}
+</style>
+
+<table id="bodyTable" style="table-layout: fixed; max-width: 100% !important; width: 100%; min-width: 620px !important; background-color: #efefe9; font-family:Arial,sans-serif;" border="0" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+            <td id="bodyCell" style="background-color: #efefe9; padding-top:20px!important; padding-bottom:25px!important;" align="center" valign="top">
+                <center>
+                    {{depend email_secret_link}}
+                    <table id="emailHeader" class="flexibleContainer" style="margin: 0px auto; width: 620px;" border="0" cellspacing="0" cellpadding="0" bgcolor="#E1E1E1">
+                        <tbody>
+                            <tr>
+                                <td class="flexibleContainerCell" style="text-align: center; padding-top: 20px; color: #efefe9; background-color: #efefe9; font-size: 11px; line-height: 12px; text-size-adjust: none; -webkit-text-size-adjust: none; font-family: Arial, Verdana, Geneva, Helvetica, sans-serif;" valign="top" width="620">
+                                {{trans "Hello %customer_name." customer_name=$order.getCustomerName()}},{{trans "Thank you for your order from %store_name" store_name=$store.getFrontendName()}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="flexibleContainerCell" style="text-align: center; color: #222d35; background-color: #efefe9; font-size: 11px; line-height: 12px; text-size-adjust: none; -webkit-text-size-adjust: none; font-family: Arial, Verdana, Geneva, Helvetica, sans-serif;" valign="top" width="620">{{trans 'Is this email not displaying correctly?'}} <a style="color: #222d35; text-decoration: underline; font-size: 11px;" href="{{var email_secret_link }}" target="_blank">{{trans 'View it in your browser'}}</a>.
+                                    <br />
+                                    <br />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {{/depend}}
+                    <!-- EMAIL CONTAINER // -->
+                    <table id="emailBody" class="flexibleContainer" style="margin: 0px auto; width: 620px;" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td class="flexibleContainerCell" style="border: 1px solid #cccccc; width: 620px;" valign="top" width="620">
+                                    <table id="emailHeader" class="flexibleContainer" style="width: 620px;" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+                                        <!-- HEADER // -->
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <table class="flexibleContainer" border="0" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="flexibleContainerCell" align="left" valign="middle" style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px;">
+                                                                    <img style="display: block; border: 0; min-width: 220px; width:220px; padding: 0;" src="{{var logo_url}}" alt="{{var logo_alt}}" width="230" />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <!-- EMAIL BODY // -->
+                                            <tr>
+                                                <td style="border-top: 1px solid #cccccc; padding-top: 20px; padding-bottom: 3px; padding-left: 10px; padding-right: 10px; font-family: Arial, Helvetica, sans-serif; color: #9e0000; font-size: 21px; text-align: left;">{{trans "Hello %customer_name" customer_name=$order.getCustomerName()}},</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left: 10px; padding-right: 10px; font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 13px; line-height: 20px; text-align: left;">{{trans 'Thank you for your order from %store_name' store_name=$store.getFrontendName()}}.
+                                                {{if order.getCustomerId()}}
+                                                    {{trans 'You can check the status of your order by'}} <a style="text-decoration: underline;" href="{{store url='sales/order/history'}}" target="_blank">{{trans 'logging into your account'}}</a>.
+                                                {{else}}
+                                                    {{trans 'Your order summary is below'}}.
+                                                {{/if}}
+                                                {{trans 'If you have any questions about your order please'}} <a href="{{store url='contact/'}}" target="_blank">{{trans 'contact us'}}</a> {{trans 'Monday to Friday from 9AM to 6PM CEST.'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 10px; padding-left: 10px; padding-right: 10px; padding-top: 15px; font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 13px; line-height: 20px; text-align: left;">{{trans 'Your order confirmation is below. Thank you again for your business.'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table class="flexibleContainer" border="0" cellspacing="0" cellpadding="0" style="width:100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="flexibleContainerBox" style="padding-left: 10px; padding-bottom: 15px; padding-right: 10px;" align="left" valign="top">
+                                                                    <table style="max-width: 100%; border: 2px solid #cccccc; width: 100%;" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="flexibleContainerCell" align="left" valign="top" width="100%" style="padding: 10px;">
+                                                                                    <table class="flexibleContainer" border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td class="flexibleContainerBox" style="padding-bottom: 10px;" align="left" valign="top">
+                                                                                                    <table class="flexibleContainer" border="0" cellspacing="0" cellpadding="0">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td style="color: #9e0000; font-size: 21px;">{{trans 'Your Order #%increment_id' increment_id=$order.getIncrementId()}}</td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td style="color: #666666; font-size: 11px;">({{trans 'placed on %placed_date' placed_date=$order.getCreatedAt()}})</td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                                <td class="flexibleContainerBox" style="padding-bottom: 10px; text-align: center;" align="left" valign="top" width="115">
+                                                                                                    {{depend order.getCustomerId()}}
+                                                                                                    <a href="{{store url='sales/order/view' order_id=$order.id}}" target="_blank"><img style="display: block; border: 0; min-width: 116px;" src="{{view url="Plumrocket_Checkoutspage::images/email/image_3.jpg"}}" alt="Order details" width="116" height="31" /></a>
+                                                                                                    {{/depend}}
+                                                                                                    {{depend order.getCspParams().getPrintInvoiceUrl()}}
+                                                                                                    <table style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td style="padding-top: 5px; text-align: center;"><a style="text-decoration: underline; font-size: 12px;" href="{{var order.getCspParams().getPrintInvoiceUrl()}}" target="_blank">{{trans 'Generate Invoice'}}</a></td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                    {{/depend}}
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td class="flexibleContainerCell" style="padding-bottom: 10px; padding-top: 0px;" colspan="2" align="center" valign="top">
+                                                                                                    <table class="flexibleContainerCellDivider" style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td style="border-top: 1px solid #cccccc; line-height: 0px;" align="center" valign="top">&nbsp;</td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                    <table class="flexibleContainer" style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td class="flexibleContainerBox" align="left" valign="top" width="50%">
+                                                                                                    <table style="max-width: 100%; width: 100%;" border="0" cellspacing="0" cellpadding="0">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td class="flexibleContainerCell" style="font-size: 12px; line-height: 17px; padding-bottom: 20px;" align="left" valign="top"><strong style="font-size: 14px;">{{trans 'Billing Information'}}:</strong>
+                                                                                                                    <br />
+                                                                                                                    {{var formattedBillingAddress|raw}}
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                                <td class="flexibleContainerBox" style="font-size: 12px; line-height: 17px; padding-left: 10px; padding-bottom: 20px;" align="left" valign="top" width="50%">
+                                                                                                    <table style="max-width: 100%; width: 100%;" border="0" cellspacing="0" cellpadding="0">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td class="flexibleContainerCell" style="font-size: 12px; line-height: 17px;" align="left" valign="top"><strong style="font-size: 14px;">{{trans 'Payment Method'}}:</strong>
+                                                                                                                    <br />
+                                                                                                                    {{var payment_html|raw}}
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            {{depend order.getIsNotVirtual()}}
+                                                                                            <tr>
+                                                                                               <td class="flexibleContainerBox" align="left" valign="top" width="50%">
+                                                                                                    <table style="max-width: 100%; width: 100%;" border="0" cellspacing="0" cellpadding="0">
+                                                                                                       <tbody>
+                                                                                                            <tr>
+                                                                                                               <td class="flexibleContainerCell" style="font-size: 12px; line-height: 17px; padding-bottom: 30px;" align="left" valign="top"><strong style="font-size: 14px;">Shipping Information:</strong>
+                                                                                                                    <br />
+                                                                                                                    {{var formattedShippingAddress|raw}}
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                                <td class="flexibleContainerBox" style="font-size: 12px; line-height: 17px; padding-left: 10px; padding-bottom: 30px;" align="left" valign="top" width="50%">
+                                                                                                    <table style="max-width: 100%; width: 100%;" border="0" cellspacing="0" cellpadding="0">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                               <td class="flexibleContainerCell" style="font-size: 12px; line-height: 17px;" align="left" valign="top"><strong style="font-size: 14px;">Shipping Method:</strong>
+                                                                                                                    <br />
+                                                                                                                    {{var order.getShippingDescription()}}
+                                                                                                                    {{if shipping_msg}}
+                                                                                                                        <p>{{var shipping_msg}}</p>
+                                                                                                                    {{/if}}
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            {{/depend}}
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                    {{layout handle="checkoutspage_email_items" order=$order area="frontend"}}
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    {{if order.getCspParams().getCouponCode()}}
+                                                                    <table class="flexibleContainer" style="width: 410px;" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td valign="middle" height="10">&nbsp;</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="background-color: #15a3f0; font-size: 22px; font-weight: bold; color: #ffffff; text-align: center; font-family: 'Bree Serif', Open Sans, Arial, Helvetica, sans-serif; text-shadow: 0 2px #1086c9;" valign="middle"><img style="display: block; height: auto; margin-left: auto; margin-right: auto; border: 0; min-width: 100%;" src="{{view url="Plumrocket_Checkoutspage::images/email/image_9.jpg"}}" alt="{{trans 'SAVE 10% ON YOUR NEXT ORDER!' }}" width="410" /></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="background-color: #abdffc; text-align: center; padding-top: 10px; padding-bottom: 10px;" valign="middle">
+                                                                                    <table style="margin-left: auto; margin-right: auto; width: 385px;" border="0" cellspacing="0" cellpadding="0" align="center">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td style="font-size: 12px; font-weight: bold; color: #055581; text-transform: uppercase;" valign="middle">{{var order.getCspParams().getCouponMessage()}}</td>
+                                                                                                <td style="padding: 5px; border: 1px dashed #086fa7; background-color: #ffffff; text-align: center; font-size: 14px;" valign="middle" width="100" height="25">{{var order.getCspParams().getCouponCode()}}</td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    {{/if}}
+                                                                    <table class="flexibleContainer" style="width: 410px;" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tbody>
+                                                                            {{if order.getCspParams().getCouponCode()}}{{else}}
+                                                                            {{/if}}
+                                                                            {{if order.getCspParams().getFacebookUrl()}}
+                                                                            <tr>
+                                                                                <td style="padding-top: 10px;" valign="middle">
+                                                                                    <a href="{{var order.getCspParams().getFacebookUrl()}}" target="_blank">
+                                                                                    <img style="display: block; margin-left: auto; margin-right: auto; border: 0; min-width: 100%;" src="{{view url="Plumrocket_Checkoutspage::images/email/image_8.jpg"}}" alt="{{trans 'visit our facebook page'}}" width="100%" /></a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            {{/if}}
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <table class="flexibleContainer" style="width: 410px;" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tr>
+                                                                                <td style="padding-top: 15px; font-size: 13px;" valign="middle" height="20">{{trans 'Thank you,'}}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="font-weight: bold!important; font-size: 14px;" valign="middle" height="15">{{var store.getFrontendName()}}</td>
+                                                                            </tr>
+                                                                    </table>
+                                                                </td>
+                                                                {{layout handle="checkoutspage_email_suggestion_list" order=$order is_email=1 area="frontend"}}
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </center>
+            </td>
+        </tr>
+    </tbody>
+</table>

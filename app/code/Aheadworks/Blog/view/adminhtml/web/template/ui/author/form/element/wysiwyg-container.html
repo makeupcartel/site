@@ -1,0 +1,14 @@
+<div class="admin__field"
+     css="$data.additionalClasses"
+     attr="'data-index': index">
+    <div class="admin__field-label">
+        <label if="$data.label">
+            <span translate="label"/>
+        </label>
+    </div>
+    <div class="admin__field-control">
+        <each args="data: elems, as: 'element'">
+            <render if="hasTemplate()"/>
+        </each>
+    </div>
+</div>

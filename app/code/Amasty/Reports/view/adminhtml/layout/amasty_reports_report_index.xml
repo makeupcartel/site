@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="amasty_reports_general_layout"/>
+    <body>
+        <referenceContainer name="amreports.container">
+            <block class="Amasty\Reports\Block\Adminhtml\Dashboard" template="Amasty_Reports::dashboard.phtml" name="amreports.dashboard" />
+        </referenceContainer>
+    </body>
+</page>

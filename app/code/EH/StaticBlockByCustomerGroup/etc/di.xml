@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author ExtensionHut Team
+ * @copyright Copyright (c) 2019 ExtensionHut (https://www.extensionhut.com/)
+ * @package EH_StaticBlockByCustomerGroup
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Cms\Model\Block">
+        <plugin name="eh-static-block-by-customer-group" type="EH\StaticBlockByCustomerGroup\Plugins\Cms\Model\Block" sortOrder="10"/>
+    </type>
+</config>

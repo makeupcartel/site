@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_ElasticSearch
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amasty_elastic" translate="label" type="text" sortOrder="51219" showInDefault="1" showInWebsite="0" showInStore="0">
+            <resource>Amasty_ElasticSearch::config</resource>
+            <class>separator-top</class>
+            <label>Elastic Search</label>
+            <tab>amasty</tab>
+            <group id="amasty_information" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Information</label>
+                <frontend_model>Amasty\ElasticSearch\Block\Adminhtml\System\Config\Information</frontend_model>
+            </group>
+            <group id="connection" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Connection</label>
+                <field id="engine" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Search Engine</label>
+                    <source_model>Magento\Search\Model\Adminhtml\System\Config\Source\Engine</source_model>
+                    <tooltip><![CDATA[<img src="Amasty_ElasticSearch::images/scheme.png">]]></tooltip>
+                </field>
+                <field id="server_hostname" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch Server Hostname</label>
+                    <depends>
+                        <field id="engine">amasty_elastic</field>
+                    </depends>
+                </field>
+                <field id="server_port" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch Server Port</label>
+                    <validate>validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="engine">amasty_elastic</field>
+                    </depends>
+                </field>
+                <field id="index_prefix" translate="label" type="text" sortOrder="63" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch Index Prefix</label>
+                    <depends>
+                        <field id="engine">amasty_elastic</field>
+                    </depends>
+                </field>
+                <field id="enable_auth" translate="label" type="select" sortOrder="64" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Elasticsearch HTTP Auth</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="engine">amasty_elastic</field>
+                    </depends>
+                </field>
+                <field id="username" translate="label" type="text" sortOrder="65" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch HTTP Username</label>
+                    <depends>
+                        <field id="enable_auth">1</field>
+                    </depends>
+                </field>
+                <field id="password" translate="label" type="password" sortOrder="66" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch HTTP Password</label>
+                    <depends>
+                        <field id="enable_auth">1</field>
+                    </depends>
+                </field>
+                <field id="server_timeout" translate="label" type="text" sortOrder="67" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Elasticsearch Server Timeout</label>
+                    <validate>validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="engine">amasty_elastic</field>
+                    </depends>
+                </field>
+                <field id="test_connect" translate="button_label" sortOrder="68" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label/>
+                    <button_label>Test Connection</button_label>
+                    <frontend_model>Amasty\ElasticSearch\Block\Adminhtml\System\Config\ConnectionChecker</frontend_model>
+                    <depends>
+                        <field id="engine">amasty_elastic</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="catalog" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" >
+                <label>Catalog</label>
+                <depends>
+                    <field id="*/connection/engine">amasty_elastic</field>
+                </depends>
+                <field id="wildcard_mode" translate="label,comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Wildcard Type</label>
+                    <comment>Specify the type of the autocomplete suggestion - the part of a word which will be auto-completed. Shoppers can input a half-finished word and get a relevant result.</comment>
+                    <source_model>Amasty\ElasticSearch\Model\Source\WildcardMode</source_model>
+                </field>
+                <field id="wildcard_symbols" translate="label,comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Enable Wildcard After</label>
+                    <validate>validate-greater-than-zero</validate>
+                    <comment>Specify a number of symbols to apply autocomplete suggestion after.</comment>
+                </field>
+                <field id="spellcorrection_symbols" translate="label,comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Enable Spell Correction After</label>
+                    <validate>validate-greater-than-zero</validate>
+                    <comment>Specify a number of symbols to apply spell correction after.</comment>
+                </field>
+                <field id="max_items" translate="label" type="text" sortOrder="998" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Max Number of Search Results</label>
+                    <comment>Specify the maximum number of items in the search results. Set 0 to use default Magento limitation (10000 items).</comment>
+                    <validate>validate-zero-or-greater</validate>
+                </field>
+                <field id="long_tail" translate="label" type="select" sortOrder="1000" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow Special Characters</label>
+                    <comment>Useful when customer uses a highly specific search phrase and words that contain slashes, hyphens, dashes or any other non-alphabetic symbols.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <backend_model>Amasty\ElasticSearch\Model\Adminhtml\System\Config\Backend\LongTail</backend_model>
+                </field>
+                <field id="query_settings" translate="label,comment" sortOrder="1010" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Search Query Settings</label>
+                    <frontend_model>Amasty\ElasticSearch\Block\Adminhtml\Form\Field\QuerySettings</frontend_model>
+                    <backend_model>Amasty\ElasticSearch\Model\Config\QuerySettings</backend_model>
+                    <comment><![CDATA[Specify the search type preferences for each product attribute. Please consult the <a href="https://amasty.com/docs/doku.php?id=magento_2:elastic_search#advanced_query_settings">user guide</a>.]]></comment>
+                </field>
+            </group>
+            <group id="index" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <depends>
+                    <field id="*/connection/engine">amasty_elastic</field>
+                </depends>
+                <label>Indexation Settings</label>
+                <field id="use_language_stopwords" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use inbox stopwords</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="stopwords_language" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Special Characters</label>
+                    <source_model>Amasty\ElasticSearch\Model\Source\StopWordLanguage</source_model>
+                    <depends>
+                        <field id="use_language_stopwords">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="debug" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <depends>
+                    <field id="*/connection/engine">amasty_elastic</field>
+                </depends>
+                <label>Debug Settings</label>
+                <field id="use_debug" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Is Debug Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <backend_model>Amasty\ElasticSearch\Model\Config\Backend\Debug</backend_model>
+                </field>
+                <field id="log_buckets_alert_requests" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Log Requests for Bucket Alerts</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="use_debug">1</field>
+                    </depends>
+                </field>
+                <field id="log_request_object" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Log Request Object</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="use_debug">1</field>
+                    </depends>
+                </field>
+                <field id="log_raw_request" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Log Raw Request</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="use_debug">1</field>
+                    </depends>
+                </field>
+                <field id="log_raw_response" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Log Raw Response</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="use_debug">1</field>
+                    </depends>
+                </field>
+                <field id="log_response_object" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Log Response Object</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="use_debug">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,72 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_order = $block->getOrder() ?>
+<?php if ($_order): ?>
+    <?php $_items = $_order->getAllItems(); ?>
+	<table style="width:100%;">
+		<tr><td style="width:100%;height:30px;border-top:solid 1px #eee;"></td></tr>
+	</table>
+    <table class="email-items" style="display:table;width:100%">
+        <thead style="width:100%">
+            <tr>
+				<th class="item-image" style="width:20%;font-size:13px !important;font-family:Arial !important;color:#222222;text-align:left;border-bottom:solid 1px #eeeeee;background-color:#f2f2f2 !important;padding-top:10px !important;padding-bottom:10px !important;padding-left:20px !important;text-transform: capitalize;">
+					<?= /* @escapeNotVerified */  __('Item'); ?>
+				</th>
+                <th class="item-info" style="width:40%;font-size:13x !important;font-family:Arial !important;color:#222222;text-align:left;border-bottom:solid 1px #eeeeee;padding-top:10px !important;padding-bottom:10px !important;font-weight:bold;background-color:#f2f2f2 !important;text-transform: capitalize;">
+					
+				</th>
+				<th class="sku" style="width:20%;font-size:13px !important;font-family:Arial !important;color:#222222;text-align:left;border-bottom:solid 1px #eeeeee;padding-top:10px !important;padding-bottom:10px !important;font-weight:bold;background-color:#f2f2f2 !important;text-transform: capitalize;">
+					<?= /* @escapeNotVerified */  __('Sku'); ?>
+				</th>
+				<th class="sku" style="width:20%;font-size:13px !important;font-family:Arial !important;color:#222222;text-align:left;border-bottom:solid 1px #eeeeee;padding-top:10px !important;padding-bottom:10px !important;font-weight:bold;background-color:#f2f2f2 !important;text-transform: capitalize;">
+					<?= /* @escapeNotVerified */  __('Subtotal'); ?>
+				</th>
+                <th class="item-qty" style="width:15%;font-size:13px !important;font-family:Arial !important;color:#222222;text-align:center;border-bottom:solid 1px #eeeeee;padding-top:10px !important;padding-bottom:10px !important;font-weight:bold;background-color:#f2f2f2 !important;text-transform: capitalize;">
+                    <?= /* @escapeNotVerified */  __('Qty'); ?>
+                </th>
+                <th class="item-price" style="width:15%;font-size:13px !important;font-family:Arial !important;color:#222222;text-align:right;border-bottom:solid 1px #eeeeee;padding-top:10px !important;padding-bottom:10px !important;font-weight:bold;background-color:#f2f2f2 !important;padding-right:20px !important;text-transform: capitalize;">
+                    <?= /* @escapeNotVerified */  __('Total'); ?>
+                </th>
+            </tr>
+        </thead>
+        <?php foreach ($_items as $_item): ?>
+            <?php
+                if ($_item->getParentItem()) {
+                    continue;
+                }
+            ?>
+            <tbody>
+                <?= $block->getItemHtml($_item) ?>
+            </tbody>
+        <?php endforeach; ?>
+        <tfoot class="order-totals" style="text-align:right;width:100%;color:#444444 !important;">
+			<tr><td colspan="6" style="display:inline-block;width:100%;height:16px;padding:0px !important;background-color:#fff !important;"></td></tr>
+            <?= $block->getChildHtml('order_totals') ?>
+			<tr style="line-height:10px;"><td colspan="6" style="display:inline-block;width:100%;height:10px;padding:0px !important;background-color:#fff !important;"></td></tr>
+        </tfoot>
+    </table>
+    <?php if ($this->helper('Magento\GiftMessage\Helper\Message')->isMessagesAllowed('order', $_order, $_order->getStore()) && $_order->getGiftMessageId()): ?>
+        <?php $_giftMessage = $this->helper('Magento\GiftMessage\Helper\Message')->getGiftMessage($_order->getGiftMessageId()); ?>
+        <?php if ($_giftMessage): ?>
+            <br />
+            <table class="message-gift">
+                <tr>
+                    <td>
+                        <h3><?= /* @escapeNotVerified */  __('Gift Message for this Order') ?></h3>
+                        <strong><?= /* @escapeNotVerified */  __('From:'); ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                        <br /><strong><?= /* @escapeNotVerified */  __('To:'); ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                        <br /><strong><?= /* @escapeNotVerified */  __('Message:'); ?></strong>
+                        <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                    </td>
+                </tr>
+            </table>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

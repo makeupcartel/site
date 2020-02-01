@@ -1,0 +1,23 @@
+<!--@subject Get a Quote from {{var store_name}} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td valign="top">
+            <p><strong>Hello {{var customer_name}},</strong></p>
+
+            <p>{{trans "Thank you for contacting us!"}}</p>
+
+            <p>{{trans "Your quote request is being processed at the moment."}}</p>
+
+            <p>{{trans "We’ll get back to you as soon as possible"}}</p>
+
+            <p>{{trans "Best Regards"}},  {{var store_name}} Team</p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}
+
+

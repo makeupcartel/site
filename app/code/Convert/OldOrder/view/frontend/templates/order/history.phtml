@@ -1,0 +1,32 @@
+<?php 
+    $_oldOrders = $block->getOldOrders();
+
+?>
+<?php if ($_oldOrders && count($_oldOrders)): ?>
+<h2 class="page-title">
+        <span class="base" data-ui-id="page-title-wrapper">My Old Orders</span>
+</h2>
+<div class="table-wrapper orders-history old-orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @escapeNotVerified */ __('Orders') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Order') ?></th>
+                    <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date') ?></th>
+                    <th scope="col" class="col shipping"><?= /* @escapeNotVerified */ __('Ship To') ?></th>
+                    <th scope="col" class="col total"><?= /* @escapeNotVerified */ __('Order Total') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_oldOrders as $_oldOrder): ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('Order #')) ?>" class="col id"><?= /* @escapeNotVerified */ $_oldOrder->getOrderIncrementId() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_oldOrder->getOrderedDate()) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Ship To')) ?>" class="col shipping"><?= /* @escapeNotVerified */ $_oldOrder->getFirstname().'&nbsp;'.$_oldOrder->getLastname() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Order Total')) ?>" class="col total"><?= /* @escapeNotVerified */ $block->formatPrice($_oldOrder->getGrandTotal()) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif ?>

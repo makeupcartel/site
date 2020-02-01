@@ -1,0 +1,12 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<?php $chelper = $this->helper('Convert\Catalog\Helper\Data') ?>
+<script>
+  window.isLoggedIn = <?php echo $chelper->isLoggedIn()?1:0; ?>;
+</script>

@@ -1,0 +1,47 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+?>
+<?php
+// @codingStandardsIgnoreFile
+?>
+
+<?php
+/** @var $block \Magento\ConfigurableProduct\Block\Product\View\Type\Configurable */
+$_product    = $block->getProduct();
+$_attributes = $block->decorateArray($block->getAllowAttributes());
+?>
+<?php if ($_product->isSaleable() && count($_attributes)):?>
+   
+    <script>
+        require(
+            [
+                'jquery',
+                'Amasty_Promo/js/type/configurable',
+                'Amasty_Promo/js/price-updater'
+            ], function($) {
+                $('[data-role="ampromo-popup-show"]').on('click', function () {
+                    initConfigurable();
+                });
+
+                function initConfigurable() {
+                    $('[data-ampromo-js="items-content"]').ampromoPriceUpdater({
+                        productId: <?= $block->escapeHtml($_product->getId()) ?>,
+                        priceConfig: <?= /* @escapeNotVerified */ $block->getJsonConfig() ?>
+                    });
+
+                    var spConfig = <?= $block->unsetData('allow_products')->getJsonConfig() ?>;
+                    spConfig.containerId = "#ampromo_items_form-<?= $_product->getId() ?>";
+                    $('#ampromo_items_form-<?= $_product->getId() ?>').ampromoConfigurable({
+                        priceHolderSelector: ".price-box-<?= $_product->getId() ?>",
+                        spConfig: spConfig,
+                        gallerySwitchStrategy: "<?= /* @escapeNotVerified */ $block->getVar('gallery_switch_strategy',
+                            'Magento_ConfigurableProduct') ?: 'replace'; ?>"
+                    });
+                }
+            });
+    </script>
+<?php endif;?>

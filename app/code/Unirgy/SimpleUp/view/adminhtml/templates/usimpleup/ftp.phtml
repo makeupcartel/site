@@ -1,0 +1,26 @@
+<?php if (!\Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('usimpleup/ftp/active')): ?>
+    <div class="messages">
+        <div class="message message-notice notice notice-msg">
+            <div>
+                    <?php echo __('If you have issues with file permissions during extensions installation, <a href="' . $this->getUrl('adminhtml/system_config/edit/section/usimpleup') . '" target="_blank">try FTP connection</a>') ?>
+            </div>
+        </div>
+    </div>
+<?php endif ?>
+<?php /*if (\Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('usimpleup/ftp/active') && !\Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('usimpleup/ftp/password')): ?>
+    <ul class="messages"><li class="notice-msg"><ul><li>
+        <?php echo __('You have indicated that you wish to update extension files using local FTP connection and ask for password every installation.<br/>FTP login information is used only to create local connection and will NOT be sent to any external location.') ?>
+    </li></ul></li></ul>
+
+    <fieldset class="fieldset">
+        <label for="ftp_password_source" class="f-left">
+            <?php echo __('FTP Password:')?>
+            <input class="input-text" type="password" id="ftp_password_source" name="ftp_password" style="width:200px" onchange="updateMassactionPassword(this)" />
+        </label>
+        <label for="show_password" class="f-left" style="margin-left:10px;">
+            <input type="checkbox" id="show_password" onclick="toggleShowPassword()"/>
+            <?php echo __('Show password') ?>
+        </label>
+    </fieldset>
+
+<?php endif*/ ?>

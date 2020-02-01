@@ -1,0 +1,96 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+
+ <?php  $_item = $block->getItem(); ?>
+ <tr id="order-item-row-<?php /* @escapeNotVerified */ echo $_item->getId() ?>">
+    <td width="65">
+        <?php echo $this->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail', ['width' => '50', 'height' => '50'])->toHtml(); ?>
+    </td>
+    <td class="col name" data-th="<?php echo $block->escapeHtml(__('Product Name')); ?>">
+        <strong class="product name product-item-name"><?php echo $block->escapeHtml($_item->getName()) ?></strong>
+        <table>
+            <tr>
+                <td><strong><?php echo __('SKU'); ?>:</strong></td>
+                <td><dd><?php echo $_item->getSku(); ?></dd></td>
+            </tr>
+        <?php if ($_options = $block->getItemOptions()): ?>
+        <?php foreach ($_options as $_option) : ?>
+            <tr>
+                <td><strong><?php echo $block->escapeHtml($_option['label']) ?>:</strong></td>
+                <td>
+                    <?php if (!$block->getPrintStatus()): ?>
+                        <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                        <dd>
+                            <?php /* @escapeNotVerified */ echo $_option['value'] ?>
+                        </dd>
+                    <?php else: ?>
+                        <dd>
+                            <?php echo nl2br($block->escapeHtml((isset($_option['print_value']) ? $_option['print_value'] : $_option['value']))) ?>
+                        </dd>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        <?php endif; ?>
+        </table>
+
+        <?php if ( $_options = $_item->getProductOptions()): ?>
+            <dl style="margin-top: 5px; margin-bottom: 5px;">
+            <?php foreach ($_options['bundle_options'] as $_option): ?>
+
+                    <dt><strong><?php echo $block->escapeHtml($_option['label']) ?></strong></dt>
+                    <?php foreach ($_option['value'] as $key => $value): ?>
+                        <dd style="margin-left: 10px;">
+                            <?php echo $value['qty']; ?> x <?php echo $value['title']; ?>
+                            <?php if (isset($_option['value'][$key + 1])): ?>
+                                <br />
+                            <?php endif; ?>
+                        </dd>
+                    <?php endforeach; ?>
+
+
+
+
+            <?php endforeach; ?>
+            </dl>
+        <?php endif; ?>
+
+        <?php $addtInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addtInfoBlock) :?>
+            <?php echo $addtInfoBlock->setItem($_item)->toHtml(); ?>
+        <?php endif; ?>
+        <?php echo $block->escapeHtml($_item->getDescription()) ?>
+
+    </td>
+
+    <td class="col subtotal" data-th="<?php echo $block->escapeHtml(__('Qty')); ?>" style="text-align: center; padding-right: 0; padding-left: 0; width: 20px">
+        <?php if ($_item->getParentItem()): ?>
+            <?php echo (int)$_item->getParentItem()->getQtyOrdered() ?>
+        <?php else: ?>
+            <?php echo (int)$_item->getQtyOrdered() ?>
+        <?php endif; ?>
+    </td>
+
+    <td class="col subtotal" data-th="<?php echo $block->escapeHtml(__('Subtotal')); ?>" style="text-align: right; padding-right: 0; padding-left: 0; width: 70px">
+        <?php if ($_item->getParentItem()): ?>
+            <?php echo $block->getItemRowTotalHtml($_item->getParentItem()); ?>
+        <?php else: ?>
+            <?php echo $block->getItemRowTotalHtml($_item); ?>
+        <?php endif; ?>
+    </td>
+</tr>

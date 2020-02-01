@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Xtento_ProductExport:etc/xtento/productexport_settings.xsd">
+    <settings>
+        <setting name="allowed_php_functions">iconv,max,strrchr,strftime,addslashes,substr,number_format,strtolower,sprintf,ucwords,strtoupper,round,ltrim,str_replace,preg_replace,floatval,nl2br,date,abs,rawurlencode,trim,html_entity_decode,strip_tags,basename,mb_substr,chr,strtotime,time,strpos,stripos,strrpos,ctype_digit,mktime,strlen,strripos,floor,md5,preg_match,ucfirst,json_encode,htmlspecialchars_decode,str_pad,htmlspecialchars,gmstrftime,uniqid,str_repeat,gregoriantojd,ceil,rtrim,intval,mb_convert_case,mb_strtoupper,strcspn,Xtento\ProductExport\Helper\Xsl::mb_sprintf,Xtento\ProductExport\Helper\Xsl::getStoreConfig,Xtento\ProductExport\Helper\Xsl::resizeImage,Xtento\ProductExport\Helper\Xsl::getProductPriceForCustomerGroup,Xtento\ProductExport\Helper\Xsl::currencyByStore,Xtento\ProductExport\Helper\Xsl::currencyConvert</setting>
+    </settings>
+</config>
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2019-06-13T15:31:44+00:00
+ * File:          app/code/Xtento/ProductExport/etc/xtento/productexport_settings.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

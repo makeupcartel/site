@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="aw_blog_admin_default"/>
+    <head>
+        <css src="Aheadworks_Blog::css/jstree.css"/>
+    </head>
+    <body>
+        <referenceContainer name="left">
+            <block class="Aheadworks\Blog\Block\Adminhtml\Category\Tree" name="category.tree"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <uiComponent name="aw_blog_category_form"/>
+        </referenceContainer>
+    </body>
+</page>

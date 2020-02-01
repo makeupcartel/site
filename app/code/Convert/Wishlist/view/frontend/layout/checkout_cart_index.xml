@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.order.actions">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="addtoall.wishlist" as="addtoall_wishlist"
+                   template="Convert_Wishlist::checkout/cart/actions/addtoall_wishlist.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

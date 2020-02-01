@@ -1,0 +1,94 @@
+<?php 
+$_product = $block->getProduct();
+$mediaUrl = $block->getBaseURLMedia();
+$cmsCollection = $block->cmsCollection();
+$Ids =array();
+?>
+<?php foreach ($cmsCollection as $cms): ?>
+	<?php  ?>
+<?php endforeach ?>
+<?php if ($_product->getData('description')): ?>
+	<div class="description pro-info">
+	<span class="title show">Description <!-- <i class="fa fa-plus"></i> --></span>
+	<div class="content"><?php echo $_product->getData('description'); ?></div>
+	</div>
+<?php endif ?>
+
+<?php if ($_product->getData('ingredient_multiple') || $_product->getData('ingredient_text')): ?>
+	<div class="ingredient pro-info">
+		<span class="title show">Ingredients <!-- <i class="fa fa-plus"></i> --></span>
+		<?php if ($_product->getData('ingredient_multiple')): ?>
+			<div class="content">
+				<?php 
+				    $data = explode(',',$_product->getData('ingredient_multiple'));
+				    foreach($data as $value):            
+				?>
+
+					<div class="icon-content">
+					    <?php 
+					    $attr = $_product->getResource()->getAttribute('ingredient_multiple');
+					    
+					    if ($attr->usesSource()): ?>
+					        <?php 
+					            $option_value = $attr->getSource()->getOptionText($value);
+					            $optionName = str_replace('_', ' ', $option_value);
+					        ?>
+					        <img src="<?php echo $mediaUrl. '/attribute/ingredient/'. $option_value . '.png' ?>" alt="">
+					        <p class="ingredient-icon-name"><?php echo $optionName;?></p>
+
+					    <?php endif;?>
+				    </div>
+				<?php endforeach;?>
+			</div>
+			
+			
+		<?php endif ?>
+		<?php if ($_product->getData('ingredient_text')): ?>
+			<div class="content"><?php echo $_product->getData('ingredient_text'); ?></div>
+		<?php endif ?>
+	</div>
+<?php endif ?>
+
+
+<?php if ($_product->getData('how_to_use')): ?>
+	<div class="how-to-use pro-info">
+		<span class="title show">How to use <!-- <i class="fa fa-plus"></i> --></span>
+		<div class="content"><?php echo $_product->getData('how_to_use'); ?></div>
+	</div>
+<?php endif ?>
+<?php if ($_product->getData('shipping_return')): ?>
+	<div class="shipping-return pro-info">
+		<span class="title show">Shipping & Return <!-- <i class="fa fa-plus"></i> --></span>
+		<div class="content">		    
+			<?php 
+				// $attr = $_product->getResource()->getAttribute('shipping_return');
+				// $result = $_product->getResource()->getAttribute('shipping_return')->getFrontend()->getValue($_product);
+				// var_dump($result);
+				// $data = $_product->getData('shipping_return');
+				// $data = $_product->getAttributeText('shipping_return');
+				// $optionName = $attr->getSource()->getOptionText($data);
+				// var_dump($data);die();
+			?>
+			<?php 
+			$data = $_product->getData('shipping_return');
+		    $attr = $_product->getResource()->getAttribute('shipping_return');
+		    
+		    if ($attr->usesSource()): ?>
+		        <?php 
+		            $option_value = $attr->getSource()->getOptionText($data);
+		            for ($i=0; $i < count($cmsCollection); $i++) { 
+						// var_dump($cmsCollection[$i]['block_id']);
+						if ($option_value == $cmsCollection[$i]['identifier']) {
+							$identifier = $cmsCollection[$i]['identifier'];
+							echo $this->getLayout()
+										->createBlock('Magento\Cms\Block\Block')
+										->setBlockId($option_value)
+										->toHtml();
+						}
+					}
+		        ?>
+
+		    <?php endif;?>				
+		</div>
+	</div>
+<?php endif ?>

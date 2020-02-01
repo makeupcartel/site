@@ -1,0 +1,74 @@
+<?php
+$blockCategory = $block->getLayout()->createBlock('Convert\CategoryThumbnail\Block\HomeFavorites');
+$cat_id = $this->getData('category_id');
+$_category = $blockCategory->getCategoryFavorites($cat_id);
+$subcats = $_category->getChildrenCategories();
+$objectHelper = $this->Helper('Convert\CategoryThumbnail\Helper\Data');
+$mediaUrl = $objectHelper->getMediaUrl();
+$count = count($subcats);
+
+?>
+<div class="mega-category-with-thumbnail">
+	<div class="item">
+		<?php
+			$_categoryName = $_category->getName();
+			$links = $block->getBaseUrl() . "shop";
+		?>
+		<?php if ($_category->getCategoryThumbnail()): ?>
+			<a class="cat_img" href="<?php echo $links ?>">
+				<img src="<?php echo $_category->getCategoryThumbnail() ?>"
+					 title="<?php echo $_categoryName; ?>"/>
+			</a>
+		<?php else: ?>
+			<a class="cat_img" href="<?php echo $links ?>">
+				<img src="<?php echo $mediaUrl . 'default_thumbnail.jpg' ?>"
+					 title="<?php echo $_categoryName; ?>"/>
+			</a>
+		<?php endif; ?>
+	</div>
+	<div class="content">
+		<div class="text">
+			<a class="cat_name" href="<?php echo $links ?>"><?php echo $_categoryName; ?></a>
+		</div>
+	</div>
+</div>
+<?php foreach ($subcats as $subcat): ?>
+	<?php
+
+    $categoryName = $subcat->getName();
+    $category = $objectHelper->getLoadCategory($subcat->getId());
+
+    if ($categoryName == "Shop All") {
+        $a = "shopall";
+        $link = $block->getBaseUrl() . "shop";
+    } else {
+        $a = "";
+        $link = $category->getUrl();
+    }
+    if($category->getIncludeInMenu()):
+        ?>
+        <div class="mega-category-with-thumbnail <?= $a ?>">
+            <div class="item">
+
+                <?php if ($category->getCategoryThumbnail()): ?>
+                    <a class="cat_img" href="<?php echo $link ?>">
+                        <img src="<?php echo $category->getCategoryThumbnail() ?>"
+                             title="<?php echo $categoryName; ?>"/>
+                    </a>
+                <?php else: ?>
+                    <a class="cat_img" href="<?php echo $link ?>">
+                        <img src="<?php echo $mediaUrl . 'default_thumbnail.jpg' ?>"
+                             title="<?php echo $categoryName; ?>"/>
+                    </a>
+                <?php endif; ?>
+            </div>
+            <div class="content">
+                <div class="text">
+                    <a class="cat_name" href="<?php echo $link ?>"><?php echo $categoryName; ?></a>
+                </div>
+            </div>
+        </div>
+    <?php endif;?>
+<?php endforeach; ?>
+
+

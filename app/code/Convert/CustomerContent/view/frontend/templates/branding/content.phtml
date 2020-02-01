@@ -1,0 +1,71 @@
+<?php
+/**
+ * @var $block \Convert\CustomerContent\Block\Branding\Content
+ */
+$categoryTitle = $block->getTitleCategory();
+$fileTypeImg = ['jpg', 'jpeg', 'gif', 'png'];
+?>
+<div class="customer-content">
+    <?php if($categoryTitle):?>
+    <?php foreach ($categoryTitle as $data): ?>
+        <div class="container-content">
+            <div class="title"><?php echo $data['title']; ?></div>
+            <?php foreach ($block->getContentCollection($data['category_id']) as $content): ?>
+                <?php if ($block->remote_file_exists($block->getFileUrl($content['file_path']))): ?>
+                    <div class="content image">
+                        <div class="image-view">
+                            <?php if (isset($content['thumbnail']) && @getimagesize($block->getFileUrl($content['thumbnail']))): ?>
+                                <img src="<?php echo $block->getFileUrl($content['thumbnail']); ?>"
+                                     alt="<?php echo $content['title']; ?>" width="250px" height="250px"/>
+                            <?php else: ?>
+                                <?php $file_type =  pathinfo(basename($content['file_path']), PATHINFO_EXTENSION);?>
+                                <?php if(in_array($file_type, $fileTypeImg)):?>
+                                    <img src="<?php echo $block->getFileUrl($content['file_path']); ?>"
+                                         alt="<?php echo $content['title']; ?>" width="250px" height="250px"/>
+                                <?php else:?>
+                                    <img src="<?php echo $this->getViewFileUrl('Convert_CustomerContent::images/mak_default.jpg'); ?>"
+                                         alt="<?php echo $content['title']; ?>" title="<?php echo basename($content['file_path']);?>"/>
+                                <?php endif;?>
+                            <?php endif;?>
+                        </div>
+                        <div class="name-action">
+                            <div class="name"><?php echo $content['title']; ?></div>
+                            <div class="action-download">
+                                <form action="<?php echo $block->getBaseUrl() . 'ccc/content/download'; ?>">
+                                    <input type="hidden" name="file_name"
+                                           value="<?php echo basename($content['file_path']); ?>"/>
+                                    <input type="hidden" name="file_path"
+                                           value="<?php echo $block->getFileUrl($content['file_path']); ?>"/>
+                                    <i class="demo-icon icon-download-alt"></i>
+                                    <button type="submit" title="<?php echo $content['title']; ?>"><?php echo __('Download'); ?></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="content video">
+                        <div class="video-view">
+                            <?php
+                            $thumbnail = isset($content['thumbnail']) && @getimagesize($block->getFileUrl($content['thumbnail']))
+                            ? $block->getFileUrl($content['thumbnail'])
+                            : $this->getViewFileUrl('Convert_CustomerContent::images/mak_default.jpg');
+                            ?>
+                            <video controls width="320" height="240" poster="<?php echo $thumbnail; ?>">
+                                <source src="<?php echo $block->getFileUrl($content['file_path']); ?>" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="name-action">
+                            <div class="name"><?php echo $content['title']; ?></div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+            <?php endforeach; ?>
+        </div>
+    <?php endforeach; ?>
+    <?php else:?>
+        <h3>
+            <span class="title"><?= __('Brand Not Found')?></span>
+        </h3>
+    <?php endif;?>
+</div>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+
+    <actionGroup name="CheckPromoDiscountAmount">
+        <arguments>
+            <argument name="discountAmount"/>
+        </arguments>
+        <amOnPage url="{{FrontCartPage.url}}" stepKey="navigateToShoppingCart1"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad1"/>
+        <waitForElementNotVisible selector="{{FrontCartSection.CartTotalLoader}}" stepKey="waitWhenNotVisibleLoaderTotals"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <waitForPageLoad time="50" stepKey="waitForPageLoad2"/>
+        <see selector="{{FrontCartSection.PromoDiscount}}" userInput="{{discountAmount}}" stepKey="checkDiscount"/>
+        <waitForPageLoad time="30" stepKey="waitForPageLoad3"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckProductInCartTheSameFree">
+        <arguments>
+            <argument name="products"/>
+        </arguments>
+        <amOnPage url="{{FrontCartPage.url}}" stepKey="navigateToShoppingCart1"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad1"/>
+        <dontSeeElement selector="//table[@id='shopping-cart-table']//strong[@class='product-item-name']/a[contains(string(),'{{products.productName}}')]/parent::*/following-sibling::div[@class='cart item message notice']"
+                        stepKey="checkProductInCart"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckRemindedAboutPromos">
+        <arguments>
+            <argument name="products"/>
+        </arguments>
+        <amOnPage url="/{{products.urlkey}}.html" stepKey="navigateProductPage"/>
+        <waitForPageLoad time="20" stepKey="waitForPageLoadForMessage"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoadForMessage"/>
+        <seeElement selector="{{StorefrontProductPageWithPromoSection.MessageAboutPromo}}" stepKey="CheckVisibleMessage"/>
+        <click selector="{{StorefrontProductPageWithPromoSection.LinkToCartInMessageAboutPromo}}" stepKey="ClickToLink"/>
+        <waitForPageLoad time="10" stepKey="waitForPageLoad1"/>
+        <seeInCurrentUrl url="/checkout/cart/" stepKey="CheckCartUrl"/>
+    </actionGroup>
+
+
+    <actionGroup name="checkTaxInCart">
+        <arguments>
+            <argument name="country"/>
+            <argument name="state"/>
+            <argument name="tax"/>
+        </arguments>
+        <amOnPage url="{{FrontCartPage.url}}" stepKey="navigateToShoppingCart1"/>
+        <waitForPageLoad time="100" stepKey="waitForPageLoad1"/>
+        <click selector="{{FrontCartSection.EstimateShippingAndTax}}" stepKey="OpenTabWithShippingInCart"/>
+        <waitForPageLoad time="50" stepKey="waitForPageLoad2"/>
+        <selectOption selector="{{FrontCartSection.ShippingCountry}}"
+                      userInput="{{country}}"
+                      stepKey="selectCountry"/>
+        <selectOption selector="{{FrontCartSection.ShippingState}}"
+                      userInput="{{state}}"
+                      stepKey="selectState"/>
+        <waitForPageLoad time="30" stepKey="waitForPageLoadAfterState"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad1"/>
+        <waitForElementNotVisible selector="{{FrontCartSection.CartTotalLoader}}" stepKey="waitWhenLoadTotals"/>
+        <waitForElementVisible selector="{{FrontCartSection.TotalsTax}}" stepKey="waitWhenOpenPopUp"/>
+        <waitForAjaxLoad stepKey="waitForAjaxLoad2"/>
+        <see selector="{{FrontCartSection.TotalsTax}}" userInput="{{tax}}" stepKey="checkTax"/>
+        <waitForPageLoad time="30" stepKey="waitForPageLoa"/>
+        <click selector="{{FrontCartSection.EstimateShippingAndTax}}" stepKey="CloseTabWithShippingInCart"/>
+        <waitForPageLoad time="30" stepKey="waitForPageLoad4"/>
+    </actionGroup>
+
+
+    <!-- ActionGroups For Check Sales Rule Wizard-->
+    <actionGroup name="CheckWizardStep4">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <wait time="1" stepKey="WaitForLoadPage"/>
+        <seeInField selector="{{AdminSalesRuleWizardSection.RuleName}}" userInput="{{cartRulePromo.ruleAutoName}}" stepKey="CheckName"/>
+    </actionGroup>
+
+
+    <actionGroup name="CheckWizardCreatedCartRule" extends="OpenPromoRuleForEdit">
+        <arguments>
+            <argument name="cartRulePromo"/>
+        </arguments>
+        <seeInField selector="{{AdminActionsCartPriceRuleSection.RuleName}}"
+                    userInput="{{cartRulePromo.ruleAutoName}}" stepKey="CheckRuleName"/>
+        <seeElement selector="//div[@data-index='is_active']//div[@class='admin__actions-switch']/input[@type='checkbox'][@value='{{cartRulePromo.ruleStatus}}']"
+                    stepKey="CheckStatusRule"/>
+        <seeOptionIsSelected selector="{{AdminActionsCartPriceRuleSection.SelectWebsites}}"
+                             userInput="Main Website" stepKey="CheckWebsiteSelected"/>
+        <seeOptionIsSelected selector="{{AdminActionsCartPriceRuleSection.SelectCustomerGroup}}"
+                             userInput="NOT LOGGED IN" stepKey="CheckNotLoggedInSelected"/>
+        <seeOptionIsSelected selector="{{AdminActionsCartPriceRuleSection.SelectCustomerGroup}}"
+                             userInput="General" stepKey="CheckGeneralSelected"/>
+        <seeOptionIsSelected selector="{{AdminActionsCartPriceRuleSection.SelectCustomerGroup}}"
+                             userInput="Wholesale" stepKey="CheckWholesaleSelected"/>
+        <seeOptionIsSelected selector="{{AdminActionsCartPriceRuleSection.SelectCouponCode}}"
+                             userInput="{{cartRulePromo.couponCodeCheckValue}}" stepKey="CheckNoCouponCode"/>
+        <seeOptionIsSelected selector="{{AdminActionsCartPriceRuleSection.SelectAction}}"
+                             userInput="{{cartRulePromo.actionCheckValue}}" stepKey="CheckActionSelected"/>
+        <seeInField selector="{{AdminActionsCartPriceRuleSection.DiscountAmount}}"
+                    userInput="{{cartRulePromo.numberOfGiftItems}}" stepKey="CheckNumberOfGift"/>
+        <seeInField selector="{{AdminActionsCartPriceRuleSection.DiscountQtyStep}}"
+                    userInput="{{cartRulePromo.discountQtyStep}}" stepKey="CheckDiscountQtyStep"/>
+        <seeInField selector="{{AdminActionsCartPriceRuleSection.MaxQtyDiscountIsAppliedTo}}"
+                    userInput="{{cartRulePromo.maxQtyDiscount}}" stepKey="CheckMaxQtyDiscount"/>
+    </actionGroup>
+
+</actionGroups>

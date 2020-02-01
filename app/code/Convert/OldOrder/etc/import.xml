@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="old_order" label="Makeup Cartel Old Order" model="Convert\OldOrder\Model\Import\OldOrderImport" behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+    <entity name="poni_old_order" label="Poni Old Order" model="Convert\OldOrder\Model\Import\OldOrderPoniImport" behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+    <entity name="esmi_old_order" label="Esmi Old Order" model="Convert\OldOrder\Model\Import\OldOrderEsmiImport" behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+</config>

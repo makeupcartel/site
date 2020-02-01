@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015-2017 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkoutspage.right.section">
+            <block class="Plumrocket\Checkoutspage\Block\Button" name="checkout.success.button" template="button.phtml"/>
+            <block class="Plumrocket\Checkoutspage\Block\Coupon" name="checkout.success.coupon" template="coupon.phtml" cacheable="false" />
+            <block class="Plumrocket\Checkoutspage\Block\Cms" name="checkout.success.cms.right" template="cms_right.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="checkout.success.continue.shopping" template="Plumrocket_Checkoutspage::continue_shopping.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

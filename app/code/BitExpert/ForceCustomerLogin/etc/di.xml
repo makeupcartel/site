@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * This file is part of the Force Login module for Magento2.
+ *
+ * (c) bitExpert AG
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Controllers -->
+    <preference for="BitExpert\ForceCustomerLogin\Api\Controller\LoginCheckInterface"
+                type="BitExpert\ForceCustomerLogin\Controller\LoginCheck" />
+
+    <type name="BitExpert\ForceCustomerLogin\Controller\Adminhtml\Manage\RestoreDefault">
+        <arguments>
+            <argument name="defaultRoutes" xsi:type="array">
+                <item name="/rest" xsi:type="string">Rest API</item>
+                <item name="/customer/account/login" xsi:type="string">Customer Account Login</item>
+                <item name="/customer/account/logout" xsi:type="string">Customer Account Logout</item>
+                <item name="/customer/account/logoutSuccess" xsi:type="string">Customer Account Logout Success</item>
+                <item name="/customer/account/create" xsi:type="string">Customer Account Create</item>
+                <item name="/customer/account/createPassword" xsi:type="string">Customer Account Create Password</item>
+                <item name="/customer/account/forgotpassword" xsi:type="string">Customer Account Forgot Password</item>
+                <item name="/customer/account/forgotpasswordpost" xsi:type="string">Customer Account Forgot Password Post</item>
+                <item name="/customer/section/load" xsi:type="string">Customer Section Load</item>
+                <item name="/contact" xsi:type="string">Contact Us</item>
+                <item name="/help" xsi:type="string">Help</item>
+                <item name="/sitemap.xml" xsi:type="string">Sitemap.xml</item>
+                <item name="/robots.txt" xsi:type="string">Robots.txt</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugins -->
+    <type name="Magento\Customer\Controller\Account\LoginPost">
+        <plugin name="after_execute_login" type="BitExpert\ForceCustomerLogin\Plugin\AfterLoginPlugin" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="BitExpert\ForceCustomerLogin\Plugin\AfterLoginPlugin">
+        <arguments>
+            <argument name="defaultTargetUrl" xsi:type="string">/</argument>
+        </arguments>
+    </type>
+
+    <!-- Entities -->
+    <preference for="BitExpert\ForceCustomerLogin\Api\Data\WhitelistEntryInterface"
+                type="BitExpert\ForceCustomerLogin\Model\WhitelistEntry" />
+
+    <!-- Factories -->
+    <preference for="BitExpert\ForceCustomerLogin\Api\Data\WhitelistEntryFactoryInterface"
+                type="BitExpert\ForceCustomerLogin\Model\WhitelistEntryFactory" />
+    <preference for="BitExpert\ForceCustomerLogin\Api\Data\Collection\WhitelistEntryCollectionFactoryInterface"
+                type="BitExpert\ForceCustomerLogin\Model\ResourceModel\WhitelistEntry\CollectionFactory" />
+
+    <!-- Repositories -->
+    <preference for="BitExpert\ForceCustomerLogin\Api\Repository\WhitelistRepositoryInterface"
+                type="BitExpert\ForceCustomerLogin\Repository\WhitelistRepository" />
+
+    <!-- Helper -->
+    <type name="BitExpert\ForceCustomerLogin\Helper\Strategy\StaticMatcher">
+        <arguments>
+            <argument name="name" xsi:type="string">Static</argument>
+        </arguments>
+    </type>
+    <type name="BitExpert\ForceCustomerLogin\Helper\Strategy\RegExAllMatcher">
+        <arguments>
+            <argument name="name" xsi:type="string">RegEx (All)</argument>
+        </arguments>
+    </type>
+    <type name="BitExpert\ForceCustomerLogin\Helper\Strategy\StrategyManager">
+        <arguments>
+            <argument name="strategies" xsi:type="array">
+                <item name="default" xsi:type="object">\BitExpert\ForceCustomerLogin\Helper\Strategy\StaticMatcher</item>
+                <item name="regex-all" xsi:type="object">\BitExpert\ForceCustomerLogin\Helper\Strategy\RegExAllMatcher</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- UI Components -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="whitelist_overview_data_source" xsi:type="string">\BitExpert\ForceCustomerLogin\Model\ResourceModel\WhitelistEntry\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="BitExpert\ForceCustomerLogin\Model\WhitelistEntry\Config">
+        <arguments>
+            <argument name="state" xsi:type="object">Magento\Framework\App\State\Proxy</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="BitExpert\ForceCustomerLogin\Model\ResourceModel\WhitelistEntry\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bitexpert_forcelogin_whitelist</argument>
+            <argument name="resourceModel" xsi:type="string">\BitExpert\ForceCustomerLogin\Model\ResourceModel\WhitelistEntry</argument>
+        </arguments>
+    </virtualType>
+
+</config>

@@ -1,0 +1,176 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Megamenu
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+if ($rootCategory = $this->find_root_category()) {
+    ?>
+
+    <div id="catalogprint.sidebar">
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4><?php echo __('Category Selection') ?></h4>
+            </div>
+            <div class="fieldset">
+                <div class="hor-scroll">
+                    <input type="hidden" name="category_ids" id="product_categories" value="">
+                    <input type="hidden" name="category_ids_path" id="product_categories_path" value="">
+                    <div id="product-categories" class="tree"></div>
+                </div>
+                <button type="button" class="form-button categoryAdd ui-button"><?php echo __('Add to menu'); ?></button> 
+            </div>
+        </div>
+    </div>
+
+    <?php
+    if ($block->getRoot($this->get_category($rootCategory))) {
+        ?>
+        <script type="text/javascript">
+            require([
+                "jquery",
+                "extjs/ext-tree-checkbox",
+                "mage/adminhtml/form",
+                "mage/translate"
+            ], function (jQuery) {
+                Ext.EventManager.onDocumentReady(function () {
+                    var categoryLoader = new Ext.tree.TreeLoader({
+                        dataUrl: '<?php echo $this->getLoadTreeUrl() ?>'
+                    });
+                    categoryLoader.createNode = function (config) {
+                        config.uiProvider = Ext.tree.CheckboxNodeUI;
+                        var node;
+                        if (config.children && !config.children.length) {
+                            delete(config.children);
+                            node = new Ext.tree.AsyncTreeNode(config);
+
+                        } else {
+                            node = new Ext.tree.TreeNode(config);
+                        }
+                        return node;
+                    };
+                    categoryLoader.on("beforeload", function (treeLoader, node) {
+                        treeLoader.baseParams.category = node.attributes.id;
+                    });
+
+                    categoryLoader.on("load", function (treeLoader, node, config) {
+                        varienWindowOnload();
+                        node.childNodes.each(function (e) {
+                            if ($('product_categories_path').value.split(',').indexOf(e.attributes.id) != -1)
+                                e.expand();
+                        })
+                    });
+
+                    var tree = new Ext.tree.TreePanel('product-categories', {
+                        animate: true,
+                        loader: categoryLoader,
+                        enableDD: false,
+                        containerScroll: true,
+                        rootUIProvider: Ext.tree.CheckboxNodeUI,
+                        selModel: new Ext.tree.CheckNodeMultiSelectionModel(),
+                        rootVisible: ''
+                    });
+                    tree.on('check', function (node) {
+                        if (node.attributes.checked) {
+                            categoryAdd(node);
+                        } else {
+                            categoryRemove(node);
+                        }
+                        varienElementMethods.setHasChanges(node.getUI().checkbox);
+                    }, tree);
+                    var root = new Ext.tree.TreeNode({
+                        text: '<?php echo htmlentities($block->getRoot($this->get_category($rootCategory))->getName()) ?>',
+                        draggable: false,
+                        checked: '<?php echo $block->getRoot($this->get_category($rootCategory))->getChecked() ?>',
+                        id: '<?php echo $block->getRoot($this->get_category($rootCategory))->getId() ?>',
+                        disabled: <?php echo ($block->getRoot($this->get_category($rootCategory))->getDisabled() ? 'true' : 'false') ?>,
+                        uiProvider: Ext.tree.CheckboxNodeUI
+                    });
+                    tree.setRootNode(root);
+                    bildCategoryTree(root, <?php echo $this->getTreeJson($this->get_category($rootCategory)); ?>);
+                    tree.addListener('click', categoryClick.createDelegate(this));
+
+                    // render the tree
+                    tree.render();
+                    root.expand();
+
+                });
+                function bildCategoryTree(parent, config) {
+                    if (!config)
+                        return null;
+
+                    if (parent && config && config.length) {
+                        for (var i = 0; i < config.length; i++) {
+                            config[i].uiProvider = Ext.tree.CheckboxNodeUI;
+                            var node;
+                            var _node = Object.clone(config[i]);
+                            if (_node.children && !_node.children.length) {
+                                delete(_node.children);
+                                node = new Ext.tree.AsyncTreeNode(_node);
+
+                            } else {
+                                node = new Ext.tree.TreeNode(config[i]);
+                            }
+                            parent.appendChild(node);
+                            node.loader = node.getOwnerTree().loader;
+                            if (config[i].children) {
+                                bildCategoryTree(node, config[i].children);
+                            }
+                        }
+                    }
+                }
+
+                function categoryClick(node, e) {
+                    if (node.disabled) {
+                        return;
+                    }
+                    node.getUI().check(!node.getUI().checked());
+                    varienElementMethods.setHasChanges(Event.element(e), e);
+                }
+                ;
+                function categoryAdd(node) {
+                    var nodeArray = new Array();
+                    var nodeObject = {text: node.attributes.text, id: node.id};
+                    if ($('product_categories').value) {
+                        nodeArray = JSON.parse($('product_categories').value);
+                    }
+
+                    var nodeExist = false;
+                    for (index = 0; index < nodeArray.length; ++index) {
+                        if (nodeArray[index].id == node.id) {
+                            nodeExist = true;
+                        }
+                    }
+                    if (!nodeExist) {
+                        nodeArray.push(nodeObject);
+                    }
+
+                    $('product_categories').value = JSON.stringify(nodeArray);
+                }
+                function categoryRemove(node) {
+                    var nodeArray = new Array();
+                    var nodeObject = {text: node.attributes.text, id: node.id};
+                    if ($('product_categories').value) {
+                        nodeArray = JSON.parse($('product_categories').value);
+                    }
+
+                    var nodeExist = false;
+                    for (index = 0; index < nodeArray.length; ++index) {
+                        if (nodeArray[index].id == node.id) {
+                            nodeArray.splice(index, 1);
+                            break;
+                        }
+                    }
+                    $('product_categories').value = JSON.stringify(nodeArray);
+                }
+            });
+        </script>
+    <?php
+    }
+}
+?>

@@ -1,0 +1,34 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Widget\Telephone $block */
+?>
+
+<div class="field telephone-config <?= $block->isRequired() ? 'required' : '' ?>">
+    <label for="telephone" class="label">
+        <span>
+            <?= $block->escapeHtml(__('Phone Number')) ?>
+        </span>
+    </label>
+    <div class="control">
+        <?php
+            $_validationClass = $block->escapeHtmlAttr(
+                $this->helper('Magento\Customer\Helper\Address')
+                     ->getAttributeValidationClass('fax')
+            );
+        ?>
+        <input type="number"
+               name="telephone"
+               id="telephone"
+               value="<?= $block->escapeHtmlAttr($block->getTelephone()) ?>"
+               title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+               class="input-text required-entry <?= $_validationClass ?: '' ?>tel-account"
+                >
+        <span style="display: none;color: red" class="message-validate-phone"></span>
+    </div>
+</div>

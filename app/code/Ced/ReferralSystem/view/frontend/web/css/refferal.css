@@ -1,0 +1,302 @@
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_ReferralSystem
+ * @author      CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+
+ .source-heading > h1 {
+  margin-top: 30px;
+}
+ .social-referrel ul{
+  padding: 0;
+  text-align:center;
+ }
+ .social-referrel li {
+  color: #ffffff;
+  display: inline-block;
+  margin: 0 5px;
+  padding: 10px 15px;
+  position: relative;
+}
+ .social-referrel li.google {
+  background: #4285F4 none repeat scroll 0 0;
+}
+ .social-referrel li.google .referral-counter {
+  background: #ffffff none repeat scroll 0 0;
+  color: #4285F4 ;
+}
+ .social-referrel li.fb {
+  background: #3B5998 none repeat scroll 0 0;
+}
+ .social-referrel li.fb .referral-counter {
+  background: #ffffff none repeat scroll 0 0;
+  color:#3B5998 ;
+}
+ .social-referrel li.twitter {
+  background: #32CDFD none repeat scroll 0 0;
+}
+ .social-referrel li.twitter .referral-counter {
+  background: #ffffff none repeat scroll 0 0;
+  color:#32CDFD  ;
+}
+ .social-referrel li.email {
+  background: #C60301 none repeat scroll 0 0;
+}
+ .social-referrel li.email .referral-counter {
+  background: #ffffff none repeat scroll 0 0;
+  color:#C60301 ;
+}
+ .social-referrel li.whatsapp {
+  background: #0DC143 none repeat scroll 0 0;
+}
+ .social-referrel li.whatsapp .referral-counter {
+  background: #ffffff none repeat scroll 0 0;
+  color:#0DC143  ;
+}
+
+ .social-referrel li .referral-counter {
+  border-radius: 50%;
+  display: inline-block;
+  font-weight: bold;
+  height: 25px;
+  width: 25px;
+  line-height: 25px;
+}
+
+
+.refer .control .fb {
+    background: #3b5998 none repeat scroll 0 0;
+    height: 50px;
+    line-height: 47px;
+    text-align: center;
+}
+
+.refer .control .twitter {
+    background: #32cdfd none repeat scroll 0 0;
+    height: 50px;
+    line-height: 47px;
+    text-align: center;
+}
+
+.refer .control .google {
+    background: #4285f4 none repeat scroll 0 0;
+    height: 50px;
+    line-height: 47px;
+    text-align: center;
+}
+
+.fb-xfbml-parse-ignore {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.twitter-share-button{
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.google-share-button{
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.refer .control > ul {
+    list-style: outside none none;
+    text-decoration: none;
+    margin:0;
+    padding:0;
+}
+
+.refer .control > ul > li {
+    display: inline-block;
+    width: 90px;
+}
+
+.refer .control .whatsapp {
+    background: #1EBEA5 none repeat scroll 0 0;
+    height: 50px;
+    line-height: 47px;
+    text-align: center;
+    width: 114px;
+}
+
+.whatsapp-share-button{
+    color: #fff !important;
+    font-weight: bold;
+}
+
+
+.admin__data-grid-wrap {
+    margin-bottom: 2rem;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    padding-top: 2rem;
+}
+
+
+.refer .control li.fb a::before {
+    content: "\f09a";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-size: 25px;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-synthesis: weight style;
+    font-variant: normal;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+.refer .control li.twitter a::before {
+    content: "\f099";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-size: 25px;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-synthesis: weight style;
+    font-variant: normal;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+.refer .control li.google a::before {
+    content: "\f0d4";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-size: 25px;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-synthesis: weight style;
+    font-variant: normal;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+.refer .control li.whatsapp a::before {
+    content: "\f232";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-size: 25px;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-synthesis: weight style;
+    font-variant: normal;
+    font-weight: normal;
+    vertical-align: middle;
+    padding-right: 5px;
+}
+
+table thead{
+    background-color: #006BB4;
+}
+table tr th{
+    font-weight: bold;
+    color: #fff;
+}
+
+.refer-heading {
+    background-color: #006bb4;
+    color: #ffffff;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align: center;
+}
+.social-referrel {
+  padding: 30px;
+}
+.social-referrel ul li {
+  margin: 5px;
+}
+.toolbar.toolbar-list .pager {
+  margin-top: 20px;
+}
+.toolbar-amount {
+  float: left;
+  width: 33%;
+}
+.pages {
+  float: left;
+  width: 33% !important;
+  position: relative !important;
+}
+.fieldset .toolbar.toolbar-list .pages {
+  position: relative;
+}
+.limiter {
+  float: left;
+  width: 33%;
+  text-align: right;
+}
+.pager::after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+.table_responsive_inner {
+  overflow-x: auto;
+  width: 100%;
+}
+.page-wrapper,
+#maincontent,
+.columns{
+  display: block;
+}
+@media screen and (max-width: 830px){
+  .table_responsive_inner > .data-table{
+    width: 800px;
+  }
+}
+table .content-right {
+  text-align: center;
+  padding-left: 30px;
+}
+@media screen and (min-width: 767px) {
+  .refer.fieldset {
+      padding: 15px;
+      width: 46%;
+      float: left ;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .toolbar-amount, .pages, .limiter {
+    float: none !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+  .pager {
+    display: inline-block;
+  }
+}

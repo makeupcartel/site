@@ -1,0 +1,20 @@
+{
+    "name": "eh/module-core",
+    "description": "ExtensionHut Core Module",
+    "require": {
+        "magento/module-admin-notification": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.5",
+    "license": [
+        "ExtensionHut EULA"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "EH\\Core\\": ""
+        }
+    }
+}

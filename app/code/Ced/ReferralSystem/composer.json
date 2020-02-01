@@ -1,0 +1,20 @@
+{
+    "name": "ced/module-referralsytem",
+    "description": "Magento 2 Refer A Friend extension",
+    "require": {
+        "php": ">=7.0"
+    },
+    "type": "magento2-module",
+    "version": "1.0.2",
+    "license": [
+    "EULA"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Ced\\ReferralSystem\\": ""
+        }
+    }
+}

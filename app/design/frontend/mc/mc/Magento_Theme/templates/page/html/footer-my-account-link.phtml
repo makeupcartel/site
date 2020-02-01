@@ -1,0 +1,28 @@
+<?php $cHelper = $this->helper(\Convert\CategoryThumbnail\Helper\Data::class);
+$a = 2;
+if ($cHelper->isLoggedIn()) {
+	$a = 1;
+}
+
+?>
+<div>
+    <h4><?php echo __('My Account') ?></h4>
+    <div>
+        <ul>
+			<?php if ($cHelper->isLoggedIn()) : ?>
+                <li><a href="<?php echo $cHelper->getBaseUrl('customer/account') ?>"><?php echo __('My Account') ?></a>
+                </li>
+                <li>
+                    <a href="<?php echo $cHelper->getBaseUrl('customer/account/logout') ?>"><?php echo __('Logout') ?></a>
+                </li>
+			<?php else: ?>
+                <li><a href="<?php echo $cHelper->getBaseUrl('customer/account/login') ?>"><?php echo __('Login') ?></a>
+                </li>
+                <li>
+                    <a href="<?php echo $cHelper->getBaseUrl('customer/account/create') ?>"><?php echo __('Register') ?></a>
+                </li>
+			<?php endif; ?>
+        </ul>
+    </div>
+    <input type="hidden" value="<?= $a ?>" id="checkLogin">
+</div>

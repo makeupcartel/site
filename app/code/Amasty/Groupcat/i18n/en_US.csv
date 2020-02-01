@@ -1,0 +1,197 @@
+"Get a Quote Requests","Get a Quote Requests"
+"Send Email","Send Email"
+Back,Back
+Delete,Delete
+"You are about to delete this request. Are you sure you want to do that?","You are about to delete this request. Are you sure you want to do that?"
+"Customer Name","Customer Name"
+"Customer Email","Customer Email"
+"Customer Phone","Customer Phone"
+Product,Product
+Store,Store
+Created,Created
+Status,Status
+Comment,Comment
+"Admin Answer Text","Admin Answer Text"
+"Customer Group Catalog Rules","Customer Group Catalog Rules"
+"Add New Rule","Add New Rule"
+"Delete Rule","Delete Rule"
+"Are you sure you want to do this?","Are you sure you want to do this?"
+Reset,Reset
+"Save and Continue Edit","Save and Continue Edit"
+Save,Save
+"Customer Conditions","Customer Conditions"
+Conditions,Conditions
+"Apply To","Apply To"
+"Product Conditions","Product Conditions"
+"Amasty Groupcat","Amasty Groupcat"
+Requests,Requests
+"Request was deleted.","Request was deleted."
+"Can't delete item right now. Please review the log and try again.","Can't delete item right now. Please review the log and try again."
+"Can't find a item to delete.","Can't find a item to delete."
+"This request no longer exists.","This request no longer exists."
+"Get a Quote Request from ","Get a Quote Request from "
+"Please select items.","Please select items."
+"Get a Quote requests are deleted.","Get a Quote requests are deleted."
+"Can't delete items right now. Please review the log and try again.","Can't delete items right now. Please review the log and try again."
+"Please enter a Email Text.","Please enter a Email Text."
+"Email Answer was sent.","Email Answer was sent."
+"Please select request id.","Please select request id."
+"The rule is deleted.","The rule is deleted."
+"This rule no longer exists.","This rule no longer exists."
+"Manage Customer Group Catalog Rule","Manage Customer Group Catalog Rule"
+"New Customer Group Catalog Rule","New Customer Group Catalog Rule"
+"Edit Customer Group Catalog Rule","Edit Customer Group Catalog Rule"
+"Amasty Customer Group Catalog Rules","Amasty Customer Group Catalog Rules"
+"The rule is saved.","The rule is saved."
+"Something went wrong while saving the rule data. Please review the error log.","Something went wrong while saving the rule data. Please review the error log."
+"Sorry. There is a problem with Your Quote Request. Please try again or use Contact Us link in the menu.","Sorry. There is a problem with Your Quote Request. Please try again or use Contact Us link in the menu."
+"Thanks for contacting us. We'll respond to you as soon as possible. ","Thanks for contacting us. We'll respond to you as soon as possible. "
+"For request sending you have to agree with our privacy policy.","For request sending you have to agree with our privacy policy."
+"Form key is not valid. Please try to reload the page.","Form key is not valid. Please try to reload the page."
+"Please enter a valid email address.","Please enter a valid email address."
+"Please enter a name.","Please enter a name."
+"Please enter a phone.","Please enter a phone."
+"There are no product for your request.","There are no product for your request."
+"Unable to save request with ID %1. Error: %2","Unable to save request with ID %1. Error: %2"
+"Unable to save new request. Error: %1","Unable to save new request. Error: %1"
+"Request with specified ID ""%1"" not found.","Request with specified ID ""%1"" not found."
+"Unable to remove request with ID %1. Error: %2","Unable to remove request with ID %1. Error: %2"
+"Unable to remove request rule. Error: %1","Unable to remove request rule. Error: %1"
+"End Date must follow Start Date.","End Date must follow Start Date."
+"End Price must follow Start Price.","End Price must follow Start Price."
+"Please specify a store.","Please specify a store."
+"Please specify Customer Groups.","Please specify Customer Groups."
+"Base Price","Base Price"
+"Final Price","Final Price"
+"Starting from Price","Starting from Price"
+"Starting to Price","Starting to Price"
+"Customer ID","Customer ID"
+"Conditions Combination","Conditions Combination"
+"Customer attributes","Customer attributes"
+"Show 404 page","Show 404 page"
+"Redirect to CMS page","Redirect to CMS page"
+No,No
+Yes,Yes
+"Replace with text","Replace with text"
+"Replace to request form","Replace to request form"
+"Does not matter","Does not matter"
+"Out of Stock","Out of Stock"
+"In Stock","In Stock"
+"Unable to save rule with ID %1. Error: %2","Unable to save rule with ID %1. Error: %2"
+"Unable to save new rule. Error: %1","Unable to save new rule. Error: %1"
+"Rule with specified ID ""%1"" not found.","Rule with specified ID ""%1"" not found."
+"Unable to remove rule with ID %1. Error: %2","Unable to remove rule with ID %1. Error: %2"
+"Unable to remove rule rule. Error: %1","Unable to remove rule rule. Error: %1"
+Pending,Pending
+Viewed,Viewed
+Answered,Answered
+"You disabled %1 Amasty Customer Group Catalog Rules based on ""%2"" attribute.","You disabled %1 Amasty Customer Group Catalog Rules based on ""%2"" attribute."
+"Get a Quote Information","Get a Quote Information"
+"Email Text","Email Text"
+"You can not find the required attribute in product conditions?","You can not find the required attribute in product conditions?"
+"How to find required attribute","How to find required attribute"
+"Get a Quote for","Get a Quote for"
+GDPR,GDPR
+"Phone Number","Phone Number"
+Submit,Submit
+Sincerely,Sincerely
+"You have a new quote request placed by","You have a new quote request placed by"
+"Request details:","Request details:"
+"Name: %name","Name: %name"
+"Email: %email","Email: %email"
+"Phone Number: %phone","Phone Number: %phone"
+"Product: %product","Product: %product"
+"Comment: %comment","Comment: %comment"
+"Thank you for contacting us!","Thank you for contacting us!"
+"Your quote request is being processed at the moment.","Your quote request is being processed at the moment."
+"We’ll get back to you as soon as possible","We’ll get back to you as soon as possible"
+"Best Regards","Best Regards"
+"Customer Group Catalog","Customer Group Catalog"
+"General Settings","General Settings"
+"Enable module","Enable module"
+"Email Sender for Admin 'Get a Quote' Reply Email","Email Sender for Admin 'Get a Quote' Reply Email"
+"Email Template for Admin 'Get a Quote' Reply Email","Email Template for Admin 'Get a Quote' Reply Email"
+"Email template chosen based on theme fallback when ""Default"" option is selected","Email template chosen based on theme fallback when ""Default"" option is selected"
+"Frontend Options","Frontend Options"
+"Hide Price Text","Hide Price Text"
+"Display the above text when price is hidden, e.g. ‘Call for Price’","Display the above text when price is hidden, e.g. ‘Call for Price’"
+"Custom CSS Styles for Hide Price Link","Custom CSS Styles for Hide Price Link"
+"Customize the CSS Styles for the Hide Price Link","Customize the CSS Styles for the Hide Price Link"
+"Upload Image","Upload Image"
+"Show the uploaded image instead of price","Show the uploaded image instead of price"
+"Link Url","Link Url"
+"Use text ‘AmastyHidePricePopup’ for opening Ajax Popup with a ‘Get a Quote’ form
+                        Insert the page URL to redirect customers to any page you need
+                    ","Use text ‘AmastyHidePricePopup’ for opening Ajax Popup with a ‘Get a Quote’ form
+                        Insert the page URL to redirect customers to any page you need
+                    "
+"Admin 'Get a Quote' Email Notifications","Admin 'Get a Quote' Email Notifications"
+"Send Email to","Send Email to"
+"Leave Empty to Disable Notifications","Leave Empty to Disable Notifications"
+"Email Sender","Email Sender"
+"Email Template","Email Template"
+"Auto Reply 'Get a Quote' Email Options","Auto Reply 'Get a Quote' Email Options"
+Enable,Enable
+"Developer Options","Developer Options"
+"Category Item Selector","Category Item Selector"
+"GDPR Consent","GDPR Consent"
+Enabled,Enabled
+"Сonsent Text","Сonsent Text"
+"Amasty Customer Group Catalog Rule","Amasty Customer Group Catalog Rule"
+"Indexed rule/product rule/customer associations","Indexed rule/product rule/customer associations"
+"Indexed product/rule association","Indexed product/rule association"
+"Indexed customer/rule association","Indexed customer/rule association"
+"Are you sure?","Are you sure?"
+"Request ID","Request ID"
+Name,Name
+Email,Email
+Phone,Phone
+"Product Id","Product Id"
+"Rule ID","Rule ID"
+Stores,Stores
+"Hide price","Hide price"
+Show,Show
+Hide,Hide
+Replace,Replace
+"Allow Direct Links","Allow Direct Links"
+Deny,Deny
+Allow,Allow
+Priority,Priority
+Active,Active
+Inactive,Inactive
+Action,Action
+"Customer Group Catalog Rule","Customer Group Catalog Rule"
+"Rule Information","Rule Information"
+"Rule Name","Rule Name"
+"Rule Priority","Rule Priority"
+"If the product matches several rules, the one with the higher priority will be applied","If the product matches several rules, the one with the higher priority will be applied"
+"Date Range","Date Range"
+"Use Date Range","Use Date Range"
+From,From
+To,To
+"Customer Groups","Customer Groups"
+"Use Customer Groups","Use Customer Groups"
+"For Customer Groups","For Customer Groups"
+"Customer Conditions (Please mind these conditions are applied only for logged in customers)","Customer Conditions (Please mind these conditions are applied only for logged in customers)"
+Categories,Categories
+"Category Access Restriction","Category Access Restriction"
+"Additional filtering options","Additional filtering options"
+"Stock Status","Stock Status"
+"Price Range","Price Range"
+"Use Price Range","Use Price Range"
+"By Price","By Price"
+"From Price","From Price"
+"To Price","To Price"
+Actions,Actions
+"Display Options","Display Options"
+"Hide Category","Hide Category"
+"Hide Product","Hide Product"
+"Hide Price","Hide Price"
+"Replacement block for product page","Replacement block for product page"
+"Replacement block for categories page","Replacement block for categories page"
+"Hide ""Add to cart"" button","Hide ""Add to cart"" button"
+"Hide ""Add to wishlist"" button","Hide ""Add to wishlist"" button"
+"Hide ""Add to compare"" button","Hide ""Add to compare"" button"
+"Restriction Action","Restriction Action"
+"Action On Forbid","Action On Forbid"
+"CMS page redirect to","CMS page redirect to"

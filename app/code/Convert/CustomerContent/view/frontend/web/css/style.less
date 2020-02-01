@@ -1,0 +1,172 @@
+@font-face {
+    font-family: 'fontello';
+    src: url('../fonts/fontello.eot?w118d');
+    src: url('../fonts/fontello.eot?#iefixw118d') format('embedded-opentype'),
+    url('../fonts/fontello.woff2?w118d') format('woff2'),
+    url('../fonts/fontello.woff?w118d') format('woff'),
+    url('../fonts/fontello.ttf?w118d') format('truetype'),
+    url('../fonts/fontello.svg?w118d#Fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-family: "fontello";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-download-alt:before { content: '\e800'; } /* '' */
+.customer-content {
+    .container-content + .container-content{
+        margin-bottom: 4px;
+    }
+    .container-content {
+        width: 100%;
+        clear: both;
+        display: inline-block;
+        margin-bottom: 35px;
+        text-align: center;
+
+        .title {
+            font-weight: 600;
+            border-bottom: 1px solid #e8e8e8;
+            padding-bottom: 9px;
+            margin-bottom: 16px;
+            color: #333333;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .content {
+            width: calc(~'(100% - 48px) / 4');
+            float: left;
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 20px;
+            margin-right: 16px;
+            &:nth-child(4n+1){
+                margin-right: 0;
+            }
+            .image-view {
+                margin-bottom: 0px;
+                text-align: left;
+                max-width: 218px;
+                img {
+                    width: 100%;
+                }
+            }
+
+            .name-action {
+                font-size: 11px;
+                font-weight: 700;
+                text-align: left;
+                margin-top: 0px;
+
+                .name {
+                    font-weight: 600;
+                    font-size: 13px;
+                    color: #333333;
+                    margin-top: 4px;
+                }
+
+                .action-download {
+                    margin-top: 5px;
+                }
+
+                .demo-icon.icon-download-alt {
+                    color: #ed8c85;
+                }
+
+                button {
+                    background: white;
+                    color: #ed8c85;
+                    font-size: 12px;
+                    font-weight: 500;
+                    padding: 0;
+                    display: inline-block;
+                    margin: 0;
+                    width: auto;
+                    height: auto;
+                    text-transform: none;
+                }
+            }
+            &.video {
+                display: inline-block;
+                width: calc(~'(100% - 23px) / 2');
+                float: left;
+                padding-left: 0;
+                padding-right: 0;
+                margin-bottom: 26px;
+                margin-right: 23px;
+                &:nth-child(2n+1){
+                    margin-right: 0;
+                }
+                .name-action {
+                    margin-top: 3px;
+                    .name {
+                        margin-top: 9px;
+                    }
+                }
+
+                video {
+                    width: 449px;
+                    height: 280px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 900px) {
+    .customer-content .container-content .content {
+        width: 50%;
+    }
+    .customer-content .container-content .content.image{
+        width: calc(~'(100% - 16px) / 2');
+    }
+    .customer-content .container-content .content:nth-child(2n+1) {
+        margin-right: 0;
+    }
+}
+@media (max-width: 400px) {
+    .customer-content .container-content .content, .customer-content .container-content .content.video {
+        width: 100%;
+    }
+    .customer-content .container-content .content.image{
+        width: 100%;
+    }
+    .customer-content .container-content .content .image-view {
+        max-width: 100%;
+    }
+    .customer-content .container-content + .container-content {
+        margin-bottom: 35px;
+    }
+}

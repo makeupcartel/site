@@ -1,0 +1,41 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Megamenu
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<form action="<?php echo $block->getFormAction() ?>" method="post" enctype="multipart/form-data">
+    <?php  echo $block->getBlockHtml('formkey'); ?>
+    <div class="admin__fieldset-wrapper-content">
+        <fieldset class="admin__fieldset">                  
+            <div class="admin__field">
+                <label class="admin__field-label" for="overirde">
+                    <span><?php echo __('Override Existing Data'); ?></span>
+                </label>
+                <div class="admin__field-control">
+                    <select class="admin__control-select" name="override" id="override">
+                        <option value="1"><?php echo __('Yes'); ?></option>
+                        <option value="0"><?php echo __('No'); ?></option>
+                    </select>
+                    <div class="admin__field-note">
+                        <span>If the identifiers of the static blocks and menus are already exist, you can set to "Yes" , then click the "Import" button.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label" for="store_id">
+                    <span><?php echo __('Import Data'); ?></span>
+                </label>
+                <div class="admin__field-control">
+                    <input id ='importData' type="submit" value="Import" class='action-default scalable'>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</form>

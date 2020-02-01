@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<page
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header.links" remove="true"/>
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+        <referenceBlock name="copyright" remove="true"/>
+        <referenceBlock name="multiple-wishlist_sidebar" remove="true"/>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceBlock name="store.links" remove="true"/>
+        
+
+        <block class="Magento\Framework\View\Element\Template" name="store.settings.mobile" group="navigation-sections" template="Magento_Theme::html/container.phtml">
+            <block class="Magento\Store\Block\Switcher" name="language.mobile" template="Magento_Store::switch/languages.phtml">
+                <arguments>
+                    <argument name="id_modifier" xsi:type="string">nav</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Directory\Block\Currency" name="store.settings.currency.mobile" template="Magento_Directory::currency.phtml">
+                <arguments>
+                    <argument name="id_modifier" xsi:type="string">nav</argument>
+                </arguments>
+            </block>
+        </block>
+        <block name="cms.block.header.account.mobile" template="Magento_Theme::account.phtml" />
+        
+        <move element="cms.block.header.account.mobile" destination="store.menu" before="-" />
+        <move element="store.settings.mobile" destination="store.menu" after="-" />
+
+        
+        <move element="top.search" destination="header-center-wrapper" before="-"/>
+        <move element="minicart" destination="header-right-wrapper" after="-"/>
+        <move element="store.settings.currency" destination="header-right-wrapper" before="-"/>
+        <referenceContainer name="header-wrapper">
+            <container name="header-center-wrapper" htmlClass="header-center" htmlTag="div"/>
+            <container name="header-right-wrapper" htmlClass="header-right" htmlTag="div">
+
+                <block class="Convert\SkinQuiz\Block\Checkcustomer" name="cms.block.header.account" template="Magento_Theme::myaccount.phtml" />
+
+            </container>
+        </referenceContainer>
+        <referenceContainer name="page.top">
+            <block class="Magento\Cms\Block\Block" name="cms.block.header.bottom" after="navigation.sections">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header-bottom</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="footer-container">
+            <container name="footer-top" htmlClass="footer-top" htmlTag="div" before="-">
+                <block class="Magento\Cms\Block\Block" name="cms.block.footer.top">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-top</argument>
+                    </arguments>
+                </block>
+            </container>
+            <container name="footer-copyright" htmlClass="footer-copyright" htmlTag="div" after="-">
+                <block class="Magento\Cms\Block\Block" name="cms.block.footer.copyright">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-copyright</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="footer">
+            <container name="footer-content-left" htmlClass="footer-content-left" htmlTag="div" before="-">
+                <block class="Magento\Cms\Block\Block" name="cms.block.footer.content.left">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-content-left</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="page.wrapper">
+            <block class="Magento\Cms\Block\Block" name="cms.block.header.top.banner" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header-top-banner</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

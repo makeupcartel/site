@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Oaction
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_oaction>
+            <general>
+                <commands>invoice,invoiceship,ship,status</commands>
+            </general>
+            <invoice>
+                <notify>0</notify>
+                <status>0</status>
+                <print>0</print>
+            </invoice>
+            <capture>
+                <notify>0</notify>
+                <status>0</status>
+            </capture>
+            <ship>
+                <addcolumn>1</addcolumn>
+                <notify>0</notify>
+                <status>0</status>
+                <carrier></carrier>
+                <title> </title>
+                <comment>0</comment>
+                <force_title>0</force_title>
+            </ship>
+        </amasty_oaction>
+    </default>
+</config>

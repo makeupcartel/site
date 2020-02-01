@@ -1,0 +1,103 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Megamenu
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+$blocks = $block->getBlocks();
+$selectedValue = $block->getSelectedValue();
+$blockSelected = $block->getBlockSelected();
+$menuSelected = $block->getMenuSelected();
+$categorySelected = $block->getCategorySelected();
+$menus = $block->getMenus();
+$categories = $block->getCategoriesData();
+$onlyStaticBlocks = $block->getOnlyStaticBlock();
+$class = "";
+if ($onlyStaticBlocks) {
+    $class = "category";
+}
+?>
+<select class="blockselect<?php echo $class; ?> admin__control-select" <?php if ($onlyStaticBlocks) :
+?>style="width:90%;"<?php
+                          endif; ?>>
+    <?php
+    if (count($blocks)) {
+        ?>
+
+        <?php if (!$onlyStaticBlocks) :
+?><optgroup label="<?php echo __(' Static Blocks'); ?>" data-column-type="block"> <?php
+        endif; ?>
+        <?php
+            $count = 1;
+        foreach ($blocks as $singleBlock) {
+            ?>
+            <option <?php
+            if ($block->getSelectedGroup() === 'block' && $selectedValue == $singleBlock->getIdentifier()) {
+                echo $blockSelected;
+            }
+                ?> value="<?php echo $singleBlock->getIdentifier(); ?>"><?php echo $singleBlock->getTitle(); ?></option>     <?php
+                $count++;
+        }
+                ?>
+        <?php if (!$onlyStaticBlocks) :
+?></optgroup><?php
+        endif; ?>
+        <?php
+    }
+    if ($menus && count($menus) and ! empty($menus) && !$onlyStaticBlocks) {
+        ?>
+        <optgroup label=" Menus" data-column-type="menu">
+            <?php
+            $count = 1;
+            foreach ($menus as $menu) {
+                ?>
+                <option <?php
+                if ($block->getSelectedGroup() === 'menu' && $selectedValue == $menu->getMenuId()) {
+                    echo $menuSelected;
+                }
+                    ?> value="<?php echo $menu->getMenuId(); ?>"><?php echo $menu->getMenuName(); ?></option>     <?php
+            $count++;
+            }
+                ?>
+        </optgroup> 
+    <?php } ?>
+    <?php
+//print_r($categories);die;
+    ?>
+        <?php if (count($categories) and ! empty($categories) && !$onlyStaticBlocks) { ?>
+        <optgroup label="Catgories" data-column-type="category">
+            <?php
+            $count = 1;
+            foreach ($categories as $value) {
+                $catName = $value['label'];
+                $catId = $value['value'];
+                $catLevel = $value['level'];
+
+                $hyphen = '';
+                $start = '';
+                for ($s = 2; $s < $catLevel; $s++) {
+                    $hyphen = $hyphen . "_ _ _ ";
+                    $start = '|';
+                }
+                //$catName = $hyphen .$catName;
+                $categoryName = $start . $hyphen . "(ID:" . $catId . ") " . addslashes($catName);
+                ?>
+                <option <?php
+                if ($block->getSelectedGroup() === 'category' && (int) $selectedValue === (int) $catId) {
+                    echo $categorySelected;
+                }
+                    ?> value="<?php echo $catId; ?>"><?php echo $categoryName; ?></option>
+                    <?php
+                    $count++;
+            }
+                ?>
+        </optgroup>
+        <?php } ?>
+
+
+</select>

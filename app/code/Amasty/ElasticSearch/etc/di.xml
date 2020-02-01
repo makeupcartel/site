@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_ElasticSearch
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\ElasticSearch\Model\Client\ClientRepositoryInterface"
+                type="Amasty\ElasticSearch\Model\Client\ClientRepository"/>
+    <preference for="Amasty\ElasticSearch\Api\Data\SynonymInterface"
+                type="Amasty\ElasticSearch\Model\Synonym" />
+    <preference for="Amasty\ElasticSearch\Api\SynonymRepositoryInterface"
+                type="Amasty\ElasticSearch\Model\SynonymRepository" />
+    <preference for="Amasty\ElasticSearch\Api\Data\StopWordInterface"
+                type="Amasty\ElasticSearch\Model\StopWord" />
+    <preference for="Amasty\ElasticSearch\Api\StopWordRepositoryInterface"
+                type="Amasty\ElasticSearch\Model\StopWordRepository" />
+    <preference for="Amasty\ElasticSearch\Api\Data\RelevanceRuleInterface"
+                type="Amasty\ElasticSearch\Model\RelevanceRule" />
+    <preference for="Amasty\ElasticSearch\Api\RelevanceRuleRepositoryInterface"
+                type="Amasty\ElasticSearch\Model\RelevanceRuleRepository" />
+    <preference for="Amasty\ElasticSearch\Api\Data\Indexer\Data\DataMapperResolverInterface"
+                type="Amasty\ElasticSearch\Model\Indexer\Data\DataMapperResolver" />
+    <preference for="Amasty\ElasticSearch\Api\Data\Indexer\Structure\AnalyzerBuilderInterface"
+                type="Amasty\ElasticSearch\Model\Indexer\Structure\AnalyserBuilder" />
+    <preference for="Amasty\ElasticSearch\Api\Data\Indexer\Structure\IndexBuilderInterface"
+                type="Amasty\ElasticSearch\Model\Indexer\Structure\IndexBuilder" />
+
+    <type name="Amasty\ElasticSearch\Model\Config\QuerySettings">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="fulltext_attributes" xsi:type="object">Amasty\ElasticSearch\Model\Source\FulltextAttributes</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ElasticSearch\Model\RelevanceRule">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="catalogrule_factory" xsi:type="object">Magento\CatalogRule\Model\RuleFactory</item>
+                <item name="rule_product_processor" xsi:type="object">Amasty\ElasticSearch\Model\Indexer\RelevanceRule\RuleProductProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="amasty_elastic_stopword_listing_data_source"
+                      xsi:type="string">Amasty\ElasticSearch\Model\ResourceModel\StopWord\Grid</item>
+                <item name="amasty_elastic_synonym_listing_data_source"
+                      xsi:type="string">Amasty\ElasticSearch\Model\ResourceModel\Synonym\Grid</item>
+                <item name="amasty_elastic_relevance_rule_listing_data_source"
+                      xsi:type="string">Amasty\ElasticSearch\Model\ResourceModel\RelevanceRule\Grid</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Search\Dynamic\IntervalFactory">
+        <arguments>
+            <argument name="intervals" xsi:type="array">
+                <item name="amasty_elastic" xsi:type="string">Amasty\ElasticSearch\Model\Search\GetResponse\GetAggregations\Interval</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Deprecated services
+        <type name="Amasty\ElasticSearch\Model\Search\GetRequestQuery\InjectMatchQuery">
+            <arguments>
+                <argument name="services" xsi:type="array">
+                    <item name="stopwords" xsi:type="object">Amasty\ElasticSearch\Model\Search\GetRequestQuery\ServicePreprocessor\Stopwords</item>
+                    <item name="synonyms" xsi:type="object">Amasty\ElasticSearch\Model\Search\GetRequestQuery\ServicePreprocessor\Synonyms</item>
+                </argument>
+            </arguments>
+        </type>
+    -->
+    <type name="Magento\CatalogSearch\Model\Indexer\IndexerHandlerFactory">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="amasty_elastic" xsi:type="string">Amasty\ElasticSearch\Model\Indexer\DataHandler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\Indexer\IndexStructureFactory">
+        <arguments>
+            <argument name="structures" xsi:type="array">
+                <item name="amasty_elastic" xsi:type="string">Amasty\ElasticSearch\Model\Indexer\StructureHandler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ElasticSearch\Model\Indexer\Structure\EntityBuilder">
+        <arguments>
+            <argument name="entityBuilders" xsi:type="array">
+                <item name="catalogsearch_fulltext" xsi:type="array">
+                    <item name="catalog_product" xsi:type="object">Amasty\ElasticSearch\Model\Indexer\Structure\EntityBuilder\Product</item>
+                    <item name="catalog_product_stock_status" xsi:type="object">Amasty\ElasticSearch\Model\Indexer\Structure\EntityBuilder\Product\StockStatus</item>
+                    <item name="external_finder" xsi:type="object">Amasty\ElasticSearch\Model\Indexer\Structure\EntityBuilder\External\Finder</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ElasticSearch\Model\Indexer\Data\DataMapperResolver">
+        <arguments>
+            <argument name="dataMappers" xsi:type="array">
+                <item name="catalogsearch_fulltext" xsi:type="array">
+                    <item name="catalog_product" xsi:type="object">Amasty\ElasticSearch\Model\Indexer\Data\Product\ProductDataMapper</item>
+                    <item name="catalog_product_category" xsi:type="object">Amasty\ElasticSearch\Model\Indexer\Data\Product\ProductCategoryDataMapper</item>
+                    <item name="catalog_product_price" xsi:type="object">Amasty\ElasticSearch\Model\Indexer\Data\Product\ProductPriceDataMapper</item>
+                    <item name="catalog_product_stock_status" xsi:type="object">Amasty\ElasticSearch\Model\Indexer\Data\Product\ProductStockStatusDataMapper</item>
+                    <item name="external_finder" xsi:type="object">Amasty\ElasticSearch\Model\Indexer\Data\External\FinderDataMapper</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ElasticSearch\Model\Search\GetRequestQuery">
+        <arguments>
+            <argument name="subqueryInjectors" xsi:type="array">
+                <item name="match" xsi:type="object">Amasty\ElasticSearch\Model\Search\GetRequestQuery\InjectMatchQuery</item>
+                <item name="rangeFilter" xsi:type="object">Amasty\ElasticSearch\Model\Search\GetRequestQuery\InjectFilterRangeQuery</item>
+                <item name="termFilter" xsi:type="object">Amasty\ElasticSearch\Model\Search\GetRequestQuery\InjectFilterTermQuery</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\ResourceModel\EngineProvider">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="amasty_elastic" xsi:type="string">Amasty\ElasticSearch\Model\ResourceModel\Engine</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Search\Model\AdapterFactory">
+        <arguments>
+            <argument name="adapters" xsi:type="array">
+                <item name="amasty_elastic" xsi:type="string">Amasty\ElasticSearch\Model\Search\Adapter</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Search\Model\EngineResolver">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="amasty_elastic" xsi:type="string">amasty_elastic</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Search\Model\Adminhtml\System\Config\Source\Engine">
+        <arguments>
+            <argument name="engines" xsi:type="array">
+                <item name="amasty_elastic" xsi:type="string">Amasty Elasticsearch</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\AdvancedSearch\Model\SuggestedQueries">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="amasty_elastic" xsi:type="string">Magento\AdvancedSearch\Model\DataProvider\Suggestions</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\Xsearch\Helper\Data">
+        <plugin name="Amasty_ElasticSearch::RemoveStopWordsHighlight"
+                type="Amasty\ElasticSearch\Plugin\Xsearch\Helper\Data" />
+    </type>
+
+    <type name="Magento\Framework\Search\Dynamic\Algorithm\Improved">
+        <arguments>
+            <argument name="algorithm" xsi:type="object">Amasty\ElasticSearch\Model\Search\Dynamic\Algorithm</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="amElasticsearchCategoryCollectionFactory" type="Magento\CatalogSearch\Model\ResourceModel\Fulltext\SearchCollectionFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">elasticsearchCategoryCollection</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="amElasticsearchFulltextSearchCollectionFactory" type="Magento\CatalogSearch\Model\ResourceModel\Fulltext\SearchCollectionFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">elasticsearchFulltextSearchCollection</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="elasticsearchLayerCategoryItemCollectionProvider" type="Magento\Elasticsearch\Model\Layer\Category\ItemCollectionProvider">
+        <arguments>
+            <argument name="factories" xsi:type="array">
+                <item name="amasty_elastic" xsi:type="object">amElasticsearchCategoryCollectionFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="elasticsearchLayerSearchItemCollectionProvider" type="Magento\Elasticsearch\Model\Layer\Search\ItemCollectionProvider">
+        <arguments>
+            <argument name="factories" xsi:type="array">
+                <item name="amasty_elastic" xsi:type="object">amElasticsearchFulltextSearchCollectionFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

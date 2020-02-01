@@ -1,0 +1,45 @@
+//
+//  Amasty Elastic Search
+//  ____________________________________________
+
+& when (@media-common = true) {
+    .amasty-elastic-relevancerule-edit .admin__field-tooltip .admin__field-tooltip-content {
+        background: #41362f;
+        color: white;
+    }
+
+    .amasty-elastic-relevancerule-edit .admin__field-tooltip .admin__field-tooltip-content:after,
+    .amasty-elastic-relevancerule-edit .admin__field-tooltip .admin__field-tooltip-content:before {
+        border-top-color: #41362f;
+    }
+
+    .amelastic-datefield ._has-datepicker + .ui-datepicker-trigger {
+        z-index: 2; //mozilla input + button equal z-index fix
+    }
+
+    #row_amasty_elastic_catalog_query_settings {
+        .label span {
+            min-width: 100px;
+        }
+
+        .admin__control-table th,
+        .admin__control-table td {
+            padding: 10px;
+        }
+    }
+}
+
+// Desktop +
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    #row_amasty_elastic_catalog_query_settings {
+        .admin__control-table td:first-child,
+        .admin__control-table th:first-child {
+            padding-left: 1rem;
+        }
+
+        .admin__control-table td,
+        .admin__control-table th {
+            padding: 1.3rem 1rem 1.3rem 0;
+        }
+    }
+}

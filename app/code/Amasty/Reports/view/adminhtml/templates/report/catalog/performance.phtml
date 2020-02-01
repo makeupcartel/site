@@ -1,0 +1,63 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+?>
+<?php
+$product = $block->getProduct();
+?>
+
+<div class="amreports-amchart-wrapper">
+    <?php if ($product->getError()) : ?>
+        <div class="amreports-error-sku"><?= $block->escapeHtml($product->getError()) ?></div>
+    <?php else : ?>
+        <div class="amreports-perfomance-content" data-role="amreports-content">
+        <?php if ($product->getSku()) : ?>
+            <div class="amreports-info -hidden" data-amreports-js="perfomance-info">
+                <div class="amreports-information">
+                    <div class="amreports-image">
+                        <img alt="<?= $block->escapeHtml($product->getName()); ?>"
+                             src="<?= $block->escapeUrl($product->getThumbnail()); ?>"
+                             width="75"
+                             height="75">
+                    </div>
+                    <div class="amreports-facts">
+                        <div class="amreports-name">
+                            <?= $block->escapeHtml($product->getName()); ?>
+                        </div>
+                        <div class="amreports-bottom">
+                            <div class="amreports-price">
+                                <?= $block->escapeHtml($product->getPrice()); ?>
+                            </div>
+                            <div class="amreports-sku">
+                                <?= $block->escapeHtml($product->getSku()); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="amreports-statistic">
+                    <div class="amreports-item">
+                        <span><?= $block->escapeHtml($product->getQty()); ?></span>
+                        <span class="amreports-option"><?= $block->escapeHtml(__('Orders')); ?></span>
+                    </div>
+                    <div class="amreports-item">
+                        <span><?= $block->escapeHtml($product->getViews()); ?></span>
+                        <span class="amreports-option"><?= $block->escapeHtml(__('Views')); ?></span>
+                    </div>
+                    <div class="amreports-item">
+                        <span><?= $block->escapeHtml($product->getRevenue()); ?></span>
+                        <span class="amreports-option"><?= $block->escapeHtml(__('Revenue')); ?></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listing">
+                <?= $block->getChildHtml() ?>
+            </div>
+        <?php endif; ?>
+        </div>
+    <?php endif; ?>
+</div>

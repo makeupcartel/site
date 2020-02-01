@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="CheckoutShippingAddressSection">
+        <!--Customer Info-->
+        <element name="CheckoutTotalLoader" type="block" selector="//div[@class='opc-block-summary']//div[@data-role='loader']/div[@class='loading-mask']"/>
+        <element name="PopUpForAddProductOnCheckout" type="button" selector="//div[@class='columns']//a[@data-role='ampromo-popup-show']"/>
+        <element name="OpenPopUpOnCheckout" type="block" selector="//div[@class='ampromo-overlay'][@style='display: block;']"/>
+        <element name="ClosePopUpOnCheckout" type="block" selector="//div[@class='ampromo-overlay'][@style='display: none;']"/>
+        <element name="PopUpProductsContainerOnCheckout" type="block" selector="//div[@class='ampromo-items-content']//div[@data-role='ampromo-carousel-product']"/>
+        <element name="PopUpCloseButtonOnCheckout" type="button" selector="//div[@class='ampromo-items-content']/div[@class='ampromo-close']"/>
+    </section>
+
+</sections>

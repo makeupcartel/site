@@ -1,0 +1,45 @@
+<?php 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2018 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+<?php  foreach ($block->getTotals() as $_code => $_total): ?>
+    <?php if ($_total->getBlockName()): ?>
+        <?php echo $block->getChildHtml($_total->getBlockName(), false); ?>
+    <?php else:?>
+    <tr class="<?php /* @escapeNotVerified */ echo $_code?>">
+        <th <?php /* @escapeNotVerified */ echo $block->getLabelProperties()?> scope="row">
+            <?php if ($_total->getStrong()):?>
+            <strong>
+                <?php if ($_total->getLabel() == 'Estimated Total') { ?>
+                    <?php echo __('Order Total'); ?>
+                <?php } else { ?>
+                    <?php echo $block->escapeHtml($_total->getLabel());?>
+                <?php } ?>
+            </strong>
+            <?php else:?>
+            <?php echo $block->escapeHtml($_total->getLabel());?>
+            <?php endif?>
+        </th>
+        <td <?php /* @escapeNotVerified */ echo $block->getValueProperties()?> data-th="<?php echo $block->escapeHtml($_total->getLabel());?>">
+            <?php if ($_total->getStrong()):?>
+            <strong><?php /* @escapeNotVerified */ echo $block->formatValue($_total) ?></strong>
+            <?php else:?>
+            <?php /* @escapeNotVerified */ echo $block->formatValue($_total) ?>
+            <?php endif?>
+        </td>
+    </tr>
+    <?php endif?>
+<?php endforeach?>

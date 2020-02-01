@@ -1,0 +1,56 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Cart
+ */
+?>
+<?php
+    /** @var \Amasty\Cart\Block\Config  $this */
+    $helper = $this->getHelper();
+    $amcartParams = $helper->jsParam($this);
+?>
+<script type="text/x-magento-init">
+<?= /* @noEscape */
+    $helper->encode(
+        [
+            "#product_addtocart_form:not([amcart-observed]), form[data-role=\"tocart-form\"]:not([amcart-observed]), .action.tocart" => [
+                'Amasty_Cart/js/amcart' => $amcartParams
+            ]
+        ]
+    );
+?>
+</script>
+
+<?php if ($helper->isShowProductQty()) : ?>
+<script type="text/x-magento-init">
+<?= /* @noEscape */
+    $helper->encode(
+        [
+            "[data-block=\"minicart\"]" => [
+                'Amasty_Cart/js/amcartinfo' => [
+                        'infoMessage' => $this->escapeHtml($helper->getInfoMessage())
+                ]
+            ]
+        ]
+    );
+?>
+</script>
+<?php endif; ?>
+
+<?php if ($helper->isActionsAjax()) : ?>
+<script type="text/x-magento-init">
+<?= /* @noEscape */
+    $helper->encode(
+        [
+            "body" => [
+                'Amasty_Cart/js/dataPostAjax' => [
+                    'amcartParams' => $amcartParams,
+                    'postTrigger' => $this->getDataPostSelector()
+                ]
+            ]
+        ]
+    );
+?>
+</script>
+<?php endif; ?>

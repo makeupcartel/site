@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Unirgy\RapidFlow\Model\Product\ImageCache">
+        <arguments>
+            <argument name="imageHelper" xsi:type="object">Unirgy\RapidFlow\Helper\ImageHelper</argument>
+            <argument name="themeCollection" xsi:type="object">Unirgy\RapidFlow\Model\ResourceModel\ThemeCollection</argument>
+        </arguments>
+    </type>
+    <type name="Unirgy\RapidFlow\Helper\ImageHelper">
+        <arguments>
+            <argument name="productImageFactory" xsi:type="object">Unirgy\RapidFlow\Model\Product\ImageFactory</argument>
+        </arguments>
+    </type>
+    <type name="Unirgy\RapidFlow\Model\Product\ImageFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Unirgy\RapidFlow\Model\Product\Image</argument>
+        </arguments>
+    </type>
+    <type name="Unirgy\RapidFlow\Helper\Url">
+        <arguments>
+            <argument name="urlPersist" xsi:type="object">Unirgy\RapidFlow\Model\UrlRewriteDbStorage</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,26 @@
+<thead>
+<tr>
+    <!-- ko repeat: {foreach: getColumns(), item: '$subCol'} -->
+    <td class="amasty-ogrid-table-data-grid-th" data-bind="template: $subCol().getHeader()"></td>
+    <!-- /ko -->
+
+</tr>
+
+</thead>
+<tbody>
+
+<!-- ko repeat: {foreach: getItems($row()), item: '$subRow'} -->
+<tr>
+    <!-- ko repeat: {foreach: getColumns(), item: '$subCol'} -->
+
+    <td data-bind="
+                    css: $subCol().getFieldClass(),
+                    click: $subCol().getFieldHandler($subRow()),
+                    template: $subCol().getBody()
+                ">
+    </td>
+
+    <!-- /ko -->
+</tr>
+<!-- /ko -->
+</tbody>

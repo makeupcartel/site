@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="layout_render_before">
+       <observer name="magedelight_megamenu_check_util" instance="Magedelight\Megamenu\Observer\Util" />
+    </event>
+    <event name="admin_system_config_changed_section_magedelight">
+        <observer name="custom_admin_system_config_changed_section_magedelight" instance="Magedelight\Megamenu\Observer\Mdkc"/>
+        <observer name="magedelight_megamenu_frd_track" instance="Magedelight\Megamenu\Observer\Mdfrd" />
+    </event>
+</config>

@@ -1,0 +1,16 @@
+<?php $helper = $this->helper('Convert\Catalog\Helper\Data'); ?>
+<?php if ($helper->isCustomerLoggedIn() == 0){ ?>
+	<div class="header-account">
+        <img src="<?= $helper->getUrlMedia() ?>/media/account_icon_icon.png">
+		<a title="Account" href="<?= $helper->getUrlMedia() ?>customer/account/login/">Login</a>
+        <span>or</span>
+		<a title="Account" href="<?php echo $this->getUrl('customer/account/create/'); ?>">register</a>
+	</div>
+<?php }else{ ?>
+	<div class="header-account">
+        <img src="<?= $helper->getUrlMedia() ?>/media/account_icon_icon.png">
+		<a title="Account" href="<?php echo $this->getUrl('customer/account/logout'); ?>">My Account</a>
+        <span>or</span>
+		<a title="Account" href="<?php echo $this->getUrl('customer/account/logout'); ?>">Logout</a> 
+	</div>
+<?php } ?>

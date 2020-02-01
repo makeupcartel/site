@@ -1,0 +1,43 @@
+<?php 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+<?php $order = $this->helper('Plumrocket\Checkoutspage\Helper\Data')->getOrder(); ?>
+<?php echo $this->getChildHtml('checkout.success.style'); ?>
+<?php echo $block->getChildHtml('emarsys.success.plumrocket'); ?>
+<div id="csp-extension" class="mod-checkoutspage" >
+	<div class="csp-cf">
+			<div class="csp-left-col">
+				<div class="csp-left-col-child">				
+					<?php 
+						echo $this->getLayout()
+						->createBlock('Magento\Cms\Block\Block')
+						->setBlockId('image_checkout_success_left')
+						->toHtml();
+					?>
+					<div class="content_checkout_success_left">
+						<?php echo $block->getChildHtml('checkoutspage.left.section'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="csp-right-col">
+				<?php echo $block->getChildHtml('checkoutspage.right.section'); ?>
+			</div>
+	</div>
+	<div class="csp-bottom-col csp-cf">
+		<?php echo $block->getChildHtml('checkoutspage.bottom.section'); ?>
+	</div>
+</div>

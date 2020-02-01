@@ -1,0 +1,27 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Megamenu
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+$pages = $block->getPages();
+?>
+<ul class="pagemenu">
+    <?php
+    $count = 1;
+    foreach ($pages as $singlePage) {
+        ?>
+        <li  style="padding: 5px;">
+            <input id="menupage<?php echo $count; ?>" class="addMenu" type="checkbox" data-url="<?php echo $singlePage->getIdentifier(); ?>" data-objectid="<?php echo $singlePage->getPageId(); ?>" data-name="<?php echo $singlePage->getTitle(); ?>" data-id="<?php echo $singlePage->getPageId(); ?>" data-type="pages">
+            <label for="menupage<?php echo $count; ?>"><?php echo $singlePage->getTitle(); ?></label>
+        </li>
+        <?php
+        $count++;
+    }
+    ?>
+</ul>

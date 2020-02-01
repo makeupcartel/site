@@ -1,0 +1,19 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/owl.carousel.min.css" />
+        <css src="css/font-awesome.css" />
+        <css src="css/swiper.min.css" />
+        <css src="css/styleguide.css" media="all"/>
+        <css src="css/header.css" media="all"/>
+        <css src="css/footer.css" media="all"/>
+        <css src="css/category.css" media="all"/>
+        <css src="css/product.css" media="all"/>
+        <css src="css/homepage.css" media="all"/>
+        <css src="css/cart.css" media="all"/>
+        <css src="css/cms.css" media="all"/>
+        <css src="css/other.css" media="all"/>
+        <css src="css/checkout.css" media="all"/>
+        <css src="css/myaccount.css" media="all"/>
+        <meta name="og:image" content="https://makeupcartel.com.au/media/maks/MakeupCartel_WEBHeader_Mobile_1.jpg" />
+    </head>
+</page>

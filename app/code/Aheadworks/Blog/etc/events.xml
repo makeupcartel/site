@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="aheadworks_blog_api_data_categoryinterface_save_before">
+        <observer name="legacy_model_aw_blog_category_before_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    </event>
+    <event name="aheadworks_blog_api_data_categoryinterface_save_after">
+        <observer name="legacy_model_aw_blog_category_after_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="aheadworks_blog_api_data_categoryinterface_delete_after">
+        <observer name="legacy_model_aw_blog_category_after_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="aheadworks_blog_api_data_postinterface_save_before">
+        <observer name="legacy_model_aw_blog_post_before_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    </event>
+    <event name="aheadworks_blog_api_data_postinterface_save_after">
+        <observer name="legacy_model_aw_blog_post_after_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="aheadworks_blog_api_data_postinterface_delete_after">
+        <observer name="legacy_model_aw_blog_post_after_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="aheadworks_blog_api_data_taginterface_save_before">
+        <observer name="legacy_model_aw_blog_tag_before_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    </event>
+    <event name="aheadworks_blog_api_data_taginterface_save_after">
+        <observer name="legacy_model_aw_blog_tag_after_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="aheadworks_blog_api_data_taginterface_delete_after">
+        <observer name="legacy_model_aw_blog_tag_after_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="aheadworks_blog_api_data_authorinterface_save_before">
+        <observer name="legacy_model_aw_blog_author_before_save" instance="Magento\Framework\EntityManager\Observer\BeforeEntitySave" />
+    </event>
+    <event name="aheadworks_blog_api_data_authorinterface_save_after">
+        <observer name="legacy_model_aw_blog_author_after_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="aheadworks_blog_api_data_authorinterface_delete_after">
+        <observer name="legacy_model_aw_blog_author_after_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="aw_sitemap_items_init">
+        <observer name="aheadworks_blog_add_sitemap_items" instance="Aheadworks\Blog\Observer\AddSitemapItemsObserver" />
+    </event>
+</config>

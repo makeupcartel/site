@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="AutoAddPromoItemsWithMinimalPriceAndDiscount">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Rule Auto Add Promo Items With Products With Minimal Price And Discount"/>
+            <description value="Check Rule Auto Add Promo Items With Products With Minimal Price And Discount"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-22"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="AutoAddPromoItemsWithMinimalPriceAndDiscount"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfigurationBeforeTest"/>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <!-- Return default setting Promo-->
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfigurationAfterTest"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create new Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromoWithPromoItems" stepKey="CreateCartRule1">
+            <argument name="actionsRulePromo" value="applyAutoAddPromoItemsWithProducts"/>
+            <argument name="cartRulePromo" value="autoAddPromoItemsWithMinimalPriceAndDiscount"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleAddDiscountSetting" stepKey="AddDiscountForRule">
+            <argument name="cartRulePromo" value="autoAddPromoItemsWithMinimalPriceAndDiscount"/>
+        </actionGroup>
+
+        <!--Add product to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Add First Free Gift-->
+        <actionGroup ref="AddFreeGiftOneByOneInCart" stepKey="AddFirstFreeGift">
+            <argument name="products" value="_theBagFusionBackpack"/>
+        </actionGroup>
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddFirstFreeGiftInCart">
+            <argument name="products" value="_theBagFusionBackpack"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!-- Check First Discount-->
+        <actionGroup ref="CheckPromoDiscountAmount" stepKey="CheckDiscountAmountAboutOneFreeGift">
+            <argument name="discountAmount" value="autoAddPromoItemsWithMinimalPriceAndDiscount.discountAmountOne"/>
+        </actionGroup>
+
+        <!-- Add Second Free Gift-->
+        <actionGroup ref="AddFreeGiftOneByOneInCart" stepKey="AddSecondFreeGift">
+            <argument name="products" value="_theBagDrivenBackpack"/>
+        </actionGroup>
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddSecondFreeGiftInCart">
+            <argument name="products" value="_theBagDrivenBackpack"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!-- Check Second Discount-->
+        <actionGroup ref="CheckPromoDiscountAmount" stepKey="CheckDiscountAmountAboutTwoFreeGift">
+            <argument name="discountAmount" value="autoAddPromoItemsWithMinimalPriceAndDiscount.discountAmountTwo"/>
+        </actionGroup>
+
+        <!--Delete First Free Gift From The Cart-->
+        <actionGroup ref="DeleteProductFromTheCart" stepKey="DeleteFirstFreeGiftFromTheCart">
+            <argument name="products" value="_theBagFusionBackpack"/>
+        </actionGroup>
+        <actionGroup ref="CheckNoProductInCart" stepKey="CheckNoFirstFreeGiftInCart">
+            <argument name="products" value="_theBagFusionBackpack"/>
+        </actionGroup>
+
+        <!-- Check Third Discount-->
+        <actionGroup ref="CheckPromoDiscountAmount" stepKey="CheckDiscountAmountAboutThreeFreeGift">
+            <argument name="discountAmount" value="autoAddPromoItemsWithMinimalPriceAndDiscount.discountAmountThree"/>
+        </actionGroup>
+
+        <!-- Check PopUp In Cart-->
+        <actionGroup ref="CheckPopUpInCart" stepKey="checkHavePopUpInCart"/>
+    </test>
+</tests>

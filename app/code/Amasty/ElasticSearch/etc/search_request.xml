@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_ElasticSearch
+ */
+-->
+<requests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:framework:Search/etc/search_request.xsd">
+    <request query="quick_search_container" index="catalogsearch_fulltext">
+        <queries>
+            <query xsi:type="boolQuery" name="quick_search_container" boost="1">
+                <queryReference clause="must" ref="stock_status"/>
+            </query>
+            <query xsi:type="filteredQuery" name="stock_status">
+                <filterReference clause="must" ref="stock_status_filter"/>
+            </query>
+        </queries>
+        <filters>
+            <filter xsi:type="termFilter" name="stock_status_filter" field="stock_status" value="$stock_status$"/>
+        </filters>
+        <aggregations>
+            <bucket name="stock_status_bucket" field="stock_status" xsi:type="termBucket">
+                <metrics>
+                    <metric type="count"/>
+                </metrics>
+            </bucket>
+        </aggregations>
+        <from>0</from>
+        <size>10000</size>
+    </request>
+
+    <request query="catalog_view_container" index="catalogsearch_fulltext">
+        <queries>
+            <query xsi:type="boolQuery" name="catalog_view_container" boost="1">
+                <queryReference clause="must" ref="stock_status"/>
+            </query>
+            <query xsi:type="filteredQuery" name="stock_status">
+                <filterReference clause="must" ref="stock_status_filter"/>
+            </query>
+        </queries>
+        <filters>
+            <filter xsi:type="termFilter" name="stock_status_filter" field="stock_status" value="$stock_status$"/>
+        </filters>
+        <aggregations>
+            <bucket name="stock_status_bucket" field="stock_status" xsi:type="termBucket">
+                <metrics>
+                    <metric type="count"/>
+                </metrics>
+            </bucket>
+        </aggregations>
+        <from>0</from>
+        <size>10000</size>
+    </request>
+</requests>

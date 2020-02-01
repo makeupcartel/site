@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+    <view id="aw_blog_product_post" class="Aheadworks\Blog\Model\Indexer\ProductPost" group="indexer">
+        <subscriptions>
+            <table name="aw_blog_post" entity_column="id" />
+        </subscriptions>
+    </view>
+</config>

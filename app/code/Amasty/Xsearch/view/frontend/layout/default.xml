@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Amasty\Xsearch\Block\Head" name="amasty.xsearch.head"  template="Amasty_Xsearch::head.phtml" after="-" />
+        </referenceBlock>
+        <referenceBlock name="top.search">
+            <block class="Amasty\Xsearch\Block\Jsinit" name="amasty.xsearch.autocomplete"  template="Amasty_Xsearch::jsinit.phtml" />
+        </referenceBlock>
+    </body>
+</page>

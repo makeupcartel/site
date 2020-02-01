@@ -1,0 +1,32 @@
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/amasty_reports/rule" method="POST">
+        <service class="Amasty\Reports\Api\RuleRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/amasty_reports/rule/:entityId" method="PUT">
+        <service class="Amasty\Reports\Api\RuleRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/amasty_reports/rule/:entityId" method="DELETE">
+        <service class="Amasty\Reports\Api\RuleRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/amasty_reports/rule" method="GET">
+        <service class="Amasty\Reports\Api\RuleRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/amasty_reports/rule/all" method="GET">
+        <service class="Amasty\Reports\Api\RuleRepositoryInterface" method="getList" />
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+</routes>

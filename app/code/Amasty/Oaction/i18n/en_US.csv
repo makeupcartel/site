@@ -1,0 +1,88 @@
+Back,Back
+Reset,Reset
+Save,Save
+Attributes,Attributes
+Change,Change
+"Please update Amasty Base module. Re-upload it and replace all the files.","Please update Amasty Base module. Re-upload it and replace all the files."
+Installed,Installed
+"Specify Mass Product Actions settings properly. See more details <a href=""%1"" target=""_blank"">here</a>","Specify Mass Product Actions settings properly. See more details <a href=""%1"" target=""_blank"">here</a>"
+"Not Installed","Not Installed"
+"Increase the efficiency of the catalogue management. Change prices, manage attribute sets and categories, spread custom options and images, and related products. Apply bulk modifications to multiple products and tweak the actions menu to display only required actions. See more details <a target=""_blank"" href=""https://amasty.com/mass-product-actions-for-magento-2.html?utm_source=extension&amp;utm_medium=backend&amp;utm_campaign=m2_order_actions_to_product_actions"">here</a>","Increase the efficiency of the catalogue management. Change prices, manage attribute sets and categories, spread custom options and images, and related products. Apply bulk modifications to multiple products and tweak the actions menu to display only required actions. See more details <a target=""_blank"" href=""https://amasty.com/mass-product-actions-for-magento-2.html?utm_source=extension&amp;utm_medium=backend&amp;utm_campaign=m2_order_actions_to_product_actions"">here</a>"
+"There is no sample file for this entity.","There is no sample file for this entity."
+"Import tracking numbers","Import tracking numbers"
+"Please select orders for attributes update.","Please select orders for attributes update."
+"Update Attributes","Update Attributes"
+"The attributes for next order: %1 have not been updated.","The attributes for next order: %1 have not been updated."
+"The attributes for next order: %1 have been updated.","The attributes for next order: %1 have been updated."
+"'An error occurred while updating the order attributes: ' .","'An error occurred while updating the order attributes: ' ."
+"Something went wrong while updating the product(s) attributes.","Something went wrong while updating the product(s) attributes."
+"Something went wrong while updating the product(s) data.","Something went wrong while updating the product(s) data."
+"Invoice created","Invoice created"
+"The order no longer exists.","The order no longer exists."
+"The order does not allow an invoice to be created.","The order does not allow an invoice to be created."
+"We can't save the invoice right now.","We can't save the invoice right now."
+"You can't create an invoice without products.","You can't create an invoice without products."
+"We can't send the invoice email right now.","We can't send the invoice email right now."
+"Can not invoice order #%1: %2","Can not invoice order #%1: %2"
+"Total of %1 order(s) have been successfully invoiced.","Total of %1 order(s) have been successfully invoiced."
+"Shipment created","Shipment created"
+"We can't save the shipment right now.","We can't save the shipment right now."
+"Can not ship order #%1: %2","Can not ship order #%1: %2"
+"Total of %1 order(s) have been successfully shipped.","Total of %1 order(s) have been successfully shipped."
+"Status changed","Status changed"
+"Selected status does not correspond to the state of order.","Selected status does not correspond to the state of order."
+"Can not update order #%1: %2","Can not update order #%1: %2"
+"Total of %1 order(s) have been successfully updated.","Total of %1 order(s) have been successfully updated."
+"%1 module is not exist.","%1 module is not exist."
+"Do not need a tracking info","Do not need a tracking info"
+Custom,Custom
+Invoice,Invoice
+"Invoice > Ship","Invoice > Ship"
+Ship,Ship
+"Change Status","Change Status"
+"Update Order Attributes","Update Order Attributes"
+Add/Update,Add/Update
+Delete,Delete
+"Do not request Capture Case","Do not request Capture Case"
+"Capture Online","Capture Online"
+"Capture Offline","Capture Offline"
+"Magento Default","Magento Default"
+"Magento default","Magento default"
+Carrier:,Carrier:
+Title:,Title:
+"Tracking Number","Tracking Number"
+"Tracking Number:","Tracking Number:"
+"Shipment is already created.","Shipment is already created."
+"The Order can not be transferred to the Shipment.","The Order can not be transferred to the Shipment."
+"Order is canceled.","Order is canceled."
+"Please make the Shipping column visible.","Please make the Shipping column visible."
+"Please fill the Tracking Number where you selected Carrier.","Please fill the Tracking Number where you selected Carrier."
+"Mass Order Actions","Mass Order Actions"
+Information,Information
+General,General
+"Enabled Actions","Enabled Actions"
+"Press CTRL+ left mouse button to select multiple values. To use ""Update Order Attributes"" action please install <a href=""https://amasty.com/order-attributes-for-magento-2.html"">Amasty Order Attributes</a> extension v2.2.0 or higher","Press CTRL+ left mouse button to select multiple values. To use ""Update Order Attributes"" action please install <a href=""https://amasty.com/order-attributes-for-magento-2.html"">Amasty Order Attributes</a> extension v2.2.0 or higher"
+"Invoice Action","Invoice Action"
+"Assign Status","Assign Status"
+"Print Invoices","Print Invoices"
+"Requested Payment Capture Case","Requested Payment Capture Case"
+"Default Payment Capture Case for Invoicing Orders","Default Payment Capture Case for Invoicing Orders"
+"Ship Action","Ship Action"
+"Default Carrier","Default Carrier"
+"Will be pre-selected at the orders grid.","Will be pre-selected at the orders grid."
+"Default Title for Custom Carrier","Default Title for Custom Carrier"
+"Show Custom Carrier Title at the Order Grid","Show Custom Carrier Title at the Order Grid"
+Status,Status
+"Check State","Check State"
+"Disallow to set status, which assigned to other state.","Disallow to set status, which assigned to other state."
+"Excluded options for the 'Change status' action","Excluded options for the 'Change status' action"
+"Do not select any statuses to make all options available on the Order grid.","Do not select any statuses to make all options available on the Order grid."
+"Mass Product Actions","Mass Product Actions"
+-------------------,-------------------
+"Notify Customer","Notify Customer"
+"Do Not Notify Customer","Do Not Notify Customer"
+"Change status to: ","Change status to: "
+amasty_oaction_status_select,amasty_oaction_status_select
+"Change Status for selected items?","Change Status for selected items?"
+"Update Order Attributes for selected items?","Update Order Attributes for selected items?"
+Shipping,Shipping

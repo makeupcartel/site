@@ -1,0 +1,132 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @see \Magento\Catalog\Block\Product\View\Description
+ */
+?>
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+$_call = $block->getAtCall();
+$_code = $block->getAtCode();
+$_className = $block->getCssClass();
+$_attributeLabel = $block->getAtLabel();
+$_attributeType = $block->getAtType();
+$_attributeAddAttribute = $block->getAddAttribute();
+$_isCmsBlock = $block->getIsCmsBlock();
+
+$mediaUrl = $block->getBaseUrl() . "media/";
+
+$renderLabel = true;
+// if defined as 'none' in layout, do not render
+if ($_attributeLabel == 'none') {
+	$renderLabel = false;
+}
+
+if ($_attributeLabel && $_attributeLabel == 'default') {
+	$_attributeLabel = $_product->getResource()->getAttribute($_code)->getStoreLabel();
+}
+if ($_attributeType && $_attributeType == 'text') {
+	$_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code)) ? $_product->getAttributeText($_code) : '';
+} else {
+	$_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
+}
+?>
+
+<?php if ($_attributeValue): ?>
+    <div class="product attribute <?= /* @escapeNotVerified */
+	$_className ?>">
+		<?php if ($renderLabel): ?><strong class="type"><?= /* @escapeNotVerified */
+		$_attributeLabel ?></strong><?php endif; ?>
+        <div class="value" <?php if ('overview' != $_className) {
+			echo $_attributeAddAttribute;
+		} ?>>
+			<?php if ($_isCmsBlock): ?>
+				<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($_attributeValue)->toHtml(); ?>
+			<?php else: ?>
+				<?php if ('overview' == $_className): ?>
+					<?php
+            $shortDesc = $_attributeValue;
+            if (strlen($_attributeValue) > 240) : 
+          ?>
+            <?php $shortDesc = substr($_attributeValue, 0, 240) . '...'; ?>
+            <div class="sub-short-desc">
+              <?php echo $shortDesc; ?>
+              <a href="#" class="readmore-short-desc"><?php echo __('Read more') ?></a>
+            </div>
+            <div class="full-short-desc" <?php echo $_attributeAddAttribute; ?> style="display: none;">
+              <?php echo $_attributeValue; ?>
+              <p>
+                  <a href="#" class="lessmore-short-desc"><?php echo __('Read less') ?></a>
+              </p>
+            </div>
+          <?php else: ?>
+            <div class="full-short-desc" <?php echo $_attributeAddAttribute; ?>>
+              <?php echo $_attributeValue; ?>
+            </div>
+          <?php endif; ?>
+          
+          <div class="description-icons">
+						<?php if ($_product->getData('desc_icon')): ?>
+                            <div class="description-icons">
+								<?php $data = explode(',', $_product->getData('desc_icon')); ?>
+								<?php foreach ($data as $value): ?>
+									<?php
+									$attr = $_product->getResource()->getAttribute('desc_icon');
+									?>
+									<?php if ($attr->usesSource()): ?>
+										<?php
+										$option_value = $attr->getSource()->getOptionText($value);
+										$optionValue = strtolower($option_value);
+										$optionName = str_replace(' ', '-', $optionValue);
+										$optionName = str_replace('-&-', '-', $optionName);
+										$special_character = array("'", ")", "(", "/");
+										$optionName = str_replace($special_character, "", $optionName);
+										$className = str_replace(' ', '-', $optionValue);
+										$urlImages = $mediaUrl . $optionName . '.png';
+										?>
+										<?php if ($option_value): ?>
+                                            <div class="icon-content">
+                                                <img src="<?php 
+                                                			echo $mediaUrl . $optionName . '.png';
+                                            				?>"
+                                                     alt=""
+                                                     class="icon-attribute"/>
+                                                     <p class="attribute-name <?php echo $className; ?>">                                    
+                                                     	<?php 
+                                                     	if (strpos($option_value, 'Poni')) 
+                                                     	{
+                                                     		echo str_replace('Poni','',$option_value);
+                                                     	}else if (strpos($option_value, 'Esmi')) 
+                                                     	{
+                                                     		echo str_replace('Esmi','',$option_value);
+                                                     	}else{
+                                                     		echo $option_value;
+
+                                                     	}
+                                                     	 ?>
+
+                                                     </p>
+                                            </div>
+										<?php endif; ?>
+									<?php endif; ?>
+								<?php endforeach; ?>
+                            </div>
+						<?php endif; ?>
+                    </div>
+				<?php else: ?>
+					<?= /* @escapeNotVerified */
+					$_attributeValue ?>
+				<?php endif; ?>
+			<?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>

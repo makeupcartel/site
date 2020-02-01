@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Magedelight
+* Copyright (C) 2017 Magedelight <info@magedelight.com>
+*
+* @category Magedelight
+* @package Magedelight_Megamenu
+* @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add dependsOnConfig="magedelight/general/megamenu_status" id="Magedelight_Megamenu::menu" title="Mega Menu" translate="title" module="Magedelight_Megamenu" sortOrder="50" action="megamenu/menu" resource="Magedelight_Megamenu::menu" />
+        <add dependsOnConfig="magedelight/general/megamenu_status" id="Magedelight_Megamenu::menus" title="Manage Menus" translate="title" module="Magedelight_Megamenu" sortOrder="10" parent="Magedelight_Megamenu::menu" action="megamenu/menu" resource="Magedelight_Megamenu::menus" />
+        <add dependsOnConfig="magedelight/general/megamenu_status" id="Magedelight_Megamenu::import" title="Sample Import" translate="title" module="Magedelight_Megamenu" sortOrder="10" parent="Magedelight_Megamenu::menu" action="megamenu/sampleimport" resource="Magedelight_Megamenu::sampleimport" />
+        <add dependsOnConfig="magedelight/general/megamenu_status" id="Magedelight_Megamenu::settings" title="Settings" translate="title" module="Magedelight_Megamenu" sortOrder="15" parent="Magedelight_Megamenu::menu" action="adminhtml/system_config/edit/section/magedelight/" resource="Magedelight_Megamenu::settings" />
+    </menu>
+</config>

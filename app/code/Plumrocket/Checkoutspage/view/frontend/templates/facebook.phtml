@@ -1,0 +1,30 @@
+<?php 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+<?php if ($block->isEnabled()) { ?>
+	<?php $fbUrl = $block->getFacebookUrl(); ?>
+	<div class="csp-facebook-like">
+		<div class="csp-blue">
+			<img src="<?php echo $block->getViewFileUrl('Plumrocket_Checkoutspage::images/facebook-text.png'); ?>" alt="Facebook Images">
+		</div>
+		<div class="csp-like-btn">
+			<span class="csp-fb-text"><?php echo __('Like us on Facebook'); ?></span>
+			<iframe src="<?php echo '/' . '/' ?>www.facebook.com/plugins/like.php?href=<?php echo $fbUrl; ?>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&locale=en_US" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+		<a class="csp-visit-fb-page" href="<?php echo $fbUrl; ?>" target="_blank"><?php echo __('visit our facebook page'); ?></a>
+		</div>
+	</div>
+<?php }

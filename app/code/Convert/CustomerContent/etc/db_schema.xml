@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="Customer Marketing Content Category Table" engine="innodb" name="convert_customercontent_category" resource="default">
+		<column comment="Category ID" xsi:type="smallint" name="category_id" nullable="false" padding="6" unsigned="false" identity="true"  />
+		<column comment="Status" xsi:type="boolean" name="status" nullable="false" />
+		<column comment="Title" xsi:type="text" name="title" nullable="false"/>
+		<column comment="Description" xsi:type="text" name="description" nullable="true"/>
+		<column comment="Store ID" xsi:type="text" name="store_id" nullable="false" />
+		<column comment="Created At" xsi:type="timestamp" name="created_at" nullable="false" on_update="false" default="CURRENT_TIMESTAMP" />
+		<column comment="Updated At" xsi:type="timestamp" name="updated_at" nullable="false" on_update="true" default="CURRENT_TIMESTAMP" />
+		<column comment="Type" xsi:type="smallint" name="type" nullable="false"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="category_id"/>
+		</constraint>
+	</table>
+	<table comment="Customer Marketing Content Table" engine="innodb" name="convert_customercontent_content" resource="default">
+		<column comment="Content ID" xsi:type="smallint" name="content_id" nullable="false" identity="true" padding="6" unsigned="false"/>
+		<column comment="Status" xsi:type="boolean" name="status" nullable="false"/>
+		<column comment="Title" xsi:type="text" name="title" nullable="false"/>
+		<column comment="Store ID" xsi:type="text" name="store_id" nullable="false" />
+		<column comment="Category ID" xsi:type="text" name="category_id" nullable="false" />
+		<column comment="File Path" xsi:type="text" name="file_path" nullable="false"/>
+		<column comment="Thumbnail" xsi:type="text" name="thumbnail" nullable="false"/>
+		<column comment="Created At" xsi:type="timestamp" name="created_at" nullable="false" on_update="false" default="CURRENT_TIMESTAMP" />
+		<column comment="Updated At" xsi:type="timestamp" name="updated_at" nullable="false" on_update="true" default="CURRENT_TIMESTAMP" />
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="content_id"/>
+		</constraint>
+	</table>
+	<table comment="Customer Marketing Content To Category Linkage Table" engine="innodb" name="convert_customercontent_content_category" resource="default" >
+		<column comment="Content ID" xsi:type="smallint" name="content_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+		<column comment="Category ID" xsi:type="smallint" name="category_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="content_id"/>
+			<column name="category_id"/>
+		</constraint>
+		<constraint xsi:type="foreign" referenceId="CUS_MARKET_CATEGORY_ID_TO_LINK_CATEGORY_ID" table="convert_customercontent_content_category"
+					column="category_id" referenceTable="convert_customercontent_category" referenceColumn="category_id" onDelete="CASCADE"/>
+		<constraint xsi:type="foreign" referenceId="CUS_MARKET_CONTENT_ID_TO_LINK_CONTENT_ID" table="convert_customercontent_content_category"
+					column="content_id" referenceTable="convert_customercontent_content" referenceColumn="content_id" onDelete="CASCADE"/>
+		<index referenceId="CUS_MARKET_CONTENT_CATEGORY_LINK_CONTENT_ID" indexType="btree">
+			<column name="content_id"/>
+		</index>
+	</table>
+</schema>

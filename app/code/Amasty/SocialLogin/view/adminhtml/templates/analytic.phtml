@@ -1,0 +1,174 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_SocialLogin
+ */
+?>
+<?php /** @var \Amasty\SocialLogin\Block\Adminhtml\Analytic $block */
+if ($block->isSocialLoginExists()) : ?>
+    <div class="amslogin-stat-title"><?= $block->escapeHtml(__('Social Login'))?></div>
+    <div class="amslogin-stat-wrap">
+        <?php if ($block->getTopSocialLogin()) : ?>
+            <div class="amslogin-item">
+                <p class="amslogin-title"><?= $block->escapeHtml(__('Top Social Login'))?></p>
+                <table class="amslogin-top-login">
+                    <?php foreach ($block->getTopSocialLogin() as $key => $item) : ?>
+                        <tr class="amslogin-row -<?= $block->escapeHtml($item['key'])?>">
+                            <td>
+                                <div class="amslogin-cell -type">
+                                    <div class="amslogin-numb">
+                                        <?= $block->escapeHtml($key + 1)?>
+                                    </div>
+                                    <div class="amslogin-label amslogin-icon">
+                                        <?= $block->escapeHtml(ucfirst($item['key']))?>
+                                    </div>
+                                    <div class="amslogin-count">
+                                        <?= $block->escapeHtml($item['percent'])?>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amslogin-cell -users">
+                                    <div class="amslogin-label">
+                                        <?= $block->escapeHtml(__('Users:'))?>
+                                    </div>
+                                    <div class="amslogin-count"><?= $block->escapeHtml($item['count'])?></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amslogin-cell -purchased">
+                                    <div class="amslogin-label">
+                                        <?= $block->escapeHtml(__('Purchased Items:'))?>
+                                    </div>
+                                    <div class="amslogin-count">
+                                        <?= $block->escapeHtml($item['items'] ?: 0)?>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amslogin-cell -amount">
+                                    <div class="amslogin-label">
+                                        <?= $block->escapeHtml(__('Amount:'))?>
+                                    </div>
+                                    <div class="amslogin-count">
+                                        <?= /* @escapeNotVerified */ $item['amount']?>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach;?>
+                </table>
+            </div>
+        <?php endif;?>
+
+        <div class="amslogin-wrapper">
+            <?php if ($block->getOtherConnection()) : ?>
+                <div class="amslogin-item">
+                    <p class="amslogin-title"><?= $block->escapeHtml(__('Other connections'))?></p>
+                    <table class="amslogin-other-connection">
+                        <thead>
+                        <tr class="amslogin-thead">
+                            <th class="amslogin-cell"></th>
+                            <th class="amslogin-cell"><?= $block->escapeHtml(__('Users'))?></th>
+                            <th class="amslogin-cell -purchased"><?= $block->escapeHtml(__('Purchased Items'))?></th>
+                            <th class="amslogin-cell"><?= $block->escapeHtml(__('Amount'))?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($block->getOtherConnection() as $item) : ?>
+                            <tr class="amslogin-row -<?= $block->escapeHtml($item['key'])?>">
+                                <td class="amslogin-cell -type">
+                                    <span class="amslogin-name amslogin-icon -small">
+                                        <?= $block->escapeHtml(ucfirst($item['key']))?>
+                                    </span>
+                                </td>
+                                <td class="amslogin-cell">
+                                    <?= $block->escapeHtml($item['count'])?>
+                                </td>
+                                <td class="amslogin-cell">
+                                    <?= $block->escapeHtml($item['items'] ?: 0)?>
+                                </td>
+                                <td class="amslogin-cell">
+                                    <?= /* @escapeNotVerified */ $item['amount']?>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif;?>
+
+            <?php if ($block->getTopSocialLogin()) : ?>
+                <div class="amslogin-item">
+                    <p class="amslogin-title"><?= $block->escapeHtml(__('Social Login Chart'))?></p>
+
+                    <div id="amslogin-pie" class="amslogin-social-chart -loading" data-amslogin="loading"></div>
+
+                    <script>
+                        require([
+                            "Amasty_SocialLogin/vendor/amcharts/amcharts"
+                        ], function () {
+                            require([
+                                'jquery',
+                                'uiRegistry',
+                                "Amasty_SocialLogin/vendor/amcharts/pie"
+                            ], function ($, registry) {
+                                var isInitAmchart = false;
+
+                                // Initializing the Amcharts after loading the ui grid
+                                registry.get('customer_listing.customer_listing.customer_columns', function () {
+                                    registry.get('customer_listing.customer_listing_data_source').on('reloaded', function () {
+                                        if (!isInitAmchart) {
+                                            $('[data-amslogin="loading"]').removeClass('-loading');
+                                            var chart = AmCharts.makeChart("amslogin-pie", {
+                                                "type": "pie",
+                                                "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+                                                "labelText": "[[title]]<br>[[percents]]%",
+                                                "pullOutRadius": "10%",
+                                                "startRadius": "25%",
+                                                "baseColor": "",
+                                                "colors": [
+                                                    "#2DCA9B",
+                                                    "#ADC9FF",
+                                                    "#5B81CC",
+                                                    "#3FD7D7",
+                                                    "#6FBDDF",
+                                                    "#98DC6E",
+                                                    "#E1DB52",
+                                                    "#856AD2"
+                                                ],
+                                                "groupedAlpha": 0,
+                                                "hoverAlpha": 0.84,
+                                                "labelTickAlpha": 0.5,
+                                                "pullOutEffect": "easeOutSine",
+                                                "startEffect": "easeOutSine",
+                                                "startDuration": 0.5,
+                                                "fontFamily": "'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+                                                "fontSize": 12,
+                                                "theme": "default",
+                                                "dataProvider": <?= $block->getPieData()?>,
+                                                "valueField": "value",
+                                                "titleField": "label",
+                                                "touchClickDuration": 1,
+                                                "allLabels": [],
+                                                "titles": [],
+                                                "balloon": {
+                                                    "fixedPosition": true
+                                                },
+                                                "export": {
+                                                    "enabled": true
+                                                }
+                                            });
+                                            isInitAmchart = true;
+                                        }
+                                    });
+                                });
+                            });
+                        });
+                    </script>
+                </div>
+            <?php endif;?>
+        </div>
+    </div>
+<?php endif; ?>

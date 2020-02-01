@@ -1,0 +1,58 @@
+"Amasty: Extended Order Grid Properties","Amasty: Extended Order Grid Properties"
+"Add to Column Options","Add to Column Options"
+"Select ""Yes"" to add this attribute to the list of column options in the order grid.","Select ""Yes"" to add this attribute to the list of column options in the order grid."
+General,General
+Product,Product
+Customer,Customer
+Billing,Billing
+Shipping,Shipping
+Other,Other
+Name,Name
+SKU,SKU
+Type,Type
+Options,Options
+"Price (Base)","Price (Base)"
+"Price (Purchased)","Price (Purchased)"
+"Tax Percent","Tax Percent"
+"Tax Amount (Base)","Tax Amount (Base)"
+"Tax Amount (Purchased)","Tax Amount (Purchased)"
+"Discount Percent","Discount Percent"
+"Discount Amount (Base)","Discount Amount (Base)"
+"Discount Amount (Purchased)","Discount Amount (Purchased)"
+"Qty Ordered","Qty Ordered"
+"Qty Invoiced","Qty Invoiced"
+"Qty Shipped","Qty Shipped"
+"Qty Refunded","Qty Refunded"
+"Qty Canceled","Qty Canceled"
+"Qty Available","Qty Available"
+"Row Total (Base)","Row Total (Base)"
+"Row Total (Purchased)","Row Total (Purchased)"
+"Track Order","Track Order"
+Columns,Columns
+Column,Column
+Title,Title
+Save,Save
+Close,Close
+"Order Grid","Order Grid"
+"Hide orders with statuses","Hide orders with statuses"
+"Amasty: Order Grid - Product Attributes","Amasty: Order Grid - Product Attributes"
+"Rebuild attributes index","Rebuild attributes index"
+"Coupon Code","Coupon Code"
+"Order Tax","Order Tax"
+"Order Comments","Order Comments"
+"Shipping Method","Shipping Method"
+"Subtotal (Base)","Subtotal (Base)"
+"Total Due","Total Due"
+"Total Paid","Total Paid"
+"Subtotal (Purchased)","Subtotal (Purchased)"
+Weight,Weight
+"Tracking Number","Tracking Number"
+Fax,Fax
+Region,Region
+Postcode,Postcode
+City,City
+Company,Company
+Telephone,Telephone
+Country,Country
+"Product Details","Product Details"
+"Items Sku","Items Sku"

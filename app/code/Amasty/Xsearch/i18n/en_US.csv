@@ -1,0 +1,97 @@
+"Search Volume","Search Volume"
+Attribute,Attribute
+Weight,Weight
+Status,Status
+"Not Installed","Not Installed"
+"Allows to search by blog pages created with Amasty <a target='_blank' href='%1'>Blog</a> extension.","Allows to search by blog pages created with Amasty <a target='_blank' href='%1'>Blog</a> extension."
+"For <a target='_blank' href='%1'>Improved Layered Navigation</a> and <a target='_blank' href='%2'>Shop by Brand</a>.","For <a target='_blank' href='%1'>Improved Layered Navigation</a> and <a target='_blank' href='%2'>Shop by Brand</a>."
+Installed,Installed
+"See more details about landing pages <a target='_blank' href='%1'>here</a>.","See more details about landing pages <a target='_blank' href='%1'>here</a>."
+"Please update Amasty Base module. Re-upload it and replace all the files.","Please update Amasty Base module. Re-upload it and replace all the files."
+"Undefined collection factory","Undefined collection factory"
+"Recent Activity","Recent Activity"
+"Search Analytics","Search Analytics"
+"Most Wanted Search Terms","Most Wanted Search Terms"
+No,No
+Yes,Yes
+"Not installed","Not installed"
+"Recent Activity (Search Volume)","Recent Activity (Search Volume)"
+"Total Searches","Total Searches"
+"Unique Searches","Unique Searches"
+Users,Users
+Engagement,Engagement
+"Date & Time","Date & Time"
+"View more","View more"
+"Search Query","Search Query"
+"Add to Cart","Add to Cart"
+"In stock","In stock"
+"Out of stock","Out of stock"
+"Add to Wish List","Add to Wish List"
+"Add to Compare","Add to Compare"
+"View All","View All"
+"Your search returned no results.","Your search returned no results."
+Products,Products
+"Enter Keyword or Item","Enter Keyword or Item"
+"Search entire store here...","Search entire store here..."
+"Your search returned no products.","Your search returned no products."
+"Clear Field","Clear Field"
+Search,Search
+"Advanced Search","Advanced Search"
+"Most Wanted","Most Wanted"
+"Advanced Search ","Advanced Search "
+Information,Information
+General,General
+"Popup width (px)","Popup width (px)"
+"Set the width of the autocomplete popup window. Recommended value for horizontal view is 900. To get vertical view please enter 700 and lower.","Set the width of the autocomplete popup window. Recommended value for horizontal view is 900. To get vertical view please enter 700 and lower."
+"Min characters","Min characters"
+"Enable Redirect from 404 to Search Results","Enable Redirect from 404 to Search Results"
+"If option is enabled, customer will be redirected to the store search results of the broken URL text instead of the '404 Not Found' page","If option is enabled, customer will be redirected to the store search results of the broken URL text instead of the '404 Not Found' page"
+"Custom URL Key for Default Search Results Page","Custom URL Key for Default Search Results Page"
+"Search Result Page URL Key","Search Result Page URL Key"
+"Please do not use 'catalogsearch' as URL Key value. If you use Varnish Cache then please add this custom URL Key to the exclusions. Please see the details <a target='_blank' href=""https://amasty.com/docs/doku.php?id=magento_2:advanced_search#general_settings"">here</a>.","Please do not use 'catalogsearch' as URL Key value. If you use Varnish Cache then please add this custom URL Key to the exclusions. Please see the details <a target='_blank' href=""https://amasty.com/docs/doku.php?id=magento_2:advanced_search#general_settings"">here</a>."
+"Enable Tabs on the Search Result Page","Enable Tabs on the Search Result Page"
+"Set 'Yes' to display separate tabs on the Search result page for Category, CMS and Landing pages","Set 'Yes' to display separate tabs on the Search result page for Category, CMS and Landing pages"
+"Enable Indexation for Autocomplete Popup","Enable Indexation for Autocomplete Popup"
+"Set 'Yes' to speed up autocomplete popup performance. Please note, the reindex will take longer. This feature comes with <a target='_blank' href=""https://amasty.com/elasticsearch-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=search_pro_to_elastic_m2"">Amasty Elastic Search</a> extension only.","Set 'Yes' to speed up autocomplete popup performance. Please note, the reindex will take longer. This feature comes with <a target='_blank' href=""https://amasty.com/elasticsearch-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=search_pro_to_elastic_m2"">Amasty Elastic Search</a> extension only."
+"Search Attributes","Search Attributes"
+Enabled,Enabled
+Title,Title
+Position,Position
+"This setting is ignored for the horizontal popup window.","This setting is ignored for the horizontal popup window."
+"Max Results","Max Results"
+"Name Length","Name Length"
+"Short Description Length","Short Description Length"
+"Show reviews","Show reviews"
+"Enable ""Add to Cart"" button","Enable ""Add to Cart"" button"
+"Redirect to Product Page","Redirect to Product Page"
+"When there is only one product in result","When there is only one product in result"
+"Show ""Out of Stock"" Products Last","Show ""Out of Stock"" Products Last"
+"Push ""Out of Stock"" products to the end of the search query list. Show products which are available for purchase first.","Push ""Out of Stock"" products to the end of the search query list. Show products which are available for purchase first."
+"Popular Searches","Popular Searches"
+"Show on First Click","Show on First Click"
+"Recent Searches","Recent Searches"
+Blog,Blog
+"Allows to search by blog pages created with Amasty <a target='_blank' href='https://amasty.com/blog-pro-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=Amasty_Xsearch-to-blog_m2'>Blog</a> extension.","Allows to search by blog pages created with Amasty <a target='_blank' href='https://amasty.com/blog-pro-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=Amasty_Xsearch-to-blog_m2'>Blog</a> extension."
+"Content Heading Length","Content Heading Length"
+"Content Length","Content Length"
+Brands,Brands
+"Allows to search by brand pages created with Amasty <a target='_blank' href='https://amasty.com/improved-layered-navigation-for-magento-2.html'>Improved Layered Navigation</a> and <a target='_blank' href='https://amasty.com/shop-by-brand-for-magento-2.html'>Shop by Brand</a> extensions.","Allows to search by brand pages created with Amasty <a target='_blank' href='https://amasty.com/improved-layered-navigation-for-magento-2.html'>Improved Layered Navigation</a> and <a target='_blank' href='https://amasty.com/shop-by-brand-for-magento-2.html'>Shop by Brand</a> extensions."
+Categories,Categories
+"Description Length","Description Length"
+"Display Full Category Path","Display Full Category Path"
+"CMS Pages","CMS Pages"
+"Landing Pages","Landing Pages"
+"Allows to search by landing pages created with Amasty <a target='_blank' href='https://amasty.com/landing-pages-for-magento-2.html'>Landing Pages</a> extension.","Allows to search by landing pages created with Amasty <a target='_blank' href='https://amasty.com/landing-pages-for-magento-2.html'>Landing Pages</a> extension."
+"Custom Layout","Custom Layout"
+Border,Border
+Hover,Hover
+Highlight,Highlight
+Background,Background
+Text,Text
+"Hover Text","Hover Text"
+"Elastic Search","Elastic Search"
+"It optimizes search performance and returns more relevant search results. See more details <a target=""_blank"" href=""https://amasty.com/elasticsearch-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=search_pro_to_elastic_m2"">here</a>.","It optimizes search performance and returns more relevant search results. See more details <a target=""_blank"" href=""https://amasty.com/elasticsearch-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=search_pro_to_elastic_m2"">here</a>."
+"Amasty: Advanced Search  - Categories","Amasty: Advanced Search  - Categories"
+"Rebuild fulltext search index","Rebuild fulltext search index"
+"Engagement, %","Engagement, %"
+"Date and Time","Date and Time"

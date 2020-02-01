@@ -1,0 +1,42 @@
+<!--@subject {{trans "Book a skin consultation"}} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table class="message-details">
+    <tr>
+        <td><strong>{{trans "First Name"}}</strong></td>
+        <td>{{var data.name}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Last Name"}}</strong></td>
+        <td>{{var data.last_name}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Email"}}</strong></td>
+        <td>{{var data.email}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Phone"}}</strong></td>
+        <td>{{var data.telephone}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Skin Concern"}}</strong></td>
+        <td>{{var data.skin_concern}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Are you dry or oily?"}}</strong></td>
+        <td>{{var data.or_oily}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "What skincare products are you currently using?"}}</strong></td>
+        <td>{{var data.skincare_products}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "What would be your ideal desired outcome?"}}</strong></td>
+        <td>{{var data.ideal_outcome}}</td>
+    </tr>
+</table>
+<p><strong>{{trans "Extra Comments"}}</strong></p>
+<p>{{var data.comment}}</p>
+
+{{template config_path="design/email/footer_template"}}

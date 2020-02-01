@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Unirgy_RapidFlow::urapidflow" title="RapidFlow" sortOrder="50"
+             module="Unirgy_RapidFlow" parent="Magento_Backend::system_convert" action="urapidflow/profile"
+             resource="Unirgy_RapidFlow::urapidflow"/>
+    </menu>
+</config>

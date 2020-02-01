@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_SocialLogin
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Framework\View\Element\Html\Link\Current"
+                   name="customer-account-navigation-social-accounts-link"
+                   ifconfig="amsociallogin/general/enabled">
+                <arguments>
+                    <argument name="path" xsi:type="string">amsociallogin/social/accounts</argument>
+                    <argument name="label" xsi:type="string" translate="true">My Social Accounts</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <move element="customer-account-navigation-social-accounts-link"
+              destination="customer_account_navigation"
+              after="customer-account-navigation-downloadable-products-link"/>
+    </body>
+</page>

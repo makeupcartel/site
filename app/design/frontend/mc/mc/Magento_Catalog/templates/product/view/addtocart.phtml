@@ -1,0 +1,137 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<input type="hidden" id="myaddcart1">
+<input type="hidden" id="checkbutton">
+<?php if ($_product->isSaleable()): ?>
+    <div class="box-tocart">
+        <div class="fieldset">
+			<?php if ($block->shouldRenderQuantity()): ?>
+                <div class="field qty">
+                    <label class="label" for="qty"><span><?= /* @escapeNotVerified */
+							__('Qty') ?></span></label>
+                    <div class="control">
+                        <span class="btn-qty btn-qty-minus"></span>
+                        <input type="number"
+                               name="qty"
+                               id="qty"
+                               value="<?= /* @escapeNotVerified */
+						       $block->getProductDefaultQty() * 1 ?>"
+                               title="<?= /* @escapeNotVerified */
+						       __('Qty') ?>"
+                               class="input-text qty"
+                               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                        />
+                        <span class="btn-qty btn-qty-plus"></span>
+                    </div>
+                </div>
+			<?php endif; ?>
+			<?php $helper = $this->helper('Convert\Catalog\Helper\Data'); ?>
+			<?php if ($helper->isCustomerLoggedIn()): ?>
+                <div class="actions">
+                    <button type="submit"
+                            onclick="checkButton()"
+                            title="<?= /* @escapeNotVerified */
+					        $buttonTitle ?>"
+                            class="action primary tocart"
+                            id="product-addtocart-button">
+                        <span><?= /* @escapeNotVerified */
+	                        $buttonTitle ?></span>
+                    </button>
+					<?= $block->getChildHtml('', true) ?>
+                </div>
+			<?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function (jQuery) {
+        (function ($) {
+
+            $(document).ready(function () {
+
+                $('span.btn-qty.btn-qty-plus, span.btn-qty.btn-qty-minus').click(function () {
+                    var $this = $(this);
+                    if ($this.hasClass('btn-qty-plus')) {
+                        var newAdd = $("#qty").val();
+                        var quantityPd = newAdd * 1 + 1 * 1;
+                        $("#myaddcart1").val(quantityPd);
+                    } else {
+                        var newAdd = $("#qty").val();
+                        var quantityPd = newAdd - 1;
+                        if (quantityPd >= 1) {
+                            $("#myaddcart1").val(quantityPd);
+
+                        }
+                    }
+                });
+
+                $("input#qty").change(function () {
+                    var newAdd = $("#qty").val();
+                    $("#myaddcart1").val(newAdd);
+                })
+
+            });
+
+        })(jQuery);
+    });
+</script>
+<script type="text/javascript">
+    function checkButton() {
+        require([
+            'jquery',
+        ], function ($) {
+            $("#checkbutton").val(9);
+        });
+    }
+</script>
+

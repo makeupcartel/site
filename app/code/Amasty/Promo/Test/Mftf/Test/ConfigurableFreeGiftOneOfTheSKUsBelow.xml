@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="ConfigurableFreeGiftOneOfTheSKUsBelow">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Add Configurable Free Gift And One Of The SKUs Below Add Type"/>
+            <description value="Check Add Configurable Free Gift And One Of The SKUs Below Add Type"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-10"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="ConfigurableFreeGiftOneOfTheSKUsBelow"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfiguration"/>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create new Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromoWithPromoItems" stepKey="CreateCartRule1">
+            <argument name="actionsRulePromo" value="applyAutoAddPromoItemsWithProducts"/>
+            <argument name="cartRulePromo" value="configurableFreeGiftOneOfTheSKUsBelow"/>
+        </actionGroup>
+
+        <!--Add product to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Add First Configurable Free Gift In The Cart-->
+        <actionGroup ref="AddConfigurableFreeGiftOneByOnePopUp" stepKey="AddFirstFreeGift">
+            <argument name="products" value="_theMenTankArgusAllWeatherTank"/>
+            <argument name="size" value="configurableFreeGiftOneOfTheSKUsBelow.sizeMT07"/>
+            <argument name="color" value="configurableFreeGiftOneOfTheSKUsBelow.colorMT07"/>
+        </actionGroup>
+        <actionGroup ref="CheckConfigurableProductInCart" stepKey="CheckFirstConfigurableFreeGiftInCart">
+            <argument name="products" value="_theMenTankArgusAllWeatherTank"/>
+            <argument name="productCustomSKU" value="configurableFreeGiftOneOfTheSKUsBelow.customSkuMT07"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!-- Check No Free Gift PopUp-->
+        <actionGroup ref="CheckNoPopUpInCart" stepKey="checkNoPopUp1"/>
+
+        <!--Change Qty Product-->
+        <actionGroup ref="ChangeQtyProductInCart" stepKey="ChangeQtyWatchClamberToTwo">
+            <argument name="products" value="_theWatchClamberData"/>
+            <argument name="addProductQty" value="_enterQty2"/>
+        </actionGroup>
+
+        <!-- Add Second Configurable Free Gift In The Cart-->
+        <actionGroup ref="AddConfigurableFreeGiftOneByOnePopUp" stepKey="AddSecondFreeGift">
+            <argument name="products" value="_theMenHoodiesHeroHoodie"/>
+            <argument name="size" value="configurableFreeGiftOneOfTheSKUsBelow.sizeMH07"/>
+            <argument name="color" value="configurableFreeGiftOneOfTheSKUsBelow.colorMH07"/>
+        </actionGroup>
+        <actionGroup ref="CheckConfigurableProductInCart" stepKey="CheckSecondConfigurableFreeGiftInCart">
+            <argument name="products" value="_theMenHoodiesHeroHoodie"/>
+            <argument name="productCustomSKU" value="configurableFreeGiftOneOfTheSKUsBelow.customSkuMH07"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!-- Check No Free Gift PopUp-->
+        <actionGroup ref="CheckNoPopUpInCart" stepKey="checkNoPopUp2"/>
+
+        <!--Delete Product From The Cart-->
+        <actionGroup ref="DeleteProductFromTheCart" stepKey="DeleteProductFromTheCart">
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!--Check Empty Cart-->
+        <actionGroup ref="CheckEmptyCart" stepKey="CheckThatTheCartIsEmpty"/>
+    </test>
+</tests>

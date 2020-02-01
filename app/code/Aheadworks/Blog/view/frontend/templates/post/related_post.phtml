@@ -1,0 +1,52 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/** @var \Aheadworks\Blog\Block\Post\RelatedPost $block */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+    $posts = $block->getPosts();
+    $countPosts = count($posts);
+    $clsGrid = '';
+    if ($countPosts < 3) {
+        $clsGrid = 'aw-one-posts';
+    } elseif ($countPosts < 4) {
+        $clsGrid = 'aw-three-posts';
+    } elseif ($countPosts >= 4) {
+        $clsGrid = 'aw-four-posts';
+    } else {
+        $clsGrid = '';
+    }
+?>
+<?php if ($countPosts): ?>
+    <div id="blog-related-posts" class="block">
+        <div class="block-title">
+            <strong class="blog-block-title"><?php echo $block->escapeHtml(__('Related Posts')) ?></strong>
+        </div>
+        <div class="block-content">
+            <ul class="block-related-posts">
+                <?php foreach ($posts as $post): ?>
+                    <li class="block-related-posts-item <?= /* @noEscape */ $clsGrid;?>">
+                        <?php if ($block->isFeaturedImageLoaded($post)): ?>
+                            <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>" class="related-post-featured-image-link">
+                                <img class="recent-post-featured-image"
+                                     src = "<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getFeaturedImageUrl($post)) ?>"
+                                     title = "<?php echo $block->escapeHtml($post->getFeaturedImageTitle()) ?>"
+                                     alt = "<?php echo $block->escapeHtml($post->getFeaturedImageAlt()) ?>"
+                                />
+                            </a>
+                        <?php endif; ?>
+                        <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>"
+                           class="block-related-post-link">
+                            <?php echo $block->escapeHtml($post->getTitle()) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>

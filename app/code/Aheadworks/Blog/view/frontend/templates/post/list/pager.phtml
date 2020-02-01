@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright 2018 aheadWorks. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\PostList\Pager */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+    $resultItems = $block->getResultItems();
+?>
+<?php if ($resultItems && $resultItems->getTotalCount()): ?>
+    <div class="blog-pagination">
+        <?php if ($block->getLastPageNum() > 1): ?>
+            <?php if (!$block->isFirstPage()): ?>
+                <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getPreviousPageUrl()) ?>" class="blog-pagination-item">
+                    <?php echo $block->escapeHtml(__('Previous Page')) ?>
+                </a>
+            <?php endif; ?>
+            <?php if ($block->canShowFirst()): ?>
+                <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getFirstPageUrl()) ?>" class="blog-pagination-item blog-pagination-page">1</a>
+            <?php endif; ?>
+            <?php if ($block->canShowPreviousJump()): ?>
+                <span class="blog-pagination-item">...</span>
+            <?php endif; ?>
+            <?php foreach ($block->getFramePages() as $page): ?>
+                <?php if ($block->isPageCurrent($page)): ?>
+                    <span class="blog-pagination-item blog-pagination-page alink blog-pagination-page-current">
+                        <?php echo $block->escapeHtml($page) ?>
+                    </span>
+                <?php else: ?>
+                    <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getPageUrl($page)) ?>"
+                       class="blog-pagination-item blog-pagination-page">
+                        <span><?php echo $block->escapeHtml($page) ?></span>
+                    </a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if ($block->canShowNextJump()): ?>
+                <span class="blog-pagination-item">...</span>
+            <?php endif; ?>
+            <?php if ($block->canShowLast()): ?>
+                <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getLastPageUrl()) ?>"
+                   class="blog-pagination-item blog-pagination-page">
+                    <span><?php echo $block->escapeHtml($block->getLastPageNum()) ?></span>
+                </a>
+            <?php endif; ?>
+            <?php if (!$block->isLastPage()): ?>
+                <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getNextPageUrl()) ?>"
+                   class="blog-pagination-item">
+                    <span><?php echo $block->escapeHtml(__('Next Page')) ?></span>
+                </a>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+<?php endif ?>

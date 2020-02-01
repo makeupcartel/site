@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Magedelight
+* Copyright (C) 2017 Magedelight <info@magedelight.com>
+*
+* @category Magedelight
+* @package Magedelight_Megamenu
+* @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Store/etc/config.xsd">
+    <default>
+        <magedelight>
+            <general>
+                <megamenu_status>0</megamenu_status>
+                <animation_time>0.7</animation_time>
+            </general>
+            <logs_settings>
+                <enable_logs>1</enable_logs>
+            </logs_settings>
+        </magedelight>
+    </default>
+</config>

@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- Blog Category -->
+    <route url="/V1/blogCategory/get:categoryId" method="GET">
+        <service class="Aheadworks\Blog\Api\CategoryRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::categories"/>
+        </resources>
+    </route>
+    <route url="/V1/blogCategory/create" method="POST">
+        <service class="Aheadworks\Blog\Api\CategoryRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::categories"/>
+        </resources>
+    </route>
+    <route url="/V1/blogCategory/update/:id" method="PUT">
+        <service class="Aheadworks\Blog\Api\CategoryRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::categories"/>
+        </resources>
+    </route>
+    <route url="/V1/blogCategory/delete:categoryId" method="DELETE">
+        <service class="Aheadworks\Blog\Api\CategoryRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::categories"/>
+        </resources>
+    </route>
+    <route url="/V1/blogCategory/search" method="GET">
+        <service class="Aheadworks\Blog\Api\CategoryRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::categories"/>
+        </resources>
+    </route>
+    <!-- Blog Post -->
+    <route url="/V1/blogPost/get:postId" method="GET">
+        <service class="Aheadworks\Blog\Api\PostRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::posts"/>
+        </resources>
+    </route>
+    <route url="/V1/blogPost/getWithRelatedPosts" method="POST">
+        <service class="Aheadworks\Blog\Api\PostRepositoryInterface" method="getWithRelatedPosts"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::posts"/>
+        </resources>
+    </route>
+    <route url="/V1/blogPost/create" method="POST">
+        <service class="Aheadworks\Blog\Api\PostRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::posts"/>
+        </resources>
+    </route>
+    <route url="/V1/blogPost/update/:id" method="PUT">
+        <service class="Aheadworks\Blog\Api\PostRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::posts"/>
+        </resources>
+    </route>
+    <route url="/V1/blogPost/delete/:postId" method="DELETE">
+        <service class="Aheadworks\Blog\Api\PostRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::posts"/>
+        </resources>
+    </route>
+    <route url="/V1/blogPost/search" method="GET">
+        <service class="Aheadworks\Blog\Api\PostRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::posts"/>
+        </resources>
+    </route>
+    <!-- Blog Tag Cloud Items -->
+    <route url="/V1/blogTagCloudItem/tag/:tagId/store/:storeId" method="GET">
+        <service class="Aheadworks\Blog\Api\TagCloudItemRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::posts"/>
+        </resources>
+    </route>
+    <route url="/V1/blogTagCloudItem/search" method="GET">
+        <service class="Aheadworks\Blog\Api\TagCloudItemRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::posts"/>
+        </resources>
+    </route>
+    <!-- Blog Author -->
+    <route url="/V1/blogAuthor/get/:authorId" method="GET">
+        <service class="Aheadworks\Blog\Api\AuthorRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/blogAuthor/create" method="POST">
+        <service class="Aheadworks\Blog\Api\AuthorRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::authors"/>
+        </resources>
+    </route>
+    <route url="/V1/blogAuthor/update/:id" method="PUT">
+        <service class="Aheadworks\Blog\Api\AuthorRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::authors"/>
+        </resources>
+    </route>
+    <route url="/V1/blogAuthor/delete/:authorId" method="DELETE">
+        <service class="Aheadworks\Blog\Api\AuthorRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::authors"/>
+        </resources>
+    </route>
+    <route url="/V1/blogAuthor/search" method="GET">
+        <service class="Aheadworks\Blog\Api\AuthorRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Aheadworks_Blog::authors"/>
+        </resources>
+    </route>
+</routes>

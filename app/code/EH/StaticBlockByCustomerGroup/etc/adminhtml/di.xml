@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author ExtensionHut Team
+ * @copyright Copyright (c) 2019 ExtensionHut (https://www.extensionhut.com/)
+ * @package EH_StaticBlockByCustomerGroup
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Cms\Controller\Adminhtml\Block\Save">
+        <plugin name="eh-static-block-by-customer-group-before-save" type="EH\StaticBlockByCustomerGroup\Plugins\Cms\Controller\Block\Save" sortOrder="10"/>
+    </type>
+<!--
+    <type name="Magento\Framework\Notification\MessageList">
+        <arguments>
+            <argument name="messages" xsi:type="array">
+                <item name="staticBlockByCustomerGroupUpdatesSystemMessage" xsi:type="string">EH\StaticBlockByCustomerGroup\Model\System\Message\UpdatesSystemMessage</item>
+            </argument>
+        </arguments>
+    </type>
+-->
+</config>

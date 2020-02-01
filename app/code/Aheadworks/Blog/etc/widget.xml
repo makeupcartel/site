@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="aw_blog_tag_cloud" class="Aheadworks\Blog\Block\Widget\TagCloud">
+        <label translate="true">Blog Tag Cloud by Aheadworks</label>
+        <description translate="true">Tag Cloud</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="true" required="true" sort_order="10">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/tag_cloud/default.phtml" selected="true">
+                        <label translate="true">Blog Tag Cloud Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="aw_blog_recent_post" class="Aheadworks\Blog\Block\Widget\RecentPost">
+        <label translate="true">Recent Blog Posts by Aheadworks</label>
+        <description translate="true">Recent Blog Posts</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="number_to_display" xsi:type="text" required="false" visible="true">
+                <label translate="true">Number of Posts to display</label>
+                <value>5</value>
+            </parameter>
+            <parameter name="category_ids" xsi:type="multiselect" visible="true"
+                       source_model="Aheadworks\Blog\Model\Source\Widget\Categories" required="false">
+                <label translate="true">Categories</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="true" required="true" sort_order="10">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/recent_post/default.phtml" selected="true">
+                        <label translate="true">Recent Blog Posts Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_save_after">
+        <observer name="xtento_productexport_catalog_product_save_after" instance="Xtento\ProductExport\Observer\CatalogProductSaveAfterObserver" shared="false"/>
+    </event>
+    <event name="catalog_category_save_after">
+        <observer name="xtento_productexport_catalog_category_save_after" instance="Xtento\ProductExport\Observer\CatalogCategorySaveAfterObserver" shared="false"/>
+    </event>
+</config>
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2016-04-16T13:26:41+00:00
+ * File:          app/code/Xtento/ProductExport/etc/events.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

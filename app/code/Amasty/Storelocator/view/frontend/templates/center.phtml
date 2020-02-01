@@ -1,0 +1,167 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Storelocator
+ */
+?>
+<?php /** @var \Amasty\Storelocator\Block\Location $block */ ?>
+<?php
+
+$productId = $this->getRequest()->getParam('product');
+
+if ($productId) :
+    $product = $this->getProductById($productId);
+    ?>
+    <h1 style="text-align: center"><?= $product->getName(); ?><?= __(' can be found at the following stores:&nbsp;')?></h1>
+    <hr>
+<?php endif; ?>
+<div id="amasty_locator_block" style="<?= $block->getMainBlockStyles(); ?>">
+    <?php if ($block->getWidgetDescription()) : ?>
+        <div>
+            <strong><span><?= $block->getWidgetDescription(); ?></span></strong>
+        </div>
+    <?php endif; ?>
+    <div id="amasty_locator_filter">
+        <div class="column_right">
+            <?php if (!$block->isWidget()) : ?>
+                <div class="block-title">
+                    <strong><span><?= __('Filter')?></span></strong>
+                </div>
+                <div class="block-content">
+                    <?php $attributes = $block->getAttributes();?>
+                    <form id="attribute-form" class="attributes" action="#">
+                        <?php foreach ($attributes as $attribute) : ?>
+                            <div class="location-attribute">
+                                <div class="attribute-label"><?= $attribute['label'];?></div>
+                                <input type="hidden" value="<?= $attribute['attribute_id'];?>" name="attribute_id[]">
+                                <div class="input-box">
+                                    <select name="option[<?= $attribute['attribute_id'];?>]" <?php if ($attribute['frontend_input'] == 'multiselect'): ?>multiple="multiple"<?php endif;?>>
+                                        <option value=""><?= __('Please Select'); ?></option>
+                                        <?php foreach ($attribute['options'] as $valueId => $option) : ?>
+                                            <option value="<?= $valueId ?>"><?= $option; ?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                            </div>
+                        <?php endforeach;?>
+                    </form>
+
+                    <button class="button filter-attribute" title="Filter" id="<?= $block->getAttributeFilterId(); ?>" ><span><span><?= __('Filter')?></span></span></button>
+                </div>
+            <?php endif; ?>
+        </div>
+        <?php if ($block->getShowSearch()) : ?>
+            <div class="column_left">
+                <div class="block-title">
+                    <strong><span><?= __('Search')?></span></strong>
+                </div>
+                <div class="block-content">
+
+                    <div id="current-address" class="amlocator_input">
+                        <label for="address"><?= __('Current Location')?></label>
+                        <div class="input-box">
+                            <input type="text" value="" class="input-text" id="<?= $block->getSearchId(); ?>"
+                                   name="address" placeholder="<?= __('Enter a location')?>" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="amlocator_input">
+                        <label for="radius"><?= __('Search Radius')?></label>
+                        <div class="input-box">
+                            <select title="" class="select" id="<?= $block->getSearchRadiusId(); ?>" name="radius" >
+                                <?php foreach ($block->getSearchRadius() as $range) : ?>
+                                    <option value="<?= is_numeric($range) ? $range : ''; ?>"><?= $range ?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <?php if ($this->getDistanceConfig() == 'choose') : ?>
+                        <div class="amlocator_input">
+                            <label for="measurement"><?= __('Search Radius Measurement')?></label>
+                            <div class="input-box">
+                                <select title="" class="select" id="amlocator-measurement" name="measurement">
+                                    <option value="km"><?= __('km')?></option>
+                                    <option selected="selected" value="mi"><?= __('mi')?></option>
+                                </select>
+                            </div>
+                        </div>
+                    <?php endif ?>
+
+                    <div class="amlocator_input">
+                        <button class="button" title="Filter" id="<?= $block->getSearchButtonId(); ?>">
+                        <span>
+                            <span>
+                                <?= __('Search')?>
+                            </span>
+                        </span>
+                        </button>
+
+                        <button id="<?= $block->getNearbyButtonId(); ?>" class="button locateNearBy" title="Sort" type="button">
+                        <span>
+                            <span><?= __('Locate Nearby')?></span>
+                        </span>
+                        </button>
+                    </div>
+
+                    <input type="hidden" id="<?= $block->getAmLatId(); ?>" >
+                    <input type="hidden" id="<?= $block->getAmLngId(); ?>" >
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="amlocator_center">
+        <div class="amlocator_mapblock" style="<?= $block->getMapStyles(); ?>">
+            <div class="amlocator-map-canvas" id="<?= $block->getMapId(); ?>"></div>
+        </div>
+        <?php if ($block->getShowLocations()) : ?>
+            <div class="amlocator_store_list" style="<?= $block->getStoreListStyles(); ?>">
+                <?= $block->getLeftBlockHtml(); ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<script>
+    var baloonTemplate = <?= $block->getBaloonTemplate() ?>;
+    var amMediaUrl = "<?= $block->getAmStoreMediaUrl() ?>";
+    var mapZoom = <?= $block->getMapZoom() ?>;
+    var productId = "<?= $block->getProductId() ?>";
+    var categoryId = "<?= $block->getCategoryId() ?>";
+    var locatorPageUrl = "<?= $block->getLinkToMap(); ?>";
+    var widgetLinkText = "<?= $block->getWidgetLinkText(); ?>";
+    var automaticLocate = "<?= $block->getAutomaticLocate(); ?>";
+    var enableClustering = "<?= $block->getClustering(); ?>";
+    var enableCountingDistance = "<?= $block->getCountingDistance(); ?>";
+    var distanceConfig = "<?= $block->getDistanceConfig(); ?>";
+    var useGeoConfig = "<?= $block->getGeoUse()?>";
+    var allowedCountries = <?= $block->getAllowedCountries(); ?>;
+</script>
+
+<script>
+    require([
+        'jquery',
+        'Amasty_Storelocator/js/main',
+        'Amasty_Storelocator/js/cluster',
+        'domReady!',
+        'https://maps.googleapis.com/maps/api/js?libraries=places<?= $block->getApiKey(); ?>'
+    ], function ($) {
+        var mapId = "#" + "<?= $block->getMapId(); ?>";
+        $(mapId).amLocator({
+            ajaxCallUrl: "<?= $this->getUrl('amlocator/index/ajax') . $this->getQueryString() ?>",
+            useBrowserLocation: "<?= $this->getUseBrowserLocation()?>",
+            jsonLocations: <?= $this->getJsonLocations() ?>,
+            imageLocations: "<?= $block->getViewFileUrl('Amasty_Storelocator::images/'); ?>",
+            searchButtonId: "<?= $block->getSearchButtonId(); ?>",
+            searchRadiusId: "<?= $block->getSearchRadiusId(); ?>",
+            searchId: "<?= $block->getSearchId(); ?>",
+            attributeFilterId: "<?= $block->getAttributeFilterId(); ?>",
+            nearbyButtonId: "<?= $block->getNearbyButtonId(); ?>",
+            amLatId: "<?= $block->getAmLatId(); ?>",
+            amLngId: "<?= $block->getAmLngId(); ?>",
+            storeListId : "<?= $block->getStoresListId(); ?>",
+            mapId: "<?= $block->getMapId(); ?>",
+            showSearch: <?= $block->getShowSearch(); ?>,
+            activeLocation: "<?= $this->getRequest()->getParam('locationId'); ?>"
+        });
+    });
+</script>

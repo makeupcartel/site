@@ -1,0 +1,1061 @@
+//
+// Top toolbar styles
+// _______________________________________________
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    // General styles for blocks
+    .amreports-filter-from,
+    .amreports-filter-to {
+        & {
+            display: inline-block;
+            margin: 0;
+        }
+
+        > .field-row {
+            position: relative;
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-box-align(center);
+            width: 180px;
+        }
+
+        .field-row > .admin__field-label,
+        .field-row > .admin__field-label {
+            min-width: 34px;
+            text-align: right;
+        }
+
+        .admin__control-text.input-text._has-datepicker {
+            width: 120px;
+            margin-left: auto;
+            padding: 7px 35px 7px 10px;
+            .lib-css(border, 1px solid @amreports-input-border__color);
+        }
+
+        .ui-datepicker-trigger {
+            & {
+                right: 0;
+            }
+
+            &:after {
+                width: 32px;
+                height: 32px;
+                font-size: 0;
+                .lib-css(background, @amreports-datapicker__background-image);
+            }
+        }
+    }
+
+    .amreports-filter-from {
+        margin-bottom: 10px;
+    }
+
+    .amreports-filter-interval {
+        > .field-row {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-wrap(wrap);
+            margin: 20px 0;
+            .lib-css(border, 1px solid @amreports-input-border__color);
+        }
+
+        .admin__field.admin__field-option {
+            min-width: 90px;
+            width: 50%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .admin__field.admin__field-option:nth-child(1),
+        .admin__field.admin__field-option:nth-child(2) {
+            .lib-css(border-bottom, 1px solid @amreports-input-border__color);
+        }
+
+        .admin__field.admin__field-option:nth-child(1),
+        .admin__field.admin__field-option:nth-child(3) {
+            .lib-css(border-right, 1px solid @amreports-input-border__color);
+        }
+
+        .admin__field-option .admin__field-label {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-box-align(center);
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 7px 0;
+            text-align: center;
+            word-break: break-all;
+        }
+
+        .admin__control-radio:checked + .admin__field-label {
+            font-weight: bold;
+            color: #fff;
+            background: #1787e0;
+        }
+
+        .admin__control-radio + label:before,
+        .toolbar .admin__control-radio:checked + label:after,
+        .admin__control-radio:checked + label:after {
+            display: none;
+        }
+    }
+
+    .amreports-select-component {
+        max-width: initial;
+        width: 100%;
+        padding: 7px 44px 7px 10px;
+    }
+
+    .amreports-quantity-component {
+        & {
+            margin-bottom: 15px;
+        }
+
+        > .field-row {
+            .lib-vendor-prefix-display(flex);
+            .lib-css(border, 1px solid @amreports-input-border__color);
+            max-height: 35px;
+        }
+
+        .admin__field {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-box-align(center);
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 50%;
+            padding: 0;
+        }
+
+        .admin__field:first-child {
+            .lib-css(border-right, 1px solid @amreports-input-border__color);
+        }
+
+        .admin__field-label {
+            width: 100%;
+            padding: 8px 0;
+            text-align: center;
+        }
+
+        .admin__control-radio + label:before,
+        .toolbar .admin__control-radio:checked + label:after,
+        .admin__control-radio:checked + label:after {
+            display: none;
+        }
+
+        .admin__control-radio:checked + .admin__field-label {
+            font-weight: bold;
+            color: #fff;
+            background: #1787e0;
+        }
+    }
+
+    .amreports-rule-container {
+        & {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-box-align(center);
+            max-width: 360px;
+            margin: 20px 0;
+        }
+
+        .amreports-select {
+            .lib-vendor-prefix-flex-grow(1);
+            margin-left: 9px;
+            padding: 7px 44px 7px 10px;
+        }
+    }
+
+    .amreports-newrule-container {
+        & {
+            margin: 0 0 20px 60px;
+        }
+
+        .amreports-newrule {
+            & {
+                position: relative;
+                display: inline-block;
+                padding: 7px 10px;
+                font-weight: 600;
+                color: #007bdb;
+                background: #fff;
+                border: 1px solid #007bdb;
+            }
+
+            &:hover {
+                background: #007bdb;
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+
+    // Overview, Customers
+    .amreports-customers-container,
+    .amreports-overview-container {
+        .amreports-filter-interval + .amreports-field > .amreports-select {
+            &:extend(.amreports-select-component all);
+        }
+    }
+
+    // Orders
+    .amreports-orders-container {
+        .amreports-field .field-row > .amreports-select {
+            &:extend(.amreports-select-component all);
+
+            margin: 15px 0;
+        }
+
+        .amreports-field:nth-child(4) {
+            &:extend(.amreports-quantity-component all);
+        }
+
+        .amreports-field > .amreports-select {
+            &:extend(.amreports-select-component all);
+        }
+    }
+
+    // Sales by ... and Brands
+    .amreports-sales-container,
+    .amreports-brands-container {
+        .amreports-field:nth-child(3) {
+            &:extend(.amreports-quantity-component all);
+
+            margin: 20px 0;
+        }
+
+        .amreports-field > .amreports-select {
+            &:extend(.amreports-select-component all);
+        }
+    }
+
+    // Sales by coupon
+    .amreports-coupon-container {
+        .amreports-field:nth-child(3) .field-row > .admin__field:first-child {
+            width: 40%;
+        }
+
+        .amreports-field:nth-child(3) .field-row > .admin__field:last-child {
+            width: 60%;
+        }
+    }
+
+    // Sales comprasion
+    .amreports-compare-container  {
+        .amreports-field:nth-child(1),
+        .amreports-field:nth-child(2),
+        .amreports-field:nth-child(3) {
+            .amreports-ranges-fieldset {
+                margin-bottom: 30px;
+            }
+
+            .admin__legend {
+                margin-bottom: 20px;
+            }
+
+            .admin__field {
+                position: relative;
+                display: inline-block;
+                width: 180px;
+                margin: 0;
+            }
+
+            .admin__field:nth-child(4) {
+                margin-bottom: 15px;
+            }
+
+            .admin__field-label {
+                min-width: 35px;
+                margin-left: 0;
+                text-align: right;
+                font-size: 14px;
+                font-weight: normal;
+            }
+
+            .admin__field-label + .admin__field-control.control {
+                float: initial;
+                width: auto;
+                margin-left: 60px;
+            }
+
+            .input-text._has-datepicker {
+                width: 120px;
+                padding: 7px 35px 7px 10px;
+                .lib-css(border, 1px solid @amreports-input-border__color);
+            }
+
+            .ui-datepicker-trigger {
+                & {
+                    position: absolute;
+                    right: 0;
+                }
+
+                &:after {
+                    width: 32px;
+                    height: 32px;
+                    font-size: 0;
+                    .lib-css(background, @amreports-datapicker__background-image);
+                }
+            }
+
+            .range-legend {
+                display: inline-block;
+                width: 13px;
+                height: 13px;
+                border-radius: 50%;
+            }
+        }
+
+        .amreports-field:nth-child(5) > .amreports-select {
+            &:extend(.amreports-select-component all);
+        }
+
+        .amreports-field:last-child {
+            & {
+                margin-top: 20px;
+            }
+
+            .action-default {
+                padding: 10px 20px;
+                border: none;
+                color: #fff;
+                background: #1787e0;
+            }
+        }
+    }
+
+    // By product, Bestsellers
+    .amreports-byproduct-container,
+    .amreports-bestsellers-container {
+        .amreports-container-content > .amreports-toolbar {
+            border-bottom: 0;
+        }
+
+        .amreports-field:last-child > .amreports-select {
+            &:extend(.amreports-select-component all);
+        }
+    }
+
+    // By product attributes
+    .amreports-attributes-container {
+        .amreports-field  > .amreports-select {
+            &:extend(.amreports-select-component all);
+
+            margin: 15px 0;
+        }
+
+        .amreports-field:nth-child(4) {
+            &:extend(.amreports-quantity-component all);
+        }
+
+        .amreports-field > .amreports-select.amreports-filter-store {
+            &:extend(.amreports-select-component all);
+
+            margin: 0;
+        }
+    }
+
+    // Product perfomance
+    .amreports-perfomanceproduct-container {
+        .amreports-container-content > .amreports-toolbar {
+            border-bottom: 0;
+        }
+
+        .amreports-field:nth-child(3) {
+            & {
+                margin: 20px 0;
+            }
+
+            .amreport-sku-field {
+                width: 100%;
+                max-width: 360px;
+                padding: 7px 10px;
+            }
+
+            .field-row {
+                position: relative;
+            }
+
+            .amreport-error {
+                position: absolute;
+                bottom: -24px;
+                font-size: 12px;
+                color: #ff1d33;
+            }
+        }
+
+        .amreports-field:nth-child(4) {
+            .control-value {
+                padding: 0;
+            }
+
+            .action-default {
+                & {
+                    padding: 7px 10px;
+                    font-weight: 600;
+                    color: #007bdb;
+                    background: #fff;
+                    border: 1px solid #007bdb;
+                }
+
+                &:hover {
+                    background: #007bdb;
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .amreports-field:last-child > .amreports-select {
+            &:extend(.amreports-select-component all);
+
+            margin-top: 20px;
+        }
+    }
+
+    // change position export menu on charts
+    .amreports-overview-container,
+    .amreports-compare-container,
+    .amreports-customers-container {
+        .amcharts-amexport-menu.amcharts-amexport-top {
+            top: 50px;
+            right: 0;
+        }
+    }
+
+    .amreports-orders-container,
+    .amreports-sales-container,
+    .amreports-brands-container,
+    .amreports-coupon-container,
+    .amreports-byproduct-container,
+    .amreports-bestsellers-container,
+    .amreports-attributes-container {
+        .amcharts-amexport-menu.amcharts-amexport-top {
+            right: 0;
+        }
+    }
+
+    .product-group {
+        border-bottom: 1px dotted;
+        padding-bottom: 0.5em;
+
+        &:last-child {
+            border: none;
+            padding-bottom: 0;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    // General styles for blocks
+    .amreports-filter-interval {
+        .admin__field.admin__field-option {
+            width: 25%;
+        }
+
+        .field-row .admin__field.admin__field-option {
+            border: 0;
+            .lib-css(border-right, 1px solid @amreports-input-border__color);
+        }
+
+        .admin__field.admin__field-option:last-child {
+            border: 0;
+        }
+    }
+}
+
+//
+//  Tablet
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    // General styles for blocks
+    .amreports-filter-from,
+    .amreports-filter-to {
+        & {
+            width: 50%;
+            margin-bottom: 0;
+        }
+
+        > .field-row {
+            width: 100%;
+        }
+
+        .admin__control-text.input-text._has-datepicker {
+            width: 100%;
+            margin-left: 10px;
+        }
+    }
+
+    .amreports-filter-interval .admin__field.admin__field-option {
+        & {
+            min-width: 85px;
+            border-right: 0;
+        }
+
+        &:last-child {
+            .lib-css(border-right, 1px solid @amreports-input-border__color);
+        }
+    }
+
+    .amreports-status {
+        & {
+            width: 50%;
+            margin: 20px 0;
+        }
+
+        .amreports-select {
+            margin: 0;
+        }
+    }
+
+    .amreports-quantity-component {
+        width: 47%;
+        margin: 20px 0 20px auto;
+    }
+
+    .amreports-rule-container {
+        max-width: initial;
+        width: 50%;
+    }
+
+    .amreports-newrule-container {
+        margin: 20px 0 20px 45px;
+    }
+
+    // Orders
+    .amreports-orders-container {
+        .amreports-toolbar-container {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-wrap(wrap);
+        }
+
+        .amreports-field:nth-child(3)  {
+            &:extend(.amreports-status all);
+        }
+
+        .amreports-field:last-child {
+            width: 100%;
+        }
+    }
+
+    // Sales by ... and Brands
+    .amreports-sales-container,
+    .amreports-brands-container {
+        .amreports-toolbar-container {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-wrap(wrap);
+        }
+
+        .amreports-field:nth-child(3) {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .amreports-field:last-child {
+            width: 100%;
+        }
+    }
+
+    // Sales by coupon
+    .amreports-coupon-container {
+        .amreports-field:nth-child(3) .field-row > .admin__field:first-child {
+            width: 50%;
+        }
+
+        .amreports-field:nth-child(3) .field-row > .admin__field:last-child {
+            width: 50%;
+        }
+    }
+
+    // Sales comprasion
+    .amreports-compare-container {
+        .amreports-toolbar-container {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-wrap(wrap);
+        }
+
+        .amreports-field:nth-child(1),
+        .amreports-field:nth-child(2),
+        .amreports-field:nth-child(3) {
+            & {
+                width: 30%;
+            }
+
+            .admin__field {
+                width: auto;
+            }
+
+            .admin__field-label + .admin__field-control.control {
+                margin-left: 50px;
+            }
+
+            .input-text._has-datepicker {
+                width: 100%;
+            }
+        }
+
+        .amreports-field:nth-child(2) {
+            margin: 0 auto;
+        }
+
+        .amreports-filter-interval {
+            & {
+                width: 49%;
+            }
+
+            .field-row {
+                margin: 0;
+            }
+
+            .admin__field.admin__field-option {
+                min-width: 70px;
+            }
+        }
+
+        .amreports-filter-interval + .amreports-field {
+            width: 48%;
+            margin-left: auto;
+        }
+    }
+
+    // By product, Bestsellers
+    .amreports-byproduct-container,
+    .amreports-bestsellers-container {
+        .amreports-toolbar-container {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-wrap(wrap);
+        }
+
+        .amreports-field:last-child {
+            width: 100%;
+        }
+    }
+
+    // By attributes
+    .amreports-attributes-container {
+        .amreports-toolbar-container {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-wrap(wrap);
+        }
+
+        .amreports-field:nth-child(3)  {
+            &:extend(.amreports-status all);
+        }
+
+        .amreports-field:last-child {
+            width: 100%;
+        }
+    }
+
+    // Product perfomance
+    .amreports-perfomanceproduct-container {
+        .amreports-toolbar-container {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-wrap(wrap);
+        }
+
+        .amreports-field:nth-child(3) {
+            & {
+                width: 51%;
+                margin-bottom: 0;
+            }
+
+            .amreport-sku-field {
+                max-width: inherit;
+            }
+        }
+
+        .amreports-field:nth-child(4) {
+            margin: 20px 0 0 38px;
+        }
+
+        .amreports-field:last-child {
+            width: 100%;
+        }
+    }
+}
+
+//
+//  Desktop
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    // General styles for blocks
+    .amreports-filter-from,
+    .amreports-filter-to {
+        & {
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+        .admin__control-text.input-text._has-datepicker {
+            width: 120px;
+            padding: 3px 35px 3px 8px;
+        }
+    }
+
+    .amreports-filter-to {
+        margin-right: 25px;
+    }
+
+    .amreports-filter-interval {
+        & {
+            width: 48%;
+            margin-right: 20px;
+        }
+
+        > .field-row {
+            margin: 0;
+        }
+
+        .admin__field.admin__field-option {
+            min-width: 65px;
+        }
+
+        .admin__field-option .admin__field-label {
+            padding: 3px 0;
+        }
+    }
+
+    .amreports-filter-interval + .amreports-field {
+        max-width: 350px;
+        width: 48%;
+    }
+
+    .amreports-select-component {
+        padding: 3px 44px 3px 10px;
+    }
+
+    .amreports-quantity-component {
+        & {
+            max-width: 328px;
+            width: 60%;
+            margin: 0 25px 0 0;
+        }
+
+        > .field-row {
+            max-height: 27px;
+        }
+
+        .admin__field-label {
+            padding: 3px 0;
+        }
+    }
+
+    .amreports-status {
+        .lib-vendor-prefix-flex-grow(1);
+        width: 35%;
+        margin: 0;
+    }
+
+    .amreports-rule-container {
+        & {
+            width: 50%;
+            margin: 0;
+        }
+
+        .amreports-select {
+            padding: 3px 44px 3px 10px;
+        }
+    }
+
+    .amreports-newrule-container {
+        & {
+            margin: 0 0 0 40px;
+        }
+
+        .amreports-newrule {
+            padding: 3px 10px;
+        }
+    }
+
+    // Orders
+    .amreports-orders-container {
+        .amreports-field:nth-child(3)  {
+            &:extend(.amreports-status all);
+        }
+
+        .amreports-field:last-child {
+            .lib-vendor-prefix-flex-grow(1);
+            width: 35%;
+        }
+    }
+
+    // Sales by ... and Brands
+    .amreports-sales-container,
+    .amreports-brands-container {
+        .amreports-filter-to {
+            margin-right: 0;
+        }
+
+        .amreports-field:nth-child(3) {
+            width: 35%;
+            margin: 0 0 0 auto;
+        }
+
+        .amreports-field:last-child {
+            width: 33%;
+        }
+    }
+
+    // Sales by coupon
+    .amreports-coupon-container {
+        .amreports-field:nth-child(3) .field-row > .admin__field:first-child {
+            width: 40%;
+        }
+
+        .amreports-field:nth-child(3) .field-row > .admin__field:last-child {
+            width: 60%;
+        }
+    }
+
+    // Sales comprasion
+    .amreports-compare-container {
+        .amreports-field:nth-child(1) .input-text._has-datepicker,
+        .amreports-field:nth-child(2) .input-text._has-datepicker,
+        .amreports-field:nth-child(3) .input-text._has-datepicker {
+            padding: 3px 35px 3px 10px;
+        }
+
+        .amreports-filter-interval {
+            & {
+                width: 48%;
+            }
+
+            .admin__field.admin__field-option {
+                max-width: initial;
+                min-width: 65px;
+            }
+        }
+
+        .amreports-filter-interval + .amreports-field {
+            max-width: initial;
+        }
+    }
+
+    // By product, Bestsellers
+    .amreports-byproduct-container,
+    .amreports-bestsellers-container {
+        .amreports-filter-to {
+            margin-right: 200px;
+        }
+
+        .amreports-field:last-child {
+            margin-top: 20px;
+        }
+    }
+
+    // By attributes
+    .amreports-attributes-container {
+        .amreports-field:nth-child(3)  {
+            &:extend(.amreports-status all);
+        }
+
+        .amreports-field:last-child {
+            .lib-vendor-prefix-flex-grow(1);
+            width: 35%;
+        }
+    }
+
+    // Product perfomance
+    .amreports-perfomanceproduct-container {
+        .amreports-filter-to {
+            margin-right: 200px;
+        }
+
+        .amreports-field:nth-child(3) {
+            & {
+                width: 60%;
+                margin: 0;
+            }
+
+            .amreport-sku-field {
+                width: 100%;
+                padding: 3px 10px;
+            }
+        }
+
+        .amreports-field:nth-child(4) {
+            & {
+                margin: 0 0 0 38px;
+            }
+
+            .action-default {
+                padding: 3px 10px;
+            }
+        }
+
+        .amreports-field:last-child {
+            width: 100%;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    // General styles for blocks
+    .amreports-filter-to,
+    .amreports-filter-from {
+        margin: 0;
+    }
+
+    .amreports-filter-interval {
+        & {
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .admin__field.admin__field-option {
+            min-width: 69px;
+        }
+    }
+
+    .amreports-filter-interval + .amreports-field {
+        max-width: 210px;
+    }
+
+    .amreports-quantity-component {
+        & {
+            max-width: 280px;
+            width: 25%;
+            margin: 0 auto;
+        }
+
+        .admin__field:first-child {
+            -ms-flex-item-align: start;
+            align-self: flex-start;
+        }
+
+        .admin__field:last-child {
+            -ms-flex-item-align: start;
+            align-self: flex-start;
+            margin: 0;
+        }
+    }
+
+    .amreports-rule-container {
+        width: 25%;
+        margin-left: auto;
+    }
+
+    .amreports-newrule-container {
+        margin: 0 40px;
+    }
+
+    // Orders
+    .amreports-orders-container {
+        .amreports-field:nth-child(3)  {
+            .lib-vendor-prefix-flex-grow(0);
+            margin-left: auto;
+            width: 17%;
+        }
+
+        .amreports-field:last-child {
+            .lib-vendor-prefix-flex-grow(0);
+            width: 17%;
+        }
+    }
+
+    // Sales by coupon
+    .amreports-coupon-container {
+        .amreports-field:nth-child(3) .field-row > .admin__field:first-child {
+            width: 50%;
+        }
+
+        .amreports-field:nth-child(3) .field-row > .admin__field:last-child {
+            width: 50%;
+        }
+    }
+
+    // Sales comprasion
+    .amreports-compare-container {
+        .amreports-filter-interval {
+            width: 40%;
+            margin: 0;
+        }
+
+        .amreports-filter-interval + .amreports-field {
+            max-width: initial;
+            width: 40%;
+            margin: 0 auto;
+        }
+
+        .amreports-field:last-child {
+            & {
+                margin: 0;
+            }
+
+            .admin__field-value {
+                padding: 0;
+            }
+
+            .action-default {
+                padding: 4px 20px;
+            }
+        }
+    }
+
+    // By product, Bestsellers
+    .amreports-byproduct-container,
+    .amreports-bestsellers-container {
+        .amreports-filter-to {
+            margin-right: 0;
+        }
+
+        .amreports-field:last-child {
+            width: 20%;
+            margin: 0;
+        }
+    }
+
+    // By attributes
+    .amreports-attributes-container {
+        .amreports-field:nth-child(3)  {
+            .lib-vendor-prefix-flex-grow(0);
+            width: 17%;
+            margin-left: auto;
+        }
+
+        .amreports-field:last-child {
+            .lib-vendor-prefix-flex-grow(0);
+            width: 17%;
+        }
+    }
+
+    // Product perfomance
+    .amreports-perfomanceproduct-container {
+        .amreports-filter-from,
+        .amreports-filter-to {
+            & {
+                margin-right: 0;
+            }
+
+            .field-row {
+                max-height: 27px;
+            }
+        }
+
+        .amreports-field:nth-child(3) {
+            width: 20%;
+            margin-left: auto;
+        }
+
+        .amreports-field:nth-child(4) {
+            margin: 0 40px;
+        }
+
+        .amreports-field:last-child {
+            & {
+                width: 20%;
+                margin: 0;
+            }
+
+            .amreports-select {
+                margin-top: 0;
+            }
+        }
+    }
+}

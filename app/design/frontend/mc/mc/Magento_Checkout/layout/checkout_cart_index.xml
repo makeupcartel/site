@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="checkout.cart.item.renderers.default.actions.move_to_wishlist" destination="checkout.cart.item.renderers.default.actions" after="checkout.cart.item.renderers.default.actions.edit" />
+        <move element="checkout.cart.item.renderers.simple.actions.move_to_wishlist" destination="checkout.cart.item.renderers.simple.actions" after="checkout.cart.item.renderers.simple.actions.edit" />
+        <move element="checkout.cart.item.renderers.bundle.actions.move_to_wishlist" destination="checkout.cart.item.renderers.bundle.actions" after="checkout.cart.item.renderers.bundle.actions.edit" />
+        <move element="checkout.cart.item.renderers.downloadable.actions.move_to_wishlist" destination="checkout.cart.item.renderers.downloadable.actions" after="checkout.cart.item.renderers.downloadable.actions.edit" />
+        <move element="checkout.cart.item.renderers.grouped.actions.move_to_wishlist" destination="checkout.cart.item.renderers.grouped.actions" after="checkout.cart.item.renderers.grouped.actions.edit" />
+        <move element="checkout.cart.item.renderers.configurable.actions.move_to_wishlist" destination="checkout.cart.item.renderers.configurable.actions" after="checkout.cart.item.renderers.configurable.actions.edit" />
+        <move element="checkout.cart.item.renderers.virtual.actions.move_to_wishlist" destination="checkout.cart.item.renderers.virtual.actions" after="checkout.cart.item.renderers.virtual.actions.edit" />
+        <move element="checkout.cart.item.renderers.giftcard.actions.edit" destination="checkout.cart.item.renderers.gift-card.actions" before="-" />
+        
+        <referenceBlock name="checkout.cart.order.actions.gift_options" remove="true"/>
+        <referenceBlock name="checkout.cart.item.renderers.default.actions.edit" remove="true"/>
+        <referenceBlock name="checkout.cart.item.renderers.simple.actions.edit" remove="true"/>
+        <referenceBlock name="checkout.cart.item.renderers.bundle.actions.edit" remove="true"/>
+        <referenceBlock name="checkout.cart.item.renderers.downloadable.actions.edit" remove="true"/>
+        <referenceBlock name="checkout.cart.item.renderers.grouped.actions.edit" remove="true"/>
+        <referenceBlock name="checkout.cart.item.renderers.configurable.actions.edit" remove="true"/>
+        <referenceBlock name="checkout.cart.item.renderers.virtual.actions.edit" remove="true"/>
+        <referenceBlock name="checkout.cart.item.renderers.giftcard.actions.edit" remove="true"/>
+        
+        <referenceBlock name="amount_display" remove="true"/>
+        <referenceContainer name="cart.summary">
+            <referenceBlock name="checkout.cart.giftcardaccount" remove="true"/>
+        </referenceContainer>
+        <move element="checkout.cart.coupon" destination="checkout.cart.totals.container" before="-"/>
+        <referenceContainer name="cart.summary">
+          <block class="Magento\Cms\Block\Block" name="shopping_cart_information" after="-">
+              <arguments>
+                  <argument name="block_id" xsi:type="string">get_any_questions</argument>
+              </arguments>
+          </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+          <block name="checkout.cart.update.qty" class="Magento\Framework\View\Element\Template" template="Magento_Checkout::cart/js.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

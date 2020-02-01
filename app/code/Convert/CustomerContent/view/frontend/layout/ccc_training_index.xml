@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">    <update handle="customer_account"/>
+    <update handle="customer_account"/>
+    <head>
+        <title><![CDATA[Training & Video Content]]></title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Convert\CustomerContent\Block\Training\Content" name="customer.content.training.content" template="Convert_CustomerContent::training/content.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

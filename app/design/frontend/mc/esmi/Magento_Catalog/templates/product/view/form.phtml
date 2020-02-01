@@ -1,0 +1,111 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+<?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+<?php $_product = $block->getProduct();
+
+$shortDescription = $block->getProduct()->getShortDescription();
+
+?>
+
+<div class="product-add-form">
+    <form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
+          action="<?= /* @NoEscape */
+	      $block->getSubmitUrl($_product) ?>" method="post"
+          id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+
+        <?php if($_product->getTypeId() == 'bundle' && isset($shortDescription)) : ?>
+        <div class="full-short-descs form" style="height: 150px;overflow: hidden">
+			<?= $shortDescription ?>
+        </div>
+        <div class="check-short-descs" style="display: none">
+                <?= $shortDescription ?>
+        </div>
+         <div class="button-read-bundle">
+             <a href="#" class="readmore-short-descs-bundle"><?php echo __('Read more') ?></a>
+             <a href="#" class="lessmore-short-descs-bundle" style="display: none"><?php echo __('Read less') ?></a>
+         </div>
+        <?php endif; ?>
+         <?php if($_product->getTypeId() == 'bundle') : ?>
+            <div class="bundle-includes">
+                <span>Includes:</span>
+            </div>
+         <?php endif; ?>
+        <input type="hidden" name="product" value="<?= /* @escapeNotVerified */
+		$_product->getId() ?>"/>
+        <input type="hidden" name="selected_configurable_option" value=""/>
+        <input type="hidden" name="related_product" id="related-products-field" value=""/>
+        <input type="hidden" name="item" value="<?= /* @noEscape */
+		$block->getRequest()->getParam('id') ?>"/>
+		<?= $block->getBlockHtml('formkey') ?>
+		<?= $block->getChildHtml('form_top') ?>
+		<?php if (!$block->hasOptions()): ?>
+			<?= $block->getChildHtml('product_info_form_content') ?>
+		<?php else: ?>
+			<?php if ($block->getOptionsContainer() == 'container1'): ?>
+				<?= $block->getChildChildHtml('options_container') ?>
+			<?php endif; ?>
+		<?php endif; ?>
+
+		<?php if ($block->hasOptions() && $block->getOptionsContainer() == 'container2'): ?>
+			<?= $block->getChildChildHtml('options_container') ?>
+		<?php endif; ?>
+		<?= $block->getChildHtml('form_bottom') ?>
+    </form>
+</div>
+<script>
+    require([
+        'jquery',
+        'priceBox'
+    ], function ($) {
+        var dataPriceBoxSelector = '[data-role=priceBox]',
+            dataProductIdSelector = '[data-product-id=<?= $block->escapeHtml($_product->getId()) ?>]',
+            priceBoxes = $(dataPriceBoxSelector + dataProductIdSelector);
+
+        priceBoxes = priceBoxes.filter(function (index, elem) {
+            return !$(elem).find('.price-from').length;
+        });
+
+        priceBoxes.priceBox({'priceConfig': <?= /* @escapeNotVerified */ $block->getJsonConfig() ?>});
+
+         $(document).ready(function (event) {
+            var myVar = $("#product-options-wrapper").find('.swatch-opt').val(1);
+            var check = $("#product-options-wrapper").find('.swatch-opt').val();
+            if (check != 1 || check == null || check == "") {
+                $(".product-add-form").css("border-top", "none");
+            }
+
+            var checkHeight = $(".product-add-form .check-short-descs").height();
+            if(checkHeight < 150){
+                $(".product-add-form .full-short-descs.form").addClass("none")
+            }else{
+                 $(".product-add-form .button-read-bundle").addClass("show");
+            }
+
+            $(".readmore-short-descs-bundle").click(function (e) {
+                e.preventDefault();
+                $(".full-short-descs.form").css('height', 'auto');
+                $(".lessmore-short-descs-bundle").css('display', 'block');
+                $(".readmore-short-descs-bundle").css('display', 'none');
+            });
+
+            $(".lessmore-short-descs-bundle").click(function (e) {
+                e.preventDefault();
+                $(".full-short-descs.form").css('height', '150px');
+                $(".lessmore-short-descs-bundle").css('display', 'none');
+                $(".readmore-short-descs-bundle").css('display', 'block');
+            });
+        });
+    });
+</script>

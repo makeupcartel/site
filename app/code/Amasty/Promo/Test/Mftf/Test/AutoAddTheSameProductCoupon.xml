@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="AutoAddTheSameProductCoupon">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Auto add the same product with coupon"/>
+            <description value="Check Auto add the same product with coupon"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-16"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="AutoAddTheSameProductCoupon"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="EditGeneralSettingPromo" stepKey="settingGeneralPromoConfiguration">
+                <argument name="settingAddProductAuto" value="addSimpleProductsAutomatically.freeProductOnly"/>
+                <argument name="settingBasedOnCart" value="autoAddFreeItemsBasedOnCartAmount.default"/>
+            </actionGroup>
+            <actionGroup ref="EditMessagesSettingPromo" stepKey="settingMessage">
+                <argument name="settingGiftsSelectionMethod" value="giftsSelectionMethod.default"/>
+                <argument name="settingOpenPopupAutomatically" value="openPopUpAutomatically.default"/>
+                <argument name="settingShowOriginalPriceInThePopup" value="showOriginalPriceInThePopup.default"/>
+                <argument name="settingReminderAboutAvailablePromos" value="reminderAboutAvailablePromos.default"/>
+            </actionGroup>
+
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <!-- Return default setting Promo-->
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfiguration"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create new Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromo" stepKey="CreateCartRule">
+            <argument name="actionsRulePromo" value="applyAutoAddTheSameProduct"/>
+            <argument name="cartRulePromo" value="autoAddTheSameProductCoupon"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleChangeDiscountQtyStep" stepKey="EditCartRule1">
+            <argument name="cartRulePromo" value="autoAddTheSameProductCoupon"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleAddCouponCode" stepKey="EditCartRule">
+            <argument name="cartRulePromo" value="autoAddTheSameProductCoupon"/>
+        </actionGroup>
+
+        <!--Add product to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddFirstProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagImpulseDuffleData"/>
+        </actionGroup>
+
+        <!-- Check NO Gift In The Cart-->
+        <actionGroup ref="CheckProductInCartTheSameFree" stepKey="CheckNoGiftWatchClamberInCart">
+            <argument name="products" value="_theBagImpulseDuffleData"/>
+        </actionGroup>
+
+        <!--Coupon -->
+        <actionGroup ref="StorefrontApplyCouponActionGroup" stepKey="AddCoupon">
+            <argument name="coupon" value="CouponCode"/>
+        </actionGroup>
+
+        <!-- Check Free Gift-->
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddOneFreeGiftInCart">
+            <argument name="products" value="_theBagImpulseDuffleData"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!--Edit Quality product to cart-->
+        <actionGroup ref="ChangeQtyProductInCart" stepKey="ChangeQtyBagImpulseDuffInCart">
+            <argument name="addProductQty" value="_enterQty3"/>
+            <argument name="products" value="_theBagImpulseDuffleData"/>
+        </actionGroup>
+
+        <!-- Check Free Gift-->
+        <actionGroup ref="CheckProductInCart" stepKey="CheckThreeGiftInCart">
+            <argument name="products" value="_theBagImpulseDuffleData"/>
+            <argument name="addProductQty" value="_enterQty3"/>
+        </actionGroup>
+
+    </test>
+</tests>

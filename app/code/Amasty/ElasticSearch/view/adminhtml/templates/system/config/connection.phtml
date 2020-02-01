@@ -1,0 +1,15 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_ElasticSearch
+ */
+?>
+<button class="scalable"
+        type="button"
+        id="<?= $block->getHtmlId() ?>"
+        data-mage-init='{"Amasty_ElasticSearch/js/connectionchecker":<?= /* @escapeNotVerified */ $block->getJsonConfig();?>}'>
+    <span id="<?= $block->getHtmlId() ?>_result">
+        <?= $block->escapeHtml($block->getButtonLabel()) ?>
+    </span>
+</button>

@@ -1,0 +1,38 @@
+<!--
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2016 Amasty (http://www.amasty.com)
+* @package Amasty_Oaction
+*/
+-->
+
+<ul
+    class="action-submenu"
+    data-bind="foreach: {data: action.actions, as: 'action'},
+    css: { _active: action.visible }">
+    <li data-bind="css: { '_visible': $data.visible}">
+        <div class="amasty-oaction-form">
+            <table>
+                <tr>
+                    <td>
+                        <label data-bind="i18n: action.fieldLabel"></label>
+                    </td>
+                    <td>
+                        <!-- ko if: $data.typefield == 'select' -->
+                            <select id="amasty-oaction-select"
+                                    class="admin__control-select"
+                                    data-bind="
+                                options: action.child,
+                                optionsText: 'label',
+                                optionsValue: 'fieldvalue',
+                                value: $parent.selectedStatus,
+                                event:{ change: function() {$parent.changeStatus(this)}}
+                                ">
+                            </select>
+                        <!-- /ko -->
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </li>
+</ul>

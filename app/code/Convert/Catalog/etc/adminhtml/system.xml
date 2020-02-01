@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="catalog" translate="label" sortOrder="200">
+            <label>Catalog</label>
+        </tab>
+        <section id="catalog" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Catalog</label>
+            <tab>catalog</tab>
+            <resource>Convert_Catalog::config_catalog</resource>
+            <group id="seo" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Search Engine Optimization</label>
+                <field id="title_separator" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Page Title Separator</label>
+                </field>
+                <field id="category_canonical_tag" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Use Canonical Link Meta Tag For Categories</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="product_canonical_tag" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Use Canonical Link Meta Tag For Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="category_id_parent" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Category ID</label>
+                    <comment>Write ID of parent category</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

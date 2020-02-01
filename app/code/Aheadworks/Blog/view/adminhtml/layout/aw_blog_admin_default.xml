@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Aheadworks_Blog::css/page-menu.css"/>
+    </head>
+    <body>
+        <referenceContainer name="page.main.actions">
+            <block class="Aheadworks\Blog\Block\Adminhtml\Page\Menu" name="aw_blog_menu">
+                <block class="Aheadworks\Blog\Block\Adminhtml\Page\Menu\Item" name="aw_blog_menu_item.posts">
+                    <arguments>
+                        <argument name="path" xsi:type="string">*/post/index</argument>
+                        <argument name="label" xsi:type="string">Posts</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_Blog::posts</argument>
+                        <argument name="controller" xsi:type="string">post</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Blog\Block\Adminhtml\Page\Menu\Item" name="aw_blog_menu_item.comments">
+                    <arguments>
+                        <argument name="path" xsi:type="string">*/comment/index</argument>
+                        <argument name="label" xsi:type="string">Comments</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_Blog::comments</argument>
+                        <argument name="controller" xsi:type="string">comment</argument>
+                        <argument name="link_attributes" xsi:type="array">
+                            <item name="target" xsi:type="string">_blank</item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Blog\Block\Adminhtml\Page\Menu\Item" name="aw_blog_menu_item.categories">
+                    <arguments>
+                        <argument name="path" xsi:type="string">*/category/index</argument>
+                        <argument name="label" xsi:type="string">Categories</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_Blog::categories</argument>
+                        <argument name="controller" xsi:type="string">category</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Blog\Block\Adminhtml\Page\Menu\Item" name="aw_blog_menu_item.authors">
+                    <arguments>
+                        <argument name="path" xsi:type="string">*/author/index</argument>
+                        <argument name="label" xsi:type="string">Authors</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_Blog::authors</argument>
+                        <argument name="controller" xsi:type="string">author</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Blog\Block\Adminhtml\Page\Menu\Item" name="aw_blog_menu_item.settings">
+                    <arguments>
+                        <argument name="path" xsi:type="string">adminhtml/system_config/edit/section/aw_blog</argument>
+                        <argument name="label" xsi:type="string">Settings</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_Blog::config_aw_blog</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Blog\Block\Adminhtml\Page\Menu\Item" name="aw_blog_menu_item.readme">
+                    <arguments>
+                        <argument name="label" xsi:type="string">Readme</argument>
+                        <argument name="link_attributes" xsi:type="array">
+                            <item name="href" xsi:type="string">https://aheadworks.atlassian.net/wiki/spaces/EUDOC/pages/1227948497/Blog+-+Magento+2</item>
+                            <item name="target" xsi:type="string">_blank</item>
+                            <item name="class" xsi:type="string">separator</item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Blog\Block\Adminhtml\Page\Menu\Item" name="aw_blog_menu_item.support">
+                    <arguments>
+                        <argument name="label" xsi:type="string">Get Support</argument>
+                        <argument name="link_attributes" xsi:type="array">
+                            <item name="href" xsi:type="string">http://ecommerce.aheadworks.com/contacts/</item>
+                            <item name="target" xsi:type="string">_blank</item>
+                        </argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

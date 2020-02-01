@@ -1,0 +1,43 @@
+<?php 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_ReferralSystem
+ * @author   CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+    $code = $block->getRequest()->getParam('affid');
+    $source = 'email';
+    $ref_code = $code;
+
+    $length = strlen($code);
+    if ($length > 6) {
+        $rep = $length - 6;
+        $source = substr($code,0,$rep-1);
+        $ref_code = substr($code,$rep);
+    }
+?>
+
+<legend class="legend">
+    <span><?php /* @escapeNotVerified */ echo __('Enter Your Referral Code') ?></span>
+</legend>
+<div class="field regulation">
+    <label for="regulation" class="label"><span><?php /* @escapeNotVerified */
+            echo __('Referral Code') ?></span></label>
+    <div class="control">
+        <input type="text" name="referral_code" id="referral_code" title="<?php /* @escapeNotVerified */ echo __('Referral Code') ?>" class="input-text" value="<?php echo $ref_code; ?>" data-validate="{required:false}">
+    </div>
+    <div class="control">
+        <input type="hidden" name="invitation_code" id="invitation_code" value="<?php echo $this->helper('Ced\ReferralSystem\Helper\Data')->generatePromoCode(); ?>" />
+        <input type="hidden" name="referal_source" id="referal_source" value="<?php echo $source; ?>" />
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="admin__field-service">
+    <input type="checkbox"
+           class="admin__control-checkbox"
+           attr="
+                id: $data.uid + '_default',
+                name: 'use_default[' + $data.index + ']',
+                'data-form-part': $data.ns
+           "
+           ko-checked="isUseDefault">
+    <label attr="for: $data.uid + '_default'" class="admin__field-label" >
+        <text args="$data.service.label ? $data.service.label \: $t('Use')"/> <a attr="href: $data.service.configSettingsUrl" target="_blank"><span translate="'Config Settings'" /></a>
+    </label>
+</div>

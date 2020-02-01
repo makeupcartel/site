@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+* See LICENSE.txt for license details.
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Checkout\CustomerData\DefaultItem"
+                type="Convert\MiniCart\CustomerData\DefaultItem" />
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="addBrandForCheckoutPage" type="Convert\MiniCart\Plugin\Checkout\Model\DefaultConfigProvider"/>
+    </type>
+</config>

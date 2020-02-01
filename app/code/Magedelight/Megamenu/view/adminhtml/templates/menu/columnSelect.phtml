@@ -1,0 +1,20 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Megamenu
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+$selectedOptions = $block->getSelectedOptions();
+?>
+<select class="selectcolumns admin__control-select">
+    <option <?php echo $selectedOptions['1']; ?> value="1"><?php echo __('One Column'); ?></option>
+    <option <?php echo $selectedOptions['2']; ?> value="2"><?php echo __('Two Columns'); ?></option>
+    <option <?php echo $selectedOptions['3']; ?> value="3"><?php echo __('Three Columns'); ?></option>
+    <option <?php echo $selectedOptions['4']; ?> value="4"><?php echo __('Four Columns'); ?></option>
+    <option <?php echo $selectedOptions['5']; ?> value="5"><?php echo __('Five Columns'); ?></option>
+</select>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header.links2">
+            <block class="Magento\Customer\Block\Account\Customer" name="customer2" template="Magento_Customer::account/customer2.phtml" before="-"/>
+            <block class="Magento\Customer\Block\Account\Customer" name="customer3" template="Magento_Customer::account/customer.phtml" before="-"/>
+        </referenceBlock>
+        <block class="Magento\Customer\Block\Account\Navigation" name="top.links2">
+            <arguments>
+                <argument name="css_class" xsi:type="string">header links</argument>
+            </arguments>
+        </block>
+        <referenceBlock name="top.links2">
+            <block class="Magento\Customer\Block\Account\RegisterLink" name="register-link2">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Register</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Customer\Block\Account\AuthorizationLink" name="authorization-link2"
+                   template="Magento_Customer::account/link/authorization.phtml"/>
+        </referenceBlock>
+        <move element="top.links2" destination="customer2"/>
+        <referenceBlock name="register-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Register</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="top.links3">
+            <block class="Magento\Customer\Block\Account\Link" name="my-account-link3">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">My Account</argument>
+                    <argument name="sortOrder" xsi:type="number">110</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Customer\Block\Account\RegisterLink" name="register-link3">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Create an Account</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Customer\Block\Account\AuthorizationLink" name="authorization-link3"
+                   template="Magento_Customer::account/link/authorization.phtml"/>
+        </referenceBlock>
+        <move element="top.links3" destination="customer3"/>
+        <!--referenceBlock name="authorization-link-login" remove="true" /-->
+    </body>
+</page>

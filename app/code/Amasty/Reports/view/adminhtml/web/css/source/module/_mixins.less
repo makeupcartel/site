@@ -1,0 +1,43 @@
+//
+//  Mixins
+//  _________________________
+
+.transition(@del: .3) {
+    transition: ~'@{del}s all ease-in';
+}
+
+.mage-icon(@icon-content) {
+    & {
+        .am-flex(center, center);
+        
+        position: relative;
+    }
+    
+    &:after {
+        .transition(.1);
+        display: block;
+        font-family: @icons-admin__font-name;
+        content: @icon-content;
+    }
+}
+
+.am-flex(@horiz-pos: none,
+         @vert-pos: none,
+         @wrap: none
+) {
+    & {
+        display: flex;
+    }
+    
+    & when not (@horiz-pos = none) {
+        justify-content: @horiz-pos;
+    }
+    
+    & when not (@vert-pos = none) {
+        align-items: @vert-pos;
+    }
+    
+    & when not (@wrap = none) {
+        flex-wrap: @wrap;
+    }
+}

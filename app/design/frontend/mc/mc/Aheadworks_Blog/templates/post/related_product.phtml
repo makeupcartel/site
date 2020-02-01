@@ -1,0 +1,241 @@
+<?php
+/**
+ * Copyright 2018 aheadWorks. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+$helper = $this->helper('Convert\Catalog\Helper\Data');
+/** @var \Aheadworks\Blog\Block\Post\RelatedProduct $block */
+if ($relatedProductIds = $block->getRelatedProductIds()):
+
+
+	$class = 'aw_blog_related_products';
+	$image = 'related_products_list';
+	$title = __('Related Products');
+
+	$showCart = $block->isDisplayAddToCart();
+	$dataMageInit = $block->getDataMageInit();
+	$visibility = $dataMageInit == '{}' ? 'visible' : 'hidden';
+	?>
+    <div data-mage-init='<?php /* @noEscape */
+	echo $dataMageInit ?>' class="block <?php /* @noEscape */
+	echo $class; ?>"
+         style="visibility: <?php /* @noEscape */
+	     echo $visibility; ?>">
+        <div class="block-title title">
+            <strong id="block-<?php /* @noEscape */
+			echo $class ?>-heading" role="heading" aria-level="2">
+                <span class="first-word"><?php echo __('Recommended'); ?></span><?php echo __(' for you.'); ?>
+            </strong>
+        </div>
+        <div class="block-content content" aria-labelledby="block-<?php /* @noEscape */
+		echo $class ?>-heading">
+            <div class="products wrapper grid products-grid products-<?php /* @noEscape */
+			echo $class; ?>">
+                <ol data-aw-blog-block="items" class="owl-carousel products list items product-items">
+					<?php $iterator = 1; ?>
+					<?php foreach ($relatedProductIds as $productId): ?>
+						<?php
+						$product = $block->getProductById($productId);
+
+						$available = '';
+						?>
+						<?php if (!$product->isComposite() && $product->isSaleable()): ?>
+							<?php if (!$product->getRequiredOptions()): ?>
+								<?php $available = 'related-available'; ?>
+							<?php endif; ?>
+						<?php endif; ?>
+						<?php if ($iterator++ == 1): ?>
+                            <li class="item product product-item">
+						<?php else: ?>
+                            </li><li class="item product product-item">
+						<?php endif; ?>
+                        <div class="product-item-info <?php /* @noEscape */
+						echo $available; ?>">
+							<?php
+							$product = $helper->getLoadProduct($productId);
+
+							$datalimit = $product->getData('limited_and_new');
+							$dataSale = $product->getData('sale_product');
+
+							// get text attribute
+							$attrSale = $product->getResource()->getAttribute('sale_product');
+							$attrLimit = $product->getResource()->getAttribute('limited_and_new');
+
+							if ($attrSale->usesSource()) {
+								$valueSale = $attrSale->getSource()->getOptionText($dataSale);
+							}
+
+							if ($attrLimit->usesSource()) {
+								$valueLimit = $attrLimit->getSource()->getOptionText($datalimit);
+							}
+
+							?>
+                            <div class="list-attribute-product">
+								<?php
+								if (isset($valueLimit)) {
+									?>
+
+                                    <div class="my-attribute attribute-limit-new-<?= $valueLimit ?>">
+										<?= $valueLimit ?>
+                                    </div>
+									<?php
+								}
+								if (isset($valueSale)) {
+									?>
+                                    <div class="my-attribute attribute-sale-product-<?= $valueSale ?>">
+										<?= $valueSale ?>
+                                    </div>
+									<?php
+								}
+								?>
+                            </div>
+                            <a href="<?php echo /* @noEscape */
+							$block->escapeXssInUrl($block->getProductUrl($product)) ?>"
+                               class="product photo product-item-photo">
+								<?php /* @noEscape */
+								echo $block->getImage($product, $image)->toHtml(); ?>
+                            </a>
+                            <div class="product details product-item-details">
+                                <div class="align-summary" id="myalign_summary" style="min-height: 24px !important;">
+		                            <span class="stamped-product-reviews-badge"
+                                          data-id="<?php echo $product->getId() ?>"
+                                          style="display: block;"></span>
+                                </div>
+                                <strong class="product name product-item-name">
+                                    <a class="product-item-link"
+                                       title="<?php echo $block->escapeHtml($product->getName()) ?>"
+                                       href="<?php /* @noEscape */
+									   echo $block->escapeXssInUrl($block->getProductUrl($product)) ?>">
+										<?php echo $block->escapeHtml($product->getName()) ?>
+                                    </a>
+                                </strong>
+								<?php /* @noEscape */
+								echo $block->getProductPrice($product); ?>
+                                <div class="align-swatch">
+									<?php if ($product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+										$swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+										echo $swatchBlock->setProduct($product)->toHtml();
+									} ?></div>
+								<?php if ($showCart): ?>
+                                    <div class="actions-primary">
+										<?php if ($product->isSaleable()): ?>
+											<?php if ($product->getTypeInstance()->hasRequiredOptions($product)): ?>
+                                                <button class="action tocart primary"
+                                                        data-mage-init='{"redirectUrl": {"url": "<?php /* @noEscape */
+												        echo $block->escapeXssInUrl($block->getAddToCartUrl($product)) ?>"}}'
+                                                        type="button"
+                                                        title="<?php echo $block->escapeHtml(__('Add to Cart')) ?>">
+                                                    <span><?php echo $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                </button>
+											<?php else: ?>
+												<?php
+												$postData = $block->getPostDataHelper()->getPostData(
+													$block->getAddToCartUrl($product),
+													['product' => $product->getEntityId()]
+												);
+												?>
+                                                <button class="action tocart primary"
+                                                        data-post='<?php /* @noEscape */
+												        echo $postData; ?>'
+                                                        type="button"
+                                                        title="<?php echo $block->escapeHtml(__('Add to Cart')) ?>">
+                                                    <span><?php echo $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                </button>
+											<?php endif; ?>
+										<?php else: ?>
+											<?php if ($product->getIsSalable()): ?>
+                                                <div class="stock available">
+                                                    <span><?php echo $block->escapeHtml(__('In stock')) ?></span>
+                                                </div>
+											<?php else: ?>
+                                                <div class="stock unavailable">
+                                                    <span><?php echo $block->escapeHtml(__('Out of stock')) ?></span>
+                                                </div>
+											<?php endif; ?>
+										<?php endif; ?>
+                                    </div>
+								<?php endif; ?>
+                                <div class="detail">
+                                    <a class="view-detail" href="<?php /* @noEscape */
+									echo $block->escapeXssInUrl($block->getProductUrl($product)) ?>"><?php echo __('View details'); ?></a>
+                                </div>
+
+                            </div>
+                        </div>
+						<?php if ($iterator == count($relatedProductIds) + 1): ?>
+                            </li>
+						<?php endif; ?>
+					<?php endforeach ?>
+                </ol>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'owlCarousel'
+    ], function ($) {
+        var owl = jQuery('.products-aw_blog_related_products ol.owl-carousel');
+        owl.owlCarousel({
+            dots: true,
+            nav: false,
+            loop: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    margin: 16,
+                    loop: true,
+                    stagePadding: 74
+                },
+                425: {
+                    items: 2,
+                    margin: 16,
+                    loop: true,
+                    stagePadding: 74
+                },
+                768: {
+                    items: 3,
+                    margin: 16,
+                },
+                1024: {
+                    items: 4,
+                    margin: 24
+                }
+            }
+        });
+
+
+        /*function alignHeight(selector) {
+            jQuery(selector).css('height', '');
+            var minHeight = 0;
+            jQuery(selector).each(function () {
+                if (minHeight < jQuery(this).outerHeight()) {
+                    minHeight = jQuery(this).outerHeight();
+                }
+            });
+            if (minHeight > 0) {
+                jQuery(selector).css('height', minHeight);
+            }
+        }
+
+        setTimeout(function () {
+            alignHeight('.product.details.product-item-details');
+        }, 500);
+
+        jQuery(window).resize(function () {
+            setTimeout(function () {
+                alignHeight('.product.details.product-item-details');
+
+            }, 500);
+        });*/
+
+        jQuery(document).ready(function () {
+            jQuery("#myalign_summary").css('height', '24px');
+            jQuery("#myalign_summary").focus();
+        });
+    });
+
+</script>

@@ -1,0 +1,48 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+?>
+<?php /** @var \Amasty\Reports\Block\Adminhtml\Report\Chart $block */ ?>
+
+<?php
+$axis = $block->getAxisFields();
+$collection = $block->getCollection();
+?>
+
+<div class="amreports-amchart-wrapper" data-role="amreports-content">
+    <?php if ($collection->getSize()) : ?>
+
+        <?php foreach ($collection as $item) {
+            $chartData[] = [
+                "title" => $block->escapeHtml($item->getData($axis['y'])),
+                "value" => $block->escapeHtml($item->getData($axis['x']))
+            ];
+        } ?>
+
+        <div id="chart-category" class="amreports-amchart-container" data-chart-identifier="title"></div>
+
+        <script>
+            require([
+                "Amasty_Reports/vendor/amcharts4/core.min"
+            ], function () {
+                require([
+                    "jquery",
+                    "<?= /* @noEscape */ $block->getWidgetName('amreports_simple_pie_chart') ?>"
+                ], function ($, widget) {
+                    widget({
+                        "data" : <?= /* @noEscape */ json_encode($chartData); ?>,
+                        "currency" : "<?= /* @noEscape */ $block->getCurrencySymbol(); ?>",
+                        "selectorInit" : "chart-category"
+                    }, $('#chart-category'));
+                });
+            });
+        </script>
+
+        <div class="listing">
+            <?= $block->getChildHtml() ?>
+        </div>
+    <?php endif; ?>
+</div>

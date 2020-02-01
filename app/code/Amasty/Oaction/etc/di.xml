@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Oaction
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Ui\Model\Manager">
+        <plugin name="Amasty_Oaction::Manager" type="Amasty\Oaction\Plugin\Ui\Model\Manager"/>
+    </type>
+    <type name="Magento\Ui\Config\Reader">
+        <plugin name="Amasty_Oaction::checkStatuses" type="Amasty\Oaction\Plugin\Ui\Model\Reader"/>
+    </type>
+    <type name="\Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <plugin name="Amasty_Oaction::DataProvider" type="Amasty\Oaction\Plugin\Ui\DataProvider"/>
+    </type>
+    <virtualType name="amastyImportSampleFiles" type="Magento\Framework\DataObject">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                    <item name="amasty_oaction" xsi:type="string">Amasty_Oaction</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Amasty\Oaction\Component\ComponentRegistrar">
+        <arguments>
+            <argument name="samples" xsi:type="object">amastyImportSampleFiles</argument>
+        </arguments>
+    </type>
+    <virtualType name="sampleFile" type="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="amasty_oaction" xsi:type="string">Amasty_Oaction</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\ImportExport\Controller\Adminhtml\Import\Download">
+        <arguments>
+            <argument name="componentRegistrar" xsi:type="object">Amasty\Oaction\Component\ComponentRegistrar</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Handler\State">
+        <plugin name="Amasty_Oaction::checkOrderStatus" type="Amasty\Oaction\Plugin\Sales\Model\ResourceModel\Order\Handler\State" />
+    </type>
+</config>

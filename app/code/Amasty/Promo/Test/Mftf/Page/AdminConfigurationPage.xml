@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/magento2-functional-testing-framework/src/Magento/FunctionalTestingFramework/Page/etc/PageObject.xsd">
+
+    <page name="AdminPromoConfigurationPage" url="/admin/system_config/edit/section/ampromo/" area="admin" module="Magento_Promo">
+        <section name="AdminCurrencyRatesSection" />
+    </page>
+
+    <page name="AdminSalesRuleWizard" url="/amasty_promowizard/wizard/" area="admin" module="Magento_Promo">
+        <section name="AdminSalesRuleWizardSection"/>
+    </page>
+
+</pages>

@@ -1,0 +1,28 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Storelocator
+ */
+?>
+<?php
+
+?>
+<script>
+    require([
+        "jquery",
+        "mage/adminhtml/form",
+        "Amasty_Storelocator/js/admin"
+    ], function(jQuery) {
+        jQuery( document ).ready(function() {
+            jQuery('#map-canvas').amLocator({
+                apiKey : '<?php echo $block->getApiKey() ?>'
+            });
+        });
+
+        var updater = new RegionUpdater('location_country', 'location_state', 'location_state_id', <?php /* @escapeNotVerified */ echo $this->helper(
+            'Magento\Directory\Helper\Data'
+        )->getRegionJson() ?>, 'disable');
+        updater.disableRegionValidation();
+    })
+</script>

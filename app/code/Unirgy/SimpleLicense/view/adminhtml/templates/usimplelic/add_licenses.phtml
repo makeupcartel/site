@@ -1,0 +1,18 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend">
+            <?php echo __('Copy/paste license key from your order confirmation email here:') ?>
+        </h4>
+    </div>
+    <fieldset class="fieldset">
+        <legend><?php echo __('Add new license key:') ?></legend>
+
+        <p><input class="input-text admin__control-text" type="text" name="license_key" style="width:95%"/></p>
+        <p><input class="admin__control-checkbox" id="download_install" type="checkbox" name="download_install"> <label
+                class="admin__field-label" for="download_install">
+                <span><?php echo __('Download and install related extensions') ?></span>
+            </label></p>
+        <p><input class="action-secondary" type="submit" name="do" value="<?php echo __('Add license key') ?>"/></p>
+    </fieldset>
+
+</div>

@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form_data_source</item>
+            <item name="deps" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Customer Group Catalog Rule</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">amasty_groupcat_rule_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="array">
+                <item name="name" xsi:type="string">back</item>
+                <item name="label" xsi:type="string" translate="true">Back</item>
+                <item name="class" xsi:type="string">back</item>
+                <item name="url" xsi:type="string">*/*/</item>
+            </item>
+            <item name="save" xsi:type="string">Amasty\Groupcat\Block\Adminhtml\Rule\Edit\SaveButton</item>
+            <item name="reset" xsi:type="string">Amasty\Groupcat\Block\Adminhtml\Rule\Edit\ResetButton</item>
+            <item name="save_and_continue" xsi:type="string">Amasty\Groupcat\Block\Adminhtml\Rule\Edit\SaveAndContinueButton</item>
+            <item name="delete" xsi:type="string">Amasty\Groupcat\Block\Adminhtml\Rule\Edit\DeleteButton</item>
+        </item>
+    </argument>
+    <dataSource name="amasty_groupcat_rule_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Amasty\Groupcat\Model\Rule\DataProvider</argument>
+            <argument name="name" xsi:type="string">amasty_groupcat_rule_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">rule_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="amasty_groupcat/rule/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Rule Information</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="rule_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">groupcat_rule</item>
+                    <item name="dataScope" xsi:type="string">rule_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_active">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">groupcat_rule</item>
+                    <item name="dataScope" xsi:type="string">is_active</item>
+                </item>
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Active</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">Inactive</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Rule Name</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">groupcat_rule</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="store_ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Stores</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">groupcat_rule</item>
+                    <item name="dataScope" xsi:type="string">store_ids</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="link" xsi:type="string">http://docs.magento.com/m2/ce/user_guide/configuration/scope.html</item>
+                        <item name="description" xsi:type="string">What is this?</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\Groupcat\Model\Rule\StoresOptionsProvider</item>
+            </argument>
+        </field>
+        <field name="priority">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Rule Priority</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">groupcat_rule</item>
+                    <item name="dataScope" xsi:type="string">priority</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-number" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">If the product matches several rules, the one with the higher priority will be applied</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <fieldset name="timeline">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Date Range</item>
+                    <item name="collapsible" xsi:type="boolean">false</item>
+                    <!--<item name="sortOrder" xsi:type="number">10</item>-->
+                </item>
+            </argument>
+            <field name="date_range_enabled">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Use Date Range</item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">date_range_enabled</item>
+                        <item name="switcherConfig" xsi:type="array">
+                            <item name="enabled" xsi:type="boolean">true</item>
+                            <item name="rules" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="value" xsi:type="number">0</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.general.timeline.from_date</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.general.timeline.to_date</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="value" xsi:type="number">1</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.general.timeline.from_date</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.general.timeline.to_date</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="value" xsi:type="number">1</item>
+                            <item name="label" xsi:type="string" translate="true">Yes</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="value" xsi:type="number">0</item>
+                            <item name="label" xsi:type="string" translate="true">No</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="from_date">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">From</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">date</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="validate-date" xsi:type="boolean">true</item>
+                        </item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">from_date</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="to_date">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">To</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">date</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">to_date</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="validate-date" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+        </fieldset>
+        <fieldset name="customer_group">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Customer Groups</item>
+                    <item name="collapsible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <field name="customer_group_enabled">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Use Customer Groups</item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">customer_group_enabled</item>
+                        <item name="switcherConfig" xsi:type="array">
+                            <item name="enabled" xsi:type="boolean">true</item>
+                            <item name="rules" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="value" xsi:type="number">0</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.general.customer_group.customer_group_ids</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.general.customer_group.customer_group_ids</item>
+                                            <item name="callback" xsi:type="string">setValidation</item>
+                                            <item name="params" xsi:type="array">
+                                                <item name="0" xsi:type="string">required-entry</item>
+                                                <item name="1" xsi:type="string">0</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="value" xsi:type="number">1</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.general.customer_group.customer_group_ids</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.general.customer_group.customer_group_ids</item>
+                                            <item name="callback" xsi:type="string">setValidation</item>
+                                            <item name="params" xsi:type="array">
+                                                <item name="0" xsi:type="string">required-entry</item>
+                                                <item name="1" xsi:type="string">1</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="value" xsi:type="number">1</item>
+                            <item name="label" xsi:type="string" translate="true">Yes</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="value" xsi:type="number">0</item>
+                            <item name="label" xsi:type="string" translate="true">No</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="customer_group_ids">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">For Customer Groups</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">multiselect</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">customer_group_ids</item>
+                    </item>
+                    <item name="options" xsi:type="object">Magento\CatalogRule\Model\Rule\CustomerGroupsOptionsProvider</item>
+                </argument>
+            </field>
+        </fieldset>
+    </fieldset>
+    <fieldset name="customer_conditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Customer Conditions (Please mind these conditions are applied only for logged in customers)</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">15</item>
+            </item>
+        </argument>
+        <container name="actions_apply_to" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">15</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Amasty\Groupcat\Block\Adminhtml\Rule\Edit\Tab\CustomerConditions</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+    <fieldset name="category">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Categories</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="category_ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Category Access Restriction</item>
+                    <item name="source" xsi:type="string">groupcat_rule</item>
+                    <item name="dataScope" xsi:type="string">category_ids</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="component" xsi:type="string">Amasty_Groupcat/js/form/element/category-tree</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="string">1</item>
+                    <item name="elementTmpl" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                    <item name="listens" xsi:type="array">
+                        <item name="newOption" xsi:type="string">toggleOptionSelected</item>
+                    </item>
+                    <item name="config" xsi:type="array">
+                        <item name="dataScope" xsi:type="string">category_ids</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Magento\Catalog\Ui\Component\Product\Form\Categories\Options</item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="additional_conditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Additional filtering options</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">31</item>
+            </item>
+        </argument>
+        <field name="stock_status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Stock Status</item>
+                    <item name="fieldGroup" xsi:type="string">bool</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="value" xsi:type="string">0</item>
+                    <item name="source" xsi:type="string">groupcat_rule</item>
+                    <item name="dataScope" xsi:type="string">stock_status</item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\Groupcat\Model\Rule\StockStatusOptionsProvider</item>
+            </argument>
+        </field>
+        <fieldset name="price_range">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Price Range</item>
+                    <item name="collapsible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <field name="price_range_enabled">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Use Price Range</item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">price_range_enabled</item>
+                        <item name="switcherConfig" xsi:type="array">
+                            <item name="enabled" xsi:type="boolean">true</item>
+                            <item name="rules" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="value" xsi:type="number">0</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.additional_conditions.price_range.by_price</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.additional_conditions.price_range.from_price</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.additional_conditions.price_range.to_price</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="value" xsi:type="number">1</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.additional_conditions.price_range.by_price</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.additional_conditions.price_range.from_price</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.additional_conditions.price_range.to_price</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="value" xsi:type="number">1</item>
+                            <item name="label" xsi:type="string" translate="true">Yes</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="value" xsi:type="number">0</item>
+                            <item name="label" xsi:type="string" translate="true">No</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="by_price">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">By Price</item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">by_price</item>
+                    </item>
+                    <item name="options" xsi:type="object">Amasty\Groupcat\Model\Rule\ByPriceOptionsProvider</item>
+                </argument>
+            </field>
+            <field name="from_price">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">From Price</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">from_price</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="to_price">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">To Price</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">to_price</item>
+                    </item>
+                </argument>
+            </field>
+        </fieldset>
+    </fieldset>
+    <fieldset name="product_conditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Product Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">35</item>
+            </item>
+        </argument>
+        <container name="actions_apply_to" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">35</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">\Amasty\Groupcat\Block\Adminhtml\Rule\Edit\Tab\ProductConditions</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+    <fieldset name="rule_actions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Actions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">40</item>
+            </item>
+        </argument>
+        <fieldset name="links">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Display Options</item>
+                    <item name="collapsible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <field name="hide_category">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Hide Category</item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">hide_category</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="value" xsi:type="number">1</item>
+                            <item name="label" xsi:type="string" translate="true">Yes</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="value" xsi:type="number">0</item>
+                            <item name="label" xsi:type="string" translate="true">No</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="hide_product">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Hide Product</item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">hide_product</item>
+                        <item name="switcherConfig" xsi:type="array">
+                            <item name="enabled" xsi:type="boolean">true</item>
+                            <item name="rules" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="value" xsi:type="number">0</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace</item>
+                                            <item name="callback" xsi:type="string">doHideShow</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="value" xsi:type="number">1</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace</item>
+                                            <item name="callback" xsi:type="string">doHideShow</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="value" xsi:type="number">1</item>
+                            <item name="label" xsi:type="string" translate="true">Yes</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="value" xsi:type="number">0</item>
+                            <item name="label" xsi:type="string" translate="true">No</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+
+            <fieldset name="prices_replace">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="false"></item>
+                        <item name="collapsible" xsi:type="boolean">false</item>
+                        <item name="component" xsi:type="string">Amasty_Groupcat/js/form/element/price-fieldset</item>
+                    </item>
+                    <item name="component" xsi:type="string">Amasty_Groupcat/js/form/element/price-fieldset</item>
+                </argument>
+                <field name="price_action">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Hide Price</item>
+                            <item name="fieldGroup" xsi:type="string">bool</item>
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="value" xsi:type="string">0</item>
+                            <item name="source" xsi:type="string">groupcat_rule</item>
+                            <item name="dataScope" xsi:type="string">price_action</item>
+                            <item name="switcherConfig" xsi:type="array">
+                                <item name="enabled" xsi:type="boolean">true</item>
+                                <item name="rules" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="value" xsi:type="number">0</item>
+                                        <item name="actions" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.block_id_view</item>
+                                                <item name="callback" xsi:type="string">hide</item>
+                                            </item>
+                                            <item name="1" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.block_id_list</item>
+                                                <item name="callback" xsi:type="string">hide</item>
+                                            </item>
+                                            <item name="2" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.hide_cart</item>
+                                                <item name="callback" xsi:type="string">show</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="value" xsi:type="number">1</item>
+                                        <item name="actions" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.block_id_view</item>
+                                                <item name="callback" xsi:type="string">hide</item>
+                                            </item>
+                                            <item name="1" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.block_id_list</item>
+                                                <item name="callback" xsi:type="string">hide</item>
+                                            </item>
+                                            <item name="2" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.hide_cart</item>
+                                                <item name="callback" xsi:type="string">hide</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="value" xsi:type="number">2</item>
+                                        <item name="actions" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.block_id_view</item>
+                                                <item name="callback" xsi:type="string">show</item>
+                                            </item>
+                                            <item name="1" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.block_id_list</item>
+                                                <item name="callback" xsi:type="string">show</item>
+                                            </item>
+                                            <item name="2" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.hide_cart</item>
+                                                <item name="callback" xsi:type="string">hide</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                    <item name="3" xsi:type="array">
+                                        <item name="value" xsi:type="number">3</item>
+                                        <item name="actions" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.block_id_view</item>
+                                                <item name="callback" xsi:type="string">hide</item>
+                                            </item>
+                                            <item name="1" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.block_id_list</item>
+                                                <item name="callback" xsi:type="string">hide</item>
+                                            </item>
+                                            <item name="2" xsi:type="array">
+                                                <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace.hide_cart</item>
+                                                <item name="callback" xsi:type="string">hide</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                        <item name="options" xsi:type="object">Amasty\Groupcat\Model\Rule\PriceActionOptionsProvider</item>
+                    </argument>
+                </field>
+                <field name="block_id_view">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Replacement block for product page</item>
+                            <item name="fieldGroup" xsi:type="string">bool</item>
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="value" xsi:type="string">0</item>
+                            <item name="source" xsi:type="string">groupcat_rule</item>
+                            <item name="dataScope" xsi:type="string">block_id_view</item>
+                        </item>
+                        <item name="options" xsi:type="object">Amasty\Groupcat\Model\Rule\CmsBlockOptionsProvider</item>
+                    </argument>
+                </field>
+                <field name="block_id_list">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Replacement block for categories page</item>
+                            <item name="fieldGroup" xsi:type="string">bool</item>
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="value" xsi:type="string">0</item>
+                            <item name="source" xsi:type="string">groupcat_rule</item>
+                            <item name="dataScope" xsi:type="string">block_id_list</item>
+                        </item>
+                        <item name="options" xsi:type="object">Amasty\Groupcat\Model\Rule\CmsBlockOptionsProvider</item>
+                    </argument>
+                </field>
+                <field name="hide_cart">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Hide "Add to cart" button</item>
+                            <item name="fieldGroup" xsi:type="string">bool</item>
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="value" xsi:type="string">0</item>
+                            <item name="source" xsi:type="string">groupcat_rule</item>
+                            <item name="dataScope" xsi:type="string">hide_cart</item>
+                        </item>
+                        <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                    </argument>
+                </field>
+                <field name="hide_wishlist">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Hide "Add to wishlist" button</item>
+                            <item name="fieldGroup" xsi:type="string">bool</item>
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="value" xsi:type="string">0</item>
+                            <item name="source" xsi:type="string">groupcat_rule</item>
+                            <item name="dataScope" xsi:type="string">hide_wishlist</item>
+                        </item>
+                        <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                    </argument>
+                </field>
+                <field name="hide_compare">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Hide "Add to compare" button</item>
+                            <item name="fieldGroup" xsi:type="string">bool</item>
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="value" xsi:type="string">0</item>
+                            <item name="source" xsi:type="string">groupcat_rule</item>
+                            <item name="dataScope" xsi:type="string">hide_compare</item>
+                        </item>
+                        <item name="options" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="number">0</item>
+                                <item name="label" xsi:type="string" translate="true">No</item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="number">1</item>
+                                <item name="label" xsi:type="string" translate="true">Yes</item>
+                            </item>
+                        </item>
+                    </argument>
+                </field>
+            </fieldset>
+        </fieldset>
+        <fieldset name="restriction_action">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Restriction Action</item>
+                    <item name="collapsible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <field name="allow_direct_links">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Allow Direct Links</item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">allow_direct_links</item>
+                        <item name="switcherConfig" xsi:type="array">
+                            <item name="enabled" xsi:type="boolean">true</item>
+                            <item name="rules" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="value" xsi:type="number">0</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.restriction_action.forbidden_action</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace</item>
+                                            <item name="callback" xsi:type="string">doHideShow</item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="value" xsi:type="number">1</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.restriction_action.forbidden_action</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.restriction_action.forbidden_page_id</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="2" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.links.prices_replace</item>
+                                            <item name="callback" xsi:type="string">doHideShow</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                        <item name="component" xsi:type="string">Amasty_Groupcat/js/form/element/forbid-action</item>
+                        <item name="checkField" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.restriction_action.forbidden_action</item>
+                        <item name="showField" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.restriction_action.forbidden_page_id</item>
+                        <item name="showFieldOnValue" xsi:type="string">1</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="value" xsi:type="number">1</item>
+                            <item name="label" xsi:type="string" translate="true">Yes</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="value" xsi:type="number">0</item>
+                            <item name="label" xsi:type="string" translate="true">No</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="forbidden_action">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Action On Forbid</item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">forbidden_action</item>
+                        <item name="notice" xsi:type="string">This action will be applied when requested category or product page will be forbidden by this rule</item>
+                        <item name="switcherConfig" xsi:type="array">
+                            <item name="enabled" xsi:type="boolean">true</item>
+                            <item name="rules" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="value" xsi:type="number">0</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.restriction_action.forbidden_page_id</item>
+                                            <item name="callback" xsi:type="string">hide</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.restriction_action.forbidden_page_id</item>
+                                            <item name="callback" xsi:type="string">setValidation</item>
+                                            <item name="params" xsi:type="array">
+                                                <item name="0" xsi:type="string">required-entry</item>
+                                                <item name="1" xsi:type="string">0</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="value" xsi:type="number">1</item>
+                                    <item name="actions" xsi:type="array">
+                                        <item name="0" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.restriction_action.forbidden_page_id</item>
+                                            <item name="callback" xsi:type="string">show</item>
+                                        </item>
+                                        <item name="1" xsi:type="array">
+                                            <item name="target" xsi:type="string">amasty_groupcat_rule_form.amasty_groupcat_rule_form.rule_actions.restriction_action.forbidden_page_id</item>
+                                            <item name="callback" xsi:type="string">setValidation</item>
+                                            <item name="params" xsi:type="array">
+                                                <item name="0" xsi:type="string">required-entry</item>
+                                                <item name="1" xsi:type="string">1</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                    <item name="options" xsi:type="object">Amasty\Groupcat\Model\Rule\ForbiddenActionOptionsProvider</item>
+                </argument>
+            </field>
+            <field name="forbidden_page_id">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">CMS page redirect to</item>
+                        <item name="fieldGroup" xsi:type="string">bool</item>
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="source" xsi:type="string">groupcat_rule</item>
+                        <item name="dataScope" xsi:type="string">forbidden_page_id</item>
+                        <item name="notice" xsi:type="string">Customer will be redirected to this CMS page when he'try to access forbidden page</item>
+                    </item>
+                    <item name="options" xsi:type="object">Amasty\Groupcat\Model\Rule\CmsPageOptionsProvider</item>
+                </argument>
+            </field>
+        </fieldset>
+
+    </fieldset>
+</form>

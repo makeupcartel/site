@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Oaction
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Amasty_Oaction::tracking_import"
+             title="Import tracking numbers"
+             module="Amasty_Oaction"
+             sortOrder="60"
+             action="amasty_oaction/import"
+             parent="Magento_Backend::system_convert"
+             resource="Amasty_Oaction::tracking_import"/>
+    </menu>
+</config>

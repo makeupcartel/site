@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+
+    <entity name="scenario" type="wizardStep1">
+        <data key="customerAddsN">buy_x_get_y_radio</data>
+        <data key="customerReachesX">spent_x_get_y_radio</data>
+    </entity>
+
+    <entity name="doesCouponCode" type="wizardStep3">
+        <data key="no">0</data>
+        <data key="yes">1</data>
+    </entity>
+
+    <entity name="howManyTimes" type="wizardStep3">
+        <data key="onlyFirstTime">first</data>
+        <data key="everyTime">every</data>
+        <data key="everyTimeWithLimit">limit</data>
+    </entity>
+
+    <entity name="extraCriteria" type="wizardStep3">
+        <data key="no">0</data>
+        <data key="yes">1</data>
+    </entity>
+
+</entities>

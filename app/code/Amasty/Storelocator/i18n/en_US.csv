@@ -1,0 +1,189 @@
+"Save and Continue Edit","Save and Continue Edit"
+Edit,Edit
+"Manage Labels","Manage Labels"
+Label,Label
+Properties,Properties
+"Attribute Properties","Attribute Properties"
+"Attribute Code","Attribute Code"
+"This is used internally. Make sure you don't use spaces or more than %1 symbols.","This is used internally. Make sure you don't use spaces or more than %1 symbols."
+"Default Label","Default Label"
+"Default label","Default label"
+"Catalog Input Type for Store Owner","Catalog Input Type for Store Owner"
+"Values Required","Values Required"
+"Manage Options (Values of Your Attribute)","Manage Options (Values of Your Attribute)"
+Options,Options
+"Attribute Information","Attribute Information"
+"Location Management","Location Management"
+"Add Location","Add Location"
+"Edit Location `%1`","Edit Location `%1`"
+"Add New Location","Add New Location"
+"Location Information","Location Information"
+"Available Products","Available Products"
+"Apply the rule only if the following conditions are met (leave blank for all products).","Apply the rule only if the following conditions are met (leave blank for all products)."
+Actions,Actions
+"Store Attributes","Store Attributes"
+"Please Select","Please Select"
+No,No
+Yes,Yes
+"General Information","General Information"
+"Location Settings","Location Settings"
+General,General
+"Location name","Location name"
+"Store View","Store View"
+City,City
+Description,Description
+Zip,Zip
+Address,Address
+"Phone Number","Phone Number"
+"E-mail Address","E-mail Address"
+"Website URL","Website URL"
+Status,Status
+"Show Schedule","Show Schedule"
+Position,Position
+Image,Image
+Remove,Remove
+"Location On Map","Location On Map"
+"Apply In","Apply In"
+Latitude,Latitude
+Longitude,Longitude
+"Custom marker","Custom marker"
+"Store Schedule","Store Schedule"
+". ' Schedule'",". ' Schedule'"
+"Open Time","Open Time"
+"Close Time","Close Time"
+"Location Options","Location Options"
+"All Store Views","All Store Views"
+Installed,Installed
+"Specify Shipping Table Rates settings properly <a href=""%1"" target=""_blank"">See more details here</a>","Specify Shipping Table Rates settings properly <a href=""%1"" target=""_blank"">See more details here</a>"
+"Not Installed","Not Installed"
+" Create an unlimited number of flexible shipping methods with individual rates. Use combinations of a destination address, cart weight, order subtotal and price to accurately calculate shipping. See more details <a href=""https://amasty.com/shipping-table-rates-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=from_storelocator_to_shippingtablerates_m2"" target=""_blank"">here.</a>"," Create an unlimited number of flexible shipping methods with individual rates. Use combinations of a destination address, cart weight, order subtotal and price to accurately calculate shipping. See more details <a href=""https://amasty.com/shipping-table-rates-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=from_storelocator_to_shippingtablerates_m2"" target=""_blank"">here.</a>"
+"Store Locator Attributes","Store Locator Attributes"
+"Attribute has been deleted.","Attribute has been deleted."
+"This item no longer exists.","This item no longer exists."
+"Edit Attribute","Edit Attribute"
+"New Attribute","New Attribute"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"The wrong data is specified.","The wrong data is specified."
+"Record has been successfully saved","Record has been successfully saved"
+"Something went wrong while saving data. Please review the error log.","Something went wrong while saving data. Please review the error log."
+"Store Locator","Store Locator"
+"You deleted the item.","You deleted the item."
+"We can't delete item right now. Please review the log and try again.","We can't delete item right now. Please review the log and try again."
+"We can't find a item to delete.","We can't find a item to delete."
+"Please select a location to duplicate.","Please select a location to duplicate."
+"The location has been duplicated. Please feel free to activate it.","The location has been duplicated. Please feel free to activate it."
+"Something went wrong while saving the item data. Please review the error log.","Something went wrong while saving the item data. Please review the error log."
+"Edit Store Locator Location `%1`","Edit Store Locator Location `%1`"
+"Add new Location","Add new Location"
+"Please correct the data sent.","Please correct the data sent."
+"Something went wrong while saving the location.","Something went wrong while saving the location."
+"You deleted the location(s).","You deleted the location(s)."
+"You changed the location(s).","You changed the location(s)."
+"We can't delete location(s) right now. Please review the log and try again.","We can't delete location(s) right now. Please review the log and try again."
+"We can't find a location(s) to delete.","We can't find a location(s) to delete."
+"The wrong item is specified.","The wrong item is specified."
+"You saved the item.","You saved the item."
+Monday,Monday
+Tuesday,Tuesday
+Wednesday,Wednesday
+Thursday,Thursday
+Friday,Friday
+Saturday,Saturday
+Sunday,Sunday
+Kilometers,Kilometers
+Miles,Miles
+"Allow User To Choose","Allow User To Choose"
+"File directory '%1' is not readable.","File directory '%1' is not readable."
+"File directory '%1' is not writable.","File directory '%1' is not writable."
+"Conditions Combination","Conditions Combination"
+"Product Attribute","Product Attribute"
+"There is no sample file for this entity.","There is no sample file for this entity."
+"Is Default","Is Default"
+"Add Option","Add Option"
+"Sort Option","Sort Option"
+Delete,Delete
+" can be found at the following stores:&nbsp;"," can be found at the following stores:&nbsp;"
+Filter,Filter
+Search,Search
+"Current Location","Current Location"
+"Enter a location","Enter a location"
+"Search Radius","Search Radius"
+"Search Radius Measurement","Search Radius Measurement"
+km,km
+mi,mi
+"Locate Nearby","Locate Nearby"
+"Work Time Today:","Work Time Today:"
+"You need to choose address from the dropdown with suggestions.","You need to choose address from the dropdown with suggestions."
+"Frontend Locator Url","Frontend Locator Url"
+"Meta Title","Meta Title"
+"Meta Description","Meta Description"
+Geolocation,Geolocation
+"Use Browser Location","Use Browser Location"
+"Use Geo IP","Use Geo IP"
+"Automatic positioning to the nearest location","Automatic positioning to the nearest location"
+"Main settings","Main settings"
+"Distance Units","Distance Units"
+"Google Mark Template","Google Mark Template"
+"Store List Template","Store List Template"
+"Attribute Template","Attribute Template"
+"Frontend product URL text","Frontend product URL text"
+"Open frontend url on new page","Open frontend url on new page"
+"Google API Key","Google API Key"
+"Map zoom","Map zoom"
+"Show additional attributes","Show additional attributes"
+"Text for shops which don't work in particular day","Text for shops which don't work in particular day"
+"If you would like to use other search radius, you may list them above, separated with comma","If you would like to use other search radius, you may list them above, separated with comma"
+"Convert time format to 12 Hours AM/PM format on frontend","Convert time format to 12 Hours AM/PM format on frontend"
+"Enable clustering","Enable clustering"
+"Enable distance counting","Enable distance counting"
+"Countries where addresses are allowed to be shown","Countries where addresses are allowed to be shown"
+"
+                        
+                        Please use the field if you need to show only specific countries in the list of offered addresses for the 'Current Location' field on the Store locator's page.
+                        Please mind that Google Service allows to choose no more than 5 countries (you can find more information <a href=""https://developers.google.com/maps/documentation/javascript/places-autocomplete#add_autocomplete"" target=""_blank"">here</a>).
+                        Or leave the field blank to show all possible countries in the list of offered addresses.
+                        
+                    ","
+                        
+                        Please use the field if you need to show only specific countries in the list of offered addresses for the 'Current Location' field on the Store locator's page.
+                        Please mind that Google Service allows to choose no more than 5 countries (you can find more information <a href=""https://developers.google.com/maps/documentation/javascript/places-autocomplete#add_autocomplete"" target=""_blank"">here</a>).
+                        Or leave the field blank to show all possible countries in the list of offered addresses.
+                        
+                    "
+"Style Settings","Style Settings"
+"Map Width","Map Width"
+"The width of the map block (CSS length).","The width of the map block (CSS length)."
+"You can use the CSS-length values for the block configuration (100px, 77pt, 20em, .5ex or 50%)","You can use the CSS-length values for the block configuration (100px, 77pt, 20em, .5ex or 50%)"
+"Map Height","Map Height"
+"The height of the map block (CSS length). Please set the value in px, pt, em, ex. Don't set the value in %.","The height of the map block (CSS length). Please set the value in px, pt, em, ex. Don't set the value in %."
+"Store List Width","Store List Width"
+"The width of the store list block (CSS length).","The width of the store list block (CSS length)."
+"Store List Height","Store List Height"
+"The height of the store list block (CSS length). Please set the value in px, pt, em, ex. Don't set the value in %.","The height of the store list block (CSS length). Please set the value in px, pt, em, ex. Don't set the value in %."
+"Shipping Table Rates","Shipping Table Rates"
+"Amasty Store Locator","Amasty Store Locator"
+"Show Store List On Widget","Show Store List On Widget"
+"Show NearBy And Radius Filter","Show NearBy And Radius Filter"
+"You can use the CSS-length values for the Store List configuration (100px, 77pt, 20em, .5ex or 50%)","You can use the CSS-length values for the Store List configuration (100px, 77pt, 20em, .5ex or 50%)"
+"You can use the CSS-length values for the Store List configuration (100px, 77pt, 20em, .5ex). Don't set the value in %.","You can use the CSS-length values for the Store List configuration (100px, 77pt, 20em, .5ex). Don't set the value in %."
+"You can use the CSS-length values for the Map configuration (100px, 77pt, 20em, .5ex or 50%)","You can use the CSS-length values for the Map configuration (100px, 77pt, 20em, .5ex or 50%)"
+"You can use the CSS-length values for the Map configuration (100px, 77pt, 20em, .5ex). Don't set the value in %.","You can use the CSS-length values for the Map configuration (100px, 77pt, 20em, .5ex). Don't set the value in %."
+"Widget Description","Widget Description"
+"Enable Widget Block Wrapping","Enable Widget Block Wrapping"
+"Set 'No' to disable the map block wrapping with the page content","Set 'No' to disable the map block wrapping with the page content"
+"Link Text In Widget","Link Text In Widget"
+"Store Locator Options","Store Locator Options"
+"Add New Attribute","Add New Attribute"
+"Delete selected items?","Delete selected items?"
+ID,ID
+"Input Type","Input Type"
+Required,Required
+"Add New","Add New"
+Enable,Enable
+Disable,Disable
+"Delete items","Delete items"
+"Are you sure you wan't to delete selected items?","Are you sure you wan't to delete selected items?"
+"Store Views","Store Views"
+Disabled,Disabled
+Enabled,Enabled
+Name,Name

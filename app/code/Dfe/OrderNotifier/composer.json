@@ -1,0 +1,16 @@
+{
+	"name": "makeupcartel/order-notifier"
+	,"version": "1.0.1"
+	,"description": "The module passes orders from makeupcartel.com.au (Magento 2) to NetSuite ERP"
+	,"type": "magento2-module"
+	,"homepage": "https://github.com/makeupcartel/order-notifier"
+	,"license": "MIT"
+	,"authors": [{
+		"name": "Dmitry Fedyuk"
+		,"email": "admin@mage2.pro"
+		,"homepage": "https://www.upwork.com/fl/mage2pro"
+		,"role": "Developer"
+	}]
+	,"autoload": {"files": ["registration.php"], "psr-4": {"Dfe\\OrderNotifier\\": ""}}
+	,"keywords": ["Magento 2", "NetSuite ERP"]
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_groupcat>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <gdpr>
+                <enabled>0</enabled>
+                <text><![CDATA[I agree to the <a href="/privacy-policy" target="_blank">Privacy Policy</a> to get a quote for product]]></text>
+            </gdpr>
+        </amasty_groupcat>
+    </default>
+</config>

@@ -1,0 +1,70 @@
+<?php
+/** @var $block \Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\Status */
+?>
+<?php
+$_p = $block->getProfile();
+$_dryRun = $_p->getData('options/import/dryrun');
+$_ms = (int)$block->getScopeConfig()->getValue('urapidflow/finetune/status_refresh_delay');
+$_ms = $_ms ? $_ms * 1000 : 3000;
+?>
+<div id="urapidflow-status-container">
+    <?php echo $block->getLayout()->createBlock('Unirgy\RapidFlow\Block\Adminhtml\Profile\Status')->setProfile($_p)->toHtml() ?>
+</div>
+
+<script type="text/javascript">
+    //    Ajax.Responders.unregister(varienLoaderHandler.handler);
+    require(["jquery"], function ($) {
+        <?php if ($_p->getRunStatus() === 'pending'): ?>
+        $.ajax(
+            '<?php echo $block->getUrl('*/*/ajaxStart', ['id' => $_p->getId()]) ?>',
+            {
+                method: 'get',
+                dataType: 'json',
+                error: function (result, code, error) {
+                    if (error) {
+                        alert(code + ': ' + error);
+                    }
+//                alert('error');
+                },
+                success: function (result) {
+                    console.log(result);
+                    var res = result.responseJSON;
+                    if (!res && result.responseText) {
+                        alert(result.responseText);
+                        location.href = '<?php echo $block->getUrl('*/*/stop',
+                                                                   ['id' => $_p->getId()]) ?>';
+                    } else if (result.error) {
+                        alert(result.error);
+                        location.reload();
+                    }
+                }
+            }
+        );
+        <?php endif ?>
+
+        <?php if (in_array($_p->getRunStatus(), ['pending', 'running'])): ?>
+        function updateStatus() {
+            $.ajax(
+                '<?php echo $block->getUrl('*/*/ajaxStatus', ['id' => $_p->getId()]) ?>',
+                {
+                    method: 'get',
+                    dataType: 'json',
+                    success: function (result) {
+                        console.log(result);
+                        $('#urapidflow-status-container').html(result.html);
+                        if (result.run_status == 'finished') {
+                            location.reload();
+                            return;
+                        }
+                        if (result.run_status == 'running') {
+                            setTimeout(updateStatus, <?php echo $_ms ?>);
+                        }
+                    }
+                }
+            )
+        }
+
+        setTimeout(updateStatus, <?php echo $_ms ?>);
+        <?php endif ?>
+    });
+</script>

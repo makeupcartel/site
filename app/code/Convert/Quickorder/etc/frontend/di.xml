@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+* See LICENSE.txt for license details.
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Block\Product\AbstractProduct">
+        <plugin name="render_attribute_html" type="Convert\Quickorder\Plugin\Catalog\Block\Product"/>
+    </type>
+</config>

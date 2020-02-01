@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+
+    <entity name="oneByOneNotAddProductAutomatically" type="cartRulePromo">
+        <data key="name">Check PopUp One By One and Not Add Product Automatically</data>
+        <data key="description">Check PopUp One By One and Not Add Product Automatically</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04,24-MB01</data>
+    </entity>
+
+    <entity name="multipleAddOnlyFreeProductAutomaticallyFirst" type="cartRulePromo">
+        <data key="name">Check PopUp Multiple and Add Only Free Product Automatically First</data>
+        <data key="description">Check PopUp Multiple and Add Only Free Product Automatically First</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-UB02</data>
+    </entity>
+
+    <entity name="multipleAddOnlyFreeProductAutomaticallySecond" type="cartRulePromo">
+        <data key="name">Check PopUp Multiple and Add Only Free Product Automatically Second</data>
+        <data key="description">Check PopUp Multiple and Add Only Free Product Automatically Second</data>
+        <data key="numberOfGiftItems">2</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04,24-MB01</data>
+        <data key="discount">50%</data>
+        <data key="minimalPrice">0</data>
+    </entity>
+
+    <entity name="addAllProductsAutomaticallyFirst" type="cartRulePromo">
+        <data key="name">Check Add All Products Automatically First</data>
+        <data key="description">Check Add All Products Automatically First</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-UB02</data>
+    </entity>
+
+    <entity name="addAllProductsAutomaticallySecond" type="cartRulePromo">
+        <data key="name">Check Add All Products Automatically Second</data>
+        <data key="description">Check Add All Products Automatically Second</data>
+        <data key="numberOfGiftItems">2</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="discount">50%</data>
+        <data key="minimalPrice">0</data>
+        <data key="discountAmount">-$32.00</data>
+    </entity>
+
+    <entity name="openPopUpAutomatically" type="cartRulePromo">
+        <data key="name">Check Open PopUp Automatically</data>
+        <data key="description">Check Open PopUp Automatically</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-UB02</data>
+    </entity>
+
+    <entity name="addFreeGiftBeforeDiscountSubtotalFirst" type="cartRulePromo">
+        <data key="name">Check Add Free Gift Before Discount Subtotal First</data>
+        <data key="description">Check Add Free Gift Before Discount Subtotal First</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="discountQtyStep">90</data>
+        <data key="priority">1</data>
+    </entity>
+
+    <entity name="addFreeGiftBeforeDiscountSubtotalSecond" type="cartRulePromo">
+        <data key="name">Check Add Free Gift Before Discount Subtotal Second</data>
+        <data key="description">Check Add Free Gift Before Discount Subtotal Second</data>
+        <data key="numberOfGiftItems">10</data>
+        <data key="discountAmount">-$10.00</data>
+    </entity>
+
+    <entity name="addFreeGiftAfterDiscountSubtotalFirst" type="cartRulePromo">
+        <data key="name">Check Add Free Gift After Discount Subtotal First</data>
+        <data key="description">Check Add Free Gift After Discount Subtotal First</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="discountQtyStep">90</data>
+        <data key="priority">1</data>
+    </entity>
+
+    <entity name="addFreeGiftAfterDiscountSubtotalSecond" type="cartRulePromo">
+        <data key="name">Check Add Free Gift After Discount Subtotal Second</data>
+        <data key="description">Check Add Free Gift After Discount Subtotal Second</data>
+        <data key="numberOfGiftItems">10</data>
+        <data key="discountAmount">-$10.00</data>
+    </entity>
+
+    <entity name="showOriginalPriceInPopUpFirst" type="cartRulePromo">
+        <data key="name">Check Setting Show Original Price In PopUp First</data>
+        <data key="description">Check Setting Show Original Price In PopUp First</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="originalPriceGift">$32.00</data>
+        <data key="discountPriceGift">$0.00</data>
+    </entity>
+
+    <entity name="showOriginalPriceInPopUpSecond" type="cartRulePromo">
+        <data key="name">Check Setting Show Original Price In PopUp Second</data>
+        <data key="description">Check Setting Show Original Price In PopUp Second</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB01</data>
+        <data key="discount">60%</data>
+        <data key="minimalPrice">0</data>
+        <data key="originalPriceGift">$34.00</data>
+        <data key="discountPriceGift">$13.60</data>
+    </entity>
+
+    <entity name="dontShowOriginalPriceInPopUpFirst" type="cartRulePromo">
+        <data key="name">Check Setting Show Original Price In PopUp First</data>
+        <data key="description">Check Setting Show Original Price In PopUp First</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+    </entity>
+
+    <entity name="dontShowOriginalPriceInPopUpSecond" type="cartRulePromo">
+        <data key="name">Check Setting Show Original Price In PopUp Second</data>
+        <data key="description">Check Setting Show Original Price In PopUp Second</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB01</data>
+        <data key="discount">60%</data>
+        <data key="minimalPrice">0</data>
+    </entity>
+
+    <entity name="remindedAboutAvailablePromos" type="cartRulePromo">
+        <data key="name">Check Setting Reminded About Available Promos</data>
+        <data key="description">Check Setting Reminded About Available Promos</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB01</data>
+    </entity>
+
+    <entity name="configurableFreeGiftOneOfTheSKUsBelow" type="cartRulePromo">
+        <data key="name">Check Add Configurable Free Gift And One Of The SKUs Below Add Type</data>
+        <data key="description">Check Add Configurable Free Gift And One Of The SKUs Below Add Type</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">1</data>
+        <data key="promoItems">MT07,MH07</data>
+        <data key="sizeMT07">XS</data>
+        <data key="colorMT07">Gray</data>
+        <data key="customSkuMT07">MT07-XS-Gray</data>
+        <data key="sizeMH07">M</data>
+        <data key="colorMH07">Black</data>
+        <data key="customSkuMH07">MH07-M-Black</data>
+    </entity>
+
+    <entity name="autoAddPromoItemsForTheWholeCartWithConditions" type="cartRulePromo">
+        <data key="name">Check Rule Auto Add Promo Items For The Whole Cart With Conditions</data>
+        <data key="description">Check Rule Auto Add Promo Items For The Whole Cart With Conditions</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="conditionSubtotal">100</data>
+    </entity>
+
+    <entity name="autoAddPromoItemsForEveryXSpentApplyShipping" type="cartRulePromo">
+        <data key="name">Check Rule Auto Add Promo Items For Every X Spent With Apply Shipping For Free Gift</data>
+        <data key="description">Check Rule Auto Add Promo Items For Every X Spent With Apply Shipping For Free Gift</data>
+        <data key="numberOfGiftItems">2</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="discountQtyStep">50</data>
+    </entity>
+
+    <entity name="addGiftWithEachNProductInTheCart" type="cartRulePromo">
+        <data key="name">Check Rule Add Gift With Each N Product In The Cart</data>
+        <data key="description">Check Rule Add Gift With Each N Product In The Cart</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="discountQtyStep">2</data> <!-- Each N -->
+    </entity>
+
+    <entity name="addGiftWithEachNProductInTheCartApplyTax" type="cartRulePromo">
+        <data key="name">Check Rule Add Gift With Each N Product In The Cart With Apply Tax On Original Price</data>
+        <data key="description">Check Rule Add Gift With Each N Product In The Cart With Apply Tax On Original Price</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="discountQtyStep">2</data> <!-- Each N -->
+        <data key="countryTax">United States</data>
+        <data key="stateTax">Michigan</data>
+        <data key="valueTaxOne">$4.46</data>
+        <data key="valueTaxTwo">$11.55</data>
+    </entity>
+
+    <entity name="addGiftWithEachNProductInTheCartWithDiscount" type="cartRulePromo">
+        <data key="name">Check Rule Add Gift With Each N Product In The Cart With Discount</data>
+        <data key="description">Check Rule Add Gift With Each N Product In The Cart With Discount</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="discount">50%</data>
+        <data key="minimalPrice">0</data>
+        <data key="discountQtyStep">2</data> <!-- Each N -->
+        <data key="discountAmountOne">-$16.00</data>
+        <data key="discountAmountTwo">-$32.00</data>
+    </entity>
+
+    <entity name="autoAddPromoItemsWithProductsWithDiscount" type="cartRulePromo">
+        <data key="name">Check Rule Auto Add Promo Items With Products With Discount</data>
+        <data key="description">Check Rule Auto Add Promo Items With Products With Discount</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="discount">25</data>
+        <data key="minimalPrice">0</data>
+        <data key="discountAmountOne">-$7.00</data>
+        <data key="discountAmountTwo">-$14.00</data>
+    </entity>
+
+    <entity name="autoAddPromoItemsWithMinimalPriceAndDiscount" type="cartRulePromo">
+        <data key="name">Check Rule Auto Add Promo Items With Products With Minimal Price And Discount</data>
+        <data key="description">Check Rule Auto Add Promo Items With Products With Minimal Price And Discount</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB02,24-WB03</data>
+        <data key="discount">-15</data>
+        <data key="minimalPrice">30</data>
+        <data key="discountAmountOne">-$15.00</data>
+        <data key="discountAmountTwo">-$21.00</data>
+        <data key="discountAmountThree">-$6.00</data>
+    </entity>
+
+    <entity name="autoAddPromoItemsDiscountAndMultiCurrency" type="cartRulePromo">
+        <data key="name">Check Rule Auto Add Promo Items With Products With Discount And MultiCurrency</data>
+        <data key="description">Check Rule Auto Add Promo Items With Products With Discount And MultiCurrency</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="discount">25</data>
+        <data key="minimalPrice">0</data>
+        <data key="rateUSDAndEUR">0.8</data>
+        <data key="discountAmountOne">-€5.60</data>
+    </entity>
+
+    <entity name="topBannerOnProductPageAndProductSKU" type="cartRulePromo">
+        <data key="name">Check Top Banner On Product Page And Product SKU</data>
+        <data key="description">Check Top Banner On Product Page And Product SKU</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="bannerProductSKU">24-MB02,24-WB03</data>
+    </entity>
+
+    <entity name="afterProductDescriptionBannerAndCategories" type="cartRulePromo">
+        <data key="name">Check After Product Description Banner And Categories</data>
+        <data key="description">Check After Product Description Banner And Categories</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="categoryOne">Bags</data>
+        <data key="categoryTwo">Watches</data>
+    </entity>
+
+    <entity name="productLabelBannerAndAllProduct" type="cartRulePromo">
+        <data key="name">Check Product Label Banner And All Product</data>
+        <data key="description">Check Product Label Banner And All Product</data>
+        <data key="numberOfGiftItems">1</data>
+    </entity>
+
+    <entity name="autoAddPromoItemsForTheWholeCart" type="cartRulePromo">
+        <data key="name">Check Auto add promo items for the whole cart</data>
+        <data key="description">Check Auto add promo items for the whole cart</data>
+        <data key="numberOfGiftItems">3</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+    </entity>
+
+    <entity name="DiscardSubsequentRulesFirst" type="cartRulePromo">
+        <data key="name">Check Discard subsequent rules First </data>
+        <data key="description">Check Discard subsequent rules First </data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB04</data>
+    </entity>
+
+    <entity name="DiscardSubsequentRulesSecond" type="cartRulePromo">
+        <data key="name">Check Discard subsequent rules Second</data>
+        <data key="description">Check Discard subsequent rules Second</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="promoItems">24-MB05</data>
+    </entity>
+
+    <entity name="autoAddTheSameProduct" type="cartRulePromo">
+        <data key="name">Check Auto add the same product</data>
+        <data key="description">Check Auto add the same product</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="discountQtyStep">3</data>
+    </entity>
+
+    <entity name="theSameProductMaximumQtyDiscountisAppliedTo" type="cartRulePromo">
+        <data key="name">The Same Product Maximum Qty Discount is Applied To</data>
+        <data key="description">The Same Product Maximum Qty Discount is Applied To</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="discountQtyStep">1</data>
+        <data key="maxQtyDiscount">3</data>
+    </entity>
+
+    <entity name="autoAddPromoItemsForEveryXSpent" type="cartRulePromo">
+        <data key="name">Check Auto Add Promo Items For Every X Spent</data>
+        <data key="description">Check Auto Add Promo Items For Every X Spent</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="discountQtyStep">140</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="typeAddFreeGift">0</data>
+    </entity>
+
+    <entity name="autoAddTheSameProductCoupon" type="cartRulePromo">
+        <data key="name">Check Auto add the same product with coupon</data>
+        <data key="description">Check Auto add the same product with coupon</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="discountQtyStep">1</data>
+        <data key="couponCode">test</data>
+    </entity>
+
+    <entity name="autoAddTheSameConfigurableProduct" type="cartRulePromo">
+        <data key="name">Check Auto Add Add The Same Configurable Product</data>
+        <data key="description">Check Auto Add Add The Same Configurable Product</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="discountQtyStep">2</data>
+        <data key="sizeMT07">XS</data> <!-- 172 -->
+        <data key="colorMT07">Gray</data>
+        <data key="customSkuMT07">MT07-XS-Gray</data>
+    </entity>
+
+    <entity name="wizardAndAutoAddTheSameProduct" type="cartRulePromo">
+        <data key="name">Buy 2 products, get 3 products Free</data>
+        <data key="ruleAutoName">Buy 2 products, get 3 products Free</data>
+        <data key="numberOfGiftItems">3</data>
+        <data key="discountQtyStep">2</data>
+        <data key="maxQtyDiscount">3</data>
+        <data key="ruleStatus">1</data>
+        <data key="couponCodeCheckValue">No Coupon</data>
+        <data key="actionCheckValue">Auto add the same product</data>
+    </entity>
+
+    <entity name="autoAddPromoItemsApplyToSku" type="cartRulePromo">
+        <data key="name">Check Auto add promo items with conditions from action tab</data>
+        <data key="description">Check Auto add promo items with conditions from action tab</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="discountQtyStep">1</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="typeAddFreeGift">0</data>
+        <data key="conditions">24-WG03,24-WB07</data>
+    </entity>
+
+    <entity name="dontOpenPopUpAutomaticallyCheckout" type="cartRulePromo">
+        <data key="name">Don't Open PopUp Automatically on Checkout</data>
+        <data key="description">Don't Open PopUp Automatically on Checkout</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="discountQtyStep">1</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="typeAddFreeGift">0</data>
+    </entity>
+
+    <entity name="openPopUpAutomaticallyCheckout" type="cartRulePromo">
+        <data key="name">Open PopUp Automatically on Checkout</data>
+        <data key="description">Open PopUp Automatically on Checkout</data>
+        <data key="numberOfGiftItems">1</data>
+        <data key="discountQtyStep">1</data>
+        <data key="promoItems">24-MB04</data>
+        <data key="typeAddFreeGift">0</data>
+    </entity>
+
+</entities>

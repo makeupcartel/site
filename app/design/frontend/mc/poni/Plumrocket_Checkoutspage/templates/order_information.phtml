@@ -1,0 +1,37 @@
+<?php 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015-2018 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+<?php 
+    $order = $this->helper('Plumrocket\Checkoutspage\Helper\Data')->getOrder();
+    $helper = $this->helper('Convert\Checkout\Helper\Data');
+    ?>
+<ul class="csp-orderinfo-hld csp-cf">
+    <li class="csp-ordnum-hld">
+        <h2 class="csp-ordnum-hld-thank"><?php echo __('Thank you for shopping with PONi!') ?> </h2>
+        <br/>
+        <h2><?php echo __('Your order number is #%1', $order->getIncrementId()); ?></h2>
+    </li>
+    <li class="csp-ordnum-hld">
+        <p><?php echo __('We’ll email your order confirmation with details and tracking info. ') ?></p>
+    </li>
+</ul>
+<?php
+$checkProduct = $helper->checkOrder($order->getIncrementId());
+if($checkProduct == 1){
+    echo $block->getChildHtml('onepage.success.subscriptions'); 
+}  
+?>

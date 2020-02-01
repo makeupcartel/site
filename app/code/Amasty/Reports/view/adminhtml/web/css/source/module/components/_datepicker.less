@@ -1,0 +1,44 @@
+//
+// Datepicker Styles
+// _______________________________________________
+
+//
+//  Variables
+//  ----------------------------------------------
+
+@amrep-datepick-icon__color: @amrep__secondary__font-color;
+@amrep-datepick-icon__color__active: @amrep__button-color__active;
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    .amreports-body-container {
+        ._has-datepicker + .ui-datepicker-trigger {
+            & {
+                right: 0;
+                margin: 0;
+                height: 100%;
+            }
+            
+            &:after {
+                .transition(.1);
+                
+                padding: 5px;
+                color: @amrep-datepick-icon__color;
+                font-size: 12px;
+                line-height: normal;
+            }
+            
+            &:hover:after {
+                color: @amrep-datepick-icon__color__active;
+            }
+        }
+        
+        .ui-datepicker.ui-widget {
+            padding: 23px 10px;
+            opacity: 1;
+        }
+    }
+}

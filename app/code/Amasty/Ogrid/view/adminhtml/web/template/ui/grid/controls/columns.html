@@ -1,0 +1,94 @@
+<div data-bind="collapsible"
+     class="admin__action-dropdown-wrap admin__data-grid-action-columns"
+     data-role="toolbar-menu-item">
+    <button
+            class="admin__action-dropdown"
+            type="button"
+            data-bind="toggleCollapsible"
+            data-toggle="dropdown"
+            aria-haspopup="true">
+        <span class="admin__action-dropdown-text" data-bind="i18n: 'Columns'"></span>
+    </button>
+
+    <div data-bind="css: {_overflow: hasOverflow()}" class="admin__action-dropdown-menu admin__data-grid-action-columns-menu">
+
+        <div class="amasty-ogrid-tabs">
+            <div data-bind="repeat: {foreach: getTabs(), item: '$tab'}">
+                <input data-bind="{
+                    checked: selectedTab,
+                    css: {_selected: hasSelected($tab().key)},
+                    attr: {
+                        id: 'amasty_ogrid_tab_' + $tab().key,
+                        value: $tab().key
+                    }
+                }" type="radio" class="amasty-ogrid-tab" name="amasty_ogrid_tabs">
+                <label class="amasty-ogrid-label" data-bind="{
+                    i18n: $tab().value,
+                    attr: {
+                        for: 'amasty_ogrid_tab_' + $tab().key
+                    }
+                }"></label>
+            </div>
+            <div class="admin__action-dropdown-menu-header">
+                <span data-bind="text: getHeaderMessage()"></span>
+            </div>
+            <div id="amasty_ogrid_content" class="admin__action-dropdown-menu-content">
+                <div data-bind="repeat: {foreach: getTabs(), item: '$tab'}">
+                    <section class="amasty-ogrid-content" data-bind="{
+                        attr: {id: 'amasty_ogrid_content_' + $tab().key},
+                        css: {'amasty-active': $tab().key == selectedTab },
+                    }">
+                        <table class="amasty-ogrid-table">
+                            <tr>
+                                <th data-bind="i18n: 'Column'"></th>
+                                <th data-bind="i18n: 'Title'"></th>
+                            </tr>
+                            <tr data-bind="repeat: {foreach: getColumns($tab().key), item: '$col'}">
+                                <td class="amasty-ogrid-cell-label">
+                                    <input
+                                            class="admin__control-checkbox"
+                                            type="checkbox"
+                                            data-bind="
+                                            attr: {
+                                                id: ++ko.bindingHandlers['uniqueName'].currentIndex + '_uid'
+                                            },
+                                            checked: $col().amogrid.visible"/>
+                                    <label
+                                            class="admin__field-label"
+                                            data-bind="
+                                            text: $col().amogrid.label,
+                                            attr: {
+                                                for: ko.bindingHandlers['uniqueName'].currentIndex + '_uid'
+                                            }"></label>
+
+                                </td>
+                                <td class="amasty-ogrid-cell-title">
+                                    <input
+                                            class="admin__control-text"
+                                            type="text"
+                                            data-bind="
+                                        attr: {
+                                            id: ++ko.bindingHandlers['uniqueName'].currentIndex + '_utitle'
+                                        },
+                                        value: $col().amogrid.title"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="admin__action-dropdown-menu-footer">
+            <div class="admin__action-dropdown-footer-secondary-actions">
+                <button data-bind="click: save, closeCollapsible" class="action-tertiary" type="button">
+                    <span data-bind="i18n: 'Save'"></span>
+                </button>
+            </div>
+            <div class="admin__action-dropdown-footer-main-actions">
+                <button data-bind="click: close, closeCollapsible" class="action-tertiary" type="button">
+                    <span data-bind="i18n: 'Close'"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

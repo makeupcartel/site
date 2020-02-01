@@ -1,0 +1,18 @@
+.amgroupcat-condition-wrapper .amgroupcat-tooltip {
+    position: absolute;
+    left: 400px;
+    height: 60px;
+    margin-top: 4px;
+}
+
+.amgroupcat-condition-wrapper .amgroupcat-image {
+    bottom: 85px;
+    right: auto;
+    width: 500px;
+}
+
+.amgroupcat-condition-wrapper .amgroupcat-image:before,
+.amgroupcat-condition-wrapper .amgroupcat-image:after {
+    bottom: 0;
+    left: 16px;
+}

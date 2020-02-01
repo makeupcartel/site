@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="FrontCartSection">
+        <element name="CartTotalLoader" type="block" selector="//div[@id='cart-totals']//div[@data-role='loader']/div[@class='loader']"/>
+        <element name="PopUpForAddProduct" type="button" selector="//div[@class='cart-container']//a[@data-role='ampromo-popup-show']"/>
+        <element name="OpenPopUp" type="block" selector="//div[@class='ampromo-overlay'][@style='display: block;']"/>
+        <element name="ClosePopUp" type="block" selector="//div[@class='ampromo-overlay'][@style='display: none;']"/>
+        <element name="PopUpProductsContainer" type="block" selector="//div[@class='ampromo-items-content']//div[@data-role='ampromo-carousel-product']"/>
+        <element name="MultiplePopUpAddButton" type="button" selector="//div[@data-role='ampromo-carousel-product']/div[@class='ampromo-item-buttons']/button"/>
+        <element name="MultiplePopUpCheckbox" type="input" selector="//div[@class='slick-track']//input[@type='checkbox']"/>
+        <element name="OneByOnePopUpAddButton" type="button" selector="//div[@class='slick-track']/div//button"/>
+        <element name="PopUpCloseButton" type="button" selector="//div[@class='ampromo-items-content']/div[@class='ampromo-close']"/>
+        <element name="ShippingFlatRate" type="button" selector="//input[@id='s_method_flatrate_flatrate']"/>
+        <element name="PromoDiscount" type="block" selector="//tr[@class='totals']/td[@data-th='Discount']/span"/>
+        <element name="PriceInPopUp" type="block" selector="//div[@class='slick-track']//div[@class='product-info-price']"/>
+        <element name="ShippingCountry" type="select" selector="//select[@name='country_id']"/>
+        <element name="ShippingState" type="select" selector="//select[@name='region_id']"/>
+        <element name="TotalsTax" type="block" selector="//tr[@class='totals-tax']/td[@data-th='Tax']/span"/>
+    </section>
+
+</sections>
+

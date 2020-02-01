@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\Sidebar\Recent */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+    $posts = $block->getPosts();
+?>
+<?php if (count($posts)): ?>
+    <div id="blog-sidebar-recent-posts" class="block widget blog-sidebar-block">
+        <div class="block-title">
+            <strong class="blog-sidebar-block-title"><?php echo $block->escapeHtml(__('Recent posts')) ?></strong>
+        </div>
+        <div class="block-content blog-sidebar-block-content">
+            <ul class="block-recent-posts">
+                <?php foreach ($posts as $post): ?>
+                    <li class="block-recent-posts-item">
+                        <?php if ($block->isFeaturedImageLoaded($post)): ?>
+                            <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>" class="recent-post-featured-image-link">
+                                <img class="recent-post-featured-image"
+                                     src = "<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getFeaturedImageUrl($post)) ?>"
+                                     title = "<?php echo $block->escapeHtml($post->getFeaturedImageTitle()) ?>"
+                                     alt = "<?php echo $block->escapeHtml($post->getFeaturedImageAlt()) ?>"
+                                />
+                            </a>
+                        <?php endif; ?>
+                        <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getPostUrl($post)) ?>"
+                           class="block-recent-posts-link">
+                            <?php echo $block->escapeHtml($post->getTitle()) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>

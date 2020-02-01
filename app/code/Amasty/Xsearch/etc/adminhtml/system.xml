@@ -1,0 +1,395 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amasty_xsearch" translate="label" type="text" sortOrder="10419" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Advanced Search </label>
+            <tab>amasty</tab>
+            <resource>Amasty_Xsearch::amasty_xsearch</resource>
+            <group id="amasty_information" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Information</label>
+                <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Information</frontend_model>
+            </group>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="popup_width" translate="label comment" type="text" sortOrder="10" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Popup width (px)</label>
+                    <validate>validate-number validate-number-range number-range-300-2500</validate>
+                    <comment>Set the width of the autocomplete popup window. Recommended value for horizontal view is 900. To get vertical view please enter 700 and lower.</comment>
+                </field>
+
+                <field id="min_chars" translate="label comment" type="text" sortOrder="20" showInDefault="1"   showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Min characters</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                </field>
+
+                <field id="four_zero_four_redirect" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Redirect from 404 to Search Results</label>
+                    <comment>If option is enabled, customer will be redirected to the store search results of the broken URL text instead of the '404 Not Found' page</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="enable_seo_url" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom URL Key for Default Search Results Page</label>
+                    <comment><![CDATA[URL will look 'search/yellow' instead of 'catalogsearch/results/q=yellow'.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="seo_key" translate="label comment" type="text" sortOrder="50" showInDefault="1"   showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Search Result Page URL Key</label>
+                    <comment><![CDATA[Please do not use 'catalogsearch' as URL Key value. If you use Varnish Cache then please add this custom URL Key to the exclusions. Please see the details <a target='_blank' href="https://amasty.com/docs/doku.php?id=magento_2:advanced_search#general_settings">here</a>.]]></comment>
+                    <depends>
+                        <field id="enable_seo_url">1</field>
+                    </depends>
+                </field>
+
+                <field id="enable_tabs_search_result" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Tabs on the Search Result Page</label>
+                    <comment>Set 'Yes' to display separate tabs on the Search result page for Category, CMS and Landing pages</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_popup_index" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Indexation for Autocomplete Popup</label>
+                    <comment><![CDATA[Set 'Yes' to speed up autocomplete popup performance. Please note, the reindex will take longer. This feature comes with <a target='_blank' href="https://amasty.com/elasticsearch-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=search_pro_to_elastic_m2">Amasty Elastic Search</a> extension only.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="search_attributes" translate="label" type="text" sortOrder="20" showInDefault="1">
+                <label>Search Attributes</label>
+                <field id="attributes" translate="label comment" sortOrder="2" showInDefault="1">
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\Form\Field\AttributesWeight</frontend_model>
+                    <backend_model>Amasty\Xsearch\Model\System\Config\Backend\Weight</backend_model>
+                </field>
+            </group>
+            <group id="product" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Products</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="15" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="position" translate="label comment" type="text" sortOrder="20" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <validate>validate-number</validate>
+                    <comment>This setting is ignored for the horizontal popup window.</comment>
+                </field>
+                <field id="limit" translate="label comment" type="text" sortOrder="30" showInDefault="1"   showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Max Results</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                </field>
+                <field id="name_length" translate="label comment" type="text" sortOrder="40" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Name Length</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="desc_length" translate="label comment" type="text" sortOrder="50" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Short Description Length</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="reviews" translate="label comment" type="select" sortOrder="60" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Show reviews</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="add_to_cart" translate="label comment" type="select" sortOrder="70" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Enable "Add to Cart" button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="redirect_single_product" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Redirect to Product Page</label>
+                    <comment>When there is only one product in result</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="out_of_stock_last" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show "Out of Stock" Products Last</label>
+                    <comment>Push "Out of Stock" products to the end of the search query list. Show products which are available for purchase first.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="popular_searches" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Popular Searches</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="first_click" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on First Click</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="30" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="position" translate="label comment" type="text" sortOrder="40" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="limit" translate="label comment" type="text" sortOrder="50" showInDefault="1"   showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Max Results</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                </field>
+            </group>
+            <group id="recent_searches" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Recent Searches</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="first_click" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on First Click</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="30" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="position" translate="label comment" type="text" sortOrder="40" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="limit" translate="label comment" type="text" sortOrder="50" showInDefault="1"   showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Max Results</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                </field>
+            </group>
+            <group id="blog" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Blog</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Form\Field\Blog</frontend_model>
+                    <source_model>Amasty\Xsearch\Model\System\Config\Source\Blog</source_model>
+                    <comment><![CDATA[Allows to search by blog pages created with Amasty <a target='_blank' href='https://amasty.com/blog-pro-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=Amasty_Xsearch-to-blog_m2'>Blog</a> extension.]]></comment>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="15" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="position" translate="label comment" type="text" sortOrder="20" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="limit" translate="label comment" type="text" sortOrder="30" showInDefault="1"   showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Max Results</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="name_length" translate="label comment" type="text" sortOrder="40" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Content Heading Length</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="desc_length" translate="label comment" type="text" sortOrder="50" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Content Length</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="brand" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Brands</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Form\Field\Brands</frontend_model>
+                    <source_model>Amasty\Xsearch\Model\System\Config\Source\Brands</source_model>
+                    <comment><![CDATA[Allows to search by brand pages created with Amasty <a target='_blank' href='https://amasty.com/improved-layered-navigation-for-magento-2.html'>Improved Layered Navigation</a> and <a target='_blank' href='https://amasty.com/shop-by-brand-for-magento-2.html'>Shop by Brand</a> extensions.]]></comment>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="15" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="position" translate="label comment" type="text" sortOrder="20" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="limit" translate="label comment" type="text" sortOrder="30" showInDefault="1"   showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Max Results</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="name_length" translate="label comment" type="text" sortOrder="40" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Content Heading Length</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="desc_length" translate="label comment" type="text" sortOrder="50" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Content Length</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="category" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Categories</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="15" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="position" translate="label comment" type="text" sortOrder="20" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="limit" translate="label comment" type="text" sortOrder="30" showInDefault="1"   showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Max Results</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                </field>
+                <field id="name_length" translate="label comment" type="text" sortOrder="40" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Name Length</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="desc_length" translate="label comment" type="text" sortOrder="50" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Description Length</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="full_path" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Full Category Path</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="page" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>CMS Pages</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="15" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="position" translate="label comment" type="text" sortOrder="20" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="limit" translate="label comment" type="text" sortOrder="30" showInDefault="1"   showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Max Results</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                </field>
+                <field id="name_length" translate="label comment" type="text" sortOrder="40" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Content Heading Length</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="desc_length" translate="label comment" type="text" sortOrder="50" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Content Length</label>
+                    <validate>validate-number</validate>
+                </field>
+            </group>
+            <group id="landing_page" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Landing Pages</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Form\Field\Landing</frontend_model>
+                    <source_model>Amasty\Xsearch\Model\System\Config\Source\Landing</source_model>
+                    <comment><![CDATA[Allows to search by landing pages created with Amasty <a target='_blank' href='https://amasty.com/landing-pages-for-magento-2.html'>Landing Pages</a> extension.]]></comment>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="15" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="position" translate="label comment" type="text" sortOrder="20" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="limit" translate="label comment" type="text" sortOrder="30" showInDefault="1"   showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Max Results</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="name_length" translate="label comment" type="text" sortOrder="40" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Content Heading Length</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="desc_length" translate="label comment" type="text" sortOrder="50" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Content Length</label>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="layout" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Layout</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="border" translate="label comment" type="text" sortOrder="20" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Border</label>
+                    <validate>color</validate>
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Field\Color</frontend_model>
+                </field>
+                <field id="hover" translate="label comment" type="text" sortOrder="30" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Hover</label>
+                    <validate>color</validate>
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Field\Color</frontend_model>
+                </field>
+                <field id="highlight" translate="label comment" type="text" sortOrder="40" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Highlight</label>
+                    <validate>color</validate>
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Field\Color</frontend_model>
+                </field>
+                <field id="background" translate="label comment" type="text" sortOrder="50" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Background</label>
+                    <validate>color</validate>
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Field\Color</frontend_model>
+                </field>
+                <field id="text" translate="label comment" type="text" sortOrder="60" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Text</label>
+                    <validate>color</validate>
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Field\Color</frontend_model>
+                </field>
+                <field id="hover_text" translate="label comment" type="text" sortOrder="70" showInDefault="1"   showInWebsite="1" showInStore="1">
+                    <label>Hover Text</label>
+                    <validate>color</validate>
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Field\Color</frontend_model>
+                </field>
+            </group>
+            <group id="elastic_search" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Elastic Search</label>
+                <field id="status" translate="label comment" type="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Status</label>
+                    <comment><![CDATA[It optimizes search performance and returns more relevant search results. See more details <a target="_blank" href="https://amasty.com/elasticsearch-for-magento-2.html?utm_source=extension&utm_medium=backend&utm_campaign=search_pro_to_elastic_m2">here</a>.]]></comment>
+                    <frontend_model>Amasty\Xsearch\Block\Adminhtml\System\Config\Form\Field\Elastic</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

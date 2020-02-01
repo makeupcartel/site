@@ -1,0 +1,132 @@
+<div class="page-title-wrapper>">
+    <h1 class="page-title">
+		<?php $title = 'Book your free skin consultation';?>
+    </h1>
+</div>
+<script>
+    var titlePageCms = '<?= $title; ?>';
+    var globalTitle = '<?= strtolower(trim(str_replace(' ', '-', $title))) ?>';
+</script>
+
+<div class="content-contact-page content-cms-page">
+    <div class="sidebar-left">
+		<?php echo $this->getLayout()
+			->createBlock('Magento\Cms\Block\Block')
+			->setBlockId('sidebar_cms_page')
+			->toHtml(); ?>
+    </div>
+    <form class="form contact"
+          action="<?= $block->getUrl("bookskin/indexbook/post") ?>"
+          data-mage-init='{"validation": {}}'
+          id="customform"
+          autocomplete="off"
+          method="post"
+          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+        <div class="page-title-wrapper">
+            <h1 class="page-title">
+                <span class="page-title"><?= $title ?></span>
+            </h1>
+        </div>
+        <fieldset class="fieldset">
+            <!-- first name field -->
+            <div class="field first-name name required">
+                <label class="label" for="name"><span><?= $block->escapeHtml(__('First Name')) ?></span></label>
+                <div class="control">
+                    <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('First Name')) ?>" 
+                        value="<?= $block->escapeHtmlAttr($block->getPostValue('name') ?: $this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" 
+                        class="input-text" type="text" data-validate="{required:true, 'validate-name':true}"/>
+                </div>
+            </div>
+
+            <!-- last name field -->
+            <div class="field last-name name required">
+                <label class="label" for="last_name"><span><?= $block->escapeHtml(__('Last Name')) ?></span></label>
+                <div class="control">
+                    <input name="last_name" id="last_name" title="<?= $block->escapeHtmlAttr(__('Last Name')) ?>"
+                        value="<?= $block->escapeHtmlAttr($block->getPostValue('last_name') ?: $this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>"
+                        class="input-text" type="text" data-validate="{required:true}"/>
+                </div>
+            </div>
+
+            <!-- mail field -->
+            <div class="field email required">
+                <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                <div class="control">
+                    <input name="email" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                           value="<?= $block->escapeHtmlAttr($block->getPostValue('email') ?: $this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>"
+                           class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+
+            <!-- phone number field -->
+            <div class="field telephone">
+                <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Contact Number')) ?></span></label>
+                <div class="control">
+                    <input name="telephone" id="telephone" title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+                           value="<?= $block->escapeHtmlAttr($this->helper('Convert\BookSkin\Helper\Data')->getPostValue('telephone')) ?>"
+                           class="input-text" type="text"/>
+                </div>
+            </div>
+
+
+            <div class="field first-name name required" id="skin_concern">
+                <label class="label" for="name">Skin Concern</label>
+                <div class="control"><?= $block->getSkinConcernValue() ?></div>
+            </div>
+
+
+            <div class="field first-name name" id="oily">
+                <label class="label" for="name">Are you dry or oily?</label>
+                <div class="control"><?= $block->getSkinTypeValue() ?></div>
+            </div>
+
+            <!-- skincare products field -->
+            <div class="field skincare_products comment">
+                <label class="label" for="skincare_products"><span><?= $block->escapeHtml(__('What skincare products are you currently using?')) ?></span></label>
+                <div class="control">
+                    <input name="skincare_products" id="skincare_products" 
+                        title="<?= $block->escapeHtmlAttr(__('What skincare products are you currently using?')) ?>"
+                        value="<?= $block->escapeHtmlAttr($this->helper('Convert\BookSkin\Helper\Data')->getPostValue('skincare_products')) ?>"
+                        class="input-text" type="text"/>
+                </div>
+            </div>
+
+            <!-- desired outcome field -->
+            <div class="field ideal_outcome comment">
+                <label class="label" for="ideal_outcome"><span><?= $block->escapeHtml(__('What would be your ideal desired outcome?')) ?></span></label>
+                <div class="control">
+                    <input name="ideal_outcome" id="ideal_outcome" 
+                        title="<?= $block->escapeHtmlAttr(__('What would be your ideal desired outcome?')) ?>"
+                        value="<?= $block->escapeHtmlAttr($this->helper('Convert\BookSkin\Helper\Data')->getPostValue('desired_outcome')) ?>"
+                        class="input-text" type="text"/>
+                </div>
+            </div>
+
+            <!-- Message field -->
+            <div class="field comment">
+                <label class="label" for="comment"><span><?= $block->escapeHtml(__('Extra Comments')) ?></span></label>
+                <div class="control">
+                    <textarea name="comment" id="comment" title="<?= $block->escapeHtmlAttr(__('Extra Comments')) ?>" class="input-text" cols="5" rows="3"><?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('comment')) ?></textarea>
+                </div>
+            </div>
+        </fieldset>
+		<?= $block->getChildHtml('form_additional_info') ?>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <input type="hidden" name="hideit" id="hideit" value=""/>
+                <button type="submit" id="submitskin" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>"
+                        class="action submit primary">
+                    <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="contact-info-right">
+		<?php echo $this->getLayout()
+			->createBlock('Magento\Cms\Block\Block')
+			->setBlockId('contact_us_info')
+			->toHtml(); ?>
+    </div>
+</div>
+
+

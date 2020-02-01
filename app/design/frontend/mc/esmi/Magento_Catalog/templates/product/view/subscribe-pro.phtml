@@ -1,0 +1,35 @@
+<ul class="tabs">
+	<li class="tab-link active" data-tab="tab-1"><span><?php echo __('One time order') ?></span></li>
+	<li class="tab-link" data-tab="tab-2"><span><?php echo __('Subscription') ?></span></li>
+</ul>
+
+<div id="tab-1" class="tab-content current">
+	
+	<?php /*echo $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View')->setTemplate('Magento_Catalog::product/view/addtocart.phtml')->toHtml();*/ ?>
+</div>
+<div id="tab-2" class="tab-content">
+	Subscription
+</div>
+<script type="text/javascript">
+	require([
+	    'jquery'
+	], function (jQuery) {
+	    (function ($) {
+	        $(document).ready(function () {
+	           	// $("#tab").tabs();
+	
+				$('ul.tabs li').click(function(){
+					var tab_id = $(this).attr('data-tab');
+
+					$('ul.tabs li').removeClass('active');
+					$('.tab-content').removeClass('current');
+
+					$(this).addClass('active');
+					$("#"+tab_id).addClass('current');
+				})
+           	
+	        });
+	    })(jQuery);
+	});
+
+</script>

@@ -1,0 +1,105 @@
+Installed,Installed
+"Not Installed","Not Installed"
+"Please update Amasty Base module. Re-upload it and replace all the files.","Please update Amasty Base module. Re-upload it and replace all the files."
+"You are now logged out.","You are now logged out."
+"My Social Accounts","My Social Accounts"
+"Sorry. We cannot find social type. Please try again later.","Sorry. We cannot find social type. Please try again later."
+"Sorry. We cannot find your email. Please enter email in your %1 profile.","Sorry. We cannot find your email. Please enter email in your %1 profile."
+"Sorry. We cannot connect to this social profile. It is used for another site account.","Sorry. We cannot connect to this social profile. It is used for another site account."
+"We can`t get customer email from your social account.","We can`t get customer email from your social account."
+"You have successfully logged in using your %1 account.","You have successfully logged in using your %1 account."
+"Please check Callback Url in social app configuration","Please check Callback Url in social app configuration"
+"An unspecified error occurred. Please try again later.","An unspecified error occurred. Please try again later."
+"The account is locked.","The account is locked."
+"New User","New User"
+"You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link.","You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link."
+"We have created new store account using your email address.","We have created new store account using your email address."
+"An unspecified error occurred during creating new customer.","An unspecified error occurred during creating new customer."
+"Your account was successfully unlinked.","Your account was successfully unlinked."
+"Sorry. We can`t find information about your account","Sorry. We can`t find information about your account"
+"Additional Social Login package is not installed. Please, run the following command in the SSH: composer require hybridauth/hybridauth 2.13.*","Additional Social Login package is not installed. Please, run the following command in the SSH: composer require hybridauth/hybridauth 2.13.*"
+"Your site is configured to use HTTP connection and Facebook API does not allow it for login. Please configure HTTPS connection for your site.","Your site is configured to use HTTP connection and Facebook API does not allow it for login. Please configure HTTPS connection for your site."
+"Unable to save sales with ID %1. Error: %2","Unable to save sales with ID %1. Error: %2"
+"Unable to save new sales. Error: %1","Unable to save new sales. Error: %1"
+"Sales with specified ID ""%1"" not found.","Sales with specified ID ""%1"" not found."
+"Unable to remove sales with ID %1. Error: %2","Unable to remove sales with ID %1. Error: %2"
+"Unable to remove sales. Error: %1","Unable to remove sales. Error: %1"
+"Unable to save social data with ID %1. Error: %2","Unable to save social data with ID %1. Error: %2"
+"Unable to save new social sata item. Error: %1","Unable to save new social sata item. Error: %1"
+"Social item with specified ID ""%1"" not found.","Social item with specified ID ""%1"" not found."
+"Unable to remove social item with ID %1. Error: %2","Unable to remove social item with ID %1. Error: %2"
+"Unable to remove social item. Error: %1","Unable to remove social item. Error: %1"
+Top,Top
+Bottom,Bottom
+Right,Right
+Left,Left
+"Login Popup","Login Popup"
+"Above customer login form","Above customer login form"
+"Below customer login form","Below customer login form"
+"Above customer registration form","Above customer registration form"
+"Below customer registration form","Below customer registration form"
+"Shopping cart page","Shopping cart page"
+"Stay on the current page","Stay on the current page"
+"To Custom Url","To Custom Url"
+"Refresh Current Page","Refresh Current Page"
+"Round Buttons","Round Buttons"
+"Rectangular Buttons","Rectangular Buttons"
+"Square Buttons","Square Buttons"
+"Social Login","Social Login"
+"Top Social Login","Top Social Login"
+Users:,Users:
+"Purchased Items:","Purchased Items:"
+Amount:,Amount:
+"Other connections","Other connections"
+Users,Users
+"Purchased Items","Purchased Items"
+Amount,Amount
+"Social Login Chart","Social Login Chart"
+"Linked accounts","Linked accounts"
+Unlink,Unlink
+"Link new accounts","Link new accounts"
+Link,Link
+"Link  %1","Link  %1"
+Login,Login
+Register,Register
+or,or
+"Login with Your Social Profile","Login with Your Social Profile"
+"Login with","Login with"
+"Sign in with %1","Sign in with %1"
+"Continue with %1","Continue with %1"
+Information,Information
+"General Settings","General Settings"
+"Enable Social Login","Enable Social Login"
+"Set 'Yes' to allow login via social networks. Set 'No' to disable social login buttons. Note that the AJAX Pop-up can still be applied for standard login and registration.","Set 'Yes' to allow login via social networks. Set 'No' to disable social login buttons. Note that the AJAX Pop-up can still be applied for standard login and registration."
+"Add Social Login to","Add Social Login to"
+"Choose where to place the social login.","Choose where to place the social login."
+"Login Buttons Shape","Login Buttons Shape"
+"Enable Ajax Popup","Enable Ajax Popup"
+"Set 'Yes' to activate AJAX Pop-up for the registration and login.","Set 'Yes' to activate AJAX Pop-up for the registration and login."
+"Login Buttons Position","Login Buttons Position"
+"Please configure the Social Login Buttons position in the Ajax pop-up. Note that the bottom position is the only available option for the registration pop-up.","Please configure the Social Login Buttons position in the Ajax pop-up. Note that the bottom position is the only available option for the registration pop-up."
+"Redirect after Login","Redirect after Login"
+"Redirect Url after Login","Redirect Url after Login"
+Google,Google
+Enabled,Enabled
+"See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#google"">here</a>.","See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#google"">here</a>."
+"Consumer Key (API Key)","Consumer Key (API Key)"
+"Consumer Secret (API Secret)","Consumer Secret (API Secret)"
+"Valid Redirect URI","Valid Redirect URI"
+"Sort Order","Sort Order"
+Facebook,Facebook
+Twitter,Twitter
+"See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#twitter"">here</a>.","See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#twitter"">here</a>."
+"Valid Callback URL","Valid Callback URL"
+Instagram,Instagram
+"See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#instagram"">here</a>.","See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#instagram"">here</a>."
+LinkedIn,LinkedIn
+"See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#linkedin"">here</a>.","See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#linkedin"">here</a>."
+Amazon,Amazon
+"See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#amazon"">here</a>.","See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#amazon"">here</a>."
+Paypal,Paypal
+"See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#paypal"">here</a>.","See how to configure app <a target=""_blank"" href=""https://amasty.com/docs/doku.php?id=magento_2:social_login#paypal"">here</a>."
+"Abandoned Cart Email","Abandoned Cart Email"
+Status,Status
+"Power it with the Abandoned Cart Emails Extension. See more details <a target=""_blank"" href=""https://amasty.com/magento-2-abandoned-cart-emails.html?utm_source=extension&utm_medium=backend&utm_campaign=social_to_acart_m2"">here</a>.","Power it with the Abandoned Cart Emails Extension. See more details <a target=""_blank"" href=""https://amasty.com/magento-2-abandoned-cart-emails.html?utm_source=extension&utm_medium=backend&utm_campaign=social_to_acart_m2"">here</a>."
+"Login type","Login type"

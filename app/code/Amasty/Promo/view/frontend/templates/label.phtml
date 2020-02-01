@@ -1,0 +1,16 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+?>
+<?php /** @var \Amasty\Promo\Block\Banner $block */?>
+<?php foreach($block->getValidRules() as $_rule) :?>
+    <?php if ($block->getLabelImage($_rule)): ?>
+        <img class="ampromo-label"
+             alt="<?= $block->escapeHtml($block->getLabelImageAlt($_rule));?>"
+             src="<?= $block->escapeUrl($block->getLabelImage($_rule));
+        ?>">
+    <?php endif;?>
+<?php endforeach; ?>

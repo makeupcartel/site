@@ -1,0 +1,43 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+
+/**
+*  General template for displaying group of blocks devided into sections
+*/
+
+$group = $block->getGroupName();
+$groupCss = $block->getGroupCss();
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames($group, 'getChildHtml')):?>
+    <div class="sections <?= /* @escapeNotVerified */ $groupCss ?>">
+        <?php $layout = $block->getLayout(); ?>
+        <div class="section-items <?= /* @escapeNotVerified */ $groupCss ?>-items">
+            <?php foreach ($detailedInfoGroup as $name):?>
+                <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html) && ($block->getUseForce() != true)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                ?>
+                <div class="section-item-content <?= /* @escapeNotVerified */ $groupCss ?>-item-content" id="<?= /* @escapeNotVerified */ $alias ?>">
+                    <?php if($label) : ?>
+                        <div class="section-item-title">
+                            <strong><?= /* @escapeNotVerified */ $label ?></strong>
+                        </div>
+                    <?php endif ?>
+                    <?= /* @escapeNotVerified */ $html ?>
+                </div>
+            <?php endforeach;?>
+        </div>
+    </div>
+<?php endif; ?>

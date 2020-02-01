@@ -1,0 +1,180 @@
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+//
+//  Styles for emails
+//  _____________________________________________
+
+//  See comments in source/_email-base.less for explanation of email styles
+
+@import 'source/lib/_lib.less'; // Global lib
+@import 'source/lib/variables/_email.less'; // Global email variables
+@import 'source/_theme.less'; // Global variables override
+@import 'source/_variables.less'; // Local theme variables
+@import 'source/_email-variables.less'; // Theme variables for emails
+
+//
+//  Styles for emails
+//  ---------------------------------------------
+
+@import 'source/_email-base.less'; // Contains primary email styles
+@import 'source/_email-extend.less'; // Contains theme-specific adjustments to email styles
+
+//
+//  Module-specific styles for emails
+//  ---------------------------------------------
+
+//@magento_import 'source/_email.less';
+
+table
+{
+	font-family: arial,sans-serif; 
+	color:#444444;
+	tr
+	{
+		td,th,p,a,strong,label
+		{
+			font-family: arial,sans-serif; 
+			font-size:13px;
+		}
+		strong
+		{
+			font-size:13px;
+		}
+		a
+		{
+			color: #222222;
+			text-decoration: underline;
+		}
+		td.address-details
+		{
+			a
+			{
+				text-decoration: none;
+			}
+		}
+	}
+	
+}
+.customer_detail, .order-details
+{
+	tbody
+	{
+		tr
+		{
+			td
+			{
+				a
+				{
+					color:#222222; 
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+.order-totals
+{
+	tr
+	{
+		th,td
+		{
+			background-color:#ffffff;
+			font-size: 13px;
+			color:#444444;
+			text-align:right;
+			padding-bottom: 5px;
+			padding-top: 0px;
+		}
+		th
+		{
+			padding-right: 30px;
+		}
+		&:last-child
+		{
+			th,td
+			{
+				font-size: 13px ;
+				color:#444444 ;
+			}
+		}
+	}
+}
+.payment_method
+{
+	tr td dl
+	{
+		margin-bottom:0px;
+		dt
+		{
+			margin-bottom:0px;
+			font-weight:400;
+			display:inline-block;
+			width:100%;
+		}
+		dd
+		{
+			margin-left:0px;
+			padding-left:0px;
+			display:inline-block;
+			width:100%;
+			tr td
+			{
+				a
+				{
+					color:#222222 !important; 
+					color:#222222;
+				}
+			}
+		}
+	}
+	td.payment-info-email
+	{
+		a
+		{
+			color:#222222; 
+		}
+	}
+}
+a,.alink
+{
+	color:#222222; 
+}
+a
+{
+	color:#222222; 
+}
+.main-content-email {
+	.ii {
+		a {
+			color: #222222;
+		}
+	}
+}
+table
+{
+	a,.alink
+	{
+		color:#222222; 
+	}
+	a
+	{
+		color:#222222;
+	}
+}
+.email-items 
+{	
+	tbody
+	{
+		tr
+		{
+			&>th,&>td
+			{
+				border-top:1px solid #eee;
+			}
+		}
+	}
+}
+.email-items .order-totals>tr+tr th,.email-items .order-totals>tr+tr td{padding-top:0}

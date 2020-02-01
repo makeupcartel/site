@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/** @var Magento\Customer\Block\Account\Customer $block */
+?>
+<?php if (!$block->customerLoggedIn()): ?>
+    <li class="welcome-item">
+        <a class="account-link" href="<?php echo $this->getBaseUrl() . 'customer/account/login'; ?>">Login</a>
+        <p style="margin-top: 15px"><a class="my_account" href="<?php echo $this->getBaseUrl() . 'customer/account/login'; ?>">My Account</a></p>
+    </li>
+<?php else: ?>
+    <li class="customer-welcome" style="display: block !important;">
+        <a class="my_account" href="<?php echo $this->getBaseUrl() . 'customer/account'; ?>">My Account</a>
+    </li>
+<?php endif; ?>
+    

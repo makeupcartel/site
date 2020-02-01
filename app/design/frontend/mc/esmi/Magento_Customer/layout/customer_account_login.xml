@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="page.main.title" destination="content"  before="-"/>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Login</argument>
+            </action>
+        </referenceBlock>
+        <move element="customer.login.am-social-below_login" destination="customer.login.container" after="customer_form_login" />
+        <referenceContainer name="customer.login.container">
+          <container name="forgot-password-wrapper" htmlTag="div" htmlClass="forgot-password-wrapper" after="-">
+            <block class="Magento\Cms\Block\Block" name="forgot-password"> 
+              <arguments> 
+                <argument name="block_id" xsi:type="string">forgot-password</argument> 
+              </arguments> 
+            </block>
+          </container>
+        </referenceContainer>
+    </body>
+</page>

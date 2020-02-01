@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Reports::report">
+                    <resource id="Amasty_Reports::reports" title="Advanced Reports" sortOrder="100">
+                        <resource id="Amasty_Reports::reports_sales" title="Sales" sortOrder="10">
+                            <resource id="Amasty_Reports::reports_sales_overview" title="Overview" sortOrder="10"/>
+                            <resource id="Amasty_Reports::reports_sales_compare" title="Sales Comparison" sortOrder="15"/>
+                            <resource id="Amasty_Reports::reports_sales_orders" title="Orders" sortOrder="20"/>
+                            <resource id="Amasty_Reports::reports_sales_order_items" title="Order Items" sortOrder="25"/>
+                        </resource>
+                        <resource id="Amasty_Reports::reports_sales_by" title="Sales By" sortOrder="10">
+                            <resource id="Amasty_Reports::reports_sales_hour" title="Hour" sortOrder="10"/>
+                            <resource id="Amasty_Reports::reports_sales_weekday" title="Week" sortOrder="20"/>
+                            <resource id="Amasty_Reports::reports_sales_country" title="Country" sortOrder="30"/>
+                            <resource id="Amasty_Reports::reports_sales_state" title="Country - State" sortOrder="35"/>
+                            <resource id="Amasty_Reports::reports_sales_payment" title="Payment Type" sortOrder="40"/>
+                            <resource id="Amasty_Reports::reports_sales_group" title="Customer Group" sortOrder="50"/>
+                            <resource id="Amasty_Reports::reports_sales_coupon" title="Coupon" sortOrder="60"/>
+                            <resource id="Amasty_Reports::reports_sales_category" title="Category" sortOrder="70"/>
+                            <resource id="Amasty_Reports::reports_sales_cartRule" title="Cart Price Rules" sortOrder="80"/>
+                        </resource>
+                        <resource id="Amasty_Reports::reports_catalog" title="Catalog" sortOrder="20">
+                            <resource id="Amasty_Reports::reports_catalog_by_product" title="By Product" sortOrder="10"/>
+                            <resource id="Amasty_Reports::reports_catalog_by_attributes" title="By Product Attributes" sortOrder="20"/>
+                            <resource id="Amasty_Reports::reports_catalog_by_brands" title="By Brands" sortOrder="30"/>
+                            <resource id="Amasty_Reports::reports_catalog_product_performance" title="Product Performance" sortOrder="40"/>
+                            <resource id="Amasty_Reports::reports_catalog_bestsellers" title="Bestsellers" sortOrder="50"/>
+                        </resource>
+                        <resource id="Amasty_Reports::reports_customers" title="Customers" sortOrder="30">
+                            <resource id="Amasty_Reports::reports_customers_customers" title="Customers" sortOrder="10"/>
+                            <resource id="Amasty_Reports::reports_customers_returning" title="New vs Returning Customers" sortOrder="20"/>
+                            <resource id="Amasty_Reports::reports_customers_abandoned" title="Abandoned Carts " sortOrder="30"/>
+                            <resource id="Amasty_Reports::reports_customers_conversion_rate" title="Conversion Rate " sortOrder="40"/>
+                        </resource>
+                        <resource id="Amasty_Reports::rule" title="Amasty Advanced Reports Rules" sortOrder="40"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Amasty_Reports::amasty_reports" title="Amasty Advanced Reports" sortOrder="180516"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
+

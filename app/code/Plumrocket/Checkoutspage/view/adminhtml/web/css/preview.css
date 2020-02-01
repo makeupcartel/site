@@ -1,0 +1,88 @@
+/*
+
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+
+ */
+#csp-preview-popup .csp-clearfix:before,
+#csp-preview-popup .csp-clearfix:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+#csp-preview-popup {
+	margin-bottom: 30px;
+}
+
+#csp-preview-popup .csp-preview-content .item {
+    display: block;
+    float: left;
+    text-align: center;
+    position: relative;
+    width: 48%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    background: #fdfdfd;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #fdfdfd 0%, #f1f1f1 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfdfd), color-stop(100%, #f1f1f1));
+    background: -webkit-linear-gradient(top, #fdfdfd 0%, #f1f1f1 100%);
+    background: -o-linear-gradient(top, #fdfdfd 0%, #f1f1f1 100%);
+    background: -ms-linear-gradient(top, #fdfdfd 0%, #f1f1f1 100%);
+    background: linear-gradient(to bottom, #fdfdfd 0%, #f1f1f1 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#f1f1f1', GradientType=0 );
+}
+
+#csp-preview-popup .csp-preview-content .item:first-child {
+	margin-right: 4%;
+}
+
+#csp-preview-popup .csp-preview-content .item a.csp-preview-img {
+    overflow: hidden;
+    border: 1px solid #D8D8D8;
+    height: 280px;
+    background-position: 0 0;
+    width: 100%;
+    display: block;
+    margin-bottom: 12px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+#csp-preview-popup .csp-preview-content .item a.csp-preview-img.plumrocket-page { background-image: url("../images/page_1_1.jpg"); }
+#csp-preview-popup .csp-preview-content .item a.csp-preview-img.default-page { background-image: url("../images/page_1_2.jpg"); }
+#csp-preview-popup .csp-preview-content .item a.csp-preview-img.plumrocket-email { background-image: url("../images/page_2_1.jpg"); }
+#csp-preview-popup .csp-preview-content .item a.csp-preview-img.default-email { background-image: url("../images/page_2_2.jpg"); }
+
+#csp-preview-popup .modal-title {
+	margin: 15px 0 10px 0;
+}
+
+#csp-preview-popup .csp-preview-content button {
+    background-color: #eb5202;
+    border-color: #eb5202;
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+}
+
+#csp-preview-popup .csp-preview-content button:hover {
+    background-color: #ba4000;
+    border-color: #b84002;
+    box-shadow: 0 0 0 1px #007bdb;
+}

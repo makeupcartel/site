@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::content">
+                    <resource id="Aheadworks_Blog::home" title="Blog by Aheadworks" sortOrder="110">
+                        <resource id="Aheadworks_Blog::posts" title="Posts" sortOrder="10" />
+                        <resource id="Aheadworks_Blog::comments" title="Comments" sortOrder="20" />
+                        <resource id="Aheadworks_Blog::categories" title="Categories" sortOrder="30" />
+                        <resource id="Aheadworks_Blog::authors" title="Authors" sortOrder="40" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Aheadworks_Blog::config_aw_blog" title="Blog by Aheadworks" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

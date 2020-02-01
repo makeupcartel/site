@@ -1,0 +1,21 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\Disqus */
+
+// @codingStandardsIgnoreFile
+?>
+<?php if ($block->isCommentsEnabled()): ?>
+    <script>
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.id = 'dsq-count-scr';
+            s.async = true;
+            s.src = '<?php /* @noEscape */ echo $block->getCountScriptUrl() ?>';
+            d.body.appendChild(s);
+        })();
+    </script>
+<?php endif; ?>

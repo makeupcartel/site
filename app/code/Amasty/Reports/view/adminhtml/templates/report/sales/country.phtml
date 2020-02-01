@@ -1,0 +1,45 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+?>
+<?php /** @var \Amasty\Reports\Block\Adminhtml\Report\Chart $block */ ?>
+<?php
+    $axis = $block->getAxisFields();
+?>
+<div class="amreports-amchart-wrapper" data-role="amreports-content">
+    <div class="chart">
+        <?php $chartData = []; ?>
+        <?php foreach ($block->getCollection() as $item) {
+            $chartData[] = [
+                "id" => $block->escapeHtml($item->getData($axis['y'])),
+                "value" => $block->escapeHtml($item->getData($axis['x']))
+            ];
+        } ?>
+    
+        <div id="chart-country" class="amreports-amchart-container"></div>
+
+        <script>
+            require([
+                "Amasty_Reports/vendor/amcharts4/core.min"
+            ], function () {
+                require([
+                    "jquery",
+                    "amreports_chart_country"
+                ], function ($) {
+                    $('#chart-country').countryCharts({
+                        "data" : <?= /* @noEscape */ json_encode($chartData); ?>,
+                        "type" : "<?= /* @noEscape */ $block->getValueType(); ?>",
+                        "currency" : "<?= /* @noEscape */ $block->getCurrencySymbol(); ?>"
+                    });
+                });
+            });
+        </script>
+    </div>
+    
+    <div class="listing">
+        <?= $block->getChildHtml() ?>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015-2017 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkoutspage.bottom.section">
+            <block class="Plumrocket\Checkoutspage\Block\Suggestion" name="checkout.success.suggestion" template="Plumrocket_Checkoutspage::suggestion.phtml" cacheable="false">
+            	<arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="suggestion" xsi:type="array">
+                                <item name="component" xsi:type="string">Plumrocket_Checkoutspage/js/view/suggestion</item>
+                                <item name="config" xsi:type="array">
+                                	<item name="template" xsi:type="string">Plumrocket_Checkoutspage/suggestion</item>
+                                	<item name="itemSelector" xsi:type="string">#slider-container ul li</item>
+                                    <item name="count" xsi:type="array">
+                                        <item name="1024" xsi:type="string">5</item>
+                                        <item name="640" xsi:type="string">3</item>
+                                        <item name="0" xsi:type="string">1</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Plumrocket\Checkoutspage\Block\Cms" name="checkout.success.cms.bottom" template="cms_bottom.phtml" />
+            <block class="Plumrocket\Checkoutspage\Block\Pixel" ifconfig="prcheckoutspage/general/enabled" name="checkout.success.bottom.pixel" template="pixel.phtml" />
+        </referenceContainer>
+    </body>
+</page>

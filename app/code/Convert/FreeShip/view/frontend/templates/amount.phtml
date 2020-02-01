@@ -1,0 +1,26 @@
+<?php
+if ($block->checkconfig() == 1) {
+	?>
+	<div class="divider free-ship-block">
+		<?php
+		$currencysymbol = $block->getCurrentCurrencySymbol();  
+		$amout_shipping = $block->getAmountFreeship(); 
+		$grantotall = $block->getGrandTotal();
+		if ($grantotall < $amout_shipping) {
+			$amount = $amout_shipping - $grantotall;
+			echo "<span>You are <u>".$currencysymbol.$amount."</u> away from free shipping</span>";
+		}else{
+			echo "<span>You qualify for free shipping !</span>";
+		}
+		?>
+
+	</div>
+	<div class="reset"></div>
+	<?php
+}
+else{
+	?>
+	<div class="none-ship"></div>
+	<?php
+} 
+?>

@@ -1,0 +1,61 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_SocialLogin
+ */
+?>
+<?php /** @var \Amasty\SocialLogin\Block\Popup $block */
+if ($block->isPopupEnabled()) : ?>
+<?php $socialPosition = $block->escapeHtml($block->getPositionTitle());?>
+    <div class="am-login-overlay" data-am-js="am-login-overlay" style="display: none">
+        <div id="social-login-popup"
+             class="am-login-popup -social-<?= $socialPosition ?>"
+             data-mage-init='{"tabs":{"openedState":"active"}}'
+             data-am-js="am-login-popup">
+            <span class="am-close"></span>
+            <div class="am-content-wrapper" data-am-js="am-content-wrapper"></div>
+            <div class="am-tabs-wrapper" data-am-js="am-tabs-wrapper">
+                <ul class="am-tablist">
+                    <li data-role="collapsible" class="am-title">
+                        <a href="#am-login-content"
+                           class="am-link"
+                           data-toggle="switch"
+                           tabindex="-1"><?= $block->escapeHtml(__('Login')) ?></a>
+                    </li>
+                    <li data-role="collapsible" class="am-title">
+                        <a href="#am-register-content"
+                           class="am-link"
+                           data-toggle="switch"
+                           tabindex="-1"><?= $block->escapeHtml(__('Register')) ?></a>
+                    </li>
+                </ul>
+                <div id="am-login-content" class="am-content am-login-content" data-role="content">
+                    <p class="am-error -default" data-am-js="am-default-error"></p>
+                    <div class="am-form">
+                        <?= $block->getChildHtml('customer_form_login_popup'); ?>
+                    </div>
+                    <?php if ($block->isSocialsEnabled()) : ?>
+                        <?= $block->getChildHtml('amsociallogin-social-popup'); ?>
+                    <?php endif; ?>
+                </div>
+                <div id="am-register-content" class="am-content am-register-content" data-role="content">
+                    <p class="am-error -default" data-am-js="am-default-error"></p>
+                    <div class="am-form">
+                        <?= $block->getChildHtml('customer_form_register_popup'); ?>
+                    </div>
+                    <?php if ($block->isSocialsEnabled()) : ?>
+                        <?= $block->getChildHtml('amsociallogin-social-popup'); ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <script type="text/x-magento-init">
+        {
+            "[data-am-js='am-login-popup']" : {
+                "Amasty_SocialLogin/js/am-popup": <?= $block->getJsonConfig();?>
+            }
+        }
+        </script>
+    </div>
+<?php endif; ?>

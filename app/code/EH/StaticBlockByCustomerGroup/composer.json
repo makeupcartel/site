@@ -1,0 +1,21 @@
+{
+    "name": "eh/module-static-block-by-customer-group",
+    "description": "Restrict or display specific static blocks to different customer groups like wholesalers, retailers etc.",
+    "require": {
+        "eh/module-core": "*",
+        "magento/module-cms": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "EH\\StaticBlockByCustomerGroup\\": ""
+        }
+    }
+}

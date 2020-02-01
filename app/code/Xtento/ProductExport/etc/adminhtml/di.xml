@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Ui\Component\MassAction">
+        <plugin name="Xtento_ProductExport::addMassaction" type="Xtento\ProductExport\Ui\Plugin\Component\MassActionPlugin"/>
+    </type>
+    <!-- 2.3+ -->
+    <type name="Magento\Catalog\Ui\Component\Product\MassAction">
+        <plugin name="Xtento_ProductExport::addMassaction" type="Xtento\ProductExport\Ui\Plugin\Component\MassActionPlugin"/>
+    </type>
+</config>
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2018-12-12T14:25:05+00:00
+ * File:          app/code/Xtento/ProductExport/etc/adminhtml/di.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

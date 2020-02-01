@@ -1,0 +1,52 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+?>
+<?php /** @var \Amasty\Reports\Block\Adminhtml\Menu $block */ ?>
+
+<div class="amreports-menu-container" data-amreports-js="menu-container">
+
+    <div class="amreports-head" data-amreports-js="menu">
+        <h1 class="amreports-title"><?= $block->escapeHtml(__('Advanced Reports')) ?></h1>
+        <div class="amreports-toogle"></div>
+        <div class="amreports-close-container">
+            <div class="amreports-close" data-amreports-js="close"></div>
+        </div>
+    </div>
+
+    <div class="amreports-list" data-amreports-js="menu-list">
+        <?php foreach ($block->getMenu() as $group) : ?>
+            <div class="amreports-item level-0<?php if (isset($group['active'])) : ?> active<?php endif ?>" data-amreports-js="accordion">
+                <?php if (isset($group['url'])) : ?>
+                <a class="amreports-label -dashboard" href="<?= $block->escapeUrl($block->getUrl($group['url'])) ?>" title="<?= $block->escapeHtml($group['title']) ?>"><?= $block->escapeHtml($group['title']) ?></a>
+                <?php else : ?>
+                <div class="amreports-label" data-amreports-js="heading"><?= $block->escapeHtml($group['title']) ?></div>
+                <?php endif ?>
+
+                <div class="amreports-sublist" data-amreports-js="content">
+                    <?php foreach ($group['children'] as $child) : ?>
+                        <div class="amreports-item level-1<?php if (isset($child['active'])) : ?> active<?php endif ?> <?= $block->escapeHtml($group['class'] ?? '') ?>">
+                            <?php if (isset($child['url'])) : ?>
+                                <a href="<?= $block->escapeUrl($block->getUrl($child['url'])) ?>" class="amreports-link <?= $block->escapeHtml($child['class'] ?? '') ?>" title="<?= $block->escapeHtml($child['title']) ?>"><?= $block->escapeHtml($child['title']) ?></a>
+                            <?php else : ?>
+                                <?= $block->escapeHtml($child['title']) ?>
+                            <?php endif ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+</div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+         "amreports_menu": {}
+    }
+}
+</script>

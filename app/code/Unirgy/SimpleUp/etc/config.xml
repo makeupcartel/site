@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <usimpleup>
+            <general>
+                <check_ioncube>0</check_ioncube>
+                <dir_perm>755</dir_perm>
+                <file_perm>755</file_perm>
+            </general>
+            <ftp>
+                <host>localhost</host>
+                <port>21</port>
+            </ftp>
+        </usimpleup>
+        <Unirgy_SimpleUp>
+            <usimpleup>
+                <remote>https://download.unirgy.com/simple/client_api/version/</remote>
+                <changelog>https://unirgy.com/support/portal/announcements</changelog>
+            </usimpleup>
+        </Unirgy_SimpleUp>
+    </default>
+</config>

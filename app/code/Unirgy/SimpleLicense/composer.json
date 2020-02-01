@@ -1,0 +1,24 @@
+{
+    "name": "unirgy/m2-simple-license",
+    "description": "",
+    "require": {
+        "unirgy/m2-simple-up": "2.0.*"
+    },
+    "repositories": [
+        {"type": "composer", "url": "https://repo.packagist.com/unirgy/"},
+        {"packagist.org": false}
+    ],
+    "type": "magento2-module",
+    "version": "2.0.9",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Unirgy\\SimpleLicense\\": ""
+        }
+    }
+}

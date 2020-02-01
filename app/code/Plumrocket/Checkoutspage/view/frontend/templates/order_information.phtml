@@ -1,0 +1,47 @@
+<?php 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015-2018 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+<?php $order = $this->helper('Plumrocket\Checkoutspage\Helper\Data')->getOrder(); ?>
+<ul class="csp-orderinfo-hld csp-cf">
+    <li class="csp-ordnum-hld">
+        <h2><?php echo __('Your order # is: %1.', $order->getIncrementId()); ?></h2>
+    </li>
+    <li class="csp-ordnum-hld csp-socials">
+        <?php echo $block->getChildHtml('checkout.success.button.mobile') ?>
+    </li>
+    <li class="csp-ordnum-hld">
+        <p><?php echo __('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
+    </li>
+    <li>
+        <div class="csp-shipping-address">
+            <?php if ($order->getShippingAddress()) { ?>
+                <label><strong><?php echo __('Shipping Address'); ?></strong></label><br />
+                <?php echo $this->helper('Plumrocket\Checkoutspage\Helper\Data')->getShippingAddressHtml($order->getShippingAddress()); ?></br>
+            <?php } elseif ($order->getBillingAddress()) { ?>
+                <label><strong><?php echo __('Billing Address'); ?></strong></label><br />
+                <?php echo $block->getFormattedAddress($order->getBillingAddress()); ?>
+            <?php } ?>
+        </div>
+    </li>
+    <li>
+        <div class="csp-shipping-method">
+            <label><strong><?php echo __('Shipping Method'); ?></strong></label>
+            <br />
+            <?php echo $order->getShippingDescription(); ?>
+        </div>
+    </li>
+</ul>

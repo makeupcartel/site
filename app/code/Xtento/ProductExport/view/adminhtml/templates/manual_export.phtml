@@ -1,0 +1,252 @@
+<div class="entry-edit admin__scope-old">
+    <form id="export_form" name="export_form" method="post" action="<?php echo $block->getUrl('*/*/manualPost')?>">
+        <input name="form_key" type="hidden" value="<?php echo $block->getFormKey() ?>"/>
+
+        <fieldset id="my-fieldset" class="fieldset admin__fieldset">
+            <legend class="legend">
+                <span><?php echo __('Manual Export') ?></span>
+            </legend>
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo __('Profile')?> <span class="required">*</span></td>
+                    <td class="input-ele">
+                        <?php echo $block->getProfileSelectorHtml() ?> <a href="#" id="edit_profile_a">[Edit Profile]</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Starting ID')?> <span class="required">*</span>
+                    </td>
+                    <td class="input-ele" style="padding-top: 5px;">
+                        <input class="input-text required-entry" name="entity_from" id="entity_from" value="1"/> (1 = <?php echo __('from the beginning')?>)
+                    </td>
+                </tr>
+                <tr id="tr_last_id" style="display:none">
+                    <td class="label">&nbsp;</td>
+                    <td class="input-ele"><?php echo __('Last <span id="last_entity"></span> id is <span id="last_id"></span> [<a href="#" onclick="$(\'entity_from\').value=$(\'last_id\').innerHTML; return false;">use</a>]')?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Ending ID')?> <span class="required">*</span></td>
+                    <td class="input-ele" style="padding-top: 5px;">
+                        <input class="input-text required-entry" name="entity_to" id="entity_to" value="0"/> (0 = <?php echo __('until the last object created')?>)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label" style="padding-top:10px;"><strong>Additional Filters</strong></td>
+                    <td class="input-ele"></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Date Range from')?></td>
+                    <td class="input-ele"><?php echo $block->getCalendarHtml('daterange_from')?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Date Range to')?></td>
+                    <td class="input-ele" style="padding-top: 5px;"><?php echo $block->getCalendarHtml('daterange_to')?></td>
+                </tr>
+                <tr>
+                    <td class="label" style="padding-top: 5px;"><?php echo __('Export only not yet exported objects')?>&nbsp;&nbsp;</td>
+                    <td class="input-ele" style="padding-top: 5px;">
+                        <input type="checkbox" name="filter_new_only" id="filter_new_only" style="margin-top:7px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label" style="padding-top: 5px;"><?php echo __('Serve file to browser after exporting')?></td>
+                    <td class="input-ele" style="padding-top: 5px;">
+                        <input type="checkbox" name="start_download" id="start_download" style="margin-top:7px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">&nbsp;</td>
+                    <td class="input-ele" style="padding-top: 15px;">
+                        <button class="scalable save" type="submit" id="export_button">
+                            <span><?php echo __('Export')?></span></button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+require(["prototype"], function($) {
+    <?php echo $block->getSelectValues() ?>
+});
+</script>
+<script type="text/javascript">
+require(["jquery", "prototype"], function(jQuery) {
+    var selectedEntity = false;
+    var inputFields = ['entity_from', 'entity_to', 'daterange_from', 'daterange_to', 'last_x_days', 'start_download', 'export_button', 'filter_new_only'];
+    function initManualExport() {
+        <?php
+        if ($block->getRequest()->getParam('profile_id', false)) {
+            ?>
+        $('profile_id').value = '<?php echo htmlspecialchars($block->getRequest()->getParam('profile_id')) ?>';
+        $$('select#profile_id option').each(function (o) {
+            if (o.readAttribute('value') == $('profile_id').value) {
+                o.selected = true;
+                throw $break;
+            }
+        });
+        <?php
+    } else {
+        ?>
+        // If there is just one profile, select it by default
+        if ($$('select#profile_id option').length <= 2) {
+            $$('select#profile_id option').each(function (o) {
+                if (o.readAttribute('value') !== '') {
+                    o.selected = true;
+                    throw $break;
+                }
+            });
+        }
+        <?php
+    }
+    ?>
+        if ($('profile_id').value == '') {
+            disableFields();
+        } else {
+            selectedEntity = $('profile_id').options[$('profile_id').selectedIndex].getAttribute('entity');
+            updateStartingIdField();
+            updatePredefinedSettings();
+        }
+        $('profile_id').onchange = function () {
+            if (this.options[this.selectedIndex].value !== '') {
+                selectedEntity = this.options[this.selectedIndex].getAttribute('entity');
+                updateStartingIdField();
+                enableFields();
+                updatePredefinedSettings();
+            } else {
+                selectedEntity = false;
+                disableFields();
+            }
+        }
+    }
+    jQuery(document).ready(function () {
+        initManualExport();
+    });
+    function updatePredefinedSettings() {
+        if (typeof $H(profile_settings.get($('profile_id').value)).get('export_filter_datefrom') !== 'undefined') {
+            $('daterange_from').value = $H(profile_settings.get($('profile_id').value)).get('export_filter_datefrom');
+        }
+        if (typeof $H(profile_settings.get($('profile_id').value)).get('export_filter_dateto') !== 'undefined') {
+            $('daterange_to').value = $H(profile_settings.get($('profile_id').value)).get('export_filter_dateto');
+        }
+        if (typeof $H(profile_settings.get($('profile_id').value)).get('export_filter_last_x_days') !== 'undefined') {
+            $('last_x_days').value = $H(profile_settings.get($('profile_id').value)).get('export_filter_last_x_days');
+        }
+        if (typeof $H(profile_settings.get($('profile_id').value)).get('export_filter_new_only') !== 'undefined') {
+            $('filter_new_only').checked = $H(profile_settings.get($('profile_id').value)).get('export_filter_new_only') === "1";
+        }
+        if (typeof $H(profile_settings.get($('profile_id').value)).get('start_download_manual_export') !== 'undefined') {
+            $('start_download').checked = $H(profile_settings.get($('profile_id').value)).get('start_download_manual_export') === "1";
+        }
+        // Update profile links
+        $('edit_profile_a').href = profile_edit_links.get($('profile_id').value);
+    }
+
+    function updateStartingIdField() {
+        $('last_entity').innerHTML = selectedEntity;
+        if (typeof last_entity_ids !== 'undefined') $('last_id').innerHTML = last_entity_ids.get(selectedEntity);
+        $('tr_last_id').show();
+    }
+
+    function disableFields() {
+        inputFields.forEach(function (element, index, array) {
+            if ($(element)) {
+                if (element != 'export_button') {
+                    $(element).disable();
+                }
+            }
+        });
+    }
+
+    function enableFields() {
+        inputFields.forEach(function (element, index, array) {
+            if ($(element)) {
+                if (element != 'export_button') {
+                    $(element).enable();
+                }
+            }
+        });
+    }
+});
+</script>
+<script type="text/javascript">
+require(["jquery", "prototype", "mage/cookies", "jquery/blockUI", "jquery/fileDownload"], function(jQuery) {
+    clearCookie('fileDownload');
+    clearCookie('lastMessage');
+    clearCookie('lastErrorMessage');
+    Event.observe('export_form', 'submit', function (event) {
+        clearCookie('fileDownload');
+        clearCookie('lastMessage');
+        clearCookie('lastErrorMessage');
+        $('success-msg').hide();
+        $('warning-msg').hide();
+        jQuery.blockUI({
+            message: jQuery('#export_dialog'),
+            css: {
+                border: 'none',
+                padding: '15px',
+                backgroundColor: '#000',
+                '-webkit-border-radius': '10px',
+                '-moz-border-radius': '10px',
+                opacity: .9,
+                color: '#fff'
+            }
+        });
+        jQuery('#close').click(function () {
+            jQuery.unblockUI();
+            return false;
+        });
+        if ($('start_download').checked != true) {
+            return false;
+        }
+        jQuery.fileDownload(jQuery(this).attr('action'), {
+            successCallback: function (url) {
+                xtHandleFileDownloadResponse();
+            },
+            failCallback: function (html, url) {
+                //alert('<?php echo __('An error occured. Please reload this page or run the export WITHOUT the "Serve file to browser after exporting" option to see the real error message.')?>');
+                xtHandleFileDownloadResponse();
+            },
+            httpMethod: 'POST',
+            data: $(this).serialize()
+        });
+        Event.stop(event);
+        return false;
+    });
+    function xtHandleFileDownloadResponse() {
+        window.setTimeout(function () {
+            jQuery.unblockUI({
+                onUnblock: function () {
+                    clearCookie('fileDownload');
+                    // Clear mit obigen options
+                    $('messages').hide();
+                    if (jQuery.mage.cookies.get('lastMessage') != '' && jQuery.mage.cookies.get('lastMessage') != null) {
+                        $('success-msg-text').innerHTML = jQuery.mage.cookies.get('lastMessage').replace(/\+/g, ' ');
+                        $('success-msg').show();
+                        clearCookie('lastMessage');
+                        $('messages').show();
+                    } else {
+                        $('success-msg').hide();
+                    }
+                    if (jQuery.mage.cookies.get('lastErrorMessage') != '' && jQuery.mage.cookies.get('lastErrorMessage') != null) {
+                        $('warning-msg-text').innerHTML = jQuery.mage.cookies.get('lastErrorMessage').replace(/\+/g, ' ');
+                        $('warning-msg').show();
+                        clearCookie('lastErrorMessage');
+                        $('messages').show();
+                    } else {
+                        $('warning-msg').hide();
+                    }
+                }
+            });
+        }, 100);
+    }
+    function clearCookie(name) {
+        jQuery.mage.cookies.set(name, '', {path: '<?php echo $block->getSession()->getCookiePath()?>', domain: '<?php echo $block->getSession()->getCookieDomain()?>', expires: new Date('Jan 01 1970 00:00:01 GMT')});
+        jQuery.mage.cookies.set(name, '', {path: '<?php echo $block->getSession()->getCookiePath()?>', domain: '.<?php echo $block->getSession()->getCookieDomain()?>', expires: new Date('Jan 01 1970 00:00:01 GMT')});
+    }
+});
+</script>
+<div id="export_dialog" style="display:none; z-index: 999999; cursor: default; ">
+    <h2 style="color: #fff !important;"><?php echo __('Exporting... Please wait...')?></h2>
+    <input type="button" id="close" value="Close Progress Window" style="padding:5px; color: #000 !important;"/>
+</div>

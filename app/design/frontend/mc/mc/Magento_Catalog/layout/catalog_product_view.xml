@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+    <referenceContainer name="product.info.main">
+      <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.brand" template="product/view/brand.phtml" before="-" />
+      <block class="Magento\Catalog\Block\Product\View\Description" name="guest-buttons" template="product/view/guest-buttons.phtml">
+        
+      </block>
+     
+    </referenceContainer>
+    <move element="product.info.brand" destination="product.info.main" before="-"/>
+    <move element="guest-buttons" destination="product.info.main" before="product.info.overview" />
+    <move element="product.info.details" destination="product.info.main" after="-" />
+    <referenceBlock name="product.info.stock.sku" remove="true"/>
+    <referenceBlock name="view.addto.compare" remove="true"/>
+    <referenceBlock name="product.info.mailto" remove="true"/>
+    <referenceBlock name="reviews.tab" remove="true" />
+    <referenceBlock name="product.review.form" remove="true" />
+    <referenceBlock name="product.info.review" remove="true" />
+    <referenceBlock name="catalog.product.related" remove="true" />
+    <referenceBlock name="product.info.upsell" remove="true" />
+
+    <referenceBlock name="product.info.details">
+      <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.ingredient" as="ingredient" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+          <arguments>
+              <argument name="at_call" xsi:type="string">getIngredientsText</argument>
+              <argument name="at_code" xsi:type="string">ingredients_text</argument>
+              <argument name="css_class" xsi:type="string">ingredients_text</argument>
+              <argument name="at_label" xsi:type="string">none</argument>
+              <argument name="title" translate="true" xsi:type="string">Ingredients</argument>
+              <argument name="icon_code" xsi:type="string">ingredients_icons</argument>
+          </arguments>
+      </block>
+      <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.how.to.use" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+          <arguments>
+              <argument name="at_call" xsi:type="string">getHowToUse</argument>
+              <argument name="at_code" xsi:type="string">how_to_use</argument>
+              <argument name="css_class" xsi:type="string">how_to_use</argument>
+              <argument name="at_label" xsi:type="string">none</argument>
+              <argument name="title" translate="true" xsi:type="string">How to use</argument>
+          </arguments>
+      </block>
+      <block class="Magento\Catalog\Block\Product\View\Description" name="shipping.return" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+        <arguments>
+          <argument name="cms_block_code" xsi:type="string">shipping-returns-MC</argument>
+          <argument name="is_cms_block" xsi:type="boolean">true</argument>
+          <argument translate="true" name="title" xsi:type="string">Shipping &amp; returns</argument>
+        </arguments>
+      </block>
+    </referenceBlock>
+    <referenceContainer name="content">
+      <container name="product.mobile.title.container" htmlTag="div" htmlClass="product-mobile-title-wrapper mobile-only" before="-">
+        <block class="Magento\Catalog\Block\Product\View\Description" name="product.mobile.title" template="Magento_Catalog::product/view/mobile-title.phtml" />
+        <block class="Magento\Catalog\Pricing\Render" name="product.price.final.mobile" after="-">
+            <arguments>
+                <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                <argument name="price_type_code" xsi:type="string">final_price</argument>
+                <argument name="zone" xsi:type="string">item_view</argument>
+            </arguments>
+        </block>
+      </container>
+    </referenceContainer>
+    <referenceBlock name="product.info.description">
+        <arguments>
+            <argument name="title" translate="true" xsi:type="string">Description</argument>
+            <argument name="icon_code" xsi:type="string">desc_icon</argument>
+        </arguments>
+    </referenceBlock>
+    <referenceBlock name="product.attributes" remove="true" />
+  </body>
+</page>

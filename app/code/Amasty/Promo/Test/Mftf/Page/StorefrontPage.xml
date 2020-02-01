@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/magento2-functional-testing-framework/src/Magento/FunctionalTestingFramework/Page/etc/PageObject.xsd">
+
+    <page name="CheckoutShippingPage" url="/checkout/#shipping" area="storefront" module="Magento_Promo" >
+        <section name="CheckoutShippingGuestInfoSection"/>
+        <section name="CheckoutShippingSection"/>
+    </page>
+
+    <page name="CheckoutPaymentsPage" url="/checkout/#payment" area="storefront" module="Magento_Promo">
+        <section name="CheckoutPaymentSection"/>
+    </page>
+
+</pages>

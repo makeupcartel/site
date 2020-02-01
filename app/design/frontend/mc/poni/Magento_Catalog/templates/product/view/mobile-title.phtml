@@ -1,0 +1,23 @@
+<?php
+  $_product = $block->getProduct();
+
+  $_attributeValue =$_product->getResource()->getAttribute('brand')->getFrontend()->getValue($_product);
+  $helper3 = $this->helper('Convert\Catalog\Helper\Data');
+?>
+<!-- <div class="align-brand-mb">
+  <?php if ($_attributeValue): ?>
+  <div class="product-brand"><?php echo $_attributeValue; ?></div>
+  <?php endif; ?>
+</div> -->
+
+<h2 class="product-name"><?php echo $_product->getName(); ?></h2>
+
+<?php /*if($helper3->isCustomerLoggedIn()):*/ ?>
+  <?php if ($_product->isSaleable()): ?>
+    <div class="sticky-buttons">
+      <a href="#" class="sticky-atc-button" data-text="<?php echo __('Add to bag') ?>"><?php echo __('Add to bag') ?></a>
+    </div>
+    <span class="stamped-product-reviews-badge" data-id="<?php echo $_product->getId() ?>"
+                                          style="display: block;"></span>
+  <?php endif; ?>
+<?php /*endif;*/ ?>

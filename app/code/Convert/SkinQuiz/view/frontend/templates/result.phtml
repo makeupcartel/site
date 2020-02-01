@@ -1,0 +1,248 @@
+<?php 
+    $resultCollection = $this->getResultCollection();
+    $countProd = 0;
+    $countText = 0;
+?>
+<div class="skin-concern-quiz">
+    <div class="skin-quiz-wraper">
+        <div class="step-4">
+            <div class="title-skin-concern-mobile">
+                <h2><i>Skin</i> concern quiz</h2>
+            </div>
+            <div class="intro-quiz">
+                <div class="text-intro-quiz">
+                    <div class="main-text">
+                        <h2>Your Results</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="results-skin">
+                <div class="skin-status">
+                    <p>Your skin type is… <strong><i class="result-type-skin"><?= $this->getSkinTypeTitle() ?></i></strong></p>
+                </div>
+                <div class="skin-support">
+                    <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('guide_skin_quiz')->toHtml(); ?>
+                    <?php $skinTypeResults = $this->getSkinTypeResult() ?>
+                    <?php foreach ($skinTypeResults as $skinType): ?>
+                    <?php 
+                        echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($skinType)->toHtml();
+                        $countText++;
+                        if ($countText == 3) {
+                            break;
+                        }
+                    ?> 
+                    <?php endforeach; ?>
+                </div>
+                <div class="item actions">
+                    <span class="action shareresults" id="action-share" onclick="getLinkShare()">
+                        <span>
+                            <img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/345192192icon.png'); ?>" />
+                        </span> &nbsp; Share Result
+                    </span>
+                    <span class="text-for-share-links"></span>
+                    <span class="share-link">
+                        <input type="text" name="link-share-cus" readonly="readonly" id="showlinkshare">
+                    </span>
+                </div>
+            </div>
+            <div class="wraper-recomented-product">
+                <div class="recoment-product">
+                    <div class="title-recomented-product">
+                        <h1><i>Recommended</i> for you</h1>
+                    </div>
+                    <div class="message-addtocart"></div>
+                    <div class="main-product-quiz">
+                        <?php if ($resultCollection && count($resultCollection) > 0): ?>
+
+                            <?php foreach ($resultCollection as $key => $item): ?>
+                                <?php if ($block->checkCaseProduct($skinTypeResults, explode(',',$item->getSkinQuizExclude())) == 1):?>
+                                    <?php $productIds[] = $item->getId(); ?>
+                                    <div class="product-item">
+                                        <div class="product-item-info-quiz">
+                                            <div class="product-thumnail">
+                                                <a href="<?= $item->getProductUrl() ?>">
+                                                    <span class="product-image-container">
+                                                        <img class="product-image-quiz" src="<?php echo $block->getProductThumbnailUrl($item); ?>" />
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="product-item-details">
+                                                <strong class="name-product">
+                                                    <a href="<?= $item->getProductUrl() ?>"><?= $item->getName() ?></a>
+                                                </strong>
+                                                <div class="product-item-price">
+                                                    <span class="normal-price"><?= $block->getFormatedPrice($item->getPrice()) ?></span>
+                                                </div>
+                                                <div class="align-swatch-quiz"></div>
+                                                <div class="product-item-actions">
+                                                    <div class="actions-primary">
+                                                        <?php $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                                            $postData = $postDataHelper->getPostData($block->getAddToCartUrl($item), ['product' => $item->getEntityId()])
+                                                        ?>
+                                                        <button class="action tocart primary"
+                                                                data-post='<?= /* @escapeNotVerified */ $postData ?>'
+                                                                type="button" title="<?= /* @escapeNotVerified */ __('Add to Cart') ?>">
+                                                            <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="view-details">
+                                                    <a href="<?= $item->getProductUrl() ?>">View details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php 
+                                    $countProd++;
+                                    if ($countProd == 3) {
+                                         break;
+                                     } 
+                                    ?>
+                                <?php endif; ?>
+
+                            <?php endforeach; ?>
+                            <div class="btn-add-all">
+                                <div class="actions-primary">
+                                    <div class="actions-primary">
+                                        <button class="action tocart primary" type="button" onclick="addAllProduct()" title="Add to Cart">
+                                            <span>Add All To Cart</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?php $myjson = json_encode($productIds); ?>
+                            <input type="text" id="manghv" class="demoproid" name="manghv" value='<?php echo($myjson) ?>' style="display:none;">
+                        <?php else: ?>
+                        <div id="amasty-shopby-product-list">
+                            <div class="message info empty">
+                                <div>We can't find products matching the selection.</div>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-skin-concern">
+        <div class="plant_banner"><img
+                src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/texture_image@1x.jpg'); ?>" alt="">
+            <div class="clear-float-div">&nbsp;</div>
+        </div>
+        <div class="header_sidebar_quiz">
+            <h4>Skin Concern Quiz</h4>
+        </div>
+        <div class="group-skin-quiz">
+            <div class="tick-step tick-1">
+                <div class="number-step st-1 number-step-config">
+                    <p>1</p>
+                    <img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/icon_check.png'); ?>"
+                        class="icon_check_quiz icon_check_1">
+                </div>
+                <div class="label-step-quiz">
+                    <p>Skin Sensitivity</p>
+                </div>
+            </div>
+            <div class="lines-space line-1 lines-space-config">&nbsp;</div>
+            <div class="tick-step tick-2">
+                <div class="number-step st-2 number-step-config">
+                    <p>2</p>
+                    <img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/icon_check.png'); ?>"
+                        class="icon_check_quiz icon_check_2">
+                </div>
+                <div class="label-step-quiz">
+                    <p>Skin Type</p>
+                </div>
+            </div>
+            <div class="lines-space line-2 lines-space-config">&nbsp;</div>
+            <div class="tick-step tick-3">
+                <div class="number-step st-3 number-step-config">
+                    <p>3</p>
+                    <img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/icon_check.png'); ?>"
+                        class="icon_check_quiz icon_check_3">
+                </div>
+                <div class="label-step-quiz">
+                    <p>Skin Concerns</p>
+                </div>
+            </div>
+            <div class="lines-space line-3 lines-space-config">&nbsp;</div>
+            <div class="tick-step tick-4">
+                <div class="number-step st-4 number-step-config">
+                    <p>4</p>
+                    <img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/icon_check.png'); ?>"
+                        class="icon_check_quiz icon_check_4">
+                </div>
+                <div class="label-step-quiz">
+                    <p>Results</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+function getLinkShare() {
+    require([
+        'jquery'
+    ], function($) {
+        var linkshare = window.location.href;
+        $('#showlinkshare').val(linkshare);
+        $('span.share-link').css({
+            'display': 'block'
+        });
+        $('span.text-for-share-links').html('Please copy this url to share your results');
+    });
+}
+
+function loadminicart() {
+    require([
+        'Magento_Customer/js/customer-data'
+    ], function(customerData) {
+        var sections = ['cart'];
+        customerData.invalidate(sections);
+        customerData.reload(sections, true);
+    });
+}
+
+function addAllProduct() {
+    require([
+        'jquery'
+    ], function($) {
+        var proid = $('.demoproid').val();
+        $.ajax({
+            url: "<?= $block->getUrl("skinquiz/quiz/addalltocart") ?>",
+            dataType: "json",
+            data: {
+                arrayproduct: proid
+            },
+            type: "POST",
+            success: function($data) {
+                var $pro_num = $data.length;
+                        urlShoppingCart = "<?=  $block->getUrl("checkout/cart/")?>";
+                        message2 = '';
+                        message2 += 'you added ';
+                        message2 += $pro_num;
+                        message2 += ' item(s) to your shopping cart';
+
+                        message = '';
+                        message += '<div class="message-success success message">';
+                        message += '<p style="margin-bottom:0px">';
+                        message += 'You added ';
+                        message += $pro_num;
+                        message += ' item(s)';
+                        message += 'to your ';
+                        message += '<a href="';
+                        message += urlShoppingCart;
+                        message += '">';
+                        message += 'shopping cart.';
+                        message += '</a>';
+                        message += '</p>';
+                        message += '</div>';
+                        $('.message-addtocart').html(message);
+                        loadminicart();
+            }
+        });
+    });
+}
+</script>

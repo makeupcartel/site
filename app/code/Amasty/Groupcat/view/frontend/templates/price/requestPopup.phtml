@@ -1,0 +1,24 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+?>
+<?php
+/** @var \Amasty\Groupcat\Block\Framework\Pricing\RequestPopup $block */
+/** @var \Magento\Catalog\Api\Data\ProductInterface $product */
+/** @var string $formConfig */
+?>
+
+<a data-product-id="<?= (int)$product->getId() ?>" data-amhide="AmastyHidePricePopup" class="amasty-hide-price-container" <?= /* @noEscape */ $block->getCustomStyles() ?> >
+    <?= /* @noEscape */ $block->getContent(); ?>
+</a>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Amasty_Groupcat/js/amHidePriceForm": <?= /* @noEscape */ $formConfig ?>
+        }
+    }
+</script>

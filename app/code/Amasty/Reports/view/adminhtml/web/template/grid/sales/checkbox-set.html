@@ -1,0 +1,16 @@
+<div class="admin__field-control admin__action-dropdown-wrap am_radioset">
+    <div outereach="options">
+        <input
+                ko-checked="$parent.value"
+                ko-disabled="$parent.disabled"
+                css="
+                    'admin__control-radio': !$parent.multiple,
+                    'admin__control-checkbox': $parent.multiple"
+                attr="
+                    id: ++ko.uid,
+                    value: value,
+                    type: $parent.multiple ? 'checkbox' : 'radio'"/>
+
+        <label class="admin__field-label" text="label" attr="for: ko.uid"/>
+    </div>
+</div>

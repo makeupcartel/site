@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
+
+    <entity name="addSimpleProductsAutomatically" type="adminSettingPromo">
+        <data key="allProducts">2</data>
+        <data key="freeProductOnly">1</data>
+        <data key="no">0</data>
+        <data key="default">1</data>
+    </entity>
+
+    <entity name="autoAddFreeItemsBasedOnCartAmount" type="adminSettingPromo">
+        <data key="beforeDiscount">0</data>
+        <data key="afterDiscount">1</data>
+        <data key="default">0</data>
+    </entity>
+
+    <entity name="giftsSelectionMethod" type="adminSettingPromo">
+        <data key="oneByOne">0</data>
+        <data key="multiple">1</data>
+        <data key="default">0</data>
+    </entity>
+
+    <entity name="openPopUpAutomatically" type="adminSettingPromo">
+        <data key="no">0</data>
+        <data key="yes">1</data>
+        <data key="default">0</data>
+    </entity>
+
+    <entity name="showOriginalPriceInThePopup" type="adminSettingPromo">
+        <data key="no">0</data>
+        <data key="yes">1</data>
+        <data key="default">0</data>
+    </entity>
+
+    <entity name="reminderAboutAvailablePromos" type="adminSettingPromo">
+        <data key="no">0</data>
+        <data key="yes">1</data>
+        <data key="default">0</data>
+    </entity>
+
+</entities>

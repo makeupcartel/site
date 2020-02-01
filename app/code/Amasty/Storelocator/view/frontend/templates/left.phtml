@@ -1,0 +1,67 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Storelocator
+ */
+?>
+<?php /** @var \Amasty\Storelocator\Block\Location $block */ ?>
+<?php
+$locations = $block->getLocations();
+
+$currentDate = $block->timezoneInterface->date();
+$currentDay = strtolower($block->timezoneInterface->convertConfigTimeToUtc($currentDate, 'l'));
+$dayNames = $block->dataHelper->getDaysNames();
+?>
+<div id="<?= $block->getStoresListId(); ?>">
+    <?php foreach ($locations as $location) : ?>
+    <span name="leftLocation" data-mapid="<?= $block->getMapId(); ?>" data-amid="<?= $location['id']; ?>">
+        <?= $block->getStoreListHtml($location); ?>
+        <?php if ($location['schedule_array'] != false && $location['show_schedule']) :
+            $schedule = $location['schedule_array'];
+            if (array_key_exists($currentDay, $schedule)) {
+                $scheduleKey = strtolower($dayNames[$currentDay]->getText());
+            } else {
+                // getting day of the week for compatibility with old module versions
+                $scheduleKey = date("N", strtotime($currentDay));
+            }
+            $from = $schedule[$scheduleKey]['from'][0] . ':' . $schedule[$scheduleKey]['from'][1];
+            $to = $schedule[$scheduleKey]['to'][0] . ':' . $schedule[$scheduleKey]['to'][1];
+            $workToday = $block->getWorkingTime($from, $to);
+            ?>
+
+            <div class="today_schedule">
+                    <?= __('Work Time Today:')?>
+                <span>
+                    <?= $workToday ?>
+                    <div class="locator_arrow"></div>
+                </span>
+            </div>
+
+            <div class="all_schedule" id="schedule<?= $location['id']; ?>">
+                <?php
+                foreach ($schedule as $key => $item) {
+                    $from = $item['from'][0] . ':' . $item['from'][1];
+                    $to = $item['to'][0] . ':' . $item['to'][1];
+                    $workingTime = $block->getWorkingTime($from, $to);
+                    if (array_key_exists($key, $dayNames)) {
+                        $dayName = $dayNames[$key]->getText();
+                    } else {
+                        $dayName = date('l', strtotime("Sunday + $key days"));
+                    }
+
+                    ?>
+                    <div>
+                        <?= __($dayName); ?>:
+                        <span>
+                            <?= $workingTime ?>
+                        </span>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+        <?php endif; ?>
+        </span>
+    <?php endforeach; ?>
+</div>

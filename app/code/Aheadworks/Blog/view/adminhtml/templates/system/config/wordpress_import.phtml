@@ -1,0 +1,36 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+use Aheadworks\Blog\Block\Adminhtml\System\Config\Field\WordpressImport;
+
+/** @var $block WordpressImport  */
+?>
+<div class="admin__field-control wordpress-import">
+   <input
+        id="<?php /* @noEscape */ echo WordpressImport::IMPORT_FILE_INPUT_ID; ?>"
+        class="input-file"
+        type="file"
+        name="<?php /* @noEscape */ echo WordpressImport::IMPORT_FILE_INPUT_ID; ?>"
+        value=""  />
+    <p class="note">
+        <span><?php echo $block->escapeHtml(__('Choose previously exported xml file, containing posts from Wordpress')) ?></span>
+    </p>
+    <button type="button"
+            class="action-default"
+            data-role="import-button">
+        <span><?php echo $block->escapeHtml(__('Import Posts'))?></span>
+    </button>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        ".wordpress-import": {
+            "wordpressImport": <?php /* @noEscape */ echo $block->getScriptOptions(); ?>
+        }
+    }
+</script>

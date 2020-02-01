@@ -1,0 +1,49 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<if args="isAllowed()">
+    <if args="isSalable($row())">
+        
+        <form  data-role="tocart-form" attr="action:getActionUrl($row())" method="post">
+          <div class="control">
+            <span class="btn-qty btn-qty-minus"></span>
+            <input type="number"
+                  name="qty"
+                  class="qty"
+                  maxlength="12"
+                  value="1"
+                  title="Qty" class="input-text qty"
+                  data-validate="{'required-number':true,'validate-item-quantity':{'minAllowed':1,'maxAllowed':10000}}"
+                  />
+            <span class="btn-qty btn-qty-plus"></span>
+          </div>
+
+          <button class="action tocart primary"
+                attr="title: getLabel()"
+                type="submit">
+            <span text="getLabel()"/>
+        </button>
+        </form>
+    </if>
+
+    <ifnot args="isSalable($row())">
+        <div class="control">
+          <span class="btn-qty btn-qty-minus"></span>
+          <input type="number"
+                name="qty"
+                class="qty"
+                maxlength="12"
+                value="1"
+                title="Qty" class="input-text qty"
+                data-validate="{'required-number':true,'validate-item-quantity':{'minAllowed':1,'maxAllowed':10000}}"
+                />
+          <span class="btn-qty btn-qty-plus"></span>
+        </div>
+        <div class="stock unavailable">
+            <span translate="'Out of stock'"/>
+        </div>
+    </ifnot>
+</if>

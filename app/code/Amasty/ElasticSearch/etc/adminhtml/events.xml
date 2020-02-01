@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_ElasticSearch
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_system_config_changed_section_catalog">
+        <observer name="Amasty_ElasticSearch::save_catalog"
+                  instance="Amasty\ElasticSearch\Observer\System\ConfigChanged"/>
+    </event>
+    <event name="admin_system_config_changed_section_amasty_elastic">
+        <observer name="Amasty_ElasticSearch::save_amasty_elastic"
+                  instance="Amasty\ElasticSearch\Observer\System\ConfigChanged"/>
+    </event>
+</config>

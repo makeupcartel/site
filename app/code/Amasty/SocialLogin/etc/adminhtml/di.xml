@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_SocialLogin
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <plugin name="Amasty_SocialLogin::injectCollection" type="Amasty\SocialLogin\Plugin\UiSearchResult" />
+    </type>
+    <type name="Magento\Backend\Block\Widget\Form\Element\Dependence">
+        <plugin name="Amasty_SocialLogin::fix-dependence"
+                type="Amasty\SocialLogin\Plugin\Adminhtml\Block\Widget\Form\Element\Dependence" />
+    </type>
+
+    <type name="Amasty\SocialLogin\Block\Adminhtml\System\Config\Form\Field\AbandonedCart">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="module_manager" xsi:type="object">Magento\Framework\Module\Manager</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * Copyright � 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Sales\Block\Order\Totals
+ * @see \Magento\Sales\Block\Order\Totals
+ */
+?>
+<?php foreach ($block->getTotals() as $_code => $_total) : ?>
+	<?php if ($_total->getBlockName()) : ?>
+		<?php echo $block->getChildHtml($_total->getBlockName(), false); ?>
+	<?php else : ?>
+		<tr class="<?php /* @escapeNotVerified */ echo $_code ?>">
+			<th style="background-color:#ffffff !important;padding-bottom:7px !important;padding-top:0px !important;text-align:right;font-weight:400;font-size:13px;color:#444444; padding-right:30px !important;" <?php /* @escapeNotVerified */ echo $block->getLabelProperties() ?> scope="row" colspan="4">
+				<?php if ($_total->getStrong()) : ?>
+					<strong style="font-weight:700;font-size:14px;color:#222222;">Total (Inc GST)</strong>
+				<?php else : ?>
+					<?php echo $block->escapeHtml($_total->getLabel()); ?>
+				<?php endif ?>
+			</th>
+			<td style="background-color:#ffffff !important;font-weight:400;color:#444444;padding-bottom:7px !important;padding-top:0px !important;font-size:13px;padding-right:20px !important;text-align:right;" <?php /* @escapeNotVerified */ echo $block->getValueProperties() ?> data-th="<?php echo $block->escapeHtml($_total->getLabel()); ?>">
+				<?php if ($_total->getStrong()) : ?>
+					<strong style="font-weight:700;font-size:14px;color:#222222;"><?php /* @escapeNotVerified */ echo $block->formatValue($_total) ?></strong>
+				<?php else : ?>
+					<?php /* @escapeNotVerified */ echo $block->formatValue($_total) ?>
+				<?php endif ?>
+			</td>
+		</tr>
+	<?php endif ?>
+<?php endforeach ?>

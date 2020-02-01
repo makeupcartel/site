@@ -1,0 +1,102 @@
+<?php
+
+/**
+ * Copyright 2018 aheadWorks. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\Widget\RecentPost */
+
+// @codingStandardsIgnoreFile
+$canShow = true;
+if (!$block->isAjax()): ?>
+	<?php $canShow = false; ?>
+    <div data-aw-blog-block-name="<?php /* @noEscape */
+	echo $block->getWidgetEncodeData() ?>"></div>
+<?php endif; ?>
+
+<?php if ($canShow && $block->isEnabled()): ?>
+	<?php
+	$recentPosts = $block->getPosts();
+	$title = $block->getTitle() ?: 'Recent Posts';
+	?>
+	<?php if (count($recentPosts)):
+    $listBlog = $this->helper('Convert\Blog\Helper\Data');
+     ?>
+        <div class="block widget block-blog-recent-post" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+            <div class="block-title" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+                <strong data-aos-once="true" data-aos="fade-up" data-aos-delay="50"><span><?php echo __('Skin '); ?></span><?php echo __('Blog') ?></strong>
+                <p data-aos-once="true" data-aos="fade-up" data-aos-delay="50"><?php echo $block->escapeHtml(__('Learn how to experience amazing skin.')) ?></p>
+            </div>
+            <div class="block-content" data-aos-once="true" data-aos="fade-up" data-aos-delay="500">
+                <div class="block-recent-posts">
+					<?php
+					$a = 0;
+                    
+
+					foreach ($listBlog->getSkinBlog() as $value) {
+						$a++;
+						if ($a == 1) {
+							$b = "#49C1E0;";
+						} else if ($a == 2) {
+							$b = "#9AEABD;";
+						} else {
+							$b = "#DAB9FF;";
+						}
+						?>
+                        <div class="skin-blog" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+                            <img src="<?= $listBlog->getBaseURLMedia() . "" . $value['featured_image_file'] ?>">
+                            <div class="charcoal-skin">
+                                <div class="charcoal-skin-content">
+                                    <h2><?= $value['title'] ?></h2>
+                                    <a href="<?= $block->getUrl("blogs") . "" . $value['url_key'] ?>">
+                                        <span>READ</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+						<?php
+					}
+					?>
+                </div>
+                <div class="view-our-blog" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+                    <a href="<?= $block->getUrl("blogs") ?>">
+                        <span>VIEW OUR BLOG</span>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="block-content responsive" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+                <div class="block-recent-posts" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+					<?php
+                    
+					foreach ($listBlog->getSkinBlog() as $value) {
+						$image = $listBlog->getBaseURLMedia() . "" . $value['featured_image_file']
+						?>
+                        <div class="skin-blog" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+                            <div class="image-responsive-blog" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+                            <img src="<?= $image ?>"/>
+                            </div>
+                            <div class="charcoal-skin" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+                                <div class="charcoal-skin-content" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+                                    <h2><?= $value['title'] ?></h2>
+                                    <a href="<?= $block->getUrl("blogs") . "" . $value['url_key'] ?>">
+                                        <span>READ</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+						<?php
+					}
+					?>
+                </div>
+                <div class="view-our-blog" data-aos-once="true" data-aos="fade-up" data-aos-delay="50">
+                    <a href="<?= $block->getUrl("blogs") ?>">
+                        <span>VIEW OUR BLOG</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+	<?php endif; ?>
+<?php endif; ?>

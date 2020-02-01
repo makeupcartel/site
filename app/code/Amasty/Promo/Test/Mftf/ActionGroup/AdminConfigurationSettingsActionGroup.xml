@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+
+    <actionGroup name="EditGeneralSettingPromo">
+        <arguments>
+            <argument name="settingAddProductAuto"/>
+            <argument name="settingBasedOnCart"/>
+        </arguments>
+        <amOnPage url="{{AdminPromoConfigurationPage.url}}" stepKey="navigateToPromoConfiguration"/>
+        <conditionalClick stepKey="openGeneralTab"
+                          selector="{{AdminConfigurationsPromoSection.GeneralTab}}"
+                          dependentSelector="{{AdminConfigurationsPromoSection.GeneralTabOpen}}"
+                          visible="false"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.AddProductsAutomatically}}"
+                      userInput="{{settingAddProductAuto}}"
+                      stepKey="selectGeneralSetting1"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.BasedOnCart}}"
+                      userInput="{{settingBasedOnCart}}"
+                      stepKey="selectGeneralSetting2"/>
+        <click selector="{{AdminConfigurationsPromoSection.Save}}" stepKey="saveChangeInRates"/>
+        <waitForPageLoad time="30" stepKey="waitForPageLoad1"/>
+    </actionGroup>
+
+
+    <actionGroup name="EditMessagesSettingPromo">
+        <arguments>
+            <argument name="settingGiftsSelectionMethod"/>
+            <argument name="settingOpenPopupAutomatically"/>
+            <argument name="settingShowOriginalPriceInThePopup"/>
+            <argument name="settingReminderAboutAvailablePromos"/>
+        </arguments>
+        <amOnPage url="{{AdminPromoConfigurationPage.url}}" stepKey="navigateToPromoConfiguration"/>
+        <conditionalClick stepKey="openMessageTab"
+                          selector="{{AdminConfigurationsPromoSection.MessagesSettingsTab}}"
+                          dependentSelector="{{AdminConfigurationsPromoSection.MessagesSectionsTabOpen}}"
+                          visible="false"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.GiftSelectionMethod}}"
+                      userInput="{{settingGiftsSelectionMethod}}"
+                      stepKey="selectMessageSetting1"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.OpenPopUpAutomatically}}"
+                      userInput="{{settingOpenPopupAutomatically}}"
+                      stepKey="selectMessageSetting2"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.ShowOriginalPriceInThePopup}}"
+                      userInput="{{settingShowOriginalPriceInThePopup}}"
+                      stepKey="selectMessageSetting3"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.ReminderAboutAvailablePromos}}"
+                      userInput="{{settingReminderAboutAvailablePromos}}"
+                      stepKey="selectMessageSetting4"/>
+        <click selector="{{AdminConfigurationsPromoSection.Save}}" stepKey="saveChangeInRates"/>
+        <waitForPageLoad time="30" stepKey="waitForPageLoad1"/>
+    </actionGroup>
+
+
+    <actionGroup name="DefaultSettingPromo">
+        <amOnPage url="{{AdminPromoConfigurationPage.url}}" stepKey="navigateToPromoConfiguration"/>
+        <conditionalClick stepKey="openGeneralTab"
+                          selector="{{AdminConfigurationsPromoSection.GeneralTab}}"
+                          dependentSelector="{{AdminConfigurationsPromoSection.GeneralTabOpen}}"
+                          visible="false"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.AddProductsAutomatically}}"
+                      userInput="1"
+                      stepKey="selectDefaultGeneralSetting1"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.BasedOnCart}}"
+                      userInput="0"
+                      stepKey="selectDefaultGeneralSetting2"/>
+        <conditionalClick stepKey="openMessageTab"
+                          selector="{{AdminConfigurationsPromoSection.MessagesSettingsTab}}"
+                          dependentSelector="{{AdminConfigurationsPromoSection.MessagesSectionsTabOpen}}"
+                          visible="false"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.GiftSelectionMethod}}"
+                      userInput="0"
+                      stepKey="selectDefaultMessageSetting1"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.OpenPopUpAutomatically}}"
+                      userInput="0"
+                      stepKey="selectDefaultMessageSetting2"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.ShowOriginalPriceInThePopup}}"
+                      userInput="0"
+                      stepKey="selectDefaultMessageSetting3"/>
+        <selectOption selector="{{AdminConfigurationsPromoSection.ReminderAboutAvailablePromos}}"
+                      userInput="0"
+                      stepKey="selectDefaultMessageSetting4"/>
+        <click selector="{{AdminConfigurationsPromoSection.Save}}" stepKey="saveChangeInRates"/>
+        <waitForPageLoad time="30" stepKey="waitForPageLoad1"/>
+    </actionGroup>
+
+</actionGroups>

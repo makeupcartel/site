@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="xtento_productexport_history_grid_block"/>
+    <body>
+        <referenceContainer name="page.content">
+            <block before="page_main_actions" class="Xtento\ProductExport\Block\Adminhtml\Widget\Menu" name="productexport.menu"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Xtento\ProductExport\Block\Adminhtml\History" name="adminhtml.productexport.history.grid.container"/>
+        </referenceContainer>
+    </body>
+</page>
+
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2016-04-14T15:37:57+00:00
+ * File:          app/code/Xtento/ProductExport/view/adminhtml/layout/xtento_productexport_history_index.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

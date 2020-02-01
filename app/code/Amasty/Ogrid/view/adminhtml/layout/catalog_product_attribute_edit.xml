@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Ogrid
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <referenceBlock name="attribute_edit_tabs">
+                <block class="Amasty\Ogrid\Block\Adminhtml\Product\Attribute\Edit\Tab\Index" name="amasty_ogrid_index" as="amasty_ogrid_index"/>
+
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">amasty_ogrid_index</argument>
+                    <argument name="block" xsi:type="string">amasty_ogrid_index</argument>
+                </action>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="amasty_groupcat_general_template"
+              label="Amasty 'Get a Quote' Answer"
+              file="amasty_groupcat_admin_answer.html"
+              type="html"
+              module="Amasty_Groupcat"
+              area="frontend"
+    />
+    <template id="amasty_groupcat_admin_email_template"
+              label="Amasty 'Get a Quote' Admin Notification"
+              file="amasty_groupcat_admin_notification.html"
+              type="html"
+              module="Amasty_Groupcat"
+              area="frontend"
+    />
+    <template id="amasty_groupcat_reply_email_template"
+              label="Amasty 'Get a Quote' Auto Reply"
+              file="amasty_groupcat_auto_reply.html"
+              type="html"
+              module="Amasty_Groupcat"
+              area="frontend"
+    />
+
+</config>

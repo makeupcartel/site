@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\AuthorList */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+    $authors = $block->getAuthors();
+?>
+<?php if (count($authors)): ?>
+    <div class="blog-authors">
+        <?php foreach ($authors as $author): ?>
+            <?= $block->getItemHtml($author) ?>
+        <?php endforeach; ?>
+    </div>
+    <?= $block->getChildHtml('pager'); ?>
+<?php else: ?>
+    <div class="message info empty">
+        <div><?= $block->escapeHtml(__('No authors.')) ?></div>
+    </div>
+<?php endif; ?>

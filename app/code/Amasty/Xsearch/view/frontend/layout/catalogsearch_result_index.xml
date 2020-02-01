@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="search.result" destination="amasty.xsearch.tabs"/>
+        <referenceContainer name="content">
+            <block class="Amasty\Xsearch\Block\Search\Tab" name="amasty.xsearch.tabs" template="Amasty_Xsearch::tabs.phtml">
+                <action method="addTab"
+                        ifconfig="amasty_xsearch/category/enabled">
+                    <argument name="name" xsi:type="string" translate="true">Categories</argument>
+                    <argument name="block" xsi:type="string">amsearch-category-tab</argument>
+                    <argument name="class" xsi:type="string">Amasty\Xsearch\Block\Search\Category</argument>
+                    <argument name="template" xsi:type="string">Amasty_Xsearch::tab/result.phtml</argument>
+                </action>
+
+                <action method="addTab"
+                        ifconfig="amasty_xsearch/page/enabled">
+                    <argument name="name" xsi:type="string" translate="true">CMS Pages</argument>
+                    <argument name="block" xsi:type="string">amsearch-cms-pages-tab</argument>
+                    <argument name="class" xsi:type="string">Amasty\Xsearch\Block\Search\Page</argument>
+                    <argument name="template" xsi:type="string">Amasty_Xsearch::tab/result.phtml</argument>
+                </action>
+
+                <action method="addTab"
+                        ifconfig="amasty_xsearch/brand/enabled">
+                    <argument name="name" xsi:type="string" translate="true">Brands</argument>
+                    <argument name="block" xsi:type="string">amsearch-brands-tab</argument>
+                    <argument name="class" xsi:type="string">Amasty\Xsearch\Block\Search\Brand</argument>
+                    <argument name="template" xsi:type="string">Amasty_Xsearch::tab/result.phtml</argument>
+                </action>
+
+                <action method="addTab"
+                        ifconfig="amasty_xsearch/landing_page/enabled">
+                    <argument name="name" xsi:type="string" translate="true">Landing Pages</argument>
+                    <argument name="block" xsi:type="string">amsearch-landing-pages-tab</argument>
+                    <argument name="class" xsi:type="string">Amasty\Xsearch\Block\Search\Landing</argument>
+                    <argument name="template" xsi:type="string">Amasty_Xsearch::tab/result.phtml</argument>
+                </action>
+
+                <action method="addTab"
+                        ifconfig="amasty_xsearch/blog/enabled">
+                    <argument name="name" xsi:type="string" translate="true">Blog</argument>
+                    <argument name="block" xsi:type="string">amsearch-blog-tab</argument>
+                    <argument name="class" xsi:type="string">Amasty\Xsearch\Block\Search\Blog</argument>
+                    <argument name="template" xsi:type="string">Amasty_Xsearch::tab/result.phtml</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

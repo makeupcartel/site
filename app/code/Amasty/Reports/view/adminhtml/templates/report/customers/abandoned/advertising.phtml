@@ -1,0 +1,27 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Reports
+ */
+?>
+<?php
+/** @var \Amasty\Reports\Block\Adminhtml\Report\Customers\Abandoned\Information $block */
+?>
+<p class="advertising">
+    <?php if (!$block->isAcartEnabled()) : ?>
+        <?= $block->escapeHtml(__(
+            'Send catchy reminders to your customers using <a href="%1" target="_blank">Abandoned Cart Email extension</a> extension.',
+            'https://amasty.com/abandoned-cart-email-for-magento-2.html?utm_source=extension&utm_medium=link&utm_campaign=reports-to-abandoned-cart'
+        ), ['a']) ?>
+    <?php endif; ?>
+    <?php if (!$block->isRequestQuoteEnabled()) : ?>
+        <?= $block->escapeHtml(
+            __(
+                'Create personal offer with <a href="%1" target="_blank">Custom Quote extension</a>.',
+                'https://amasty.com/request-a-quote-for-magento-2.html?utm_source=extension&utm_medium=link&utm_campaign=reports-to-request-quote'
+            ),
+            ['a']
+        ) ?>
+    <?php endif; ?>
+</p>

@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+
+?>
+<div class="block newsletter">
+    <div class="form subscribe" id="newsletter-contact-validate-detail">
+        <div class="control">
+            <input name="email" type="email" class="newsletter_email"
+                   placeholder="<?= $block->escapeHtml(__('Email Address')) ?>"
+                   />
+        </div>
+        <div class="actions">
+            <button class="action subscribe primary" title="<?= $block->escapeHtmlAttr(__('Sign up')) ?>" type="submit">
+                <span><?= $block->escapeHtml(__('Sign up')) ?></span>
+            </button>
+        </div>
+    </div>
+</div>

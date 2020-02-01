@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Amasty_Xsearch::css/amcharts.css"/>
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Backend\Block\Template" template="Amasty_Xsearch::analytics/dashboard.phtml">
+                <block class="Amasty\Xsearch\Block\Adminhtml\Analytics\Chart\Query" name="chart_query"/>
+                <block class="Amasty\Xsearch\Block\Adminhtml\Analytics\Wanted\QueryList" name="wanted_products"/>
+                <block class="Amasty\Xsearch\Block\Adminhtml\Analytics\Activity\QueryList" name="last_activity"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

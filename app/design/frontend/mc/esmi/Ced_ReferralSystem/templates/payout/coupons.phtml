@@ -1,0 +1,71 @@
+<?php
+/**
+ * CedCommerce
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the End User License Agreement (EULA)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* https://cedcommerce.com/license-agreement.txt
+*
+* @category    Ced
+* @package     Ced_ReferralSystem
+* @author 		CedCommerce Core Team <connect@cedcommerce.com>
+* @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+* @license      https://cedcommerce.com/license-agreement.txt
+*/
+$coupons = $this->getCollection();
+$priceHelper = $this->helper('\Magento\Framework\Pricing\Helper\Data');
+?>
+
+<div class="col-md-12" style="padding-top:15px">
+    <div class="table-wrapper-1">
+        <legend class="legend"><span><?php echo __('Your Discount Coupons'); ?></span></legend>
+        <?php if(isset($coupons) && $coupons->count()>0): ?>
+             <div class="table_responsive">
+                <div class="table_responsive_inner">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><?php echo __('Coupon Code');?></th>
+                                <th><?php echo __('Amount');?></th>
+                                <th><?php echo __('Created At');?></th>
+                                <th><?php echo __('Valid Till');?></th>
+                                <th><?php echo __('Status');?></th>
+                                <th class="content-right"><?php echo __('Purchase Required');?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i=1; ?>
+                            <?php foreach($coupons as $value): ?>
+                                <?php $coupon_used = $block->getDiscountCouponStatus($value["coupon_code"]);
+                                    if($coupon_used == 2){
+                                        $status = 'Unused';
+                                    }else{
+                                        $status = 'Used';
+                                    }
+                                ?>
+                                    <tr>
+                                        <td><?php echo $value["coupon_code"] ?></td>
+                                        <td><?php echo $priceHelper->currency($value["amount"], true, false); ?></td>
+                                        <td><?php echo $value["created_at"] ?></td>
+                                        <td><?php echo $value["expiration_date"] ?></td>
+                                        <td><?php echo $status ?></td>
+                                        <td class="content-right"><?php echo $priceHelper->currency($value["cart_amount"], true, false); ?></td>
+                                   </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <?php if ($block->getPagerHtml()): ?>
+                <div class="toolbar toolbar-list"><?php echo $block->getPagerHtml(); ?></div>
+            <?php endif; ?>
+        <?php else: ?>
+            <div class="col-md-12">
+                <label><?php echo __('No discount coupons are currently available!'); ?></label>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

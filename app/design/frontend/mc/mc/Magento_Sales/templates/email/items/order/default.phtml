@@ -1,0 +1,85 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Sales\Block\Order\Email\Items\DefaultItems */
+
+/** @var $_item \Magento\Sales\Model\Order\Item */
+$_item = $block->getItem();
+$_order = $_item->getOrder();
+$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+if($childProd = current($_item->getChildrenItems()))
+{
+        $productImage = $_imagehelper->init($childProd->getProduct(), 'category_page_list', array('height' => 83 , 'width'=> 83))->getUrl();
+}
+else
+{
+        $productImage = $_imagehelper->init($_item->getProduct(), 'category_page_list', array('height' => 83 , 'width'=> 83))->getUrl();
+}
+$pos = strpos($productImage, 'placeholder');
+if($pos !== false)
+{
+	$helper = $this->helper('Convert\Catalog\Helper\Data');
+	$productImage = $helper->getEmailProductImage($_item->getProductId()); 
+}
+?>
+<tr>
+	<td style="border-bottom:solid 1px #eeeeee;text-align:left;padding-top:20px !important; padding-bottom:20px !important; padding-left:20px !important; ">
+		<img class="product_image" style="max-width:83px !important;" src="<?= $productImage ?>" title="<?= $block->escapeHtml($_item->getName()) ?>" alt="<?= $block->escapeHtml($_item->getName()) ?>" /> 
+	</td>
+    <td style="border-bottom:solid 1px #eeeeee;text-align:left;padding-top:20px !important; padding-bottom:20px !important; padding-right:15px !important; font-size:13px;color:#444444; padding-left:10px !important;" class="item-info<?php if ($block->getItemOptions()): ?> has-extra<?php endif; ?>">
+        <p class="product-name" style="font-weight:400 !important;color:#444444 !important;font-size:13px;line-height:18px;"><?= $block->escapeHtml($_item->getName()) ?></p>
+        <?php if ($block->getItemOptions()): ?>
+            <?php foreach ($block->getItemOptions() as $option): ?>
+				<dl class="item-options" style="padding-left:0px !important;display:inline-block;width:100%;font-size:13px;color:#444444;margin-bottom:0px;">
+					<dt style="margin-bottom:0px;display:inline-block;float:left;font-weight:bold !important;font-size:13px !important;color:#444444;"><?= /* @escapeNotVerified */  $option['label'] ?>: <span style="font-size:13px !important;color:#444444;font-weight:400;"><?= /* @escapeNotVerified */  nl2br($option['value']) ?></span></dt>
+				</dl>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addInfoBlock) :?>
+            <?= $addInfoBlock->setItem($_item)->toHtml() ?>
+        <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+    </td>
+	<td style="text-align:left;border-bottom:solid 1px #eeeeee;text-align:left;padding-top:20px !important; padding-bottom:20px !important; font-size:13px;color:#444444;">
+		<p class="sku" style="margin-bottom:0px;font-size:13px;color:#444444;line-height:20px;"><?= $block->escapeHtml($block->getSku($_item)) ?></p>
+	</td>
+	<td class="item-price" style="text-align:left;border-bottom:solid 1px #eeeeee;border-top: none;padding-top:20px;padding-bottom:14px;">    
+		<span style="color: #444444; font-weight:400;	font-family: Arial;	font-size: 14px; line-height: 20px;">
+		<?php  
+			$price = strip_tags($block->getItemPrice($_item));
+			$price = explode('$',$price);
+			$price1 = (real) $price[1];
+			$qty = (int) $_item->getQtyOrdered();
+			$total = number_format($price1/$qty,2);
+			echo $price[0].'$'.$total;
+		?>
+		</span>
+    </td>
+    <td style="border-bottom:solid 1px #eeeeee;padding-top:20px !important; text-align:center;padding-bottom:20px !important ;font-size:13px;color:#444444;" class="item-qty"><?= /* @escapeNotVerified */  $_item->getQtyOrdered() * 1 ?></td>
+    <td style="border-bottom:solid 1px #eeeeee;padding-top:20px !important;text-align:right;padding-bottom:20px !important; font-size:13px;color:#444444;padding-right:20px !important;" class="item-price">
+        <?= /* @escapeNotVerified */  $block->getItemPrice($_item); ?>
+    </td>
+</tr>
+<?php if ($_item->getGiftMessageId() && $_giftMessage = $this->helper('Magento\GiftMessage\Helper\Message')->getGiftMessage($_item->getGiftMessageId())): ?>
+<tr>
+    <td colspan="3" class="item-extra">
+        <table class="message-gift">
+            <tr>
+                <td>
+                    <h3><?= /* @escapeNotVerified */  __('Gift Message') ?></h3>
+                    <strong><?= /* @escapeNotVerified */  __('From:'); ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                    <br /><strong><?= /* @escapeNotVerified */  __('To:'); ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                    <br /><strong><?= /* @escapeNotVerified */  __('Message:'); ?></strong>
+                    <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<?php endif; ?>

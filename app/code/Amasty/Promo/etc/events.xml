@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_place_after">
+        <observer name="amasty_promo_order_place_after" instance="Amasty\Promo\Observer\OrderPlaceAfterObserver" />
+    </event>
+    <event name="salesrule_validator_process">
+        <observer name="amasty_promo_salesrule_validator_process" instance="Amasty\Promo\Observer\Salesrule\Discount" />
+    </event>
+    <event name="catalog_product_type_prepare_full_options">
+        <observer name="add_promo_options" instance="Amasty\Promo\Observer\AddPromoOptionsToCandidate" />
+    </event>
+    <event name="checkout_cart_update_items_before">
+        <observer name="amasty_promo_update_qty_before" instance="Amasty\Promo\Observer\CheckoutCartUpdateItemsBefore"/>
+    </event>
+</config>

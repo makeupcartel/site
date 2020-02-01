@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_CustomerApproval
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+    	<customer_approval>
+    		<general>
+    			<enable>1</enable>
+    			<auto_approval>1</auto_approval>
+    		</general>
+    		<admin_notification>
+    			<admin_notification_enable>1</admin_notification_enable>
+    		</admin_notification>
+    		<email_setting>
+    			<customer_email_enable>1</customer_email_enable>
+    		</email_setting>
+    	</customer_approval>
+    </default>
+</config>

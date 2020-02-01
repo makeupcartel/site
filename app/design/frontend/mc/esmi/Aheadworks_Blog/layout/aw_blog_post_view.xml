@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2018 aheadWorks. All rights reserved.
+* See LICENSE.txt for license details.
+*/
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="aw_blog_sidebar"/>
+    <update handle="aw_blog_disqus"/>
+    <head>
+        <css src="Aheadworks_Blog::css/styles.css"/>
+        <css src="Aheadworks_Blog::css/slider.css"/>
+    </head>
+    <body>
+        <referenceContainer name="columns">
+            <container name="product_info_media_related" htmlTag="div" htmlClass="product-info-related"
+                       after="-">
+            </container>
+        </referenceContainer>
+
+
+        <referenceBlock name="aw_blog_sidebar" remove="true"/>
+
+    </body>
+</page>

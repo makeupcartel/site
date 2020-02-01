@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\Sidebar\Cms */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+    $cmsBlock = $block->getCmsBlock();
+?>
+<?php if ($cmsBlock && $cmsBlock->getContent()): ?>
+    <div id="blog-sidebar-cms-block" class="blog-sidebar-block">
+        <h3 class="blog-sidebar-block-title"><?php echo $block->escapeHtml($cmsBlock->getTitle()) ?></h3>
+        <div class="blog-sidebar-block-content"><?php /* @noEscape */ echo $block->getCmsBlockHtml($cmsBlock) ?></div>
+    </div>
+<?php endif; ?>

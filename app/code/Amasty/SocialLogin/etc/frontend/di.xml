@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_SocialLogin
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Page\Config\Renderer">
+        <plugin name="Amasty_SocialLogin::make-css" type="Amasty\SocialLogin\Plugin\View\Page\Config\Renderer" />
+    </type>
+
+    <type name="Magento\Captcha\Observer\CheckUserLoginObserver">
+        <plugin name="Amasty_SocialLogin::captcha-login" type="Amasty\SocialLogin\Plugin\Captcha\Observer\CheckUserLoginObserver" />
+    </type>
+
+    <type name="Magento\Captcha\Observer\CheckUserCreateObserver">
+        <plugin name="Amasty_SocialLogin::captcha-create" type="Amasty\SocialLogin\Plugin\Captcha\Observer\CheckUserLoginObserver" />
+    </type>
+
+    <type name="Amasty\InvisibleCaptcha\Model\Captcha">
+        <plugin name="Amasty_SocialLogin::InvisibleCaptcha" type="Amasty\SocialLogin\Plugin\InvisibleCaptcha" />
+    </type>
+</config>

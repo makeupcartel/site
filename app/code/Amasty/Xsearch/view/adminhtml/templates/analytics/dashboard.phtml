@@ -1,0 +1,16 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+?>
+<?php
+/** @var Magento\Backend\Block\Template $block */
+?>
+
+<?= $block->getChildHtml('chart_query') ?>
+<div class="amxsearch-table-wrap">
+    <?= $block->getChildHtml('wanted_products') ?>
+    <?= $block->getChildHtml('last_activity') ?>
+</div>

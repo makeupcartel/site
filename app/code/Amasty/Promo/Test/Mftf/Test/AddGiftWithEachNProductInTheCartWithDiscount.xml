@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="AddGiftWithEachNProductInTheCartWithDiscount">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Rule Add Gift With Each N Product In The Cart With Discount"/>
+            <description value="Check Rule Add Gift With Each N Product In The Cart With Discount"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-24"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="AddGiftWithEachNProductInTheCartWithDiscount"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfiguration"/>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <!-- Return default setting Promo-->
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfiguration"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create First Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromoWithPromoItems" stepKey="CreateCartRule1">
+            <argument name="actionsRulePromo" value="applyAddGiftWithEachNProductInTheCart"/>
+            <argument name="cartRulePromo" value="addGiftWithEachNProductInTheCartWithDiscount"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleChangeDiscountQtyStep" stepKey="ChangeQtyStepForRule">
+            <argument name="cartRulePromo" value="addGiftWithEachNProductInTheCartWithDiscount"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleAddDiscountSetting" stepKey="AddDiscountForRule">
+            <argument name="cartRulePromo" value="addGiftWithEachNProductInTheCartWithDiscount"/>
+        </actionGroup>
+
+        <!--Add product to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+        </actionGroup>
+
+        <!-- Check No Free Gift PopUp-->
+        <actionGroup ref="CheckNoPopUpInCart" stepKey="checkNoPopUp1"/>
+        <actionGroup ref="CheckNoProductInCart" stepKey="CheckNoFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+        </actionGroup>
+
+        <!--Change Qty product to cart-->
+        <actionGroup ref="ChangeQtyProductInCart" stepKey="ChangeQtyWayfarerMessengerToTwo">
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+            <argument name="addProductQty" value="_enterQty2"/>
+        </actionGroup>
+
+        <!-- Add First Free Gift-->
+        <actionGroup ref="AddFreeGiftOneByOneInCart" stepKey="AddFirstFreeGift">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+        </actionGroup>
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddFirstFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!-- Check First Discount-->
+        <actionGroup ref="CheckPromoDiscountAmount" stepKey="CheckDiscountAmountAboutOneFreeGift">
+            <argument name="discountAmount" value="addGiftWithEachNProductInTheCartWithDiscount.discountAmountOne"/>
+        </actionGroup>
+
+        <!--Change Qty product to cart-->
+        <actionGroup ref="ChangeQtyProductInCart" stepKey="ChangeQtyWayfarerMessengerToFor">
+            <argument name="products" value="_theBagWayfarerMessenger"/>
+            <argument name="addProductQty" value="_enterQty4"/>
+        </actionGroup>
+
+        <!-- Add Second Free Gift-->
+        <actionGroup ref="AddFreeGiftOneByOneInCart" stepKey="AddSecondFreeGift">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+        </actionGroup>
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddSecondFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+            <argument name="addProductQty" value="_enterQty2"/>
+        </actionGroup>
+
+        <!-- Check Second Discount-->
+        <actionGroup ref="CheckPromoDiscountAmount" stepKey="CheckDiscountAmountAboutTwoFreeGift">
+            <argument name="discountAmount" value="addGiftWithEachNProductInTheCartWithDiscount.discountAmountTwo"/>
+        </actionGroup>
+
+        <!-- Check No Free Gift PopUp-->
+        <actionGroup ref="CheckNoPopUpInCart" stepKey="checkNoPopUp2"/>
+    </test>
+</tests>

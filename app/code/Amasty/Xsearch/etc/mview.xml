@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+    <view id="amasty_xsearch_category_fulltext" class="\Amasty\Xsearch\Model\Indexer\Category\Mview\Action" group="indexer">
+        <subscriptions>
+            <table name="catalog_category_entity" entity_column="entity_id" />
+            <table name="catalog_category_entity_int" entity_column="entity_id" />
+            <table name="catalog_category_entity_decimal" entity_column="entity_id" />
+            <table name="catalog_category_entity_text" entity_column="entity_id" />
+            <table name="catalog_category_entity_varchar" entity_column="entity_id" />
+            <table name="catalog_category_entity_datetime" entity_column="entity_id" />
+        </subscriptions>
+    </view>
+</config>

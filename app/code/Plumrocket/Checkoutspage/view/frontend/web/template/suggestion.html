@@ -1,0 +1,34 @@
+<!-- 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ -->
+
+<div id="touchslider-container">
+	<!-- ko if: showArrows -->
+	<a href="javascript: void(0);" class="csp-prev csp-sprite touchslider-prev">prev</a>
+	<!-- /ko -->
+	<div class="touchslider-viewport" data-bind="foreach: { data: getItems(), as: 'item' }">
+		<div class="touchslider-item" id="touchslider-items" style="height:0px;">
+	        <ul data-bind="foreach: { data: $data, as: '_item' }">
+	           <li data-bind="html: $data" class="touchslider-item"></li> 
+	        </ul>
+		</div>
+	</div>
+	<span data-bind="afterRender: touchSlideRender"></span>
+	<!-- ko if: showArrows -->
+	<a href="javascript: void(0);" class="csp-next csp-sprite touchslider-next">next</a>
+	<!-- /ko -->
+</div>

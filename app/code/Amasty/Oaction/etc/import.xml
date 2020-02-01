@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Oaction
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="amasty_oaction" label="Amasty Import tracking numbers" model="Amasty\Oaction\Model\Import\Tracknumber" behaviorModel="Amasty\Oaction\Model\Source\Import\Behavior\TrackBasic" />
+</config>

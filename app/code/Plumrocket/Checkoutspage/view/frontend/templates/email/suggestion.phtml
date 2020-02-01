@@ -1,0 +1,93 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+
+/**
+ * @var \Plumrocket\Checkoutspage\Block\Suggestion $block
+ */
+?>
+<?php $items = $block->getItems(); ?>
+<?php if (count($items)) { ?>
+<td style="padding-right: 10px; padding-bottom: 10px; vertical-align: top; width:180px;">
+  <table style="border: 3px solid #aae1ff; width: 180px;">
+  <tr>
+  <td>
+      <table border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
+        <tr>
+          <td style="padding-bottom: 10px; padding-top: 10px; text-align: center; font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 16px;">You may also like:</td>
+        </tr>
+
+        <tr>
+          <td class="flexibleContainerCell" align="center" valign="top">
+            <table class="flexibleContainerCellDivider" style="width: 155px;" border="0" cellspacing="0" cellpadding="0">
+              <tbody>
+              <tr>
+                <td style="border-top: 1px solid #cccccc;" align="center" valign="top">&nbsp;</td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+          <?php foreach ($items as $_item):  ?>
+            <tr>
+              <td style="padding: 10px; padding-bottom: 20px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
+                <a class="product-image" target="_blank" href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $_item->getName() ?>">
+                    <?php $productImage = $block->getImage($_item, 'cart_page_product_thumbnail', ['width' => '100', 'height' => 'auto']); ?>
+                    <?php $productImage->setResizedImageHeight($block->getHeightByWidth(100, $productImage)); ?>
+                    <?php echo $productImage->toHtml(); ?>
+                </a>
+                <div class="product-details">
+                  <div class="product-name" style="padding-top: 10px; padding-bottom: 5px;"><a style="color: #00E; font-size: 14px; text-align: center; text-decoration: none;" target="_blank" href="<?php echo $_item->getProductUrl() ?>"><?php echo $_item->getName() ?></a></div>
+                </div>
+
+                <div class="review" style="font-family: Arial, Helvetica, sans-serif; text-align: center; font-size: 0;">
+                    <?php
+                    $rating = $this->getReviewsSummary($_item->getId());
+                    if (is_null($rating->getSum())) {
+                        $summary = 0;
+                    } else {
+                        $summary = $rating->getSum() / $rating->getCount();
+                    }
+                    ?>
+
+                    <?php for($i=20; $i<=100; $i+=20) { ?>
+                        <?php
+
+                        if ($summary >= $i) {
+                            $type = 'full';
+                        } else if ($summary < $i &&  $summary > $i - 20) {
+                            $type = 'half';
+                        } else {
+                            $type = 'empty';
+                        }
+                        ?>
+                      <img style="display: inline-block; border: 0; min-width: 10px; width: 10px;" src="<?php echo $block->getViewFileUrl('Plumrocket_Checkoutspage::images/email/star_'.$type.'.jpg') ?>" alt="star" width="10" height="10" />
+                    <?php } ?>
+                    <?php $reviewCount = $rating->getCount() ?: 0; ?>
+                  <span style="font-size: 10px;">&nbsp;</span> <a href="<?php echo $_item->getProductUrl(); ?>" style="text-decoration: underline; font-size: 10px;" target="_blank"><?php echo __( $reviewCount . ' Review(s)') ?></a>
+                </div>
+
+                <div style="font-size: 14px; padding-bottom: 5px; padding-top: 5px; color: #9e0000;"><?php echo $this->escapeCurrency($_item->getFinalPrice()) ?></div>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+      </table>
+  </td>
+  </tr>
+  </table>
+</td>
+<?php } ?>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Amasty\Xsearch\Block\Autocomplete">
+        <arguments>
+            <argument name="catalogLayer" xsi:type="object">Magento\Catalog\Model\Layer\Search</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Block\Result">
+        <plugin name="Amasty_Xsearch::result-count" type="Amasty\Xsearch\Plugin\CatalogSearch\Block\Result" />
+    </type>
+
+    <type name="Magento\Framework\View\Page\Config">
+        <plugin name="Amasty_Xsearch::noindex-nofollow" type="Amasty\Xsearch\Plugin\Framework\View\Page\Config" />
+    </type>
+
+    <type name="Magento\Framework\App\Router\NoRouteHandler">
+        <plugin name="Amasty_Xsearch::404_redirect" type="Amasty\Xsearch\Plugin\Framework\App\Router\NoRouteHandler" />
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection">
+        <plugin name="Amasty_Xsearch::SortingMethodsProcessor" type="Amasty\Xsearch\Plugin\Catalog\Product\CollectionPlugin"/>
+    </type>
+
+    <type name="Amasty\Shopby\Model\ResourceModel\Fulltext\Collection">
+        <plugin name="Amasty_Xsearch::SortingMethodsProcessor-shopby" type="Amasty\Xsearch\Plugin\Catalog\Product\CollectionPlugin"/>
+    </type>
+
+    <type name="Magento\Search\Helper\Data">
+        <plugin name="Amasty_Xsearch::generate_seo_url" type="Amasty\Xsearch\Plugin\Search\Helper\Data"/>
+    </type>
+
+    <type name="Magento\CatalogSearch\Controller\Result\Index">
+        <plugin name="Amasty_Xsearch::redirect_to_seo_url" type="Amasty\Xsearch\Plugin\CatalogSearch\Controller\Result\Index"/>
+    </type>
+
+    <type name="Amasty\Shopby\Controller\Search\Result\Index">
+        <plugin name="Amasty_Xsearch::redirect_to_seo_url_shopby" type="Amasty\Xsearch\Plugin\CatalogSearch\Controller\Result\Index"/>
+    </type>
+
+    <type name="Magento\Search\Model\Query">
+        <plugin name="Amasty_Xsearch::save_query" type="Amasty\Xsearch\Plugin\Search\Model\Query" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="amasty_xsearch" xsi:type="array">
+                    <item name="class" xsi:type="string">Amasty\Xsearch\Controller\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">45</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Page\Config\Renderer">
+        <plugin name="Amasty_Xsearch::make-css" type="Amasty\Xsearch\Plugin\View\Page\Config\Renderer" />
+    </type>
+</config>

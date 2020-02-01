@@ -1,0 +1,51 @@
+<?php 
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+$helper = $this->helper('Convert\CategoryThumbnail\Helper\Data');
+$order = $this->helper('Plumrocket\Checkoutspage\Helper\Data')->getOrder();
+
+$checkCustomer = $helper->getCustomers($order->getCustomerEmail());
+
+ ?>
+<?php if(!$helper->isLoggedIn()): ?>
+    <?php if($checkCustomer == 1) : ?>
+<div id="registration" data-bind="scope:'registration'">
+	<h3 class="csp-h3"><?php echo __('Save your information for the next time!'); ?></h3>
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+        {
+            "#registration": {
+                "Magento_Ui/js/core/app": {
+                   "components": {
+                        "registration": {
+                            "component": "Plumrocket_Checkoutspage/js/view/registration",
+                            "config": {
+                                "registrationUrl": "<?php /* @escapeNotVerified */ echo $block->getCreateAccountUrl(); ?>",
+                                "messageContainer": "#registration-message",
+                                "isSubscribed" : <?php /* @escapeNotVerified */ echo ($block->isSubscribed()) ? 1 : 0; ?>,
+                                "subscribeUrl" : "<?php /* @escapeNotVerified */ echo $block->getSubscribeUrl(); ?>",
+                                "loaderSrc" : "<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('Plumrocket_Checkoutspage::images/loader.gif'); ?>",
+                                "accountCreated": <?php /* @escapeNotVerified */ echo ($block->isRegistered()) ? 1 : 0; ?>
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</div>
+    <?php endif; ?>
+<?php endif; ?>

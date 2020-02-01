@@ -1,0 +1,101 @@
+<?php
+$blockCategory = $block->getLayout()->createBlock('Convert\CategoryThumbnail\Block\HomeFavorites');
+$cat_id = $this->getData('category_id');
+$_category = $blockCategory->getCategoryFavorites($cat_id);
+$subcats = $_category->getChildrenCategories();
+$objectHelper = $this->Helper('Convert\CategoryThumbnail\Helper\Data');
+$mediaUrl = $objectHelper->getMediaUrl();
+$count = count($subcats);
+
+?>
+<div class="list-cat-all">
+    <div class="sub-category-warpper swiper-container">
+         <div class="sub-category swiper-wrapper">
+             <div class="sub-categorys swiper-wrappers owl-carousel">
+            <?php foreach ($subcats as $subcat): ?>
+                <?php
+                $categoryName = $subcat->getName();
+                if ($categoryName == 'Shop All') {
+                  continue;
+                }
+                ?>
+                <div class="item swiper-slide">
+                    <?php $category = $objectHelper->getLoadCategory($subcat->getId()); ?>
+                    <?php if ($category->getCategoryMobileThumbnail()): ?>
+                        <a class="cat_img" href="<?php echo $category->getUrl() ?>">
+                            <img src="<?= $category->getCategoryMobileThumbnail() ?>"
+                                 title="<?php echo $categoryName; ?>"/>
+                        </a>
+                    <?php else: ?>
+                        <a class="cat_img" href="<?php echo $category->getUrl() ?>">
+                            <img src="<?php echo $this->getViewFileUrl('images/default_thumbnail.jpg'); ?>"
+                                 title="<?php echo $categoryName; ?>"/>
+                        </a>
+                    <?php endif; ?>
+                    <div class="content">
+                        <div class="text">
+                            <p><a class="cat_name" href="<?php echo $category->getUrl() ?>"><?php echo $categoryName; ?></a></p>
+                            <p><a href="<?php echo $category->getUrl() ?>"><span><?php echo __('Discover') ?></span></a></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+             </div>
+        </div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+
+
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'owlCarousel'
+    ], function ($) {
+
+        $(".list-cat-all .swiper-button-next").click(function () {
+            $(".catalog-category-view .owl-nav .owl-next").trigger('click');
+        });
+
+        $(".list-cat-all .swiper-button-prev").click(function () {
+            $(".catalog-category-view .owl-nav .owl-prev").trigger('click');
+        });
+
+        $(document).ready(function () {
+            var owl = jQuery('.swiper-wrappers');
+            owl.owlCarousel({
+                dots: true,
+                nav: false,
+                items: 4,
+                loop: true,
+                responsive: {
+                    0: {
+                        items: 3,
+                        margin: 0,
+                        loop: true,
+                        stagePadding: 74
+                    },
+                    425: {
+                        items: 3,
+                        margin: 0,
+                        loop: true,
+                        stagePadding: 74
+                    },
+                    768: {
+                        items: 4,
+                        margin: 0,
+                    },
+                    1024: {
+                        items: 4,
+                        margin: 0
+                    }
+                }
+            });
+        });
+
+    });
+</script>
+

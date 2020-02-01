@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.main">
+            <referenceBlock name="catalog.compare.sidebar" remove="true" />
+            <referenceBlock name="wishlist_sidebar" remove="true" />
+            <block class="Aheadworks\Blog\Block\Sidebar\Category" ifconfig="aw_blog/sidebar/category_listing_enabled" name="aw_blog_sidebar.category" as="category" template="sidebar/category.phtml" />
+            <block class="Aheadworks\Blog\Block\Sidebar\Recent" name="aw_blog_sidebar.recent" as="recent" template="sidebar/recent.phtml" />
+            <block class="Aheadworks\Blog\Block\Widget\TagCloud" name="aw_blog_sidebar.tags" as="tags" template="widget/tag_cloud/blog_sidebar.phtml" />
+            <block class="Aheadworks\Blog\Block\Sidebar\Cms" name="aw_blog_sidebar.cms" as="cms" template="sidebar/cms.phtml" />
+        </referenceContainer>
+    </body>
+</page>

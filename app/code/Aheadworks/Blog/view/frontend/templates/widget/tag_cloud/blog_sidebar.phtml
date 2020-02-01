@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\Widget\TagCloud */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+    $tagCloudItems = $block->getItems();
+    $title = $block->getTitle() ? : 'Tags';
+?>
+<?php if ($block->isEnabled() && count($tagCloudItems)): ?>
+    <div id="blog-sidebar-tag-cloud" class="blog-sidebar-block">
+        <div class="blog-sidebar-block-title"><?php echo __($block->escapeHtml($title)) ?></div>
+        <div class="blog-sidebar-block-content">
+            <div class="blog-tags blog-tags-<?php if ($block->isCloudMode()): ?>cloud<?php else: ?>plain<?php endif; ?>">
+                <?php foreach ($tagCloudItems as $tagCloudItem): ?>
+                    <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getSearchByTagUrl($tagCloudItem)) ?>"
+                       <?php if ($block->isCloudMode()): ?>style="font-size: <?php /* @noEscape */ echo $block->getWeight($tagCloudItem) ?>%;"<?php endif; ?>
+                       class="blog-tags-tag">
+                        <?php echo $block->escapeHtml($tagCloudItem->getTag()->getName()) ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

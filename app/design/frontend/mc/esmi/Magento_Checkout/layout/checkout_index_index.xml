@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="logo" destination="checkout.header.wrapper"/>
+        <referenceContainer name="checkout.header.wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="cart.back" template="Magento_Checkout::cart/back.phtml" before="-"/>
+        </referenceContainer>
+        <container name="footer.container.checkout" label="Footer Container" htmlTag="div" htmlClass="footer-container-checkout" />
+        <move element="footer-copyright" destination="footer.container.checkout" after="-"/>
+        <move element="footer.container.checkout" destination="page.wrapper" after="-"/>
+        <referenceContainer name="footer-copyright" remove="true" />
+        <referenceContainer name="footer.container.checkout">
+          <block class="Magento\Cms\Block\Block" name="footer.checkout.esmi">
+            <arguments>
+              <argument name="block_id" xsi:type="string">footer-checkout-esmi</argument>
+            </arguments>
+          </block>
+        </referenceContainer>
+        
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="shipping-address-fieldset" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="company" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">50</item>
+                                                                </item>
+                                                                <item name="country_id" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">98</item>
+                                                                </item>
+                                                                <item name="city" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">99</item>
+                                                                </item>
+                                                                <item name="postcode" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">100</item>
+                                                                </item>
+                                                                <item name="telephone" xsi:type="array">
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="cvalidate-phone-number" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="subtotal" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="title" xsi:type="string" translate="true">Subtotal</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="cart_items" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">0</item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <move element="messages" destination="checkout.root"/>
+    </body>
+</page>

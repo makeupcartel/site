@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="adminhtml.productexport.profile.grid.container">
+                <block class="Magento\Backend\Block\Widget\Grid" name="adminhtml.block.productexport.profile.grid" as="grid">
+                    <arguments>
+                        <argument name="id" xsi:type="string">xtento_productexport_profile_grid</argument>
+                        <argument name="dataSource" xsi:type="object">Xtento\ProductExport\Model\ResourceModel\Profile\Collection</argument>
+                        <argument name="default_sort" xsi:type="string">profile_id</argument>
+                        <argument name="use_ajax" xsi:type="boolean">false</argument>
+                        <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                        <argument name="default_dir" xsi:type="string">ASC</argument>
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\Massaction" name="adminhtml.productexport.profile.grid.massaction" as="grid.massaction">
+                        <arguments>
+                            <argument name="massaction_id_field" xsi:type="string">profile_id</argument>
+                            <argument name="form_field_name" xsi:type="string">profile</argument>
+                            <argument name="use_select_all" xsi:type="string">1</argument>
+                            <argument name="options" xsi:type="array">
+                                <item name="delete" xsi:type="array">
+                                    <item name="label" xsi:type="string" translate="true">Delete</item>
+                                    <item name="url" xsi:type="string">*/*/massDelete</item>
+                                    <item name="confirm" xsi:type="string" translate="true">Are you sure?</item>
+                                </item>
+                                <item name="enable" xsi:type="array">
+                                    <item name="label" xsi:type="string" translate="true">Set status to 'Enabled'</item>
+                                    <item name="url" xsi:type="string">*/*/massUpdateStatus/enabled/1</item>
+                                </item>
+                                <item name="disable" xsi:type="array">
+                                    <item name="label" xsi:type="string" translate="true">Set status to 'Disabled'</item>
+                                    <item name="url" xsi:type="string">*/*/massUpdateStatus/enabled/0</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet" name="adminhtml.productexport.profile.grid.columnSet">
+                        <arguments>
+                            <argument name="rowUrl" xsi:type="array">
+                                <item name="path" xsi:type="string">*/*/edit</item>
+                                <item name="extraParamsTemplate" xsi:type="array">
+                                    <item name="id" xsi:type="string">getId</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="profile_id">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Profile ID</argument>
+                                <argument name="type" xsi:type="string">number</argument>
+                                <argument name="id" xsi:type="string">profile_id</argument>
+                                <argument name="index" xsi:type="string">profile_id</argument>
+                                <argument name="column_css_class" xsi:type="string">col-id</argument>
+                                <argument name="header_css_class" xsi:type="string">col-id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="entity">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Export Type</argument>
+                                <argument name="type" xsi:type="string">options</argument>
+                                <argument name="id" xsi:type="string">entity</argument>
+                                <argument name="index" xsi:type="string">entity</argument>
+                                <argument name="options" xsi:type="options" model="Xtento\ProductExport\Model\System\Config\Source\Export\Entity"/>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="name">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Name</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="id" xsi:type="string">name</argument>
+                                <argument name="index" xsi:type="string">name</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="enabled">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Profile Status</argument>
+                                <argument name="type" xsi:type="string">options</argument>
+                                <argument name="id" xsi:type="string">enabled</argument>
+                                <argument name="index" xsi:type="string">enabled</argument>
+                                <argument name="options" xsi:type="array">
+                                    <item name="enabled" xsi:type="array">
+                                        <item name="label" xsi:type="string" translate="true">Enabled</item>
+                                        <item name="value" xsi:type="string" translate="true">1</item>
+                                    </item>
+                                    <item name="disabled" xsi:type="array">
+                                        <item name="label" xsi:type="string" translate="true">Disabled</item>
+                                        <item name="value" xsi:type="string" translate="true">0</item>
+                                    </item>
+                                </argument>
+                                <argument name="renderer" xsi:type="string">\Xtento\ProductExport\Block\Adminhtml\Profile\Grid\Renderer\Status</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="configuration">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Configuration</argument>
+                                <argument name="type" xsi:type="string">text</argument>
+                                <argument name="id" xsi:type="string">configuration</argument>
+                                <argument name="index" xsi:type="string">profile_id</argument>
+                                <argument name="filter" xsi:type="boolean">false</argument>
+                                <argument name="renderer" xsi:type="string">\Xtento\ProductExport\Block\Adminhtml\Profile\Grid\Renderer\Configuration</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="last_execution">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Last Export</argument>
+                                <argument name="type" xsi:type="string">datetime</argument>
+                                <argument name="id" xsi:type="string">last_execution</argument>
+                                <argument name="index" xsi:type="string">last_execution</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="last_modification">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Last Modification</argument>
+                                <argument name="type" xsi:type="string">datetime</argument>
+                                <argument name="id" xsi:type="string">last_modification</argument>
+                                <argument name="index" xsi:type="string">last_modification</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="actions">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Action</argument>
+                                <argument name="sortable" xsi:type="string">0</argument>
+                                <argument name="filter" xsi:type="string">0</argument>
+                                <argument name="type" xsi:type="string">action</argument>
+                                <argument name="id" xsi:type="string">actions</argument>
+                                <argument name="index" xsi:type="string">profile_id</argument>
+                                <argument name="actions" xsi:type="array">
+                                    <item name="edit_action" xsi:type="array">
+                                        <item name="caption" xsi:type="string" translate="true">Edit Profile</item>
+                                        <item name="url" xsi:type="array">
+                                            <item name="base" xsi:type="string">*/*/edit</item>
+                                        </item>
+                                        <item name="field" xsi:type="string">id</item>
+                                    </item>
+                                </argument>
+                            </arguments>
+                        </block>
+                    </block>
+                </block>
+        </referenceBlock>
+    </body>
+</page>
+
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2016-04-14T15:37:57+00:00
+ * File:          app/code/Xtento/ProductExport/view/adminhtml/layout/xtento_productexport_profile_grid_block.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

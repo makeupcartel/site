@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- Catalog Product restrictions -->
+    <event name="controller_action_predispatch_catalog_product_view">
+        <observer name="amasty_groupcat_product_restrict_redirect" instance="Amasty\Groupcat\Observer\Product\ViewPredispatch"/>
+    </event>
+
+    <!-- Catalog Category restrictions -->
+    <event name="catalog_category_collection_load_before">
+        <observer name="amasty_groupcat_menu_check" instance="Amasty\Groupcat\Observer\Category\Collection\Restrict"/>
+    </event>
+    <event name="catalog_category_tree_init_inactive_category_ids">
+        <observer name="amasty_groupcat_menu_addinactive" instance="Amasty\Groupcat\Observer\Category\AddInactive"/>
+    </event>
+    <event name="controller_action_predispatch_catalog_category_view">
+        <observer name="amasty_groupcat_category_restrict_redirect" instance="Amasty\Groupcat\Observer\Category\ViewPredispatch"/>
+    </event>
+</config>

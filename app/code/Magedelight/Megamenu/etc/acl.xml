@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Magedelight
+* Copyright (C) 2017 Magedelight <info@magedelight.com>
+*
+* @category Magedelight
+* @package Magedelight_Megamenu
+* @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magedelight_Megamenu::menu" title="Menus" translate="title" sortOrder="10">
+                    <resource id="Magedelight_Megamenu::save" title="Save Menu" translate="title" sortOrder="10" />
+                    <resource id="Magedelight_Megamenu::delete" title="Delete Menu" translate="title" sortOrder="20" />
+                    <resource id="Magedelight_Megamenu::edit" title="Edit Menu" translate="title" sortOrder="20" />
+                    <resource id="Magedelight_Megamenu::menus" title="Manage Menus" translate="title" sortOrder="10" />
+                    <resource id="Magedelight_Megamenu::settings" title="Menu Configuration" translate="title" sortOrder="20" />
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Magedelight_Megamenu::config_megamenu" title="Megamenu Settings" translate="title" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>            
+        </resources>
+    </acl>
+</config>

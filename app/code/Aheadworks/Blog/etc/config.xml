@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <aw_blog>
+            <general>
+                <enabled>1</enabled>
+                <navigation_menu_link_enabled>1</navigation_menu_link_enabled>
+                <route_to_blog>blog</route_to_blog>
+                <route_to_authors>authors</route_to_authors>
+                <blog_title>Blog</blog_title>
+                <posts_per_page>10</posts_per_page>
+                <related_posts_qty>3</related_posts_qty>
+                <display_sharing_buttons_at>1,2</display_sharing_buttons_at>
+            </general>
+            <sidebar>
+                <comments_enabled>1</comments_enabled>
+                <recent_posts>5</recent_posts>
+                <popular_tags>5</popular_tags>
+                <highlight_popular_tags>1</highlight_popular_tags>
+                <cms_block>-1</cms_block>
+                <category_listing_enabled>1</category_listing_enabled>
+                <category_listing_limit>5</category_listing_limit>
+            </sidebar>
+            <related_products>
+                <display_posts_on_product_page>0</display_posts_on_product_page>
+                <block_position>not_display</block_position>
+                <products_limit>8</products_limit>
+            </related_products>
+            <seo>
+                <url_type>url_exclude_category</url_type>
+            </seo>
+        </aw_blog>
+        <sitemap>
+            <aw_blog>
+                <priority>0.5</priority>
+                <changefreq>weekly</changefreq>
+            </aw_blog>
+        </sitemap>
+    </default>
+</config>

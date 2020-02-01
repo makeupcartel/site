@@ -1,0 +1,2 @@
+The module passes orders from [makeupcartel.com.au](https://www.makeupcartel.com.au) (Magento 2) to NetSuite ERP.  
+It is based on the [`mage2pro/order-notifier`](https://github.com/mage2pro/order-notifier) module.

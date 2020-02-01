@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="WizardAndAutoAddTheSameProduct">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Wizard And Auto Add The Same Product"/>
+            <description value="Check Wizard And Auto Add The Same Product"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-30"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="WizardAndAutoAddTheSameProduct"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfigurationBeforeTest"/>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <!-- Return default setting Promo-->
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfigurationAfterTest"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Open Wizard And Choosing Scenario-->
+        <actionGroup ref="CreateWizardStep1" stepKey="FillInStep1Wizard">
+            <argument name="scenario" value="scenario.customerAddsN"/>
+        </actionGroup>
+
+        <!-- Filling In Step 2 With The Same Rule-->
+        <actionGroup ref="CreateWizardStep2TheSameProduct" stepKey="FillInStep2WizardTheSame">
+            <argument name="cartRulePromo" value="wizardAndAutoAddTheSameProduct"/>
+        </actionGroup>
+
+        <!-- Filling In Step 3-->
+        <actionGroup ref="CreateWizardStep3" stepKey="FillInStep3Wizard">
+            <argument name="doesCouponCode" value="doesCouponCode.no"/>
+            <argument name="howManyTimes" value="howManyTimes.onlyFirstTime"/>
+            <argument name="extraCriteria" value="extraCriteria.no"/>
+        </actionGroup>
+
+        <!-- Check Auto Fill Name-->
+        <actionGroup ref="CheckWizardStep4" stepKey="CheckAutoName">
+            <argument name="cartRulePromo" value="wizardAndAutoAddTheSameProduct"/>
+        </actionGroup>
+
+        <!-- Save Rule in Active Status-->
+        <actionGroup ref="CreateWizardStep4Active" stepKey="FillInStep4Wizard"/>
+
+        <!-- Opening created rule and checking filled in Wizard field-->
+        <actionGroup ref="CheckWizardCreatedCartRule" stepKey="CheckResultCreatedRule">
+            <argument name="cartRulePromo" value="wizardAndAutoAddTheSameProduct"/>
+            <argument name="actionsRulePromo" value="applyAutoAddTheSameProduct"/>
+        </actionGroup>
+
+    </test>
+</tests>

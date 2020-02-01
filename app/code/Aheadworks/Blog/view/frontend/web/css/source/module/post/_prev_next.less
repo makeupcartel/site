@@ -1,0 +1,57 @@
+& when (@media-common = true) {
+  .prev-next {
+    display: flex;
+    justify-content: space-between;
+
+    .post-featured-title {
+      margin-bottom: 10px;
+    }
+
+    .post-featured-image {
+      height: 70px;
+      width: auto;
+    }
+
+    .post-arrow {
+      font-size: 20px;
+      line-height: 1;
+      position: relative;
+    }
+
+    .prev-post-container {
+      text-align: left;
+    }
+
+    .next-post-container {
+      text-align: right;
+    }
+
+    .post-link {
+      text-decoration: none;
+
+      &:hover {
+        span:not(.post-arrow) {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}

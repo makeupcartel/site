@@ -1,0 +1,40 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+?>
+<?php
+/** @var Amasty\Xsearch\Block\Adminhtml\Analytics\Activity\QueryList $block */
+?>
+<div class="amxsearch-2column">
+    <p class="amxsearch-title"><?= $block->escapeHtml(__('Recent Activity (Search Volume)')); ?></p>
+
+    <table class="amxsearch-table">
+        <thead class="amxsearch-thead">
+        <tr>
+            <th class="amxsearch-cell"><?= $block->escapeHtml(__('Total Searches')); ?></th>
+            <th class="amxsearch-cell"><?= $block->escapeHtml(__('Unique Searches')); ?></th>
+            <th class="amxsearch-cell"><?= $block->escapeHtml(__('Users')); ?></th>
+            <th class="amxsearch-cell"><?= $block->escapeHtml(__('Engagement')); ?></th>
+            <th class="amxsearch-cell"><?= $block->escapeHtml(__('Date & Time')); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($block->getLastSearches() as $query) : ?>
+            <tr class="amxsearch-row">
+                <td class="amxsearch-cell"><?= $block->escapeHtml($query->getPopularity()); ?></td>
+                <td class="amxsearch-cell"><?= (int)$query->getUniqueQuery(); ?></td>
+                <td class="amxsearch-cell"><?= (int)$query->getUniqueUser(); ?></td>
+                <td class="amxsearch-cell"><?= (float)$query->getProductClick(); ?>%</td>
+                <td class="amxsearch-cell"><?= $block->escapeHtml($query->getCreatedAt()); ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <a href="<?= $block->getMoreUrl() ?>"
+       class="amxsearch-more-link"
+       title="<?= $block->escapeHtml(__("View more")) ?>"
+       target="_blank"><?= $block->escapeHtml(__("View more")) ?></a>
+</div>

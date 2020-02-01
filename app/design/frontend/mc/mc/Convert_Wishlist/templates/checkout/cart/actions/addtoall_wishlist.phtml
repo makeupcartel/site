@@ -1,0 +1,7 @@
+<?php $cHelper = $this->helper(\Convert\Wishlist\Helper\Data::class) ?>
+<div class="checkout_cart--order_actions">
+<a href="#"
+       class="action addtoallwishlist"
+       data-post='<?= /* @noEscape */ $cHelper->getAddAllParams() ?>'
+       data-action="add-all-to-wishlist"><span><?= $block->escapeHtml(__('Save my order for later')) ?></span></a>
+</div>

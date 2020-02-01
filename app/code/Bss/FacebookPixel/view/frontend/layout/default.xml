@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_FacebookPixel
+ * @author    Extension Team
+ * @copyright Copyright (c) 2018-2019 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Bss\FacebookPixel\Block\Code"
+                   name="bss.facebook.pixel."
+                   template="Bss_FacebookPixel::code.phtml"
+                   before="-"
+                   ifconfig="bss_facebook_pixel/general/active" />
+            <block class="Magento\Framework\View\Element\Template" name="bss.fbpixel.atc" after="bss.facebook.pixel."
+                   template="Bss_FacebookPixel::atc.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="bssFbpixelsAtc" xsi:type="array">
+                                <item name="component" xsi:type="string">Bss_FacebookPixel/js/atc</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="bss.fbpixel.subscribe" after="bss.facebook.pixel."
+                   template="Bss_FacebookPixel::subscribe.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="bssFbpixelsSubscribe" xsi:type="array">
+                                <item name="component" xsi:type="string">Bss_FacebookPixel/js/subscribe</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

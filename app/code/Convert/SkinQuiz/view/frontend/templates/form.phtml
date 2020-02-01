@@ -1,0 +1,345 @@
+<?php  
+	$agearray = $block->retrieveOptions('age_range_quiz');
+	$skintypearray = $block->retrieveOptions('skin_type_quiz');
+	$skinConcernOptions = $block->retrieveOptions('skin_concern_filter');
+	$skinSensitivityOptions = $block->retrieveOptions('medically_diagnosed_filter');
+?>
+
+<div class="skin-concern-quiz">
+	<div class="skin-quiz-wraper">
+		<form class="form" method="post" action="<?= $block->getUrl("skinquiz/quiz/post") ?>" id="form-validate-quiz">
+			<!-- Begin Step 0 -->
+			<div class="get-name-age">
+				<div class="banner-skin">
+					<div class="title-skin-concern">
+						<h1><i>Skin</i> concern quiz</h1>
+					</div>
+					<div class="image-banner-quiz">
+						<img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/Bitmap_icon.png');  ?>" alt="banner-skin">
+					</div>
+				</div>
+				<div class="banner-skin-mobile">
+					<div class="image-banner-quiz"><img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/imgpsh_fullsize_anim2.png');  ?>" alt="banner-skin-mobile">
+						<div class="clear-float-div"></div>
+					</div>
+				</div>
+				<div class="intro-quiz intro-quiz-info">
+					<div class="main-introduce">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget imperdiet neque. In volutpat ante semper diam molestie, et aliquam erat laoreet.</p>
+					</div>
+				</div>
+				<div class="fieldset filed-quiz-info ">
+					<div class="field field-name">
+						<label class="label name-skin-quiz-label" for="fullname">Name</label>
+						<div class="control">
+                            <input id="fullname" class="input-text required-entry name-customer-quiz" name="fullname" type="text">
+                        </div>
+					</div>
+					<div class="field field-email required">
+						<label class="label name-skin-quiz-label" for="emailquiz">Email</label>
+						<div class="control">
+							<input id="emailquiz" class="input-text required-entry email-customer-quiz" name="emailquiz" type="text" value="<?= $block->getCustomerEmail(); ?>" />
+						</div>
+						<p class="message-error-quiz-email"></p>
+					</div>
+					<input type="hidden" name="customer-guest" value="<?= $block->checkLogin()?>">
+					<div class="field filed-age required">
+						<label class="label name-skin-quiz-label">Age range</label>
+						<div class="control">
+							<select name="age-range" class="age-quiz">
+								<?php foreach ($agearray as $value): ?>
+									<?php if ($value['value'] == ''): ?>
+										<option value="<?php echo($value['value']); ?>">Please select</option>
+									<?php else: ?>
+										<option value="<?php echo($value['label']); ?>"><?php echo $value['label']; ?></option>
+									<?php endif ?>	
+								<?php endforeach; ?>
+							</select>
+						</div>
+						<p class="message-error-quiz"></p>
+					</div>
+				</div>
+				<div class="actions-toolbar begin-skin-quiz ">
+					<div class="secondary secondary-begin-quiz action-quiz">
+						<button class="button-secondary button-begin-quiz btn-action-quiz" title="begin" type="button">BEGIN</button>
+					</div>
+				</div>
+			</div>
+			<!-- End Step 0 -->
+
+			<!-- Begin Step 1 -->
+			<div class="step-1">
+				<div class="title-skin-concern-mobile">
+					<h2><i>Skin</i> concern quiz</h2>
+				</div>
+				<div class="intro-quiz">
+					<div class="text-intro-quiz">
+						<div class="step-of-skin-quiz"><p>Page 3 of 3</p></div>
+						<div class="main-text">
+							<h2>Do you have any medically diagnosed skin conditions?</h2>
+						</div>
+					</div>
+				</div>
+				<div class="questions-wraper">
+					<div class="questions-quiz question1">
+						<div class="text-question"><p>Do you suffer from Psoriasis?</p></div>
+						<div class="select-answer select-answer-mobile-space">
+							<input id="answer-psoriasis-y" name="skin-sensitivity[<?=$skinSensitivityOptions['1']['value']?>]" type="radio" value="1"> 
+							<label for="answer-psoriasis-y">Yes</label>
+						</div>
+						<div class="select-answer">
+							<input id="answer-psoriasis-n" name="skin-sensitivity[<?=$skinSensitivityOptions['1']['value']?>]" type="radio" value="0" checked> 
+							<label for="answer-psoriasis-n" >No</label>
+						</div>
+						<div class="clear-float-div"></div>
+					</div>
+					<div class="questions-quiz question2">
+						<div class="text-question"><p>Do you suffer from Eczema?</p></div>
+						<div class="select-answer select-answer-mobile-space">
+							<input id="answer-eczema-y" name="skin-sensitivity[<?=$skinSensitivityOptions['2']['value']?>]" type="radio" value="1"> 
+							<label for="answer-eczema-y">Yes</label>
+						</div>
+						<div class="select-answer">
+							<input id="answer-eczema-n" name="skin-sensitivity[<?=$skinSensitivityOptions['2']['value']?>]" type="radio" value="0" checked> 
+							<label for="answer-eczema-n">No</label>
+						</div>
+						<div class="clear-float-div"></div>
+					</div>
+					<div class="questions-quiz question3">
+						<div class="text-question">
+							<p>Do you suffer from Rosacea?</p>
+						</div>
+						<div class="select-answer select-answer-mobile-space">
+							<input id="answer-rosacea-y" name="skin-sensitivity[<?=$skinSensitivityOptions['3']['value']?>]" type="radio" value="1"> 
+							<label for="answer-rosacea-y">Yes</label>
+						</div>
+						<div class="select-answer">
+							<input id="answer-rosacea-n" name="skin-sensitivity[<?=$skinSensitivityOptions['3']['value']?>]" type="radio" value="0" checked> 
+							<label for="answer-rosacea-n">No</label>
+						</div>
+						<div class="clear-float-div"></div>
+					</div>
+					<div class="questions-quiz question4">
+						<div class="text-question">
+							<p>Do you suffer from any form of Dermatitis?</p>
+						</div>
+						<div class="select-answer select-answer-mobile-space">
+							<input id="answer-dermatitis-y" name="skin-sensitivity[<?=$skinSensitivityOptions['4']['value']?>]" type="radio" value="1"> 
+							<label for="answer-dermatitis-y">Yes</label>
+						</div>
+						<div class="select-answer">
+							<input id="answer-dermatitis-n" name="skin-sensitivity[<?=$skinSensitivityOptions['4']['value']?>]" type="radio" value="0" checked> 
+							<label for="answer-dermatitis-n">No</label>
+						</div>
+						<div class="clear-float-div"></div>
+					</div>
+					<div class="questions-quiz question5">
+						<div class="text-question">
+							<p>Have you ever had a severe medically recognised reaction to a skincare product?</p>
+						</div>
+						<div class="select-answer select-answer-mobile-space">
+							<input id="answer-severe-y" name="skin-sensitivity[<?=$skinSensitivityOptions['5']['value']?>]" type="radio" value="1"> 
+							<label for="answer-severe-y">Yes</label>
+						</div>
+						<div class="select-answer">
+							<input id="answer-severe-n" name="skin-sensitivity[<?=$skinSensitivityOptions['5']['value']?>]" type="radio" value="0" checked> 
+							<label for="answer-severe-n">No</label>
+						</div>
+						<div class="clear-float-div"></div>
+					</div>
+				</div>
+				<div class="actions-toolbar">
+					<div class="secondary next-step action-quiz">
+						<button id="btn-nextstep-1" class="button-secondary btn-action-quiz" title="next-step" type="submit">NEXT STEP</button>
+					</div>
+				</div>
+				<div class="item actions go-back-quiz">
+					<a class="action goback-step-2" href="#">Go Back</a>
+				</div>
+			</div>
+			<!-- End Step 1 -->
+
+			<!-- Begin Step 2 -->
+			<div class="step-2">
+				<div class="title-skin-concern-mobile">
+					<h2><i>Skin</i> concern quiz</h2>
+				</div>
+				<div class="intro-quiz">
+					<div class="text-intro-quiz">
+						<div class="step-of-skin-quiz"><p>Page 1 of 3</p></div>
+						<div class="main-text"><h2>How oily or dry is your skin?</h2></div>
+					</div>
+				</div>
+				<div class="text-message-guide">
+					<p>Please use the slider to rate the oiliness or dryness of your skin.</p>
+				</div>
+				<div class="slider-step-2">
+					<div class="control control-step-2">
+						<input name="skin-type" class="slider-skin-oil-dry" max="<?php echo(count($skintypearray)-1); ?>" min="1" step="1" type="range">
+						<div class="text-slider-skin-type">
+							<?php foreach ($skintypearray as $key ): ?>
+								<?php if ($key['label'] == ' '): ?>
+									<span class="none-skin"></span>
+								<?php else: ?>
+									<span class="skin-type skin-<?php echo($key['value']); ?> "><?php echo $key['label']; ?></span>
+								<?php endif ?>
+							<?php endforeach ?>
+						</div>
+					</div>
+				</div>
+				<div class="actions-toolbar">
+					<div class="secondary next-step action-quiz">
+						<button id="btn-nextstep-2" class="button-secondary btn-action-quiz" title="next-step" type="button">NEXT STEP</button>
+					</div>
+				</div>
+				<div class="item actions go-back-quiz"><a class="action goback-get-name-age" href="#">Go Back</a></div>
+			</div>
+			<!-- End Step 2 -->
+
+			<!-- Begin Step 3 -->
+			<div class="step-3">
+				<div class="title-skin-concern-mobile">
+					<h2><i>Skin</i> concern quiz</h2>
+				</div>
+				<div class="intro-quiz">
+					<div class="text-intro-quiz">
+						<div class="step-of-skin-quiz"><p>Page 2 of 3</p></div>
+						<div class="main-text"><h2>What are your main skin concerns?</h2></div>
+					</div>
+				</div>
+				<div class="text-message-guide">
+					<p>Please use the sliders below for your skin concerns</p>
+				</div>
+				<div class="content-concern-step3">
+					<input type="text" name="" class="url-icon-show-hidden" value="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/icon_minus.png')  ?>" style="display: none;margin: 0px;padding: 0px;">
+					<div class="concern-label">
+						<div class="spread-concren-label">&nbsp;</div>
+						<div class="label-slider-concern">
+							<div class="text-concern slider-rule-quiz"><p>Not Concerned</p></div>
+							<div class="image-guide-slider"><img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/34751458123.png'); ?>" alt="banner-skin"></div>
+							<div class="text-rate slider-rule-quiz"><p>Very Concerned</p></div>
+						</div>
+					</div>
+					<?php foreach ($skinConcernOptions as $skinConcernOption): ?>
+						<?php if($skinConcernOption['value']): ?>
+							<div class="sentence-concern">
+								<div class="label-content-sentence text-question">
+									<p><?= $skinConcernOption['label'] ?></p>
+									<div class="show-hidden-slider-quiz"><span class="show-slider-rate">+</span></div>
+								</div>
+								<input max="5" min="0" class="skin-concern-input" step="1" type="range" name="skin-concern[<?=$skinConcernOption['value']?>]" value="0">
+								<div class="label-slicer-step3">
+									<span class="skin-type">0</span>
+									<span class="skin-type">1</span>
+									<span class="skin-type">2</span>
+									<span class="skin-type">3</span>
+									<span class="skin-type">4</span>
+									<span class="skin-type">5</span>
+								</div>
+								<div class="label-slider-concern-mobile">
+									<div class="text-concern slider-rule-quiz"><p>Not Concerned</p></div>
+									<div class="image-guide-slider"><img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/34751458123.png');  ?>" alt="banner-skin"></div>
+									<div class="text-rate slider-rule-quiz"><p>Very Concerned</p></div>
+								</div>
+							</div>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</div>
+				<div class="actions-toolbar">
+					<div class="secondary next-step action-quiz">
+						<button id="btn-nextstep-3" class="button-secondary btn-action-quiz" title="next-step" type="button" >NEXT STEP</button>
+					</div>
+				</div>
+				<div class="item actions go-back-quiz"><a class="action goback-step-1" href="#">Go Back</a></div>
+			</div>
+			<!-- End Step 3 -->
+		</form>
+	</div>
+
+	<div class="sidebar-skin-concern">
+		<div class="plant_banner">
+			<img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/texture_image@1x.jpg');  ?>" alt="">
+			<div class="clear-float-div">&nbsp;</div>
+		</div>
+		<div class="header_sidebar_quiz">
+			<h4>Skin Concern Quiz</h4>
+		</div>
+		<div class="group-skin-quiz">
+			<div class="tick-step tick-1">
+				<div class="number-step st-1 ">
+					<p>1</p>
+					<img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/icon_check.png');  ?>" class="icon_check_quiz icon_check_1">
+				</div>
+				<div class="label-step-quiz">
+					<p>Skin Type</p>
+				</div>
+			</div>
+			<div class="lines-space line-1">&nbsp;</div>
+			<div class="tick-step tick-2">
+				<div class="number-step st-2">
+					<p>2</p>
+					<img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/icon_check.png');  ?>" class="icon_check_quiz icon_check_2">
+				</div>
+				<div class="label-step-quiz">
+					<p>Skin Concerns</p>
+				</div>
+			</div>
+			<div class="lines-space line-2">&nbsp;</div>
+			<div class="tick-step tick-3">
+				<div class="number-step st-3">
+					<p>3</p>
+					<img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/icon_check.png');  ?>" class="icon_check_quiz icon_check_3">
+				</div>
+				<div class="label-step-quiz">
+					<p>Skin Sensitivity</p>
+				</div>
+			</div>
+			<div class="lines-space line-3">&nbsp;</div>
+			<div class="tick-step tick-4">
+				<div class="number-step st-4">
+					<p>4</p>
+					<img src="<?php echo $this->getViewFileUrl('Convert_SkinQuiz::images/icon_check.png');  ?>" class="icon_check_quiz icon_check_4">
+				</div>
+				<div class="label-step-quiz">
+					<p>Results</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	require(['jquery','rangeslider'], function ($) {
+		var $r = $('input.slider-skin-oil-dry');
+		var $ruler = $('<div class="rangeslider__ruler" />');
+
+		// Initialize
+		$r.rangeslider({
+			polyfill: false,
+			onInit: function() {
+				$ruler[0].innerHTML = getRulerRange(this.min, this.max, this.step);
+			}
+		});
+
+		$('.skin-concern-input').each(function(){
+			$(this).rangeslider({
+				polyfill: false,
+				onInit: function() {
+					$ruler[0].innerHTML = getRulerRange(this.min, this.max, this.step);
+				}
+			});
+		});
+
+		function getRulerRange(min, max, step) 
+		{
+			var range = '';
+			var i = 0;
+
+			while (i <= max) {
+				range += i + ' ';
+				i = i + step;
+			}
+			return range;
+		}
+	});
+</script>

@@ -1,0 +1,13 @@
+<div class="admin__field status-label" data-bind="visible: visible">
+    <!-- ko if: element.label -->
+    <label class="admin__field-label" data-bind="attr:{for: element.uid}">
+        <span data-bind="text: element.label"></span>
+    </label>
+    <!-- /ko -->
+    <div class="admin__field-control">
+        <!-- ko ifnot: element.hasAddons() -->
+        <!-- ko template: element.elementTmpl --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>
+<!-- /ko -->

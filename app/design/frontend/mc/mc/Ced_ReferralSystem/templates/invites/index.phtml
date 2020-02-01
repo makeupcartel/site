@@ -1,0 +1,109 @@
+<?php
+/**
+ * CedCommerce
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the End User License Agreement (EULA)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* https://cedcommerce.com/license-agreement.txt
+*
+* @category    Ced
+* @package     Ced_ReferralSystem
+* @author 		CedCommerce Core Team <connect@cedcommerce.com>
+* @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+* @license      https://cedcommerce.com/license-agreement.txt
+*/
+$defaultMessage = $block->getDefaultMessage();
+$defaultSubject = $block->getDefaultSubject();
+
+?>
+
+<form class="form" method="post" autocomplete="off"
+action="<?php echo $this->getUrl('referralsystem/referral/sendinviteemail') ?>" data-mage-init='{"validation": {}}'>
+<fieldset class="refer fieldset referral-url">
+ <legend class="legend"><span><?php echo __('Referral URL and Code') ?></span></legend>
+ <div class="field required">
+    <label for="referral_url" class="label">
+        <span><?php echo __('Referral URL') ?></span>
+    </label>
+    <div class="control">
+        <input type="text" name="referral_url" id="referral_url"
+        value="<?php echo $block->generateReferralLink(); ?>" title="<?php echo __('Referral Url') ?>"
+        class="input-text" data-validate="{required:true}" readonly />
+    </div>
+</div>
+<div class="field required ">
+    <label for="referral_code" class="label"><span><?php echo __('Referral Code') ?></span></label>
+    <div class="control">
+        <input type="text" name="code" id="referral_code" value="<?php echo $block->getInvitationCode(); ?>"
+        title="<?php echo __('Referral Code') ?>"
+        class="input-text" data-validate="{required:true}" readonly />
+    </div>
+</div>
+<div class="field required">
+    <label for="social_network" class="label">
+        <span><?php echo __('Share Referral URL on Social Network') ?></span>
+    </label>
+    <div class="control">
+       <ul>
+          <li class="fb">
+             <a class="fb-xfbml-parse-ignore" target="_blank"
+             href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $block->generateFBReferralLink() ?>">
+             <?php echo __('Facebook');?></a></li>
+             <li class="twitter">
+                 <a class="fb-xfbml-parse-ignore" target="_blank"
+                 href="https://twitter.com/intent/tweet?text=<?php echo $block->generateTwitterReferralLink() ?>">
+                 <?php echo __('Twitter'); ?>
+             </a>
+         </li>
+         <li class="google">
+             <a class="google-share-button" target="_blank"
+             href="https://plus.google.com/share?url=<?php echo $block->generateGoogleReferralLink() ?>">
+             <?php echo __('Google');?></a>
+         </li>
+         <?php if($block->checkDevice()): ?>
+          <li class="whatsapp">
+              <a class="whatsapp-share-button"
+              href="whatsapp://send?text=<?php echo $block->generateWatsappReferralLink() ?>"
+              data-action="share/whatsapp/share"><?php echo __('Whatsapp'); ?></a>
+              <li>
+              <?php endif; ?>
+          </ul>
+      </div>
+  </div>
+</fieldset>
+<fieldset class="refer fieldset refer-email">
+    <legend class="title-page-refer"><span class="label-refer"><?php echo __('Refer') ?></span><span><?php echo __(' a friend') ?></span></legend>
+    <legend class="label-page-refer"><span><?php echo __('You can earn discounts by referring your friends to make a purchase with Esmi.') ?></span></legend>
+    <legend class="legend-refer-friend"><span><?php echo __('Refer via email (Seperate addresses with a comma)') ?></span></legend>
+
+    <div class="field emails required ">
+        <div class="control">
+            <input type="text" name="emails" cols="60" rows="5" id="email_address" data-validate="{required:true,'validate-emails':true}" placeholder="Enter email addresses"></input>
+        </div>
+    </div>
+
+    <div class="field required subject-mail">
+        <label for="subject" class="label"><span><?php echo __('Subject') ?></span></label>
+        <div class="control">
+            <input type="text" name="subject" id="subject" title="<?php echo __('Subject') ?>"
+            value ="<?php echo $defaultSubject; ?>" class="input-text" data-validate="{required:true}" />
+        </div>
+    </div>
+    <div class="field text required">
+        <label class="label message-mail" for="message"><span><?= $block->escapeHtml(__('Message')) ?></span></label>
+        <div class="control">
+            <textarea id="message" name="message" cols="60" rows="5" data-validate="{required:true}"><?php echo $defaultMessage; ?></textarea>
+        </div>
+    </div>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?php  echo __('Send') ?>">
+                <span><?php echo __('Send Referals') ?></span>
+            </button>
+        </div>
+    </div>
+</fieldset>
+</form>

@@ -1,0 +1,53 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Geoip
+ */
+?>
+<?php
+/**
+ * @var \Amasty\Geoip\Block\Adminhtml\Settings\DownloadNImport $this
+ */
+?>
+<br/>
+<button id="am-download-import" class="action-default scalable" data-ui-id="widget-button-0" type="button"
+        title="<?= __('Download and Import') ?>">
+    <span><?= __('Download and Import') ?></span>
+</button>
+<br/>
+
+<div class="progressbar">
+    <div class="am_download_container"><span class="begin"></span>
+
+        <div class="am_line">
+            <div class="am_download" style="width: <?= $this->getWidth() ?>%"><span>&nbsp</span></div>
+        </div>
+    </div>
+    <div class="am_processer_container"><span class="<?= $this->getCompletedClass() ?>"></span>
+
+        <div class="am_line">
+            <div class="am_processer" style="width: <?= $this->getWidth() ?>%"><span>&nbsp</span></div>
+        </div>
+        <span class="<?= $this->getImportedClass() ?>"></span></div>
+    <span class="download"><div class="bubble"><?= __("Download") ?></div></span><span class="import"><div
+                class="bubble"><?= __("Import") ?></div></span>
+    <span class="completed_import"><div class="bubble"><?= __("Completed") ?></div></span>
+</div>
+<br/>
+<?= $this->getImportDate() ?>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Amasty_Geoip/js/import'
+    ], function ($) {
+        var download = $('#am-download-import');
+
+        download.amGeoip({
+            importItems: <?= $this->getConfig(); ?>,
+            type: 'download_n_import'
+        });
+
+    });
+
+</script>

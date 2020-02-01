@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+    <move element="checkout.cart.coupon" destination="cart.summary" before="-" />
+    <move element="checkout.cart.giftcardaccount" destination="cart.summary" after="checkout.cart.coupon" />
+    
+    <referenceBlock  name="checkout.cart.summary.title" remove="true" />
+    <referenceBlock name="page.main.title">
+        <action method="setPageTitle">
+            <argument translate="true" name="title" xsi:type="string">Shopping Bag</argument>
+        </action>
+    </referenceBlock>
+    <referenceContainer name="checkout.cart.container">
+      <block class="Magento\Cms\Block\Block" name="lip_heroes.shopping_cart_bottom" after="-">
+        <arguments>
+          <argument name="block_id" xsi:type="string">lip_heroes-shopping_cart_bottom</argument>
+        </arguments>
+      </block>
+      <block class="Convert\FreeShip\Block\Cart\Sidebar" name="amountdisplay" template="Convert_FreeShip::amount.phtml" before="-" />
+    </referenceContainer>
+    <move element="amountdisplay" destination="checkout.cart.form" before="-" />
+    <referenceContainer name="cart.summary">
+      <block class="Magento\Cms\Block\Block" name="footer-lip-payment-logo" after="-">
+        <arguments>
+          <argument name="block_id" xsi:type="string">lip-shopping_cart_payments_icon</argument>
+        </arguments>
+      </block>
+      <block class="Magento\Cms\Block\Block" name="lip_heroes.got.any.question" after="-">
+        <arguments>
+          <argument name="block_id" xsi:type="string">lip-get_any_questions</argument>
+        </arguments>
+      </block>
+    </referenceContainer>
+
+    <referenceBlock name="checkout.cart.item.renderers.default.actions.move_to_wishlist" remove="true" />
+    <referenceBlock name="checkout.cart.item.renderers.simple.actions.move_to_wishlist" remove="true" />
+    <referenceBlock name="checkout.cart.item.renderers.bundle.actions.move_to_wishlist" remove="true" />
+    <referenceBlock name="checkout.cart.item.renderers.downloadable.actions.move_to_wishlist" remove="true" />
+    <referenceBlock name="checkout.cart.item.renderers.grouped.actions.move_to_wishlist" remove="true" />
+    <referenceBlock name="checkout.cart.item.renderers.configurable.actions.move_to_wishlist" remove="true" />
+    <referenceBlock name="checkout.cart.item.renderers.virtual.actions.move_to_wishlist" remove="true" />
+    <referenceBlock name="checkout.cart.item.renderers.giftcard.actions.move_to_wishlist" remove="true" />
+    <referenceBlock name="checkout.cart.item.renderers.giftcard.actions.edit" remove="true" />
+    <move element="breadcrumbs" destination="columns.top" before="page.main.title"/>
+    <referenceBlock name="breadcrumbs">
+        <action method="addCrumb">
+            <argument name="crumbName" xsi:type="string">Home</argument>
+            <argument name="crumbInfo" xsi:type="array">
+                <item name="title" xsi:type="string">Home</item>
+                <item name="label" xsi:type="string">Home</item>
+                <item name="link" xsi:type="string">/</item>
+            </argument>
+        </action>
+        <action method="addCrumb">
+            <argument name="crumbName" xsi:type="string">Shopping Cart</argument>
+            <argument name="crumbInfo" xsi:type="array">
+                <item name="title" xsi:type="string">Shopping bag</item>
+                <item name="label" xsi:type="string">Shopping bag</item>
+            </argument>
+        </action>
+    </referenceBlock>
+  </body>
+</page>

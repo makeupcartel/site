@@ -1,0 +1,7 @@
+<?php
+  $_product = $block->getProduct();
+  $_attributeValue =$_product->getResource()->getAttribute('brand')->getFrontend()->getValue($_product);
+?>
+<?php if ($_attributeValue): ?>
+<div class="product-brand"><?php echo $_attributeValue; ?></div>
+<?php endif; ?>

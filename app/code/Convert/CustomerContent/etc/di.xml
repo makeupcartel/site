@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <virtualType name="CustomerContentFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CategoryDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Convert\CustomerContent\Model\ResourceModel\Category\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CustomerContentFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Convert\CustomerContent\Model\ResourceModel\Category\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">convert_customercontent_category</argument>
+            <argument name="resourceModel" xsi:type="string">Convert\CustomerContent\Model\ResourceModel\Category</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="ccc_category_listing_data_source" xsi:type="string">Convert\CustomerContent\Model\ResourceModel\Category\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="ContentDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Convert\CustomerContent\Model\ResourceModel\Content\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CustomerContentFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Convert\CustomerContent\Model\ResourceModel\Content\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">convert_customercontent_content</argument>
+            <argument name="resourceModel" xsi:type="string">Convert\CustomerContent\Model\ResourceModel\Content</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="ccc_content_listing_data_source" xsi:type="string">Convert\CustomerContent\Model\ResourceModel\Content\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Convert\CustomerContent\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">customercontent/tmp/file</argument>
+            <argument name="basePath" xsi:type="string">customercontent/file</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="mp4" xsi:type="string">mp4</item>
+                <item name="pdf" xsi:type="string">pdf</item>
+                <item name="zip" xsi:type="string">zip</item>
+                <item name="tgz" xsi:type="string">tgz</item>
+                <item name="rar" xsi:type="string">rar</item>
+                <item name="doc" xsi:type="string">doc</item>
+                <item name="docx" xsi:type="string">docx</item>
+                <item name="txt" xsi:type="string">txt</item>
+                <item name="xlsx" xsi:type="string">xlsx</item>
+                <item name="csv" xsi:type="string">csv</item>
+                <item name="xls" xsi:type="string">xls</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Convert\CustomerContent\Model\Thumbnail">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">customercontent/tmp/thumbnail</argument>
+            <argument name="basePath" xsi:type="string">customercontent/thumbnail</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,68 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_ReferralSystem
+ * @author   CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+
+$referred_list = $this->getCollection();
+$priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
+
+?>
+
+<div class="table-wrapper-1">
+    <legend class="legend">
+        <span><?php echo __('Transaction Summary'); ?></span>
+    </legend>
+
+    <?php if(isset($referred_list) && $referred_list->count()>0): ?>
+        <div class="table_responsive">
+            <div class="table_responsive_inner">
+                <table class="data-table">
+            <thead>
+                <tr>
+                    <th><?php echo __('Description');?></th>
+                    <th><?php echo __('Amount');?></th>
+                    <th><?php echo __('Transaction Type');?></th>
+                    <th class="content-right"><?php echo __('Date');?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($referred_list as $value): ?>
+                    <tr>
+                        <td><?php echo $value["description"]  ?></td>
+                        <td><?php echo $priceHelper->currency($value["earned_amount"], true, false); ?></td>
+                        <td>
+                            <?php if($value["transaction_type"]==1): ?>
+                                <?php echo __("CREDIT"); ?>
+                            <?php else: ?>
+                                <?php echo __("DEBIT"); ?>
+                            <?php endif; ?>
+                        </td>
+                        <td class="content-right"><?php echo $value["creation_date"] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+            </div>
+        </div>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="toolbar toolbar-list"><?php echo $block->getPagerHtml(); ?></div>
+        <?php endif; ?>
+    <?php else: ?>
+        <div class="col-md-12">
+            <label> <?php echo __('To view transaction details you need to invite some friends first.'); ?></label>
+        </div>
+    <?php endif; ?>
+</div>

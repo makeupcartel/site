@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="columns.top">
+            <container name="category.top.wrapper" htmlTag="div" htmlClass="category-top-wrapper" before="-">                
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="multiple-wishlist_sidebar" remove="true" />
+        <move element="page.main.title" destination="category.top.wrapper" before="-"/>
+        <referenceBlock name="sidebar.additional" remove="true" />
+        <referenceContainer name="main.content">
+            <container name="custom-content" as="custom-content" label="Page Custom Content" htmlTag="div" htmlClass="custom-content">
+                <block class="Magento\Catalog\Block\Widget\RecentlyViewed" name="recently_viewed" template="Magento_Catalog::product/widget/viewed/grid.phtml" after="columns">
+                    <arguments>
+                        <argument name="uiComponent" xsi:type="string">widget_recently_viewed</argument>
+                        <argument name="page_size" xsi:type="number">16</argument>
+                        <!-- 'Product attributes to show' configuration -->
+                        <argument name="show_attributes" xsi:type="string">name,image,price,learn_more</argument>
+                        <!-- 'Buttons to show' configuration -->
+                        <argument name="show_buttons" xsi:type="string">add_to_cart</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="main.content">
+           <!--  <block class="Magento\Cms\Block\Block" name="category_everybody_loves" after="columns">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">category_everybody_loves</argument>
+                </arguments>
+            </block>  -->
+            <block class="Magento\Cms\Block\Block" name="list_categories" after="columns">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">list_categories</argument>
+                </arguments>
+            </block>
+
+        </referenceContainer>       
+        <!-- <move element="category_everybody_loves" destination="custom-content" after="-"/> -->
+        <move element="list_categories" destination="category.top.wrapper" after="page.main.title"/>
+        <move element="category.image" destination="category.top.wrapper" before="page.main.title"/>
+    </body>
+</page>

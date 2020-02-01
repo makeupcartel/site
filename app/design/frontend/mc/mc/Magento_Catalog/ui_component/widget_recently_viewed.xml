@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="widget_columns" component="Magento_Catalog/js/product/list/listing" template="Magento_Catalog/product/list/listing">
+        <column name="sing-in-for-price" component="Magento_Catalog/js/product/sing-in-for-price" displayArea="action-primary-area" sortOrder="2">
+            <settings>
+                <label translate="true">Sign In for prices</label>
+                <bodyTmpl>Magento_Catalog/product/sing-in-for-price</bodyTmpl>
+            </settings>
+        </column>
+        <column name="learn-more" component="Magento_Catalog/js/product/learn-more" displayArea="description-area">
+            <settings>
+                <label translate="true">View details</label>
+                <bodyTmpl>Magento_Catalog/product/link</bodyTmpl>
+            </settings>
+        </column>
+    </columns>
+</listing>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_ElasticSearch
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection">
+        <plugin name="Amasty_ElasticSearch::addDefaultSortToMagento2.1"
+                type="Amasty\ElasticSearch\Plugin\CatalogSearch\Model\ResourceModel\Fulltext\Collection" />
+    </type>
+    <type name="Magento\Framework\Search\Request\Builder">
+        <plugin name="Amasty_ElasticSearch::addStockStatusFilter"
+                type="Amasty\ElasticSearch\Plugin\Framework\Search\Request\Builder" />
+    </type>
+    <type name="Amasty\Xsearch\Block\Search\AbstractSearch">
+        <plugin name="Amasty_ElasticSearch::getResults"
+                type="Amasty\ElasticSearch\Plugin\Xsearch\Block\Search" />
+    </type>
+    <type name="Amasty\Xsearch\Block\Search\Product">
+        <plugin name="Amasty_ElasticSearch::getProductResults"
+                type="Amasty\ElasticSearch\Plugin\Xsearch\Block\Search" />
+    </type>
+    <type name="Magento\CatalogSearch\Model\Search\RequestGenerator">
+        <plugin name="Amasty_ElasticSearch::SearchRequestGeneratorFix"
+                type="Amasty\ElasticSearch\Plugin\CatalogSearch\Model\Search\RequestGenerator" />
+    </type>
+</config>

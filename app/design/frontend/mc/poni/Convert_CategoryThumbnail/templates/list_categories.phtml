@@ -1,0 +1,85 @@
+<?php
+$blockCategory = $block->getLayout()->createBlock('Convert\CategoryThumbnail\Block\HomeFavorites');
+$cat_id = $this->getData('category_id');
+$_category = $blockCategory->getCategoryFavorites($cat_id);
+$subcats = $_category->getChildrenCategories();
+$objectHelper = $this->Helper('Convert\CategoryThumbnail\Helper\Data');
+$mediaUrl = $objectHelper->getMediaUrl();
+$count = count($subcats);
+
+?>
+<div class="list-cat-all">
+    <div class="sub-category-warpper swiper-container">
+        <div class="sub-category swiper-wrapper">
+            <?php foreach ($subcats as $subcat): ?>
+                <?php
+                $categoryName = $subcat->getName();
+                if ($categoryName == 'Shop All') {
+                  continue;
+                }
+                ?>
+                <div class="item swiper-slide">
+                    <?php $category = $objectHelper->getLoadCategory($subcat->getId()); ?>
+                    <?php if ($category->getCategoryMobileThumbnail()): ?>
+                        <a class="cat_img" href="<?php echo $category->getUrl() ?>">
+                            <img src="<?php echo $category->getCategoryMobileThumbnail() ?>"
+                                 title="<?php echo $categoryName; ?>"/>
+                        </a>
+                    <?php else: ?>
+                        <a class="cat_img" href="<?php echo $category->getUrl() ?>">
+                            <img src="<?php echo $this->getViewFileUrl('images/default_thumbnail.jpg'); ?>"
+                                 title="<?php echo $categoryName; ?>"/>
+                        </a>
+                    <?php endif; ?>
+                    <div class="content">
+                        <div class="text">
+                            <p><a class="cat_name" href="<?php echo $category->getUrl() ?>"><?php echo $categoryName; ?></a></p>
+                            <p><a href="<?php echo $category->getUrl() ?>"><span><?php echo __('Discover') ?></span></a></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+
+<script type="text/javascript">
+    require([
+    "jquery",
+    "swiper"
+], function($, Swiper) {
+    jQuery(document).ready(function(){      
+      var swiper = new Swiper('.swiper-container', 
+      {
+        wrapperClass: 'swiper-wrapper',
+        slideClass: 'swiper-slide',
+        slidesPerView:4,
+        spaceBetween: 0,
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          // when window width is <= 767px
+          767: {
+            slidesPerView: 3,
+            spaceBetween: 0
+          },
+          // when window width is <= 1199px
+          1199: {
+            slidesPerView: 3,
+            spaceBetween: 0
+          }
+        }
+      });
+    });
+})
+</script>

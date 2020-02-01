@@ -1,0 +1,68 @@
+<?php
+$_product = $block->getProduct();
+$mediaUrl = $block->getBaseURLMedia();
+// $cHelper = $this->helper(\Amasty\ShopbyBase\Helper\OptionSetting::class);
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$shortDesc = $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description');
+?>
+<?php if ($shortDesc != '' || $_product->getData('desc_icon')): ?>
+  <div class="short-desc-icon-wrapper">
+    <?php if ($shortDesc != ''): ?>
+      <div class="short-desc-wrapper">
+        <?php if (strlen($shortDesc) > 240): ?>
+          <?php $shortDescCut = substr(strip_tags($shortDesc),0, 240).'...'; ?>
+          <div class="sub-short-desc">
+            <div><?php echo $shortDescCut; ?></div>
+            <a href="#" class="readmore-short-desc"><?php echo __('Read more') ?></a>
+          </div>
+          <div class="full-short-desc" style="display: none;">
+            <?php echo $shortDesc; ?>
+          </div>
+        <?php else: ?>
+          <div class="full-short-desc">
+            <?php echo $shortDesc; ?>
+          </div>
+        <?php endif; ?>
+      </div>
+    <?php endif; ?>
+    <?php if ($_product->getData('desc_icon')): ?>
+		<div class="description-icons">
+			<?php $data = explode(',', $_product->getData('desc_icon')); ?>
+			<?php foreach ($data as $value): ?>
+				<?php
+				//$setting = $cHelper->getSettingByValue($value, 'attr_desc_icon', $_product->getStoreId());
+				$attr = $_product->getResource()->getAttribute('desc_icon');
+				?>
+				<?php if ($attr->usesSource()): ?>
+					<?php
+					$option_value = $attr->getSource()->getOptionText($value);
+					$optionValue = strtolower($option_value);
+					$optionName = str_replace(' ', '-', $optionValue);
+					$optionName = str_replace('-&-', '-', $optionName);
+					$className = str_replace(' ', '-', $optionValue);
+					?>
+					<?php if ($option_value): ?>
+						<div class="icon-content">
+							<?php /*if ($setting->getImage()): ?>
+								<img src="<?php echo $setting->getImageUrl() ?>" alt=""
+									 class="icon-attribute">
+							<?php else : ?>
+								<img src="<?php echo $mediaUrl . '/default_ingredients_icons.png' ?>"
+									 alt="" class="icon-attribute">
+							<?php endif; */ ?>
+							<img src="<?php echo $mediaUrl . $optionName . '.png' ?>"
+									 alt=""
+									 class="icon-attribute">
+							<p class="attribute-name <?php echo $className; ?>">
+								<?php if (str_replace('Black','',$option_value)) 
+								{
+								 echo str_replace('Black','',$option_value);
+							}else echo $option_value; ?></p>
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		</div>
+    <?php endif; ?>
+  </div>
+<?php endif; ?>

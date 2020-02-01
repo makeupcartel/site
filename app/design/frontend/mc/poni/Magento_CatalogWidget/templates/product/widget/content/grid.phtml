@@ -1,0 +1,267 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+$helper = $this->helper('Convert\Catalog\Helper\Data');
+
+/** @var \Magento\CatalogWidget\Block\Product\ProductsList $block */
+
+use Magento\Framework\App\Action\Action;
+
+?>
+<?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())): ?>
+	<?php
+	$type = 'widget-product-grid';
+
+	$mode = 'grid';
+
+	$image = 'new_products_content_widget_grid';
+	$items = $block->getProductCollection()->getItems();
+
+	$showWishlist = false;
+	$showCompare = false;
+	$showCart = true;
+	$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
+	$description = false;
+	?>
+    <div class="block widget block-products-list <?= /* @noEscape */
+	$mode ?>" data-aos="fade-up" data-aos-delay="50" data-aos-once="true">
+		<?php if ($block->getTitle()): ?>
+            <div class="block-title" data-aos="fade-up" data-aos-delay="50" data-aos-once="true">
+                <h2><?= $block->escapeHtml(__($block->getTitle())) ?></h2>
+            </div>
+		<?php endif ?>
+        <div class="block-content">
+			<?= /* @noEscape */
+			'<!-- ' . $image . '-->' ?>
+            <div class="products-<?= /* @noEscape */
+			$mode ?> <?= /* @noEscape */
+			$mode ?>">
+                <ol class="owl-carousel product-items <?= /* @noEscape */
+				$type ?>">
+					<?php $iterator = 1; ?>
+					<?php foreach ($items as $_item): ?>
+
+						<?= /* @noEscape */
+						($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
+                        <div class="product-item-info" data-aos="fade-up" data-aos-delay="50" data-aos-once="true">
+							<?php
+							$product = $helper->getLoadProduct($_item->getId());
+							// get value attribute
+							$datalimit = $product->getData('limited_and_new');
+							$dataSale = $product->getData('sale_product');
+							// get text attribute
+							$attrSale = $product->getResource()->getAttribute('sale_product');
+							$attrLimit = $product->getResource()->getAttribute('limited_and_new');
+							if ($attrSale->usesSource()) {
+								$valueSale = $attrSale->getSource()->getOptionText($dataSale);
+							}
+
+							if ($attrLimit->usesSource()) {
+								$valueLimit = $attrLimit->getSource()->getOptionText($datalimit);
+							}
+
+							?>
+                            <div class="list-attribute-product">
+								<?php
+								if (isset($valueLimit)) {
+									?>
+
+                                    <div class="my-attribute attribute-limit-new-<?= $valueLimit ?>">
+										<?= $valueLimit ?>
+                                    </div>
+									<?php
+								}
+								if (isset($valueSale)) {
+									?>
+                                    <div class="my-attribute attribute-sale-product-<?= $valueSale ?>">
+										<?= $valueSale ?>
+                                    </div>
+									<?php
+								}
+								?>
+                            </div>
+                            <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                               class="product-item-photo">
+								<?= $block->getImage($_item, $image)->toHtml() ?>
+                            </a>
+                            <div class="product-item-details">
+                                <!-- <div class="align-summary">
+									<?php /*if ($templateType): */ ?>
+										<? /*= $block->getReviewsSummaryHtml($_item, $templateType) */ ?>
+									<?php /*endif; */ ?>
+                                </div>-->
+                                <div class="align-summary">
+		                            <span class="stamped-product-reviews-badge" data-id="<?php echo $_item->getId() ?>"
+                                          style="display: block;"></span>
+                                </div>
+                                <strong class="product-item-name">
+                                    <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                       class="product-item-link">
+										<?= $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+								<?php echo $block->getProductPriceHtml($_item, $type); ?>
+								<?php if ($showWishlist || $showCompare || $showCart): ?>
+                                    <div class="product-item-actions">
+										<?php if ($showCart): ?>
+                                            <div class="actions-primary">
+												<?php if ($_item->isSaleable()): ?>
+													<?php
+													$blockListProduct = $this->getLayout()->createBlock(\Magento\Catalog\Block\Product\ListProduct::class);
+													$postParams = $blockListProduct->getAddToCartPostParams($_item);
+													?>
+                                                    <form data-role="tocart-form" action="<?php /* @escapeNotVerified */
+													echo $this->getUrl('checkout/cart/add') . 'uenc/' . $postParams['data'][Action::PARAM_NAME_URL_ENCODED] . '/product/' . $postParams['data']['product'] ?>"
+                                                          method="post">
+                                                        <input type="hidden" name="product"
+                                                               value="<?php /* @escapeNotVerified */
+														       echo $postParams['data']['product']; ?>">
+                                                        <input type="hidden" name="<?php /* @escapeNotVerified */
+														echo Action::PARAM_NAME_URL_ENCODED; ?>"
+                                                               value="<?php /* @escapeNotVerified */
+														       echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
+														<?php echo $block->getBlockHtml('formkey') ?>
+                                                        <div class="align-swatch">
+															<?php if ($_item->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+																$swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+																echo $swatchBlock->setProduct($_item)->toHtml();
+															} ?></div>
+                                                        <button type="submit"
+                                                                title="<?php echo $block->escapeHtml(__('Add to bag')); ?>"
+                                                                class="action tocart primary">
+                                                            <span><?php /* @escapeNotVerified */
+	                                                            echo __('Add to bag') ?></span>
+                                                        </button>
+                                                    </form>
+												<?php else: ?>
+                                                    <div class="align-swatch">
+														<?php if ($_item->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+															$swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+															echo $swatchBlock->setProduct($_item)->toHtml();
+														} ?></div>
+													<?php if ($_item->getIsSalable()): ?>
+                                                        <div class="stock available">
+                                                            <span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+													<?php else: ?>
+                                                        <div class="stock unavailable">
+                                                            <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+                                                        </div>
+													<?php endif; ?>
+												<?php endif; ?>
+                                            </div>
+										<?php endif; ?>
+										<?php if ($showWishlist || $showCompare): ?>
+                                            <div class="actions-secondary" data-role="add-to-links">
+												<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+                                                    <a href="#"
+                                                       data-post='<?= /* @noEscape */
+													   $block->getAddToWishlistParams($_item) ?>'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
+                                                        <span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
+                                                    </a>
+												<?php endif; ?>
+												<?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+													<?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare'); ?>
+                                                    <a href="#" class="action tocompare" data-post='<?= /* @noEscape */
+													$compareHelper->getPostDataParams($_item) ?>'
+                                                       title="<?= $block->escapeHtmlAttr(__('Add to Compare')) ?>">
+                                                        <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+                                                    </a>
+												<?php endif; ?>
+                                            </div>
+										<?php endif; ?>
+                                    </div>
+								<?php endif; ?>
+                                <div class="view-details">
+                                    <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"> View details</a>
+                                </div>
+                            </div>
+                        </div>
+						<?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+					<?php endforeach ?>
+                </ol>
+            </div>
+			<?= $block->getPagerHtml() ?>
+        </div>
+    </div>
+<?php endif; ?>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'owlCarousel'
+    ], function ($) {
+        function alignHeightDocument() {
+            var maxHeightName = 0;
+            var maxHeightName1 = 0;
+            var maxHeightName2 = 0;
+
+            $('.product-item-name').each(function () {
+                if (parseFloat($(this).height()) > maxHeightName) {
+                    maxHeightName = $(this).height();
+                }
+            })
+            if (maxHeightName > 0) {
+                $('.product-item-name').css('height', maxHeightName);
+            }
+
+            $('.brand').each(function () {
+                if (parseFloat($(this).height()) > maxHeightName1) {
+                    maxHeightName1 = $(this).height();
+                }
+            })
+            if (maxHeightName1 > 0) {
+                $('.brand').css('height', maxHeightName1);
+            }
+            setInterval(function () {
+                $('.align-swatch').each(function () {
+                    if (parseFloat($(this).height()) > maxHeightName2) {
+                        maxHeightName2 = $(this).height();
+                    }
+                })
+                if (maxHeightName2 > 0) {
+                    $('.align-swatch').css('height', maxHeightName2);
+                }
+            }, 3000);
+        }
+
+        var width = jQuery(window).width();
+        var owl = jQuery('.block-content ol.owl-carousel');
+
+        owl.on('initialized.owl.carousel', function () {
+            $(window).on('load', function () {
+                $(window).resize(function () {
+                    alignHeightDocument();
+                });
+                alignHeightDocument();
+            });
+        });
+        owl.owlCarousel({
+            dots: true,
+            nav: true,
+            loop: false,
+            navText: ["<img src='<?php echo $block->getViewFileUrl('images/owl_prev.png') ?>'>", "<img src='<?php echo $block->getViewFileUrl('images/owl_next.png')?>'>"],
+            responsive: {
+                0: {
+                    items: 2,
+                    margin: 11,
+                    loop: true,
+                },
+                414: {
+                    items: 2,
+                    margin: 11
+                },
+                768: {
+                    items: 3,
+                    margin: 0
+                }
+            }
+        });
+    });
+
+</script>

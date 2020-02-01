@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="AdminSalesRuleWizardSection">
+        <element name="ButtonNext" type="button" selector="//button[@class='action-default action-primary action-next-step']"/>
+        <element name="CustomerAddsHowManyProducts" type="input" selector="//div[@data-index='need_to_buy']//input[@name='discount_step']"/>
+        <element name="CustomerAddsWhichProductsBuy" type="select" selector="//select[@name='is_actions']"/>
+        <element name="CustomerAddsHowManyFree" type="input" selector="//input[@name='discount_amount']"/>
+        <element name="CustomerAddsWhichProductsGifted" type="select" selector="//select[@name='is_same_product']"/>
+        <element name="CustomerAddsAddProductButton" type="button" selector="//button[@data-index='buttons']"/>
+        <element name="DoesCouponCode" type="select" selector="//select[@name='is_coupon']"/>
+        <element name="Websites" type="select" selector="//select[@name='website_ids']/option[@value=1]"/>
+        <element name="CustomerGroupsNotLoggedIn" type="select" selector="//select[@name='customer_group_ids']/option[@value=0]"/>
+        <element name="CustomerGroupsGeneral" type="select" selector="//select[@name='customer_group_ids']/option[@value=1]"/>
+        <element name="CustomerGroupsWholesale" type="select" selector="//select[@name='customer_group_ids']/option[@value=2]"/>
+        <element name="CustomerGroupsRetailer" type="select" selector="//select[@name='customer_group_ids']/option[@value=3]"/>
+        <element name="HowManyTriggered" type="select" selector="//select[@name='apply_time']"/>
+        <element name="ExtraCriteria" type="select" selector="//select[@name='is_conditions']"/>
+        <element name="CouponCode" type="input" selector="//input[@name='coupon_code']"/>
+        <element name="LimitTriggered" type="input" selector="//input[@name='maximum_times']"/>
+        <element name="RuleName" type="input" selector="//input[@name='rule_name']"/>
+        <element name="ActivateRule" type="checkbox" selector="//div[@data-index='is_active']//label[@class='admin__actions-switch-label']"/>
+        <element name="ActivateRuleDisable" type="block" selector="//div[@data-index='is_active']//div[@class='admin__actions-switch']/input[@type='checkbox'][@value='0']"/>
+        <element name="ActivateRuleEnable" type="block" selector="//div[@data-index='is_active']//div[@class='admin__actions-switch']/input[@type='checkbox'][@value='1']"/>
+    </section>
+
+</sections>

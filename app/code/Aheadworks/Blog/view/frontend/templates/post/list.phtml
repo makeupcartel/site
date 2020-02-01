@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\PostList */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+    $posts = $block->getPosts();
+?>
+<?php if (count($posts)): ?>
+    <div class="blog-posts">
+        <?php foreach ($posts as $post): ?>
+            <?php /* @noEscape */ echo $block->getItemHtml($post) ?>
+        <?php endforeach; ?>
+    </div>
+    <?php echo $block->getChildHtml('pager'); ?>
+<?php else: ?>
+    <div class="message info empty">
+        <div><?php echo $block->escapeHtml(__('No posts.')) ?></div>
+    </div>
+<?php endif; ?>

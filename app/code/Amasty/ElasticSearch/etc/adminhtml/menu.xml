@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_ElasticSearch
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Amasty_ElasticSearch::Amasty_ElasticSearch"
+             title="Amasty ElasticSearch"
+             module="Amasty_ElasticSearch"
+             parent="Magento_Backend::system"
+             sortOrder="80"
+             resource="Amasty_ElasticSearch::Amasty_ElasticSearch"
+        />
+        <add id="Amasty_ElasticSearch::stop_words"
+             title="Manage Stop Words"
+             module="Amasty_ElasticSearch"
+             parent="Amasty_ElasticSearch::Amasty_ElasticSearch"
+             sortOrder="10"
+             action="amasty_elastic/stopword/index"
+             resource="Amasty_ElasticSearch::stop_words"
+        />
+        <add id="Amasty_ElasticSearch::synonym"
+             title="Manage Synonyms"
+             module="Amasty_ElasticSearch"
+             parent="Amasty_ElasticSearch::Amasty_ElasticSearch"
+             sortOrder="20"
+             action="amasty_elastic/synonym/index"
+             resource="Amasty_ElasticSearch::synonym"
+        />
+        <add id="Amasty_ElasticSearch::relevance_rules"
+             title="Search Page Relevance Rules"
+             module="Amasty_ElasticSearch"
+             parent="Amasty_ElasticSearch::Amasty_ElasticSearch"
+             sortOrder="20"
+             action="amasty_elastic/relevancerule/index"
+             resource="Amasty_ElasticSearch::relevance_rules"
+        />
+        <add id="Amasty_ElasticSearch::settings"
+             title="Configuration"
+             module="Amasty_ElasticSearch"
+             sortOrder="100"
+             parent="Amasty_ElasticSearch::Amasty_ElasticSearch"
+             action="adminhtml/system_config/edit/"
+             resource="Amasty_ElasticSearch::config"
+        />
+    </menu>
+</config>

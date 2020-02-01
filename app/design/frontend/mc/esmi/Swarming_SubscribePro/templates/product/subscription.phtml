@@ -1,0 +1,32 @@
+<?php
+/**
+ * @var $block \Swarming\SubscribePro\Block\Product\Subscription
+ */
+?>
+<ul class="tabs">
+    <li class="tab-link active" data-tab="tab-1"><p><?= __('One time order') ?></p></li>
+    <li class="tab-link" data-tab="tab-2"><p><?= __('Subscription') ?></p></li>
+</ul>
+<div id="tab-1" class="tab-content current"></div>
+<div id="tab-2" class="tab-content">
+<div class="subscription-container" data-bind="scope: 'subscription-container'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+</div>
+<?php
+$buttonTitle = __('Add to Bag');
+$buttonOutOfStock = __('Out of stock');
+$subscribe = __('Subscribe');
+?>
+<script>
+    var buttonTitle = '<?= $buttonTitle?>',
+        buttonOutOfStock = '<?= $buttonOutOfStock?>',
+        subscribe = '<?= $subscribe?>';
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": <?php echo $block->getJsLayout();?>
+        }
+    }
+</script>

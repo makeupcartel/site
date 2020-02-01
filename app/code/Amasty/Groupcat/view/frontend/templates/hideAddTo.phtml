@@ -1,0 +1,24 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+?>
+<?php
+/** @var \Amasty\Groupcat\Block\Framework\Pricing\HideAddTo $block */
+/** @var string $productIdName */
+/** @var string $jsonData */
+?>
+
+<span id="<?= $productIdName ?>" style="display: none !important;"></span>
+<script>
+    require([
+        "jquery",
+        "Amasty_Groupcat/js/amHideAddTo"
+    ], function ($, amHideAddTo) {
+        $( document ).ready(function() {
+            $("#<?= $productIdName ?>").amHideAddTo(<?= $jsonData?>);
+        });
+    });
+</script>

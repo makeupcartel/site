@@ -1,0 +1,26 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+<div class="csp-socials">
+    <?php if ($block->isEnabled()) {
+        $facebookAppId = $block->getFacebookAppId();
+    ?>
+        <a target="_blank" id="csp-share" href="https://www.facebook.com/dialog/feed?app_id=<?php echo $facebookAppId; ?>&display=popup&caption=<?php echo urlencode($block->getMessage());?>&link=<?php echo $this->getStoreUrl(); ?>&redirect_uri=https://www.facebook.com/" id="csp-facebook"><i class="icon"></i><?php echo __('Share Order'); ?></a>
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=<?php echo urlencode($this->getMessage() . " " . $this->getUrl()); ?>." id="csp-tweet"><i class="icon"></i><?php echo __('Tweet Order'); ?></a>
+    <?php } ?>
+    <a href="<?php echo $block->getPrintUrl(); ?>" target="_blank" class="csp-button csp-print-buton" onclick="checkoutspage.printAction(); return false;" title="print"><i class="icon"></i><?php echo __('Print Order'); ?></a>
+</div>

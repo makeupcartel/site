@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_SocialLogin
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="Amasty\SocialLogin\Block\Popup" after="-" name="social-login-popup"
+                   template="Amasty_SocialLogin::popup.phtml">
+                <block class="Amasty\SocialLogin\Block\Social" before="customer.login.container"
+                       name="amsociallogin-social-popup" template="Amasty_SocialLogin::social.phtml" />
+
+                <block class="Magento\Customer\Block\Form\Login" name="customer_form_login_popup"
+                       template="Magento_Customer::form/login.phtml" />
+
+                <block class="Amasty\SocialLogin\Block\Form\Registration" name="customer_form_register_popup" template="Magento_Customer::form/register.phtml">
+                    <container name="form.additional.info" as="form_additional_info"/>
+                    <container name="customer.form.register.fields.before" as="form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

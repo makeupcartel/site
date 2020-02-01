@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <Unirgy_SimpleLicense>
+            <usimpleup>
+                <remote>https://download.unirgy.com/simple/client_api/version/</remote>
+                <changelog>https://unirgy.com/support/portal/announcements</changelog>
+            </usimpleup>
+        </Unirgy_SimpleLicense>
+    </default>
+</config>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+
+        </referenceContainer>
+        <move element="product.info.brand" destination="product.info.main" before="-"/>
+        <move element="guest-buttons" destination="product.info.main" before="product.info.overview"/>
+        <move element="product.info.details" destination="product.info.main" after="-"/>
+
+
+        <block class="Magento\Catalog\Block\Product\View" name="product.info.question"
+               template="Magento_Catalog::product/view/ask-question.phtml"/>
+        <move element="product.info.question" destination="product.info.addto" after="view.addto.compare"/>
+
+
+        <referenceContainer name="product.info.media">
+            <block class="Magento\Reports\Block\Product\Widget\Viewed" after="-" name="recently_viewed"
+            template="Magento_Reports::widget/viewed/content/viewed_grid.phtml">
+                <action method="setPageSize">
+                <argument name="page_size" xsi:type="number">5</argument>
+                </action>
+            </block>
+            </referenceContainer>
+        <referenceContainer name="product.info.main">
+            <container name="product_info_bottom" htmlTag="div" htmlClass="product-info-bottom" after="-">
+
+                <block class="Convert\Catalog\Block\Product" name="product.info.bottom"
+                       template="Magento_Catalog::product/view/product_infos.phtml"/>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <container name="product.mobile.title.container" htmlTag="div"
+                       htmlClass="product-mobile-title mobile-only" before="-">
+                <block class="Magento\Catalog\Block\Product\View\Description" name="product.mobile.title"
+                       template="Magento_Catalog::product/view/mobile-title.phtml"/>
+            </container>
+            <block class="Magento\Reports\Block\Product\Widget\Viewed" after="-" name="recently_viewed_mobile"
+            template="Magento_Reports::widget/viewed/content/viewed_grid.phtml">
+                <action method="setPageSize">
+                <argument name="page_size" xsi:type="number">5</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <block class="Magento\Catalog\Pricing\Render" name="product.price.final2">
+            <arguments>
+                <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                <argument name="price_type_code" xsi:type="string">final_price</argument>
+                <argument name="zone" xsi:type="string">item_view</argument>
+            </arguments>
+        </block>
+        <move element="recently_viewed_mobile" destination="page.bottom.container" after="-"/>
+        <move element="product.price.final2" destination="product.info.addtocart"/>
+        <move element="afterpay.price.installments" destination="product.info.main" after="product.info"/>
+    </body>
+</page>

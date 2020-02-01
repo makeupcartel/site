@@ -1,0 +1,26 @@
+<?php if ($block->isDisplayContainer() && !$block->isCustomerBalanceUsed()): ?>
+<form class="form giftcard add" id="giftcard-form" action="<?= $block->escapeUrl($block->getUrl('cstorecredit/cart/apply')) ?>" method="post" novalidate="novalidate">
+    <div class="block storecredit" id="block-storecredit" data-mage-init='{"collapsible":{"openedState": "active", "saveState": false}}'>
+        <div data-role="title" class="title">
+            <strong id="block-storecredit-heading" role="heading" aria-level="2">
+                <?= $block->escapeHtml(__('Store Credit')) ?>
+            </strong>
+        </div>
+        <div data-role="content" class="content" aria-labelledby="block-storecredit-heading">
+            <div class="payment-option-inner">
+                <span id="customerbalance-available-amount"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($block->getBalance(),true,false); ?></span>
+                <span><?= $block->escapeHtml(__('Store credit available')) ?></span>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button id="use-customer-balance"
+                            class="action action-use"
+                            name="payment[use_customer_balance]">
+                        <span><?= $block->escapeHtml(__('Use Store Credit')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<?php endif;?>

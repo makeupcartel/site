@@ -1,0 +1,113 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php /* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox */ ?>
+<?php $_option = $block->getOption() ?>
+<?php $_selections = $_option->getSelections() ?>
+
+<div class="field option <?= ($_option->getRequired()) ? ' required' : '' ?>">
+    <label class="label">
+        <span><?= $block->escapeHtml($_option->getTitle()) ?></span>
+    </label>
+    <div class="control">
+        <div class="nested options-list" data-selected="0">
+			<?php if ($block->showSingle()): ?>
+                <select id="bundle-option-<?= /* @escapeNotVerified */
+				$_option->getId() ?>"
+                        name="bundle_option[<?= /* @escapeNotVerified */
+				        $_option->getId() ?>]"
+					<?php if ($_option->getRequired()) echo 'data-validate = {required:true}' ?>>
+                    <option value="<?= /* @escapeNotVerified */
+					$_selections[0]->getSelectionId() ?>"
+						<?php if ($block->isSelected($_selections[0])) echo ' selected="selected"' ?>
+						<?php if (!$_selections[0]->isSaleable()) echo ' disabled="disabled"' ?>>
+						<?= /* @escapeNotVerified */
+						$block->getSelectionQtyTitlePrice($_selections[0], false) ?>
+                    </option>
+                </select>
+			<?php else: ?>
+				<?php
+				$a = 0;
+				foreach ($_selections as $_selection):
+					$a++;
+					?>
+                    <div class="field choice">
+                        <input class="bundle-option-<?= /* @escapeNotVerified */
+						$_option->getId() ?> checkbox product bundle option change-container-classname"
+                               id="bundle-option-<?= /* @escapeNotVerified */
+						       $_option->getId() ?>-<?= /* @escapeNotVerified */
+						       $_selection->getSelectionId() ?>"
+                               data-id="<?= $_option->getId() ?>"
+                               type="checkbox"
+							<?php if ($_option->getRequired()) /* @escapeNotVerified */
+								echo 'data-validate="{\'validate-one-required-by-name\':\'input[name^=&quot;bundle_option[' . $_option->getId() . ']&quot;]:checked\'}"' ?>
+                               name="bundle_option[<?= /* @escapeNotVerified */
+							   $_option->getId() ?>][<?= /* @escapeNotVerified */
+							   $_selection->getId() ?>]"
+                               data-selector="bundle_option[<?= /* @escapeNotVerified */
+							   $_option->getId() ?>][<?= /* @escapeNotVerified */
+							   $_selection->getId() ?>]"
+							<?php if ($block->isSelected($_selection)) echo ' checked="checked"' ?>
+							<?php if (!$_selection->isSaleable()) echo ' disabled="disabled"' ?>
+                               value="<?= /* @escapeNotVerified */
+							   $_selection->getSelectionId() ?>"
+                               data-id="<?= /* @escapeNotVerified */
+							   $_option->getId() ?>"/>
+                        <label class="label"
+                               for="bundle-option-<?= /* @escapeNotVerified */
+						       $_option->getId() ?>-<?= /* @escapeNotVerified */
+						       $_selection->getSelectionId() ?>">
+                            <span><?= /* @escapeNotVerified */
+	                            $block->getSelectionQtyTitlePrice($_selection) ?></span>
+                        </label>
+                    </div>
+				<?php endforeach; ?>
+                <div id="bundle-option-<?= /* @escapeNotVerified */
+				$_option->getId() ?>-container"></div>
+                <div class="mage-error manghv check" id="error<?= $_option->getId() ?>">Please select one of the
+                    options.
+                </div>
+                <input type="hidden" class="manghv" id="manghv<?= $_option->getId() ?>" value="[]">
+			<?php endif; ?>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function ($) {
+        $('.change-container-classname').change(function () {
+            var id = $(this).attr('id');
+            var dataid = $(this).attr('data-id');
+            if ($(this).is(':checked')) {
+                var manghv = JSON.parse($('#manghv' + dataid).val());
+                manghv.push(id);
+                $("#error" + dataid).addClass('check');
+                $('#manghv' + dataid).val(JSON.stringify(manghv));
+            } else {
+                var manghv = JSON.parse($('#manghv' + dataid).val());
+                for (var i = 0; i < manghv.length; i++) {
+                    if (manghv[i] == id) {
+                        manghv.splice(i, 1);
+                    }
+                }
+                if (manghv.length == 0) {
+                    $("#error" + dataid).removeClass('check');
+                }
+
+                $('#manghv' + dataid).val(JSON.stringify(manghv));
+            }
+        })
+
+
+    });
+</script>

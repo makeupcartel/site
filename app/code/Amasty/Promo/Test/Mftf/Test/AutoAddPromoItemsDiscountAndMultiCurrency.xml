@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="AutoAddPromoItemsDiscountAndMultiCurrency">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Rule Auto Add Promo Items With Products With Discount And MultiCurrency"/>
+            <description value="Check Rule Auto Add Promo Items With Products With Discount And MultiCurrency"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-23"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="AutoAddPromoItemsDiscountAndMultiCurrency"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfigurationBeforeTest"/>
+            <actionGroup ref="ChooseCurrencyInConfigurations" stepKey="settingMultiCurrency">
+                <argument name="currenciesConfigurations" value="_CurrencySetOne"/>
+            </actionGroup>
+            <actionGroup ref="InputRateUSDAndEUR" stepKey="inputRate">
+                <argument name="cartRule" value="autoAddPromoItemsDiscountAndMultiCurrency.rateUSDAndEUR"/>
+            </actionGroup>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfigurationAfterTest"/>
+            <actionGroup ref="ChooseDefaultCurrencyInConfigurations" stepKey="returnDefaultSettingCurrency"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create new Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromoWithPromoItems" stepKey="CreateCartRule1">
+            <argument name="actionsRulePromo" value="applyAutoAddPromoItemsWithProducts"/>
+            <argument name="cartRulePromo" value="autoAddPromoItemsDiscountAndMultiCurrency"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleAddDiscountSetting" stepKey="AddDiscountForRule">
+            <argument name="cartRulePromo" value="autoAddPromoItemsDiscountAndMultiCurrency"/>
+        </actionGroup>
+
+        <!-- Choose euro currency-->
+        <actionGroup ref="ChooseCurrency" stepKey="ChooseCurrencyEuro">
+            <argument name="currencies" value="_Euro"/>
+        </actionGroup>
+
+        <!--Add product to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Add Free Gift-->
+        <actionGroup ref="AddFreeGiftOneByOneInCart" stepKey="AddFreeGift">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+        </actionGroup>
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!-- Check Discount-->
+        <actionGroup ref="CheckPromoDiscountAmount" stepKey="CheckDiscountAmountAboutFreeGift">
+            <argument name="discountAmount" value="autoAddPromoItemsDiscountAndMultiCurrency.discountAmountOne"/>
+        </actionGroup>
+
+        <!-- Check No PopUp In Cart-->
+        <actionGroup ref="CheckNoPopUpInCart" stepKey="checkHavePopUpInCart"/>
+    </test>
+</tests>

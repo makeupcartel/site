@@ -1,0 +1,141 @@
+<?php
+/** @var $block \Unirgy\RapidFlow\Block\Adminhtml\Profile\Status */
+?>
+<?php
+$_p = $block->getProfile();
+$_isRunning = in_array($_p->getRunStatus(), ['pending', 'running', 'paused']);// == 'running';
+$_dryRun = $_p->getData('options/import/dryrun');
+$_percent = $_p->getRowsFound() ? ceil(100 * ($_p->getRowsProcessed() / $_p->getRowsFound())) : 0;
+$_snapshot = strtotime($_p->getSnapshotAt());
+$_started = strtotime($_p->getStartedAt());
+$_runtime = $_snapshot && $_started ? max(1, $_snapshot - $_started) : 0;
+$_rate = $_runtime ? round($_p->getRowsProcessed() / $_runtime, 2) : 0;
+$_estRuntime = $_p->getRowsProcessed() ? floor($_runtime / $_p->getRowsProcessed() * $_p->getRowsFound()) : null;
+$_logTail = (array)$_p->getLogTail();
+$tpl = __('%d:%02d');
+$_runtimeString = sprintf($tpl, floor($_runtime / 60), $_runtime % 60);
+$_estRuntimeString = sprintf($tpl, floor($_estRuntime / 60), $_estRuntime % 60);
+?>
+
+<?php if ($_isRunning): ?>
+    <h4><?php echo __('Progress') . ': ' . ($_dryRun ? '<strong>' . __('(DRY RUN)') . '</strong>' : '') ?></h4>
+    <div class="profile-progress-bar <?php echo $_dryRun ? 'dry-run' : '' ?>">
+        <div style="width:<?php echo $_percent ?>%;">&nbsp;<?php echo $_percent ?>%&nbsp;</div>
+    </div>
+<?php endif ?>
+<?php if (!$_isRunning): ?>
+    <div class="buttons-container">
+        <button type="button" class="log-report"
+                onclick="location.href='<?php echo $block->getUrl('*/*/downloadLog',
+                                                                  array('id' => $_p->getId())) ?>'">
+            <span><?php echo __('Download Plain Log') ?></span></button>
+        <button type="button" class="log-report"
+                onclick="location.href='<?php echo $block->getUrl('*/*/exportExcelReport',
+                                                                  array('id' => $_p->getId())) ?>'">
+            <span><?php echo __('Export Excel Report') ?></span></button>
+    </div>
+<?php endif; ?>
+
+<table cellspacing="0" class="profile-status-wrapper">
+    <tr>
+        <td class="td-wrapper">
+            <h4 class="log-title"><?php echo __('Status') ?>:</h4>
+            <table cellspacing="0" class="profile-status-numbers">
+                <tbody>
+                <tr>
+                    <td class="label"><?php echo __('Activity') ?>:</td>
+                    <td class="value"><?php echo __($_p->getCurrentActivity()) ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Rows Found') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getRowsFound()) ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Rows Processed') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getRowsProcessed()) ?></td>
+                </tr>
+                <tr <?php if ($_p->getRowsSuccess()): ?>class="tr-success"<?php endif ?>>
+                    <td class="label"><?php echo __('Rows Successful') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getRowsSuccess()) ?></td>
+                </tr>
+                <tr <?php if ($_p->getRowsDepends()): ?>class="tr-depends"<?php endif ?>>
+                    <td class="label"><?php echo __('Rows Depends') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getRowsDepends()) ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Rows Not Changed') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getRowsNochange()) ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Rows Empty/Comment') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getRowsEmpty()) ?></td>
+                </tr>
+                <tr <?php if ($_p->getRowsErrors()): ?>class="tr-error"<?php endif ?>>
+                    <td class="label"><?php echo __('Rows With Errors') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getRowsErrors()) ?></td>
+                </tr>
+                <tr <?php if ($_p->getNumErrors()): ?>class="tr-error"<?php endif ?>>
+                    <td class="label"><?php echo __('Total Errors') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getNumErrors()) ?></td>
+                </tr>
+                <tr <?php if ($_p->getNumWarnings()): ?>class="tr-warning"<?php endif ?>>
+                    <td class="label"><?php echo __('Total Warnings') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getNumWarnings()) ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Crunch Rate') ?>:</td>
+                    <td class="value"><?php echo number_format($_rate) ?><?php echo __('rows/second') ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Running For') ?>:</td>
+                    <td class="value"><?php echo $_runtimeString ?></td>
+                </tr>
+                <?php if ($_isRunning): ?>
+                    <tr>
+                        <td class="label"><?php echo __('Estimate Run Time') ?>:</td>
+                        <td class="value"><?php echo !is_null($_estRuntime) ? $_estRuntimeString : 'Unknown' ?></td>
+                    </tr>
+                    <tr>
+                        <td class="label"><?php echo __('Estimate Finish') ?>:</td>
+                        <td class="value"><?php echo !is_null($_estRuntime) ? date('Y-m-d H:i:s',
+                                                                                   strtotime($_p->getStartedAt()) + $_estRuntime) . ' (' . __('server time') . ')' : __('Unknown') ?></td>
+                    </tr>
+                <?php endif ?>
+
+                <tr>
+                    <td class="label"><?php echo __('Memory Used') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getMemoryUsage()) ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo __('Peak Memory Used') ?>:</td>
+                    <td class="value"><?php echo number_format($_p->getMemoryPeakUsage()) ?></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="td-wrapper">
+            <h4 class="log-title"><?php echo __('Log Tail') ?>:</h4>
+            <table cellspacing="0" class="profile-log-tail">
+                <thead>
+                <tr>
+                    <th><?php echo __('Type') ?></th>
+                    <th><?php echo __('Line') ?></th>
+                    <th><?php echo __('Column') ?></th>
+                    <th><?php echo __('Message') ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($_logTail as $_l): ?>
+                    <tr class="tr-<?php echo strtolower($_l['type']) ?>">
+                        <td class="td-type"><?php echo __($_l['type']) ?></td>
+                        <td class="td-line"><?php echo $_l['line'] ? number_format($_l['line']) : $_l['line'] ?></td>
+                        <td class="td-col"><?php echo $_l['col'] ?></td>
+                        <td class="td-msg"><?php echo $_l['msg'] ?></td>
+                    </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+
+        </td>
+    </tr>
+</table>

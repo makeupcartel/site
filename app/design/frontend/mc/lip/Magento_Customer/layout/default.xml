@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+         <referenceBlock name="header.links2">
+            <block class="Magento\Customer\Block\Account\Customer" name="customer2" template="Magento_Customer::account/customer2.phtml" before="-"/>
+            <block class="Magento\Customer\Block\Account\Customer" name="customer3" template="Magento_Customer::account/customer.phtml" before="-"/>
+        </referenceBlock>
+    </body>
+</page>

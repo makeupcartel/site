@@ -1,0 +1,32 @@
+<!--@subject Get a Quote Notification from {{var customer_name}} @-->
+<!--@vars {
+"var customer_name":"Sender Name",
+"var request.comment":"Comment",
+"var request.email":"Sender Email",
+"var request.name":"Sender Name",
+"var request.phone":"Sender Telephone",
+"var request.product_name":"Product",
+"var request.comment":"Comment"
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td valign="top">
+
+            <p><strong>{{trans "You have a new quote request placed by"}} {{var customer_name}},</strong></p>
+
+            <p>{{trans "Request details:"}}</p>
+
+            <p>{{trans "Name: %name" name=$request.name}}</p>
+            <p>{{trans "Email: %email" email=$request.email}}</p>
+            <p>{{trans "Phone Number: %phone" phone=$request.phone}}</p>
+            <p>{{trans "Product: %product" product=$request.product_name}}</p>
+            <p>{{trans "Comment: %comment" comment=$request.comment}}</p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}
+
+

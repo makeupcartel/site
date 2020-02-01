@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="formkey"/>
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+        <css src="Unirgy_RapidFlow::urapidflow.css"/>
+        <script src="Unirgy_RapidFlow::urapidflow.js"/>
+    </head>
+    <body>
+       <referenceContainer name="left">
+            <block name="urf_profile_edit_tabs" class="Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tabs"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block name="urf_profile_edit" class="Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit"/>
+        </referenceContainer>
+    </body>
+</page>

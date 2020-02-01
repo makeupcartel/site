@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Aheadworks\Blog\Block\Ajax */
+?>
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "awBlogAjax": <?php /* @noEscape */ echo $block->getScriptOptions(); ?>
+        }
+    }
+</script>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!-- 
+
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2015 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <prcheckoutspage>
+
+            <subscription>
+                <enabled>1</enabled>
+            </subscription>
+
+            <suggestion>
+                <enabled>1</enabled>
+                <number>5</number>
+                <type>CrossSell</type>
+            </suggestion>
+
+            <social_share>
+                <enabled>1</enabled>
+                <message><![CDATA[Hey, check this out! I've just made a purchase at {{store_name}}]]></message>
+            </social_share>
+
+            <coupon>
+                <enabled>1</enabled>
+                <display_once>1</display_once>
+                <customer_group>0,1,2,3</customer_group>
+                <coupon>custom</coupon>
+                <custom_coupon>CUSTOM_COUPON_CODE</custom_coupon>
+                <message><![CDATA[<h2>Come back soon! Use this code for 10% off your next order:</h2>]]></message>
+            </coupon>
+
+            <cms_right>
+                <enabled>1</enabled>
+                <content><![CDATA[<h2 class="csp-h2">DISCOVER THE SPRING / SUMMER COLLECTION</h2>
+<p>See summer better with our newest collection. There&rsquo;s a shape and a shade for every escapade. The collection consists of two silhouettes &ndash; the Scout and the Explorer &ndash; both of which are built with resilient beta-titanium and top quality polarized lenses.</p>
+<p><img alt="" src="{{view url='Plumrocket_Checkoutspage::images/default/banner1.jpg'}}" /></p>]]></content>
+            </cms_right>
+
+            <cms_bottom>
+                <enabled>1</enabled>
+                <content><![CDATA[<h2 class="csp-h2">Need Help?</h2>
+<p>Our customer service center is available by phone Monday - Saturday from 9am-7pm EST at 1-800-111-2222 or you can email us at support@domain.com</p>]]></content> 
+            </cms_bottom>
+
+            <email>
+                <template>prcheckoutspage_email_template</template>
+            </email>
+
+            <general>
+                <serial></serial>
+                <enabled_on>1</enabled_on>
+                <enabled_off>0</enabled_off>
+            </general>
+
+            <design>
+                <button_bg_color>#3399cc</button_bg_color>
+                <button_text_color>#FFFFFF</button_text_color>
+                <button_hover_bg_color>#2e8ab8</button_hover_bg_color>
+                <button_hover_text_color>#FFFFFF</button_hover_text_color>
+                <link_color>#636363</link_color>
+                <link_hover_color>#3399cc</link_hover_color>
+            </design>
+        </prcheckoutspage>
+
+        <google_review>
+            <enable>0</enable>
+            <estimated_delivery_days>3</estimated_delivery_days>
+        </google_review>
+    </default>
+</config>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="AutoAddPromoItemsForEveryXSpentApplyShipping">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Rule Auto Add Promo Items For Every X Spent With Apply Shipping For Free Gift"/>
+            <description value="Check Rule Auto Add Promo Items For Every X Spent With Apply Shipping For Free Gift"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-18"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="AutoAddPromoItemsForEveryXSpentApplyShipping"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfiguration"/>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <!-- Return default setting Promo-->
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfiguration"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create First Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromoWithPromoItems" stepKey="CreateCartRule1">
+            <argument name="actionsRulePromo" value="applyAutoAddPromoItemsForEveryXSpent"/>
+            <argument name="cartRulePromo" value="autoAddPromoItemsForEveryXSpentApplyShipping"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleChangeDiscountQtyStep" stepKey="ChangeQtyStepForRule">
+            <argument name="cartRulePromo" value="autoAddPromoItemsForEveryXSpentApplyShipping"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleApplyShippingForFreeGiftEnable" stepKey="EnableApplyShippingFreeGift">
+            <argument name="cartRulePromo" value="autoAddPromoItemsForEveryXSpentApplyShipping"/>
+        </actionGroup>
+
+        <!--Add product to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+
+        <!-- Check Free Gift In The Cart-->
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddTwoFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+            <argument name="addProductQty" value="_enterQty2"/>
+        </actionGroup>
+
+        <!--Check price shipping-->
+        <actionGroup ref="CheckPriceShipping" stepKey="CheckPriceShippingFlatRate1">
+            <argument name="shippingPrices" value="_Price_15_00.price"/>
+            <argument name="shippingMethods" value="_FlatRateMethod"/>
+        </actionGroup>
+
+        <!--Change Aty product to cart-->
+        <actionGroup ref="ChangeQtyProductInCart" stepKey="ChangeQtyWatchClamberToTwo">
+            <argument name="products" value="_theWatchClamberData"/>
+            <argument name="addProductQty" value="_enterQty2"/>
+        </actionGroup>
+
+        <!--Check Free Gift In The Cart After Change-->
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddForFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+            <argument name="addProductQty" value="_enterQty4"/>
+        </actionGroup>
+
+        <!--Check price shipping-->
+        <actionGroup ref="CheckPriceShipping" stepKey="CheckPriceShippingFlatRate2">
+            <argument name="shippingPrices" value="_Price_30_00.price"/>
+            <argument name="shippingMethods" value="_FlatRateMethod"/>
+        </actionGroup>
+    </test>
+</tests>

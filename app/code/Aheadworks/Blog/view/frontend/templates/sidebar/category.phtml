@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\Sidebar\Category */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+$childCategories = $block->getChildCategories();
+$currentCategory = $block->getCurrentCategory();
+$parentCategory = $block->getParentCategory();
+$displayLimit = $block->getNumCategoriesToDisplay();
+$indexItem = 0;
+?>
+<?php if ($currentCategory || count($childCategories)): ?>
+    <div id="blog-sidebar-category-listing" class="block widget blog-sidebar-block">
+        <div class="block-title">
+            <strong class="blog-sidebar-block-title"><?php echo $block->escapeHtml(__('Categories')) ?></strong>
+        </div>
+        <div class="block-content blog-sidebar-block-content">
+            <ul data-mage-init='{"awBlogToggleCategories":{}}' class="block-category-listing">
+                <?php if ($parentCategory): ?>
+                    <li class="block-category-listing-item parent">
+                        <a href="<?php /* @noEscape */ echo $block->escapeUrl($block->getCategoryUrl($parentCategory)) ?>"
+                           class="block-category-listing-item-link">
+                            <?php echo $block->escapeHtml($parentCategory->getName()) ?>
+                        </a>
+                    </li>
+                <?php elseif (!$parentCategory && $currentCategory): ?>
+                    <li class="block-category-listing-item parent">
+                        <a href="<?php /* @noEscape */ echo $block->escapeUrl($block->getBlogHomeUrl()) ?>"
+                           class="block-category-listing-item-link">
+                            <?php echo $block->escapeHtml(__('All Categories')) ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($currentCategory): ?>
+                <li class="block-category-listing-item current">
+                    <a href="<?php /* @noEscape */ echo $block->escapeUrl($block->getCategoryUrl($currentCategory)) ?>"
+                       class="block-category-listing-item-link">
+                        <?php echo $block->escapeHtml($currentCategory->getName()) ?>
+                    </a>
+                </li>
+                <?php endif; ?>
+                <?php foreach ($childCategories as $category): ?>
+                    <?php $indexItem++; ?>
+                    <li class="block-category-listing-item <?php /* @noEscape */ echo $block->getAdditionalClass($indexItem) ?>">
+                        <a href="<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getCategoryUrl($category)) ?>"
+                           class="block-category-listing-item-link">
+                            <?php echo $block->escapeHtml($category->getName()) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+                <?php if ($block->isNeedToDisplayShowMoreLinks($indexItem)): ?>
+                    <li class="block-category-listing-item show-more">
+                        <span class="show" id="block-category-show-more-link"><?php echo $block->escapeHtml(__('show more')) ?></span>
+                        <span class="hide" id="block-category-show-less-link"><?php echo $block->escapeHtml(__('show less')) ?></span>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Oaction
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amasty_oaction" translate="label" type="text" sortOrder="130115" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Mass Order Actions</label>
+            <tab>amasty</tab>
+            <resource>Amasty_Oaction::config</resource>
+            <group id="amasty_information" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Information</label>
+                <frontend_model>Amasty\Oaction\Block\Adminhtml\System\Config\Information</frontend_model>
+            </group>
+            <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General</label>
+                <field id="commands" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enabled Actions</label>
+                    <source_model>Amasty\Oaction\Model\Source\Commands</source_model>
+                    <comment><![CDATA[Press CTRL+ left mouse button to select multiple values. To use "Update Order Attributes" action please install <a href="https://amasty.com/order-attributes-for-magento-2.html">Amasty Order Attributes</a> extension v2.2.0 or higher]]></comment>
+                </field>
+            </group>
+            <group id="invoice" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Invoice Action</label>
+                <field id="status" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Assign Status</label>
+                    <source_model>Amasty\Oaction\Model\Source\Status</source_model>
+                </field>
+                <field id="print" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Print Invoices</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="capture" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Requested Payment Capture Case</label>
+                    <comment>Default Payment Capture Case for Invoicing Orders</comment>
+                    <source_model>Amasty\Oaction\Model\Source\InvoiceCapture</source_model>
+                </field>
+            </group>
+            <group id="ship" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Ship Action</label>
+                <field id="status" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Assign Status</label>
+                    <source_model>Amasty\Oaction\Model\Source\Status</source_model>
+                </field>
+                <field id="carrier" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default Carrier</label>
+                    <source_model>Amasty\Oaction\Model\Source\Carriers</source_model>
+                    <comment><![CDATA[Will be pre-selected at the orders grid.]]></comment>
+                </field>
+                <field id="title" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default Title for Custom Carrier</label>
+                </field>
+                <field id="comment" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Show Custom Carrier Title at the Order Grid</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="status" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Status</label>
+                <field id="check_state" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Check State</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Disallow to set status, which assigned to other state.]]></comment>
+                </field>
+                <field id="exclude_statuses" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Excluded options for the 'Change status' action</label>
+                    <source_model>Amasty\Oaction\Model\Source\State</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <comment><![CDATA[Do not select any statuses to make all options available on the Order grid.]]></comment>
+                </field>
+            </group>
+            <group id="amasty_paction" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+               <attribute type="expanded">1</attribute>
+               <label><![CDATA[Mass Product Actions]]></label>
+               <field id="label" translate="label comment" type="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Status</label>
+                   <frontend_model>Amasty\Oaction\Block\Adminhtml\System\Config\Paction</frontend_model>
+               </field>
+            </group>
+        </section>
+    </system>
+</config>

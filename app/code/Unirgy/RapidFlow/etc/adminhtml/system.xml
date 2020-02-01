@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="urapidflow" sortOrder="100" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>RapidFlow</label>
+            <tab>advanced</tab>
+            <resource>Unirgy_RapidFlow::system_config</resource>
+            <group id="finetune" translate="label" sortOrder="10" type="text" showInDefault="1">
+                <label>Fine Tuning</label>
+                <field id="import_page_size" translate="label" sortOrder="10" type="text" showInDefault="1">
+                    <label>Import Data Page Size (rows)</label>
+                </field>
+                <field id="export_page_size" translate="label comment" sortOrder="20" type="text" showInDefault="1">
+                    <label>Export Data Page Size (rows)</label>
+                    <comment>Number of rows to be processed in one batch. Higher number may yield better performance,
+                        but will require more memory.
+                    </comment>
+                </field>
+                <field id="page_sleep_delay" translate="label comment" sortOrder="30" type="text" showInDefault="1">
+                    <label>Page Process Sleep Delay (sec)</label>
+                    <comment>Time to wait between processing data batches, may help with server load</comment>
+                </field>
+                <field id="status_refresh_delay" translate="label comment" sortOrder="40" type="text" showInDefault="1">
+                    <label>Status Refresh Delay (sec)</label>
+                    <comment>How often to refresh profile status, while it's running</comment>
+                </field>
+                <field id="curl_connect_timeout" translate="label comment" sortOrder="50" type="text" showInDefault="1">
+                    <label>CURL Connect Timeout (sec)</label>
+                    <comment>How much to wait for connection when download images</comment>
+                </field>
+                <field id="curl_timeout" translate="label comment" sortOrder="60" type="text" showInDefault="1">
+                    <label>CURL Timeout (sec)</label>
+                    <comment>How much time allow image download (to eliminate profile hang on bad image urls)</comment>
+                </field>
+                <field id="curl_useragent" translate="label comment" sortOrder="70" type="text" showInDefault="1">
+                    <label>CURL UserAgent</label>
+                    <comment>User-Agent header string to use by CURL during image download</comment>
+                </field>
+                <field id="curl_headers" translate="label comment" sortOrder="80" type="text" showInDefault="1">
+                    <label>CURL Extra Headers</label>
+                    <comment>Extra headers to use by CURL during image download</comment>
+                </field>
+                <field id="curl_customrequest" translate="label comment" sortOrder="90" type="text" showInDefault="1">
+                    <label>CURL Custom Request</label>
+                    <comment>Provide value for CURLOPT_CUSTOMREQUEST curl option</comment>
+                </field>
+            </group>
+            <group id="dirs" translate="label comment" sortOrder="15" type="text" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Default Directories</label>
+                <field id="import_dir" translate="label comment" sortOrder="10" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Import Dir</label>
+                    <comment>Use the following roots: {magento}, {var}, {media}</comment>
+                </field>
+                <field id="export_dir" translate="label comment" sortOrder="20" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Export Dir</label>
+                </field>
+                <field id="log_dir" translate="label comment" sortOrder="30" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Log Dir</label>
+                </field>
+                <field id="report_dir" translate="label comment" sortOrder="40" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Report Dir</label>
+                </field>
+                <field id="images_dir" translate="label comment" sortOrder="50" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Images Dir</label>
+                    <comment>If not absolute path, it is relative to the CSV file</comment>
+                </field>
+            </group>
+            <group id="import_options" translate="label" sortOrder="17" type="text" showInDefault="1">
+                <label>Global Import Options</label>
+                <field id="date_processor" translate="label" sortOrder="10" type="select" showInDefault="1">
+                    <label>Dates processor</label>
+                    <source_model>Unirgy\RapidFlow\Model\Source</source_model>
+                </field>
+            </group>
+            <group id="admin" sortOrder="20" type="text" showInDefault="1">
+                <label>Administrative Configuration</label>
+                <field id="notifications" translate="label comment" sortOrder="10" type="select" showInDefault="1">
+                    <label>Subscribe for extension update notifications</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

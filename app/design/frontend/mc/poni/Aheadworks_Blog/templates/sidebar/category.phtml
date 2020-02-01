@@ -1,0 +1,122 @@
+<?php
+/**
+ * Copyright 2018 aheadWorks. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+use Magento\Store\Model\BaseUrlChecker;
+
+/* @var $block \Aheadworks\Blog\Block\Sidebar\Recent */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+$cHelper = $this->helper('Convert\Blog\Helper\Data');
+$categories = $cHelper->getCategories();
+$displayLimit = $block->getNumCategoriesToDisplay();
+$indexItem = 0;
+
+$blockObj = $block->getLayout()->createBlock('Aheadworks\Blog\Block\Widget\TagCloud');
+
+$tagCloudItems = $blockObj->getItems();
+
+
+?>
+<?php if (count($categories)): ?>
+    <div id="blog_image_sidebar">
+        <div id="blog-sidebar-category-listing" class="block widget blog-sidebar-block">
+            <div class="block-title">
+                <h1 class="blog-my-title">
+					<?php echo __("BLOG") ?>
+                </h1>
+            </div>
+            <div class="block-content blog-sidebar-block-content">
+                <span class="toggle-menu-responsive" id="BLOG_NAVIGATION">Blog Navigation</span>
+                <strong class="blog-sidebar-block-title"><?php echo $block->escapeHtml(__('CATEGORIES')) ?></strong>
+                <ul data-mage-init='{"awBlogToggleCategories":{}}' class="block-category-listing"
+                    id="blog_navigation">
+                    <strong class="blog-sidebar-block-title-responsive"><?php echo $block->escapeHtml(__('CATEGORIES')) ?></strong>
+					<?php foreach ($categories as $category): ?>
+						<?php $indexItem++; ?>
+                        <li class="block-category-listing-item <?php /* @noEscape */
+						echo $block->getAdditionalClass($indexItem) ?>">
+                            <a href="<?php /* @noEscape */
+							echo $block->escapeXssInUrl($block->getCategoryUrl($category)) ?>"
+                               class="block-category-listing-item-link">
+								<?php echo $block->escapeHtml($category->getName()) ?>
+                            </a>
+                        </li>
+					<?php endforeach; ?>
+                </ul>
+				<?php
+				if ($blockObj->isEnabled() && count($tagCloudItems)) {
+					?>
+                    <ul data-mage-init='{"awBlogToggleCategories":{}}' class="block-category-listing responsive"
+                        id="blog_navigation2">
+                        <strong class="blog-sidebar-block-title-responsive"><?php echo $block->escapeHtml(__('TAGS')) ?></strong>
+						<?php foreach ($tagCloudItems as $tagCloudItem): ?>
+							<?php $indexItem++; ?>
+                            <li class="block-category-listing-item <?php /* @noEscape */
+							echo $block->getAdditionalClass($indexItem) ?>">
+                                <a href="<?php /* @noEscape */
+								echo $blockObj->escapeXssInUrl($blockObj->getSearchByTagUrl($tagCloudItem)) ?>"
+                                   class="block-category-listing-item-link">
+									<?php echo $blockObj->escapeHtml($tagCloudItem->getTag()->getName()) ?>
+                                </a>
+                            </li>
+						<?php endforeach; ?>
+                    </ul>
+					<?php
+				}
+				?>
+            </div>
+			<?php
+			if ($blockObj->isEnabled() && count($tagCloudItems)) {
+				?>
+                <div class="block-content blog-sidebar-block-content" id="tags_blogs">
+                    <strong class="blog-sidebar-block-title"><?php echo $block->escapeHtml(__('TAGS')) ?></strong>
+                    <ul data-mage-init='{"awBlogToggleCategories":{}}' class="block-category-listing">
+						<?php foreach ($tagCloudItems as $tagCloudItem): ?>
+							<?php $indexItem++; ?>
+                            <li class="block-category-listing-item <?php /* @noEscape */
+							echo $block->getAdditionalClass($indexItem) ?>">
+                                <a href="<?php /* @noEscape */
+								echo $blockObj->escapeXssInUrl($blockObj->getSearchByTagUrl($tagCloudItem)) ?>"
+                                   class="block-category-listing-item-link">
+									<?php echo $blockObj->escapeHtml($tagCloudItem->getTag()->getName()) ?>
+                                </a>
+                            </li>
+						<?php endforeach; ?>
+                    </ul>
+                </div>
+
+				<?php
+			}
+			?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function ($) {
+        $("#BLOG_NAVIGATION").click(function () {
+            var a = jQuery("#blog_navigation").css("display");
+            if (a == 'none') {
+                $(".block-category-listing").addClass('active');
+                $("#BLOG_NAVIGATION").addClass('active');
+                $("#BLOG_NAVIGATION").focus();
+                $(".block-content.blog-sidebar-block-content").addClass('active');
+                $(".block-content.blog-sidebar-block-content").focus();
+            } else if (a == 'block') {
+                $(".block-category-listing").removeClass('active');
+                $("#BLOG_NAVIGATION").removeClass('active');
+                $("#BLOG_NAVIGATION").focus();
+                $(".block-content.blog-sidebar-block-content").removeClass('active');
+                $(".block-content.blog-sidebar-block-content").focus();
+            }
+        });
+    });
+</script>
+

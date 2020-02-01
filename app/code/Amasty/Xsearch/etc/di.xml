@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Category">
+        <plugin name="Amasty_Xsearch::Category" type="Amasty\Xsearch\Plugin\Category"/>
+    </type>
+
+    <type name="Magento\Framework\Search\Adapter\Mysql\Aggregation\DataProviderContainer">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="amasty_xsearch_category_fulltext" xsi:type="object">Amasty\Xsearch\Model\Adapter\Category\Mysql\Aggregation\DataProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Search\Adapter\Mysql\Mapper">
+        <arguments>
+            <argument name="indexProviders" xsi:type="array">
+                <item name="amasty_xsearch_category_fulltext" xsi:type="object">Amasty\Xsearch\Model\Search\Category\IndexBuilder</item>
+            </argument>
+            <argument name="entityMetadata" xsi:type="object">Magento\Framework\Search\ProductEntityMetadata</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\Xsearch\Block\Search\Brand">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="collectionFactory" xsi:type="object">Magento\Framework\Data\CollectionFactory</item>
+                <item name="dataObjectFactory" xsi:type="object">Magento\Framework\DataObjectFactory</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\Xsearch\Block\Search\Category">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="collectionFactory" xsi:type="object">Amasty\Xsearch\Model\ResourceModel\Category\Fulltext\CollectionFactory</item>
+                <item name="categoryCollectionFactory" xsi:type="object">\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\Xsearch\Block\Search\Page">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="collectionFactory" xsi:type="object">Amasty\Xsearch\Model\ResourceModel\Page\Fulltext\CollectionFactory</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\Xsearch\Block\Search\Recent">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="collectionFactory" xsi:type="object">Magento\Search\Model\ResourceModel\Query\CollectionFactory</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ElasticSearch\Model\Indexer\ExternalIndexerProvider">
+        <arguments>
+            <argument name="sources" xsi:type="array">
+                <item name="amasty_xsearch_fulltext" xsi:type="object">Amasty\Xsearch\Model\Indexer\ElasticExternalProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ElasticSearch\Plugin\Xsearch\Block\Search">
+        <arguments>
+            <argument name="indexedTypes" xsi:type="array">
+                <item name="landing_page" xsi:type="const">Amasty\Xsearch\Block\Search\Landing::CATEGORY_BLOCK_LANDING</item>
+                <item name="category" xsi:type="const">Amasty\Xsearch\Block\Search\Category::CATEGORY_BLOCK_TYPE</item>
+                <item name="brand" xsi:type="const">Amasty\Xsearch\Block\Search\Brand::BRAND_BLOCK_PAGE</item>
+                <item name="cms" xsi:type="const">Amasty\Xsearch\Block\Search\Page::CATEGORY_BLOCK_PAGE</item>
+                <item name="blog" xsi:type="const">Amasty\Xsearch\Block\Search\Blog::BLOG_BLOCK_PAGE</item>
+                <item name="product" xsi:type="const">Amasty\Xsearch\Block\Search\Product::BLOCK_TYPE</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ElasticSearch\Model\Indexer\Data\DataMapperResolver">
+        <arguments>
+            <argument name="dataMappers" xsi:type="array">
+                <item name="catalogsearch_fulltext" xsi:type="array">
+                    <item name="advanced_search" xsi:type="object">Amasty\Xsearch\Model\Indexer\ElasticSearchProductDataMapper</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Url">
+        <arguments>
+            <argument name="urlFactory" xsi:type="object">\Amasty\Xsearch\Model\Indexer\UrlFactory</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Indexer\Model\Config">
+        <plugin name="am_reindex_order" type="Amasty\Xsearch\Plugin\Indexer\Config" sortOrder="1" />
+    </type>
+</config>

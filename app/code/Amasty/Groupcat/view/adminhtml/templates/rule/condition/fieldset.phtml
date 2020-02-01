@@ -1,0 +1,56 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+?>
+<?php
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Backend\Block\Widget\Form\Renderer\Fieldset $block */
+/** @var  \Magento\Framework\Data\Form\Element\AbstractElement $_element */
+?>
+<?php $_element = $block->getElement() ?>
+<?php $_jsObjectName = $block->getFieldSetId() != null ? $block->getFieldSetId() : $_element->getHtmlId() ?>
+<div class="rule-tree admin__field-control _with-tooltip  amgroupcat-condition-wrapper">
+    <div class="admin__field-tooltip amgroupcat-tooltip">
+        <?php if($_jsObjectName !== 'rule_actions_fieldset'): ?>
+            <a class="admin__field-tooltip-action action-help"
+               target="_blank"
+               title="<?= $block->escapeHtml(__('You can not find the required attribute in product conditions?')); ?>"
+               tabindex="1"
+               data-bind="attr: {href: tooltip.link}">
+            </a>
+            <div class="admin__field-tooltip-content amgroupcat-image" data-bind="html: tooltip.description">
+                <img src="<?= $block->getViewFileUrl('Amasty_Groupcat::images/groupcat-1.gif') ?>"
+                     alt="<?= $block->escapeHtml(__('How to find required attribute')); ?>">
+            </div>
+        <?php endif; ?>
+    </div>
+    <fieldset id="<?= $block->escapeHtml($_jsObjectName) ?>" <?= $block->escapeHtml($_element->serialize(['class'])) ?> class="fieldset amgroupcat-fieldset">
+    <?php if ($_element->getComment()): ?>
+        <div class="messages">
+            <div class="message message-notice"><?= $block->escapeHtml($_element->getComment()) ?></div>
+        </div>
+    <?php endif; ?>
+    <div class="rule-tree-wrapper">
+        <?= $_element->getChildrenHtml() ?>
+    </div>
+    </fieldset>
+</div>
+
+<script>
+require([
+    "Magento_Rule/rules",
+    "prototype"
+], function(VarienRulesForm){
+
+window.<?= /* @escapeNotVerified */ $_jsObjectName ?> = new VarienRulesForm('<?= /* @escapeNotVerified */ $_jsObjectName ?>', '<?= /* @escapeNotVerified */ $block->getNewChildUrl() ?>');
+<?php if ($_element->getReadonly()): ?>
+    <?= $_element->getHtmlId() ?>.setReadonly(true);
+<?php endif; ?>
+
+});
+</script>

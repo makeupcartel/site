@@ -1,0 +1,387 @@
+Xtento_ProductExport
+
+-------------
+  CHANGELOG
+-------------
+
+===== 2.0.0 =====
+ * Initial stable M2 release
+
+===== 2.0.1 =====
+ + Added event xtento_productexport_export_after that is dispatched after export
+ * Fixed a bug where cronjobs of other export profiles where removed when saving a profile
+
+===== 2.0.2 =====
+ * Established compatibility with other email transports such as Ebizmarts/Mandrill for debug message mailing/email destinations.
+
+===== 2.0.3 =====
+ * Compatibility with Magento 2.1.0 established
+ * Fixed SFTP source type, Net_SFTP library using namespaced class names now
+
+===== 2.0.4 =====
+ * Cronjobs for profiles which have been deleted are automatically deleted as well
+ * Fixed "Date From" / "Date To" filter in export profile that always set "todays" date when empty
+
+===== 2.0.5 =====
+ * SFTP destination type is now working for Magento 2.0 and Magento 2.1
+
+===== 2.0.6 =====
+ * Fixed issue for media gallery/image export
+ * Fixed date range filter for automatic/manual exports. In some environments, the timezone of the store wasn't used.
+ * Fixed bug for date range export that would include next days object created on 12:00:00AM exactly
+
+===== 2.0.7 =====
+ * Updated composer.json to require XTENTO "XtCore" base module
+
+===== 2.0.8 =====
+ * Fixed error for manual/automatic date range exports
+
+===== 2.0.9 =====
+ * Fixed wrong "View Execution Log Entry" link in "Export History"
+
+===== 2.1.0 =====
+ + Major new feature: Added the ability to export product reviews
+
+===== 2.1.1 =====
+ + Set grid column type for various columns in "Execution Log" to "longtext" so long result messages are not truncated on the grid
+
+===== 2.1.2 =====
+ * Fixed potential problem for "grand parent" (parent of parent) export which could cause recursion (=never finishing exports).
+
+===== 2.1.3 =====
+ * Fixed grid exports: If "Select all" was used no objects were exported
+
+===== 2.1.4 =====
+ + Added bin/magento "xtento:productexport:export" CLI command
+ * Fixed "Tools > Import" functionality: Sometimes destinations assigned to an imported profile were not automatically assigned to the imported profile again.
+
+===== 2.1.5 =====
+ + Fixed bug for cronjob exports where, for multiple export profiles scheduled at the same time, 2nd/3rd/... profile running may be missing certain fields/data.
+
+===== 2.1.6 =====
+ * Fixed issues for manual exports where sometimes (especially in Internet Explorer, but also Chrome/Firefox) the profile drop down didn't work and no manual export was possible.
+
+===== 2.1.7 =====
+ + Added ability to prepend exported files with "UTF8 BOM" (required in special situations, sometimes for example for Excel). In <file> tag specify addUtf8Bom="1".
+
+===== 2.1.8 =====
+ + Added ability to load XSL Template from filesystem. In "XSL Template" field enter a full/absolute path on the filesystem to the file containing the XSL template, e.g.: /var/www/web/var/xsl/template.xsl
+ * Fixed empty fields when loading XSL Template from filesystem. Correct "fields to fetch" are now loaded.
+ * Fixed mass actions; if a filter was used on a grid (and also sometimes in combination with "select all") then eventually all orders/none were exported
+
+===== 2.1.9 =====
+ * Fixed issue for review export where same review was shown multiple times in some cases
+ * Fixed issue for "Show fields available for export" where "this ID does not exist" was shown for existing IDs if invalid UTF8 data was used in object/product/...
+
+===== 2.2.0 =====
+ * Fixed bug for cron export: In some cases, as no sort order was specified for paging export, sometimes products/categories were exported twice/in changing order within the same execution.
+
+===== 2.2.1 =====
+ * Removed xtento/export_data.xml and replaced configuration loading with Magento 2 configuration data loader from xtento/productexport_data.xml and validation via XSD.
+
+===== 2.2.2 =====
+ * Fixed "Updated during last X minutes" profile filter which lead to an error when exporting a profile that used this filter
+
+===== 2.2.3 =====
+ * Fixed "Strip Tags" functionality that sometimes threw an error
+
+===== 2.2.4 =====
+ * Fixed date/time variables in filename (via XSL Template) to use Magento configured timezone
+
+===== 2.2.5 =====
+ * Fixed cronjob export error "Invalid attribute name: main_table.entity_id"
+
+===== 2.2.6 =====
+ * Fixed bug for profiles imported using "Tools > Import" functionality: Cronjob export never started until the profile was saved for the first time; now cronjobs are updated directly after the import via "Tools"
+
+===== 2.2.7 =====
+ * Fixed error when generating $timestamp variable in XSL (Notice: Undefined property: Xtento\ProductExport\Model\Output\Xsl::$coreDate)
+
+===== 2.2.8 =====
+ * Fixed "Show fields available for export" that didn't show field list in some browsers
+ * Fixed export of product images ("images/image" empty) for Magento 2.1+.
+
+===== 2.2.9 =====
+ + Added "xtento:productexport:config:export" and "xtento:productexport:config:import" commands that add "Product Export > Tools" functionality for the Magento command line via php bin/magento.
+
+===== 2.3.0 =====
+ * Updated Xtento_XtCore to version 2.0.7 ("Added warning in module configuration at System > Configuration if module output is disabled via "Disable Module Output" at System > Configuration > Advanced > Advanced")
+ * Fixed notice "current() expects parameter 1 to be array, null given" when testing XSL/exporting
+
+===== 2.3.1 =====
+ * Fixed issue "Could not save temporary file to store test export for serving the file to the browser" for "Test XSL Template" functionality, Magento tmp directory is now used, not system tmp directory
+
+===== 2.3.2 =====
+ * Fixed error message "Requested product doesn't exist" when trying to export a product where child/parent item has been deleted
+
+===== 2.3.3 =====
+ * Updated Xtento_XtCore to version 2.0.8
+
+===== 2.3.4 =====
+ * Log entries with 0 records exported that have warnings/errors are now logged and not deleted like before
+ * Fixed issue about area code for CLI exports using the CLI export command
+
+===== 2.3.5 =====
+ + Compatibility with Magento 2.2 established
+ * Fixed error during installation of Magento 2.1.8+ if our module is enabled. Happened because of TimezoneInterface not being lazy-loaded in AbstractAutomaticExport.
+
+===== 2.3.6 =====
+ * Fixed error during setup:di:compile for Magento 2.0/2.1
+
+===== 2.3.7 =====
+ * Fixed bug in grid serializer: Destination is not unchecked when editing profile if "Edit Destination" link is clicked
+
+===== 2.3.8 =====
+ + Added ability to export correct "final_price" after all catalog price rules, etc.
+
+===== 2.3.9 =====
+ * Improved export performance: Index for entity_id in profile history table added
+
+===== 2.4.0 =====
+ * Fixed issue that empty exports are showing up in Execution Log
+
+===== 2.4.1 =====
+ * Updated Xtento_XtCore to version 2.1
+
+===== 2.4.2 =====
+ + Added syntax highlighting for XSL Template editor in export profile section
+
+===== 2.4.3 =====
+ + Added "resizeImage" helper to Helper/Xsl.php for easy image resizing
+
+===== 2.4.4 =====
+ * Fixed email sending for email destinations/error notification on Magento 2.2+ (Error: "Call to undefined method Magento\Email\Model\Transport\Interceptor::send()")
+
+===== 2.4.5 =====
+ * Fixed "option_parameters_in_url" field being empty/null
+
+===== 2.4.6 =====
+ * This is a potentially breaking change: Improved XSL security - PHP functions that can be executed via XSL are restricted now. Read more here: https://support.xtento.com/wiki/Magento_2_Extensions:Magento_Product_Export_Module#Calling_PHP_functions_in_XSL_Templates
+
+===== 2.4.7 =====
+ * Fixed "Show fields available for export" showing "<strong>" for nodes
+ * Fixed "Mass Download" functionality in "Execution Log" that previously returned "Please select log entries to download".
+
+===== 2.4.8 =====
+ * Fixed error email notification: From email is now retrieved from system configuration ("ident_general/email")
+
+===== 2.4.9 =====
+ + Added ability to access parent_item when exporting data from a product for "Product Review" export profiles
+
+===== 2.5.0 =====
+ + Added ability to export average rating percentage for product for "Product Review" export profiles
+
+===== 2.5.1 =====
+ * Fixed bug when importing profiles from Magento 1 or Magento 2.0/2.1 via the "Tools" functionality of the module
+
+===== 2.5.2 =====
+ * Fixed issue for "Tools" import functionality that could lead to an error when importing profiles
+ * Updated Xtento_XtCore to version 2.2.0
+
+===== 2.5.3 =====
+ * Fixed error "No such entity with id = ..." for deleted categories
+ 
+===== 2.5.4 =====
+ * Added "iconv" to list of whitelisted PHP functions
+
+===== 2.5.5 =====
+ * Fixed bug for product review exports; store wasn't set properly
+ * Fixed error for product review exports: Notice: Undefined offset: 0 in .../Review/General.php
+
+===== 2.5.6 =====
+ * Fixed issue product review "ratings" export; store wasn't set properly.
+
+===== 2.5.7 =====
+ + Added additional safe-guard against unwanted cronjob exports in case the module is disabled
+ + Removed "is module properly installed" check, not required for Magento 2
+
+===== 2.5.8 =====
+ * Deleting a profile also deletes the profiles cronjobs now, to avoid "zombie" cronjobs that don't do anything.
+
+===== 2.5.9 =====
+ + Added "stock" node for child_products, so stock information of child products can be accessed
+
+===== 2.6.0 =====
+ * [Improved Magento 2.2 Compatibility] Added a RecurringData setup script that checks if an upgrade to M2.2 was performed, if yes, data structure in the profile tables will be changed from serialized to JSON automatically
+
+===== 2.6.1 =====
+ + Added ability to export child products when exporting product reviews
+
+===== 2.6.2 =====
+* Fixed issue for "Customer Group" setting in "Stores & Filters" tab. Sometimes, due to wrong IDs, the filter/setting wasn't applied.
+
+===== 2.6.3 =====
+ * Updated Xtento_XtCore to version 2.3.0
+ * Confirmed compatibility with Magento CE 2.2.5 / EE 2.2.5
+
+===== 2.6.4 =====
+ * Fixed issue in grids: After filtering/searching, mass actions didn't work anymore
+
+===== 2.6.5 =====
+ * Fixed a bug for "Tools > Settings Import": Importing settings exported from Magento >=2.2 into Magento <=2.1 failed
+
+===== 2.6.6 =====
+ * Fixed sorting/filtering/searching within log/history grids when editing a profile
+
+===== 2.6.7 =====
+ + Added "1 click profile wizard" - a setup wizard that allows you to create profiles for all supported feeds (Google, etc.) with the click of a button. All settings are auto-populated. Requires support & update period to be active to have access to the templates.
+
+===== 2.6.8 =====
+ + Added "_cache_url" fields such as "thumbnail_cache_url" to get cached image links
+
+===== 2.6.9 =====
+ + Added field "catalogrule_price" that gets the correct catalog price rule price if there are multiple store views
+
+===== 2.7.0 =====
+ * Improved "Remove parameters from URL" feature. All parameters are now removed from the product URL.
+
+===== 2.7.1 =====
+ * Established compatibility with PHP 7.2
+
+===== 2.7.2 =====
+ * Fixed an issue where custom options weren't translated/retrieved from the correct/selected store view
+
+===== 2.7.3 =====
+ + Added category mapper: Easily map your categories to Google/... taxonomies
+ * Fixed "automatic export destination creation" in 1-Click-Wizard for compatibility with M2 Cloud
+ * Fixed an issue where the profile edit page was blank except for the tabs on the left side
+
+===== 2.7.4 =====
+ + Added Bing taxonomy to category mapper
+
+===== 2.7.5 =====
+ * Fixed issue when trying to open export profile
+
+===== 2.7.6 =====
+ * Fixed 1-Click-Wizard not showing all profiles
+
+===== 2.7.7 =====
+ * Fixed "product review" cronjob export: "Integrity constraint violation: 1052 Column 'review_id' in where clause is ambiguous"
+
+===== 2.7.8 =====
+ * Fixed issue "Invalid method Magento\Eav\Model\Entity\Attribute::isAllowedForRuleCondition". However, if you encounter this issue, you will most likely need to apply this fix as well: https://magento.stackexchange.com/a/231602/10
+
+===== 2.7.9 =====
+ * Fixed an issue for export of bundle products where a PHP warning caused the export to fail
+
+===== 2.8.0 =====
+ * Fixed an issue where fields such as cats/parent_item/entity_id etc. where empty in some cases
+
+===== 2.8.1 =====
+ + Added Google Taxonomy (Product Category) autocompletion for: cs-CZ, da-DK, de-CH, en-AU, fr-CH, it-CH, ja-JP, pt-BR, ru-RU, sv-SE
+
+===== 2.8.2 =====
+ * Fixed issue for taxonomy mapping: Empty categories are ignored
+
+===== 2.8.3 =====
+ * Fixed a bug when trying to use Tools > Import functionality
+
+===== 2.8.4 =====
+ * Improved image URL generation
+
+===== 2.8.5 =====
+ + Added option to remove "pub" folder from URLs. Enabled by default.
+ * Removed not-used "Created during last X days" filter from "Manual Export" screen. Can still be specified from within profile settings.
+
+===== 2.8.6 =====
+ * Added lazy loading for taxonomy auto completion. Should improve performance for stores with lots of categories.
+
+===== 2.8.7 =====
+ + Established compatibility with Magento 2.3
+ * [2.3] Fixed email destinations
+ * [2.3] Fixed destination not saveable due to encryption error
+ * [2.3] Fixed date being wrong in from/to fields for Manual Export
+ * Fixed issue in 1-click-feed-wizard: Destination not selected sometimes after feed creation via wizard
+
+===== 2.8.8 =====
+ * [2.3] Restored "Catalog > Products" mass action
+
+===== 2.8.9 =====
+ * Fix for wrong prices being generated in rare cases for cronjob exports
+
+===== 2.9.0 =====
+ + Added ability to export stock level per source (Magento 2.3 Multi-Source Inventory) for product exports. Access each source (warehouse) qty as required when exporting.
+ * Updated built-in editor (Ace.js) to latest version to resolve tab issue in "Output Format" editor
+
+===== 2.9.1 =====
+ * Fixed an issue for Magento Commerce (EE) installations where, if the staging functionality is used, sometimes the wrong parent product could be returned in exports
+
+===== 2.9.2 =====
+ * Final fix for built-in editor (Ace.js) having issues with tabs/spaces/theme. Be sure to deploy static content after updating.
+
+===== 2.9.3 =====
+ * Restored theme and XML highlighting in code editor
+
+===== 2.9.4 =====
+ + Added search function to built-in code editor for XSL Templates
+ * Fixed error "Column 'entity' in where clause is ambiguous" in history grid
+
+===== 2.9.5 =====
+ * Taxonomy mapping improvement: The longest/deepest category mapping/path will be output for the xtento_mapped_category field now
+
+===== 2.9.6 =====
+ + Added "graceful die": If export crashes for some reason, error message should be logged in execution log
+
+===== 2.9.7 =====
+ + Added ability to export MSI stock/sources information along with product information
+
+===== 2.9.8 =====
+ * Fixed potential issue with flat product tables & event exports. Certain conditions could lead to attribute values in flat tables becoming empty upon event exports (fixed by checking $attribute->usesSource())
+
+===== 2.9.9 =====
+ * Updated graceful die and removed sigint/sigterm as these are not really that much required and could cause issues
+
+===== 2.10.0 =====
+ * Fixed issue for filename generation when "export each object separately" is enabled
+
+===== 2.10.1 =====
+ * Fixed issue with i18n/translation file generation
+
+===== 2.10.2 =====
+ * [Magento >=2.2.8]: Fixed email destinations not sending emails
+
+===== 2.10.3 =====
+ * Fixed export destinations; connection information such as port couldn't be saved under certain circumstances due to DB layout issues
+ * Email destination fix for "Invalid header value detected" issue
+ * Updated Xtento_XtCore to version 2.5.0
+
+===== 2.10.4 =====
+ + Added ability to export data about stock per warehouse stored by Wyomind Advanced Inventory extension
+
+===== 2.10.5 =====
+ * Fixed issue with parent_id retrieval for Commerce/Enterprise installations
+
+===== 2.10.6 =====
+ * Improved graceful die: Previous log messages (from current execution) are retained
+ * Fixed: "0 records" entries in execution log are not saved anymore
+
+===== 2.10.7 =====
+ * Fixed issue where execution log entries weren't saved.
+
+===== 2.10.8 =====
+ * Updated list of whitelisted PHP functions and added htmlspecialchars_decode
+
+===== 2.10.9 =====
+ * Fixed issue where sometimes categories (and products?) were missing from exports due to a bug in the pagination where sort order was missing
+
+===== 2.10.10 =====
+ + Added field "price_incl_tax" which contains product price including tax. Only use if required, performance-heave. Only works if price display in frontend isn't set to "excluding tax".
+
+===== 2.11.0 =====
+ * Fixed error "Can't check requested quantity for products without Source Items support."
+ * Fixed error "Notice: Undefined index: actions"
+
+===== 2.11.1 =====
+ * Fixed an issue where a wrong price was exported for catalog rule/customer group price affected prices
+
+===== 2.11.2 =====
+ * Fixed an issue where SFTP connections failed (Error: "Could not connect to SFTP server [...]"). If SFTP connections still fail now, it's probably caused by an incompatible SFTP server or a firewall. This issue was most likely caused by Magento 2.3.x.
+
+===== 2.11.3 =====
+ * Fixed an issue where wrong attribute values were exported for child products
+
+===== 2.11.4 ====
+ + Added ability to disable category mapping feature. Required sometimes, for example if you have ten thousands of categories. Map directly in XSL Template or via product attribute, much better performance.
+ * Module code updated to comply with Magento Coding Standard as of August 2019
+ * Removed silenced errors ("@function") entirely. Improved logging in such cases so those errors are logged/reported.
+ * Logging improvements

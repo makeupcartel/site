@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_ElasticSearch
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Backend\Model\Menu\Item">
+        <plugin name="Amasty_ElasticSearch::correct-configuration-url" type="Amasty\ElasticSearch\Plugin\Backend\Model\Menu\Item" />
+    </type>
+    <type name="Magento\Config\Model\Config">
+        <plugin name="amasty_system_config_save_plugin" type="Amasty\ElasticSearch\Plugin\Config\Model\Config"/>
+    </type>
+    <type name="Magento\Catalog\Model\Category">
+        <plugin name="Amasty_ElasticSearch::apply_relelevance_rule_after_products_assign" type="Amasty\ElasticSearch\Plugin\Catalog\Model\CategoryPlugin"/>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product">
+        <plugin name="Amasty_ElasticSearch::apply_relevance_rules_after_product_save" type="Amasty\ElasticSearch\Plugin\Catalog\Model\ResourceModel\Product"/>
+    </type>
+    <type name="Magento\Store\Model\Website">
+        <plugin name="Amasty_ElasticSearch::reindex_after_delete_website" type="Amasty\ElasticSearch\Plugin\Store\Model\WebsitePlugin"/>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Eav\Attribute">
+        <plugin name="Amasty_ElasticSearch::change_product_attribute" type="Amasty\ElasticSearch\Plugin\Catalog\Model\ResourceModel\EavAttribute"/>
+    </type>
+    <!-- rewrite plugin to keep configurable products -->
+    <type name="Magento\CatalogRule\Model\Rule">
+        <plugin name="addVariationsToProductRule" type="Amasty\ElasticSearch\Plugin\CatalogRuleConfigurable\ConfigurableProductHandler"/>
+    </type>
+
+    <type name="Amasty\ElasticSearch\Block\Adminhtml\Form\Field\QuerySettings">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="fulltext_attributes" xsi:type="object">Amasty\ElasticSearch\Model\Source\FulltextAttributes</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- for cloud instances -->
+    <type name="Magento\Framework\Notification\MessageList">
+        <arguments>
+            <argument name="messages" xsi:type="array">
+                <item name="hardcoded_search_engine" xsi:type="string">Amasty\ElasticSearch\Model\Message\HardcodedEngine</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

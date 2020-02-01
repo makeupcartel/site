@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+ */
+
+/* @var $block \Aheadworks\Blog\Block\Disqus */
+
+// @codingStandardsIgnoreFile
+?>
+<?php if ($block->isCommentsEnabled()): ?>
+    <div id="disqus_thread" class="blog-post-comments"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.identifier = <?php /* @noEscape */ echo $block->escapeQuote($block->escapeHtml($block->getPageIdentifier())) ?>;
+            this.page.url = '<?php /* @noEscape */ echo $block->escapeXssInUrl($block->getPageUrl()) ?>';
+            this.page.title = '<?php /* @noEscape */ echo $block->escapeQuote($block->escapeHtml($block->getPageTitle())) ?>';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = '<?php /* @noEscape */ echo $block->getEmbedScriptUrl() ?>';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+<?php endif; ?>

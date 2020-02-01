@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="AddGiftWithEachNProductInTheCartApplyTax">
+        <annotations>
+            <features value="Rule Creation"/>
+            <stories value="Create a Rule via the Admin"/>
+            <title value="Check Rule Add Gift With Each N Product In The Cart With Apply Tax On Original Price"/>
+            <description value="Check Rule Add Gift With Each N Product In The Cart With Apply Tax On Original Price"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="AA-MFTF-20"/>
+            <group value="Amasty"/>
+            <group value="Promo"/>
+            <group value="Rule"/>
+            <group value="Shipping"/>
+            <group value="AddGiftWithEachNProductInTheCartApplyTax"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin1"/>
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfigurationBeforeTest"/>
+        </before>
+
+        <after>
+            <!--Delete Rules -->
+            <actionGroup ref="DeleteAllCartRules" stepKey="DeleteAllRules1"/>
+            <!-- Return default setting Promo-->
+            <actionGroup ref="DefaultSettingPromo" stepKey="settingGeneralPromoConfigurationAfterTest"/>
+            <amOnPage url="admin/admin/auth/logout/" stepKey="amOnLogoutPage"/>
+        </after>
+
+        <!--Create First Cart Price Rule -->
+        <actionGroup ref="CreateCartRulePromoWithPromoItems" stepKey="CreateCartRule1">
+            <argument name="actionsRulePromo" value="applyAddGiftWithEachNProductInTheCart"/>
+            <argument name="cartRulePromo" value="addGiftWithEachNProductInTheCartApplyTax"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleChangeDiscountQtyStep" stepKey="ChangeQtyStepForRule">
+            <argument name="cartRulePromo" value="addGiftWithEachNProductInTheCartApplyTax"/>
+        </actionGroup>
+        <actionGroup ref="EditPromoRuleApplyTaxForFreeGiftEnable" stepKey="EnableTaxForFreeProduct">
+            <argument name="cartRulePromo" value="addGiftWithEachNProductInTheCartApplyTax"/>
+        </actionGroup>
+
+        <!--Add first product to cart-->
+        <actionGroup ref="AddProductToCart" stepKey="AddProductToCart">
+            <argument name="addProductQty" value="_enterQty1"/>
+            <argument name="products" value="_theWatchClamberData"/>
+        </actionGroup>
+        <actionGroup ref="CheckNoProductInCart" stepKey="CheckNoFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+        </actionGroup>
+
+        <!--Check First Tax For Michigan-->
+        <actionGroup ref="checkTaxInCart" stepKey="CheckFirstTax">
+            <argument name="country" value="addGiftWithEachNProductInTheCartApplyTax.countryTax"/>
+            <argument name="state" value="addGiftWithEachNProductInTheCartApplyTax.stateTax"/>
+            <argument name="tax" value="addGiftWithEachNProductInTheCartApplyTax.valueTaxOne"/>
+        </actionGroup>
+
+        <!--Change Qty product in the cart-->
+        <actionGroup ref="ChangeQtyProductInCart" stepKey="ChangeQtyBagWayfarerToTwo">
+            <argument name="products" value="_theWatchClamberData"/>
+            <argument name="addProductQty" value="_enterQty2"/>
+        </actionGroup>
+        <actionGroup ref="CheckProductInCart" stepKey="CheckAddOneFreeGiftInCart">
+            <argument name="products" value="_theBagStriveShoulderPackData"/>
+            <argument name="addProductQty" value="_enterQty1"/>
+        </actionGroup>
+
+        <!--Check Second Tax For Michigan-->
+        <actionGroup ref="checkTaxInCart" stepKey="CheckSecondTax">
+            <argument name="country" value="addGiftWithEachNProductInTheCartApplyTax.countryTax"/>
+            <argument name="state" value="addGiftWithEachNProductInTheCartApplyTax.stateTax"/>
+            <argument name="tax" value="addGiftWithEachNProductInTheCartApplyTax.valueTaxTwo"/>
+        </actionGroup>
+    </test>
+</tests>

@@ -1,0 +1,163 @@
+Attribute,Attribute
+Wildcard,Wildcard
+"Spell Correction","Spell Correction"
+"Match Mode","Match Mode"
+Yes,Yes
+No,No
+Conditions,Conditions
+"Rule won't work if no conditions are applied","Rule won't work if no conditions are applied"
+button_label,button_label
+"Successful! Test again?","Successful! Test again?"
+"Connection failed! Test again?","Connection failed! Test again?"
+"Please update Amasty Base module. Re-upload it and replace all the files.","Please update Amasty Base module. Re-upload it and replace all the files."
+"Elasticsearch package is not installed. Please, run the following command in the SSH: composer require elasticsearch/elasticsearch ~5.1","Elasticsearch package is not installed. Please, run the following command in the SSH: composer require elasticsearch/elasticsearch ~5.1"
+"Select Options","Select Options"
+"Test connection can be applied only for Amasty Elastic Search engine.","Test connection can be applied only for Amasty Elastic Search engine."
+"Manage Relevance Rules","Manage Relevance Rules"
+"%1 rule(s) was successfully removed","%1 rule(s) was successfully removed"
+"Please select Relevance Rule(s)","Please select Relevance Rule(s)"
+"This Relevance Rule is no longer exists.","This Relevance Rule is no longer exists."
+"New Relevance Rule","New Relevance Rule"
+"You have saved the Rule.","You have saved the Rule."
+"Relevance Rule with the same term already exists in an associated store.","Relevance Rule with the same term already exists in an associated store."
+"This Relevance Rule no longer exists.","This Relevance Rule no longer exists."
+"Manage Stop Words","Manage Stop Words"
+"%1 stop word(s) was successfully removed","%1 stop word(s) was successfully removed"
+"Please select Stop Word(s)","Please select Stop Word(s)"
+"Something wend wrong during saving file","Something wend wrong during saving file"
+"Something went wrong. Please try again","Something went wrong. Please try again"
+"%1 Stop Word(s) has been imported","%1 Stop Word(s) has been imported"
+"This Stop Word no longer exists.","This Stop Word no longer exists."
+"Edit Stop Word ""%1""","Edit Stop Word ""%1"""
+"New Stop Word","New Stop Word"
+"Import Stop Words","Import Stop Words"
+"You have saved the Stop Word.","You have saved the Stop Word."
+"A Stop Word with the same term already exists in an associated store.","A Stop Word with the same term already exists in an associated store."
+"Manage Synonyms","Manage Synonyms"
+"%1 synonym(s) was successfully removed","%1 synonym(s) was successfully removed"
+"Please select Synonym(s)","Please select Synonym(s)"
+"%1 Synonym(s) has been imported","%1 Synonym(s) has been imported"
+"This Synonym no longer exists.","This Synonym no longer exists."
+"Edit Synonym ""%1""","Edit Synonym ""%1"""
+"New Synonym","New Synonym"
+"Import Synonyms","Import Synonyms"
+"You have saved the Synonym.","You have saved the Synonym."
+"A Synonym with the same term already exists in an associated store.","A Synonym with the same term already exists in an associated store."
+"Synonyms with special symbols only works on elasticsearch engine v6.0 or higher.","Synonyms with special symbols only works on elasticsearch engine v6.0 or higher."
+"It is impossible to perform the search. Please make sure Elasticsearch Engine is installed on the server and configured properly.","It is impossible to perform the search. Please make sure Elasticsearch Engine is installed on the server and configured properly."
+"Elasticsearch engine returned an error response. ","Elasticsearch engine returned an error response. "
+"'item id: %1. Error type: ""%2"", reason ""%3""%4.' .","'item id: %1. Error type: ""%2"", reason ""%3""%4.' ."
+"Could not ping search engine: %1","Could not ping search engine: %1"
+"Elasticsearch index not found. Run ""bin/magento indexer:reindex catalogsearch_fulltext"".","Elasticsearch index not found. Run ""bin/magento indexer:reindex catalogsearch_fulltext""."
+"Elasticsearch server not found. Check ""Stores > Configuration > Amasty Elastic Search > Connection"" and make sure that ""Test Connection"" is successfull with appropriate host name and port.","Elasticsearch server not found. Check ""Stores > Configuration > Amasty Elastic Search > Connection"" and make sure that ""Test Connection"" is successfull with appropriate host name and port."
+"We can't rebuild the index for an undefined entity.","We can't rebuild the index for an undefined entity."
+"Could not rebuild index for empty products array","Could not rebuild index for empty products array"
+"Amasty ElasticSearch Relevance rule indexing failed. See details in exception log.","Amasty ElasticSearch Relevance rule indexing failed. See details in exception log."
+"Relevance rule indexing failed. See details in exception log.","Relevance rule indexing failed. See details in exception log."
+"Amasty Elastic is not working because ""%1"" search engine is set in app/etc/env.php file.","Amasty Elastic is not working because ""%1"" search engine is set in app/etc/env.php file."
+Default,Default
+"Unable to save stopWord with ID %1. Error: %2","Unable to save stopWord with ID %1. Error: %2"
+"Unable to save new Relevance Rule. Error: %1","Unable to save new Relevance Rule. Error: %1"
+"Relevance Rule with specified ID ""%1"" not found.","Relevance Rule with specified ID ""%1"" not found."
+"Unable to remove Relevance Rule with ID %1. Error: %2","Unable to remove Relevance Rule with ID %1. Error: %2"
+"Unable to remove Relevance Rule. Error: %1","Unable to remove Relevance Rule. Error: %1"
+"Builder for %1 reference type doesn't exist","Builder for %1 reference type doesn't exist"
+"Processor for %1 type doesn't exist","Processor for %1 type doesn't exist"
+"'%1' filter type is not supported","'%1' filter type is not supported"
+"Incorrect Bucket type: %1.","Incorrect Bucket type: %1."
+OR,OR
+AND,AND
+"Increase by","Increase by"
+"Decrease by","Decrease by"
+*word*,*word*
+word*,word*
+*word,*word
+"Unable to save new stopWord. Error: %1","Unable to save new stopWord. Error: %1"
+"StopWord with specified ID ""%1"" not found.","StopWord with specified ID ""%1"" not found."
+"Unable to remove stopWord with ID %1. Error: %2","Unable to remove stopWord with ID %1. Error: %2"
+"Unable to remove stopWord. Error: %1","Unable to remove stopWord. Error: %1"
+"Unable to save synonym with ID %1. Error: %2","Unable to save synonym with ID %1. Error: %2"
+"Unable to save new synonym. Error: %1","Unable to save new synonym. Error: %1"
+"Synonym with specified ID ""%1"" not found.","Synonym with specified ID ""%1"" not found."
+"Unable to remove synonym with ID %1. Error: %2","Unable to remove synonym with ID %1. Error: %2"
+"Unable to remove synonym. Error: %1","Unable to remove synonym. Error: %1"
+"You disabled %1 ElasticSearch Relevance Rules based on ""%2"" attribute.","You disabled %1 ElasticSearch Relevance Rules based on ""%2"" attribute."
+"%1 StopWords were imported for store %2","%1 StopWords were imported for store %2"
+"There are no file for import: %1","There are no file for import: %1"
+Edit,Edit
+Delete,Delete
+"Are you sure you want to delete the rule?","Are you sure you want to delete the rule?"
+"Are you sure you want to delete Stop Word?","Are you sure you want to delete Stop Word?"
+"Are you sure you want to delete Synonym?","Are you sure you want to delete Synonym?"
+"Elastic Search","Elastic Search"
+Information,Information
+Connection,Connection
+"Search Engine","Search Engine"
+"Elasticsearch Server Hostname","Elasticsearch Server Hostname"
+"Elasticsearch Server Port","Elasticsearch Server Port"
+"Elasticsearch Index Prefix","Elasticsearch Index Prefix"
+"Enable Elasticsearch HTTP Auth","Enable Elasticsearch HTTP Auth"
+"Elasticsearch HTTP Username","Elasticsearch HTTP Username"
+"Elasticsearch HTTP Password","Elasticsearch HTTP Password"
+"Elasticsearch Server Timeout","Elasticsearch Server Timeout"
+"Test Connection","Test Connection"
+Catalog,Catalog
+"Wildcard Type","Wildcard Type"
+"Specify the type of the autocomplete suggestion - the part of a word which will be auto-completed. Shoppers can input a half-finished word and get a relevant result.","Specify the type of the autocomplete suggestion - the part of a word which will be auto-completed. Shoppers can input a half-finished word and get a relevant result."
+"Enable Wildcard After","Enable Wildcard After"
+"Specify a number of symbols to apply autocomplete suggestion after.","Specify a number of symbols to apply autocomplete suggestion after."
+"Enable Spell Correction After","Enable Spell Correction After"
+"Specify a number of symbols to apply spell correction after.","Specify a number of symbols to apply spell correction after."
+"Max Number of Search Results","Max Number of Search Results"
+"Allow Special Characters","Allow Special Characters"
+"Search Query Settings","Search Query Settings"
+"Specify the search type preferences for each product attribute. Please consult the <a href=""https://amasty.com/docs/doku.php?id=magento_2:elastic_search#advanced_query_settings"">user guide</a>.","Specify the search type preferences for each product attribute. Please consult the <a href=""https://amasty.com/docs/doku.php?id=magento_2:elastic_search#advanced_query_settings"">user guide</a>."
+"Indexation Settings","Indexation Settings"
+"Use inbox stopwords","Use inbox stopwords"
+"Debug Settings","Debug Settings"
+"Is Debug Active","Is Debug Active"
+"Log Requests for Bucket Alerts","Log Requests for Bucket Alerts"
+"Log Request Object","Log Request Object"
+"Log Raw Request","Log Raw Request"
+"Log Raw Response","Log Raw Response"
+"Log Response Object","Log Response Object"
+"Amasty: ElasticSearch - Relevance Rules (Rules)","Amasty: ElasticSearch - Relevance Rules (Rules)"
+"Indexed rule/product association","Indexed rule/product association"
+"Amasty: ElasticSearch - Relevance Rules (Products)","Amasty: ElasticSearch - Relevance Rules (Products)"
+"Indexed product/rule association","Indexed product/rule association"
+"Amasty: ElasticSearch - Popup Data","Amasty: ElasticSearch - Popup Data"
+"Indexed data for popup","Indexed data for popup"
+"Relevance Rule Information","Relevance Rule Information"
+Back,Back
+Save,Save
+Reset,Reset
+Title,Title
+Enabled,Enabled
+Website,Website
+Active,Active
+from,from
+"Active To","Active To"
+to,to
+"Product Relevance","Product Relevance"
+times,times
+"Specify a number from 1 to 100. Please click to consult the user guide.","Specify a number from 1 to 100. Please click to consult the user guide."
+"Add New Rule","Add New Rule"
+"Delete terms","Delete terms"
+"Are you sure you want to delete selected rules?","Are you sure you want to delete selected rules?"
+Id,Id
+Rule,Rule
+Disabled,Disabled
+Status,Status
+"Stop Word Information","Stop Word Information"
+"Stop Word","Stop Word"
+"Store View","Store View"
+"Import Information","Import Information"
+Import,Import
+"File Upload","File Upload"
+"Please upload the CSV file","Please upload the CSV file"
+"Add New Stop Word","Add New Stop Word"
+"Are you sure you want to delete selected terms?","Are you sure you want to delete selected terms?"
+"Synonym Information","Synonym Information"
+"Synonym Enumeration","Synonym Enumeration"
+"Please insert comma-separated values","Please insert comma-separated values"
+"Add New Synonym","Add New Synonym"

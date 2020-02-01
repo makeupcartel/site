@@ -1,0 +1,61 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Cart
+ */
+?>
+<?php
+/** @var $block \Amasty\Cart\Block\Product */
+$product = $this->getProduct();
+$name = $block->escapeHtml($product->getName());
+
+?>
+<div class="ajax-added-item">
+
+    <a href="<?= $block->escapeUrl($product->getProductUrl()) ?>"
+       title="<?= $name; ?>"
+       class="added-item">
+        <span id="myquantity"></span> x <?= $name; ?>
+    </a>
+    <p class="text"><?= __('has been added to your cart') ?></p>
+    <?php echo $this->getSubscriptionOption() ?>
+</div>
+<div class="am-photo-container">
+    <a href="<?= $block->escapeUrl($product->getProductUrl()) ?>"
+       title="<?= $name; ?>"
+       tabindex="-1"
+       class="product-item-photo">
+		<?= $block->getImage($product, 'cart_page_product_thumbnail')->toHtml(); ?>
+    </a>
+	<?= $this->getQtyHtml(); ?>
+</div>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function ($) {
+
+        var checkWeb = jQuery("body").hasClass("catalog-product-view");
+        var checkWeb3 = jQuery("body").hasClass("page-multiple-wishlist");
+        if (checkWeb == true) {
+            var checkbutton = $("#checkbutton").val();
+            if (checkbutton == 9) {
+                var myquantity = jQuery("#myaddcart").val();
+                if (myquantity == "" || myquantity == null) {
+                    jQuery("#myquantity").html(1);
+                } else {
+                    jQuery("#myquantity").html(myquantity);
+                }
+                $("#checkbutton").val(0);
+            } else {
+                $("#myquantity").html(1);
+            }
+        } else if (checkWeb3 == true) {
+            var number = $(".quantity_wishlist").val();
+            jQuery("#myquantity").html(number);
+        } else {
+            jQuery("#myquantity").html(1);
+        }
+    });
+</script>

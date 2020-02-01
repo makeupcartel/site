@@ -1,0 +1,125 @@
+& when (@media-common = true) {
+  .block-blog-recent-post {
+    .block-title {
+
+    }
+  }
+
+  .block-recent-posts {
+    .lib-vendor-prefix-display(flex);
+    .lib-vendor-prefix-flex-wrap();
+    .lib-vendor-box-align(flex-start);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .recent-post-featured-image-link {
+      overflow: hidden;
+      display: block;
+      margin-bottom: 10px;
+      max-height: 160px;
+      text-align: center;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    .block-recent-posts-item {
+      margin: 0 15px 35px 15px;
+      max-width: 285px;
+    }
+
+    .block-recent-posts-link {
+      text-decoration: none;
+      color: @related-post-link__color;
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      line-height: 1.4;
+
+      &:hover {
+        color: @related-post-link__hover__color;
+      }
+    }
+  }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+  .block-recent-posts {
+    display: block;
+
+    .block-recent-posts-item {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 0 35px 0;
+    }
+
+    .recent-post-featured-image-link {
+      max-height: inherit;
+
+      img {
+        position: static;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .block-recent-posts {
+    .lib-vendor-prefix-display(flex);
+    .lib-vendor-prefix-flex-wrap();
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+    .block-recent-posts-item {
+      position: relative;
+      width: 48%;
+      max-width: inherit;
+      margin: 0 0 35px 0;
+    }
+
+    .recent-post-featured-image-link {
+      position: relative;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      &::after {
+        content: '';
+        padding-top: 70%;
+        display: block;
+      }
+    }
+  }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .block-blog-recent-post {
+    .block-content {
+      overflow: hidden;
+    }
+  }
+  
+  .block-recent-posts {
+    margin: 0 -15px;
+  }
+}

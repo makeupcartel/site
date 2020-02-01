@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Customer "Remember Me" template
+ */
+
+/** @var \Magento\Persistent\Block\Form\Remember $block */
+
+?>
+<div id="remember-me-box" class="choice persistent">
+    <?php $rememberMeId = 'remember_me' . $block->getRandomString(10); ?>
+    <input type="checkbox" name="persistent_remember_me" class="checkbox" id="<?= $block->escapeHtmlAttr($rememberMeId) ?>"<?php if ($block->isRememberMeChecked()): ?> checked="checked"<?php endif; ?> title="<?= $block->escapeHtmlAttr(__('Remember me')) ?>" />
+    <label for="<?= $block->escapeHtmlAttr($rememberMeId) ?>" class="label"><span><?= $block->escapeHtml(__('Remember me')) ?></span></label>
+</div>

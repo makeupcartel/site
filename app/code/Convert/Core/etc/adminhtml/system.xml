@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * ConvertDigital - Core Module version 2.0.0 for Magento 2
+ *
+ * @category  Integration
+ * @package   Convert
+ * @author    Convert Digital
+ * @copyright 2018 Convert Digital
+ * @version   2.0.0
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="convert_digital" sortOrder="1" translate="label">
+			<label>Convert Digital</label>
+		</tab>
+		<section id="convert_core" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Core</label>
+			<tab>convert_digital</tab>
+			<resource>Convert_Core::config_convert_core</resource>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>Settings</label>
+				<field id="debug" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Debug</label>
+					<comment>Enable debug mode for convert module</comment>
+					<source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

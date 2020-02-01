@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * ConvertDigital - Core Module version 2.0.0 for Magento 2
+ *
+ * @category  Integration
+ * @package   Convert
+ * @author    Convert Digital
+ * @copyright 2018 Convert Digital
+ * @version   2.0.0
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Convert_Core::menu" title="Convert Digital">
+					<resource id="Convert_Core::menu_cd" title="Top Menu" sortOrder="10">
+						<resource id="Convert_Core::menu_cd_settings" title="Configurations" sortOrder="10"/>
+					</resource>
+				</resource>
+				<resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="Convert_Core::config_convert_core" title="Convert Digital Configurations"/>
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

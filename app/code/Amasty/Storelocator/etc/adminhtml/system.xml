@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Storelocator
+ */
+-->
+<!--
+/**
+ * Copyright © 2015 Amasty. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amlocator" translate="label" type="text" sortOrder="192012" showInDefault="1" showInWebsite="1" showInStore="1">
+            <resource>Amasty_Storelocator::config</resource>
+            <class>separator-top</class>
+            <label>Store Locator</label>
+            <tab>amasty</tab>
+
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="url" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Frontend Locator Url</label>
+                </field>
+                <field id="meta_title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Meta Title</label>
+                </field>
+                <field id="meta_description" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Meta Description</label>
+                </field>
+            </group>
+
+            <group id="geoip" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Geolocation</label>
+                <field id="usebrowserip" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Browser Location</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Use Geo IP</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="automatic_locate" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Automatic positioning to the nearest location</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+            <group id="locator" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Main settings</label>
+                <field id="distance" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Distance Units</label>
+                    <source_model>Amasty\Storelocator\Model\Config\Source\Distance</source_model>
+                </field>
+                <field id="template" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Mark Template</label>
+                </field>
+                <field id="store_list_template" translate="label" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store List Template</label>
+                </field>
+                <field id="attribute_template" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Attribute Template</label>
+                </field>
+                <field id="linktext" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Frontend product URL text</label>
+                </field>
+                <field id="new_page" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Open frontend url on new page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google API Key</label>
+                    <comment><![CDATA[You can generate the site key <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">here</a>.]]></comment>
+                </field>
+                <field id="zoom" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map zoom</label>
+                    <validate>required-entry validate-number-range number-range-1-20</validate>
+                    <comment>The initial resolution at which a map will be displayed.</comment>
+                    <tooltip><![CDATA[You can set the desired zoom level. For example, the most common values with zoom level of Google Map:<br/>
+                        1: World<br/>
+                        5: Landmass/continent<br/>
+                        10: City<br/>
+                        15: Streets<br/>
+                        20: Buildings]]></tooltip>
+                </field>
+                <field id="show_attrs" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show additional attributes</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="close_text" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text for shops which don't work in particular day</label>
+                </field>
+                <field id="radius" translate="label comment" type="text" canRestore="1" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Search Radius</label>
+                    <comment>If you would like to use other search radius, you may list them above, separated with comma</comment>
+                </field>
+                <field id="convert_time" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Convert time format to 12 Hours AM/PM format on frontend</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="clustering" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable clustering</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="count_distance" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable distance counting</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allowed_countries" translate="label comment" type="multiselect" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Countries where addresses are allowed to be shown</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <comment>
+                        <![CDATA[
+                        Please use the field if you need to show only specific countries in the list of offered addresses for the 'Current Location' field on the Store locator's page.
+                        Please mind that Google Service allows to choose no more than 5 countries (you can find more information <a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete#add_autocomplete" target="_blank">here</a>).
+                        Or leave the field blank to show all possible countries in the list of offered addresses.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="style_settings" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Style Settings</label>
+                <field id="map_width" translate="label comment tooltip" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map Width</label>
+                    <validate>validate-css-length</validate>
+                    <comment>The width of the map block (CSS length).</comment>
+                    <tooltip>You can use the CSS-length values for the block configuration (100px, 77pt, 20em, .5ex or 50%)</tooltip>
+                </field>
+                <field id="map_height" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Map Height</label>
+                    <validate>validate-css-length</validate>
+                    <comment>The height of the map block (CSS length). Please set the value in px, pt, em, ex. Don't set the value in %.</comment>
+                    <tooltip>You can use the CSS-length values for the block configuration (100px, 77pt, 20em, .5ex)</tooltip>
+                </field>
+                <field id="store_list_width" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store List Width</label>
+                    <validate>validate-css-length</validate>
+                    <comment>The width of the store list block (CSS length).</comment>
+                    <tooltip>You can use the CSS-length values for the block configuration (100px, 77pt, 20em, .5ex or 50%)</tooltip>
+                </field>
+                <field id="store_list_height" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store List Height</label>
+                    <validate>validate-css-length</validate>
+                    <comment>The height of the store list block (CSS length). Please set the value in px, pt, em, ex. Don't set the value in %.</comment>
+                    <tooltip>You can use the CSS-length values for the block configuration (100px, 77pt, 20em, .5ex or 50%)</tooltip>
+                </field>
+            </group>
+            <group id="shipping_table_rate" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Shipping Table Rates</label>
+                <attribute type="expanded">1</attribute>
+                <field id="label" translate="label comment" type="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status</label>
+                    <frontend_model>Amasty\Storelocator\Block\Adminhtml\System\Config\ShippingTableRates</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

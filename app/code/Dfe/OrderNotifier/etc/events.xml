@@ -1,0 +1,6 @@
+<?xml version='1.0'?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name='sales_order_save_after'>
+		<observer instance='Dfe\OrderNotifier\Observer\OrderSaveAfter' name='Dfe\OrderNotifier\Observer\OrderSaveAfter'/>
+	</event>
+</config>

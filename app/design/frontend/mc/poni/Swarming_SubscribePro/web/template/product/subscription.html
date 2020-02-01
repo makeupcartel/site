@@ -1,0 +1,47 @@
+<!-- ko if: isProductLoaded() -->
+    <div class="fieldset">
+        <!-- ko if: isSubscriptionMode(subscriptionOnlyMode)  -->
+            <input type="hidden" name="subscription_option[option]" data-bind="value: subscriptionOption">
+        <!-- /ko -->
+        <!-- ko if: isSubscriptionMode(subscriptionAndOneTimePurchaseMode) -->
+            <div class="field choice" data-bind="visible: false">
+                    <input type="radio"
+                           name="subscription_option[option]"
+                           id="option_oneTimePurchase"
+                           class="radio"
+                           data-bind="checked: subscriptionOptionValue, value: oneTimePurchaseOption" />
+                <label class="label" for="option_oneTimePurchase">
+                    <!-- ko i18n: 'One Time Delivery' --><!-- /ko -->
+                    <!-- ko text: ' - ' --><!-- /ko -->
+                    <!-- ko template: oneTimePurchasePriceTemplate --><!-- /ko -->
+                </label>
+            </div>
+            <div class="field choice">
+                    <input type="radio"
+                           name="subscription_option[option]"
+                           id="option_subscription"
+                           class="radio"
+                           data-bind="checked: subscriptionOptionValue, value: subscriptionOption" />
+                <label class="label" for="option_subscription">
+                    <!-- ko i18n: 'Regular Delivery' --><!-- /ko -->
+                    <!-- ko text: ' - ' --><!-- /ko -->
+                    <!-- ko template: subscriptionPriceTemplate --><!-- /ko -->
+                </label>
+            </div>
+        <!-- /ko -->
+
+        <div class="field">
+            <label class="label">
+            <!-- ko i18n: 'Frequency' --><!-- /ko -->
+            </label>
+            <div class="control">
+                <select name="subscription_option[interval]"
+                    data-bind="options: product.intervals, checked: intervalValue, value: intervalValue"></select>
+            </div>
+        </div>
+    </div>
+<!-- /ko -->
+
+<!-- ko foreach: getRegion('messages') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+<!--/ko-->

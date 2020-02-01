@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Copyright 2019 aheadWorks. All rights reserved.
+See LICENSE.txt for license details.
+*/
+-->
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aw_blog_post_form.aw_blog_post_form_data_source</item>
+            <item name="deps" xsi:type="string">aw_blog_post_form.aw_blog_post_form_data_source</item>
+            <item name="component" xsi:type="string">Aheadworks_Blog/js/ui/form/form</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">aw_blog_post_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Aheadworks\Blog\Block\Adminhtml\Post\Edit\Button\Back</item>
+            <item name="delete" xsi:type="string">Aheadworks\Blog\Block\Adminhtml\Post\Edit\Button\Delete</item>
+            <item name="save_as_draft" xsi:type="string">Aheadworks\Blog\Block\Adminhtml\Post\Edit\Button\SaveAsDraft</item>
+            <item name="save_and_continue" xsi:type="string">Aheadworks\Blog\Block\Adminhtml\Post\Edit\Button\SaveAndContinue</item>
+            <item name="update" xsi:type="string">Aheadworks\Blog\Block\Adminhtml\Post\Edit\Button\Update</item>
+            <item name="schedule" xsi:type="string">Aheadworks\Blog\Block\Adminhtml\Post\Edit\Button\Schedule</item>
+            <item name="publish" xsi:type="string">Aheadworks\Blog\Block\Adminhtml\Post\Edit\Button\Publish</item>
+        </item>
+    </argument>
+    <dataSource name="aw_blog_post_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Aheadworks\Blog\Ui\DataProvider\PostDataProvider</argument>
+            <argument name="name" xsi:type="string">aw_blog_post_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="aw_blog_admin/post/save"/>
+                    <item name="validate_url" xsi:type="url" path="aw_blog_admin/post/validate"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="align" xsi:type="string">left</item>
+            </item>
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/components/fieldset</item>
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">Aheadworks_Blog/ui/form/fieldset</item>
+                </item>
+            </item>
+        </argument>
+        <field name="id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">id</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </field>
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">title</item>
+                    <item name="label" xsi:type="string" translate="true">Title</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="url_key">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">url_key</item>
+                    <item name="label" xsi:type="string" translate="true">URL-Key</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Aheadworks_Blog/js/ui/form/element/import-value</item>
+                    <item name="mask" xsi:type="string">{{title}}</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <container name="image-container">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">Aheadworks_Blog/ui/form/image-container</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+            <container name="featured_image_loader">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="displayArea" xsi:type="string">leftPosition</item>
+                    </item>
+                </argument>
+                <field name="featured_image_file" class="Aheadworks\Blog\Ui\Component\Post\Form\Element\ImageField">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="formElement" xsi:type="string">fileUploader</item>
+                            <item name="component" xsi:type="string">Aheadworks_Blog/js/ui/form/element/file-uploader</item>
+                            <item name="template" xsi:type="string">Aheadworks_Blog/ui/form/element/uploader</item>
+                            <item name="elementId" xsi:type="string">featured_image_file</item>
+                            <item name="imagePlaceholderText" xsi:type="string" translate="true">NO IMAGE</item>
+                            <item name="dialogUrl" xsi:type="url" path="cms/wysiwyg_images/index">
+                                <param name="target_element_id">featured_image_file</param>
+                                <param name="type">file</param>
+                            </item>
+                            <item name="imagePreviewUrl" xsi:type="url" path="*/*/imagePreview"/>
+                            <item name="source" xsi:type="string">post</item>
+                            <item name="label" xsi:type="string" translate="true">Featured Image</item>
+                            <item name="tooltip" xsi:type="array">
+                                <item name="description" xsi:type="string" translate="true">
+                                    <![CDATA[Best parameters for sharing on Facebook and Twitter:</br>
+                                    Minimum 600x315px, 1200x630px is recommended.</br>
+                                    Maximum 4096x4096px, less than 5Mb.</br>
+                                    Try to keep aspect ratio close to 2:1 to avoid image cropping.]]>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </field>
+            </container>
+            <container name="featured_image_fields">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="displayArea" xsi:type="string">rightPosition</item>
+                    </item>
+                </argument>
+                <field name="featured_image_title">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataScope" xsi:type="string">featured_image_title</item>
+                            <item name="label" xsi:type="string" translate="true">Image Title</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="source" xsi:type="string">post</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="featured_image_alt">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataScope" xsi:type="string">featured_image_alt</item>
+                            <item name="label" xsi:type="string" translate="true">Alt Text</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="source" xsi:type="string">post</item>
+                        </item>
+                    </argument>
+                </field>
+            </container>
+        </container>
+        <field name="has_short_content">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">has_short_content</item>
+                    <item name="description" xsi:type="string" translate="true">Short Content</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="default" xsi:type="number">1</item>
+                    <item name="exports" xsi:type="array">
+                        <item name="checked" xsi:type="string">aw_blog_post_form.aw_blog_post_form:has_short_content</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="short_content">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Short Content</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="wysiwyg" xsi:type="boolean">true</item>
+                    <item name="dataScope" xsi:type="string">short_content</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-wide</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="visible" xsi:type="string">aw_blog_post_form.aw_blog_post_form:has_short_content</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="content">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Content</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                    <item name="wysiwyg" xsi:type="boolean">true</item>
+                    <item name="dataScope" xsi:type="string">content</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-wide</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="meta_title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aheadworks_Blog/js/ui/form/element/input-charcount</item>
+                    <item name="elementTmpl" xsi:type="string">Aheadworks_Blog/ui/form/element/input-charcount</item>
+                    <item name="dataScope" xsi:type="string">meta_title</item>
+                    <item name="label" xsi:type="string" translate="true">Meta Title</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="sortOrder" xsi:type="number">80</item>
+                    <item name="additionalClasses" xsi:type="string">no-float</item>
+                    <item name="warningLevel" xsi:type="number">60</item>
+                </item>
+            </argument>
+        </field>
+        <field name="meta_description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aheadworks_Blog/js/ui/form/element/input-charcount</item>
+                    <item name="elementTmpl" xsi:type="string">Aheadworks_Blog/ui/form/element/input-charcount</item>
+                    <item name="dataScope" xsi:type="string">meta_description</item>
+                    <item name="label" xsi:type="string" translate="true">Meta Description</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="sortOrder" xsi:type="number">90</item>
+                    <item name="additionalClasses" xsi:type="string">no-float</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="warningLevel" xsi:type="number">160</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="settings">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="align" xsi:type="string">right</item>
+            </item>
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/components/fieldset</item>
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">Aheadworks_Blog/ui/form/fieldset</item>
+                </item>
+            </item>
+        </argument>
+        <field name="status" class="Aheadworks\Blog\Ui\Component\Post\Form\Element\StatusLabel">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aheadworks_Blog/js/ui/form/element/label-status</item>
+                    <item name="template" xsi:type="string">Aheadworks_Blog/ui/form/field/label-status</item>
+                    <item name="elementTmpl" xsi:type="string">Aheadworks_Blog/ui/form/element/label-status</item>
+                    <item name="dataScope" xsi:type="string">status</item>
+                    <item name="label" xsi:type="string" translate="true">Status:</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="exports" xsi:type="array">
+                        <item name="value" xsi:type="string">aw_blog_post_form.aw_blog_post_form:status</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="comments_link" class="Aheadworks\Blog\Ui\Component\Post\Form\Element\CommentsLink">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aheadworks_Blog/js/ui/form/element/comments-link</item>
+                    <item name="elementTmpl" xsi:type="string">Aheadworks_Blog/ui/form/element/comments-link</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="visible" xsi:type="string">aw_blog_post_form.aw_blog_post_form:is_published</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="publish_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aheadworks_Blog/js/ui/form/element/date-publish</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/date</item>
+                    <item name="dataScope" xsi:type="string">publish_date</item>
+                    <item name="label" xsi:type="string" translate="true">Publish now</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">MMM d, y</item>
+                        <item name="timeFormat" xsi:type="string">h:mm a</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="author_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Blog\Model\Source\Authors</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">author_id</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Author</item>
+                </item>
+            </argument>
+        </field>
+        <field name="category_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Blog\Ui\Component\Post\Categories\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">category_ids</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                    <item name="elementTmpl" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="levelsVisibility" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Categories</item>
+                </item>
+            </argument>
+        </field>
+        <field name="canonical_url" class="Aheadworks\Blog\Ui\Component\Post\Form\Element\CanonicalUrl">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aheadworks_Blog/js/ui/form/element/canonical-url-select</item>
+                    <item name="dataScope" xsi:type="string">canonical_category_id</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Canonical URL</item>
+                </item>
+            </argument>
+        </field>
+        <field name="tag_names">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Blog\Model\Source\Tags</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aheadworks_Blog/js/ui/form/element/tags</item>
+                    <item name="elementTmpl" xsi:type="string">Aheadworks_Blog/ui/form/element/tags</item>
+                    <item name="dataScope" xsi:type="string">tag_names</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="label" xsi:type="string" translate="true">Tags</item>
+                    <item name="notice" xsi:type="string" translate="true">Separated by comma or new line character</item>
+                </item>
+            </argument>
+        </field>
+        <field name="store_ids" class="Aheadworks\Blog\Ui\Component\Post\Form\Element\Stores">
+            <argument name="options" xsi:type="object">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="dataScope" xsi:type="string">store_ids</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/multiselect</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/multiselect</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_allow_comments">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">is_allow_comments</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Allow Comments</item>
+                </item>
+            </argument>
+        </field>
+        <field name="meta_twitter_site">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">meta_twitter_site</item>
+                    <item name="label" xsi:type="string" translate="true">Twitter site account</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="service" xsi:type="array">
+                        <item name="template" xsi:type="string">Aheadworks_Blog/ui/form/element/helper/service-settings</item>
+                        <item name="configSettingsUrl" xsi:type="url" path="adminhtml/system_config/edit/section/aw_blog"/>
+                        <item name="label" xsi:type="string" translate="true">Use default from</item>
+                    </item>
+                    <item name="usedDefault" xsi:type="boolean">true</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="usedDefault" xsi:type="string">${ $.provider }:data.twitterSiteUseDefault</item>
+                        <item name="disabled" xsi:type="string">${ $.provider }:data.twitterSiteUseDefault</item>
+                    </item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="placeholder" xsi:type="string" translate="true">@yoursiteontwitter</item>
+                </item>
+            </argument>
+        </field>
+        <field name="customer_groups">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\Blog\Model\Source\Post\CustomerGroups</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">customer_groups</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="label" xsi:type="string" translate="true">Enable post for customer groups</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="conditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Related Products</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+                <item name="template" xsi:type="string">ui/form/fieldset</item>
+            </item>
+        </argument>
+        <container name="conditions_apply_to" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Aheadworks\Blog\Block\Adminhtml\Post\Edit\Tab\Conditions</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

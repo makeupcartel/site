@@ -1,0 +1,21 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Storelocator
+ */
+?>
+<?php
+if ($this->getProduct()):
+    if (!$this->getRequest()->getParam("product"))
+    {
+        $productId = $this->getProduct()->getId();
+    }
+    $locationCollection = $this->getLocationCollection();
+
+    if ( count($locationCollection) >0 && $this->validateLocations($locationCollection, $this->getProduct())){
+        $target = $this->getTarget();
+        $linkText = $this->getLinkText();
+        echo '<div style="clear: both"><a href="'.$this->getLinkToMap($productId).'"' . $target . '>'.$linkText.'</a></div>' ;
+    }
+endif;

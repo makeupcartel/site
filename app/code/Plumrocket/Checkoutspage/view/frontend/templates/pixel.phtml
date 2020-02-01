@@ -1,0 +1,60 @@
+<?php
+/**
+ * Plumrocket Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Checkoutspage v2.x.x
+ * @copyright   Copyright (c) 2018 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+*/
+ ?>
+
+<?php
+/* Avaliable values
+
+{$orderId}            order id
+{$postCode}           post code from order
+{$region}             region from order
+{$city}               city from order
+{$country}            country from order
+{$totalQty}           total qty of order
+{$discountAmount}     discount amount
+{$shippingAmoun}      shipping amount
+{$tax}                tax
+{$itemList}           list of items in string format
+{$currencyCode}       currency code
+{$customerName}       customer name
+{$customerEmail}      customer email
+{$customerId}         customer id
+{$subtotal}           subtotal of order
+*/
+?>
+
+<?php if ($block->isGoogleReviewValid() && $block->isEnabledGoogleReview()): ?>
+    <script src="https://apis.google.com/js/platform.js?onload=renderOptIn" async defer></script>
+
+    <script>
+      window.renderOptIn = function() {
+        window.gapi.load('surveyoptin', function() {
+          window.gapi.surveyoptin.render(
+            {
+                "merchant_id":"<?php echo $block->escapeJs($block->getMerchantId()) ?>",
+                "order_id": "<?php echo $block->escapeJs($block->getOrderId()) ?>",
+                "email": "<?php echo $block->escapeJs($block->getCustomerEmail()) ?>",
+                "delivery_country": "<?php echo $block->escapeJs($block->getCountryCode()) ?>",
+                "estimated_delivery_date": "<?php echo $block->escapeJs($block->getDeliveryDate()) ?>",
+            });
+         });
+      }
+    </script>
+
+<!-- Affiliate tracking code -->
+<?php echo $block->getAffilateCode(); ?>
+<?php endif ?>

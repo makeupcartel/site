@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <update handle="xtento_productexport_destination_grid_block"/>
+    <container name="root" label="Root">
+        <block class="Xtento\ProductExport\Block\Adminhtml\Destination" name="adminhtml.productexport.destination.grid.container">
+            <action method="removeButton">
+                <argument name="buttonId" xsi:type="string">add</argument>
+            </action>
+            <referenceBlock name="adminhtml.block.productexport.destination.grid">
+                <arguments>
+                    <argument name="grid_url" xsi:type="url" path="*/profile/destination">
+                        <param name="_current">1</param>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.productexport.destination.grid.column.actions">
+                <arguments>
+                    <argument name="actions" xsi:type="array">
+                        <item name="edit_action" xsi:type="array">
+                            <item name="target" xsi:type="string">_blank</item>
+                        </item>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.productexport.destination.grid.columnSet">
+                <arguments>
+                    <argument name="rowUrl" xsi:type="null"/>
+                </arguments>
+                <block class="Xtento\ProductExport\Block\Adminhtml\Destination\Grid\Column\Destination" as="col_destinations" before="dest_destination_id">
+                    <arguments>
+                        <argument name="header" xsi:type="string" translate="true">Enabled For Profile</argument>
+                        <argument name="type" xsi:type="string">checkbox</argument>
+                        <argument name="id" xsi:type="string">col_destinations</argument>
+                        <argument name="index" xsi:type="string">destination_id</argument>
+                        <argument name="field_name" xsi:type="string">col_destinations</argument>
+                        <argument name="header_css_class" xsi:type="string">a-center</argument>
+                        <argument name="align" xsi:type="string">center</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.productexport.destination.grid.massaction" remove="true"/>
+        </block>
+        <block class="Xtento\ProductExport\Block\Adminhtml\Widget\Grid\Serializer" name="destination_grid_serializer">
+            <arguments>
+                <argument name="grid_block" xsi:type="string">adminhtml.block.productexport.destination.grid</argument>
+                <argument name="callback" xsi:type="string">getSelectedDestinations</argument>
+                <argument name="input_element_name" xsi:type="string">destination_ids</argument>
+                <argument name="reload_param_name" xsi:type="string">profile_destinations</argument>
+            </arguments>
+        </block>
+    </container>
+</layout>
+
+<!--
+/**
+ * Product:       Xtento_ProductExport
+ * ID:            SxbX7cG9QyeSp8Mf+48x0gACKjo+bC67h/GgYBgB9YA=
+ * Last Modified: 2017-08-24T15:50:46+00:00
+ * File:          app/code/Xtento/ProductExport/view/adminhtml/layout/xtento_productexport_profile_destination.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

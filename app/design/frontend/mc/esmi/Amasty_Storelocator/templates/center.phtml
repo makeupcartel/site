@@ -1,0 +1,130 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Storelocator
+ */
+?>
+<?php /** @var \Amasty\Storelocator\Block\Location $block */ ?>
+<?php
+
+$productId = $this->getRequest()->getParam('product');
+
+if ($productId) :
+    $product = $this->getProductById($productId);
+    ?>
+    <h1 style="text-align: center"><?= $product->getName(); ?><?= __(' can be found at the following stores:&nbsp;')?></h1>
+    <hr>
+<?php endif; ?>
+<div id="amasty_locator_block" style="<?= $block->getMainBlockStyles(); ?>">
+    <?php if ($block->getWidgetDescription()) : ?>
+        <div>
+            <strong><span><?= $block->getWidgetDescription(); ?></span></strong>
+        </div>
+    <?php endif; ?>
+    <div id="amasty_locator_filter">
+
+        <?php if ($block->getShowSearch()) : ?>
+            <div class="column_left">
+                <h1 class="page-title"><span class="first-word"><?= __('Stockists')?></span></h1>
+                
+            </div>
+            <div class="column_right">
+                <div class="search-section">
+                       <div class="block-title">
+                            <strong><span><?= __('Search Location')?></span></strong>
+                        </div>
+                        <div class="block-content">
+							 <div class="amlocator_input" style="display:none;">
+								<label for="radius"><?= __('Search Radius')?></label>
+								<div class="input-box">
+									<select title="" class="select" id="<?= $block->getSearchRadiusId(); ?>" name="radius" >
+										<?php foreach ($block->getSearchRadius() as $range) : ?>
+											<option <?php if($range == '500'){echo 'selected="selected"'; }?> value="<?= is_numeric($range) ? $range : ''; ?>"><?= $range ?></option>
+										<?php endforeach;?>
+									</select>
+								</div>
+							</div>
+                            <div id="current-address" class="amlocator_input">
+                                <label for="address"><?= __('Current Location')?></label>
+                                <div class="input-box">
+                                    <input type="text" value="" class="input-text" id="<?= $block->getSearchId(); ?>"
+                                           name="address" placeholder="<?= __('Address or Postcode')?>" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="amlocator_input">
+                                <button class="button" title="Filter" id="<?= $block->getSearchButtonId(); ?>">
+                                <span>
+                                    <span>
+                                        <?= __('Search')?>
+                                    </span>
+                                </span>
+                                </button>
+
+                            </div>
+
+                            <input type="hidden" id="<?= $block->getAmLatId(); ?>" >
+                            <input type="hidden" id="<?= $block->getAmLngId(); ?>" >
+                        </div>
+                </div>
+             
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="amlocator_center">
+        <div class="amlocator_mapblock" style="<?= $block->getMapStyles(); ?>">
+            <div class="amlocator-map-canvas" id="<?= $block->getMapId(); ?>"></div>
+        </div>
+        <?php if ($block->getShowLocations()) : ?>
+            <div class="amlocator_store_list" style="<?= $block->getStoreListStyles(); ?>">
+                <?= $block->getLeftBlockHtml(); ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<script>
+    var baloonTemplate = <?= $block->getBaloonTemplate() ?>;
+    var amMediaUrl = "<?= $block->getAmStoreMediaUrl() ?>";
+    var mapZoom = <?= $block->getMapZoom() ?>;
+    var productId = "<?= $block->getProductId() ?>";
+    var categoryId = "<?= $block->getCategoryId() ?>";
+    var locatorPageUrl = "<?= $block->getLinkToMap(); ?>";
+    var widgetLinkText = "<?= $block->getWidgetLinkText(); ?>";
+    var automaticLocate = "<?= $block->getAutomaticLocate(); ?>";
+    var enableClustering = "<?= $block->getClustering(); ?>";
+    var enableCountingDistance = "<?= $block->getCountingDistance(); ?>";
+    var distanceConfig = "<?= $block->getDistanceConfig(); ?>";
+    var useGeoConfig = "<?= $block->getGeoUse()?>";
+    var allowedCountries = <?= $block->getAllowedCountries(); ?>;
+</script>
+
+<script>
+    require([
+        'jquery',
+        'Amasty_Storelocator/js/main',
+        'Amasty_Storelocator/js/cluster',
+        'domReady!',
+        'https://maps.googleapis.com/maps/api/js?libraries=places<?= $block->getApiKey(); ?>'
+    ], function ($) {
+        var mapId = "#" + "<?= $block->getMapId(); ?>";
+        $(mapId).amLocator({
+            ajaxCallUrl: "<?= $this->getUrl('amlocator/index/ajax') . $this->getQueryString() ?>",
+            useBrowserLocation: "<?= $this->getUseBrowserLocation()?>",
+            jsonLocations: <?= $this->getJsonLocations() ?>,
+            imageLocations: "<?= $block->getViewFileUrl('Amasty_Storelocator::images/'); ?>",
+            searchButtonId: "<?= $block->getSearchButtonId(); ?>",
+            searchRadiusId: "<?= $block->getSearchRadiusId(); ?>",
+            searchId: "<?= $block->getSearchId(); ?>",
+            attributeFilterId: "<?= $block->getAttributeFilterId(); ?>",
+            nearbyButtonId: "<?= $block->getNearbyButtonId(); ?>",
+            amLatId: "<?= $block->getAmLatId(); ?>",
+            amLngId: "<?= $block->getAmLngId(); ?>",
+            storeListId : "<?= $block->getStoresListId(); ?>",
+            mapId: "<?= $block->getMapId(); ?>",
+            showSearch: <?= $block->getShowSearch(); ?>,
+            activeLocation: "<?= $this->getRequest()->getParam('locationId'); ?>"
+        });
+    });
+</script>

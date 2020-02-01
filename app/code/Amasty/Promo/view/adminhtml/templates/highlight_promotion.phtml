@@ -1,0 +1,49 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+?>
+<?php
+/** @var \Amasty\Promo\Block\Adminhtml\Form\HighlightPromotion $block */
+$block = $this;
+?>
+<div class="am-promo-module">
+    <label class="am-label"><?= $block->escapeHtml(__('Promo Banner functionality')) ?></label>
+    <div class="am-status-wrapper">
+        <?php if ($block->isModuleEnable('Amasty_PromoBanners')) : ?>
+            <a class="am-status -installed"
+               href="<?= $block->escapeUrl($block->getUrl('ampromobanners/banners/index')) ?>"
+               title="<?= $block->escapeHtml(__('Amasty Promo Banners')) ?>"
+               target="_blank"><?= $block->escapeHtml(__('Configure Banners')) ?></a>
+        <?php else : ?>
+            <span class="am-status -not-installed"><?= $block->escapeHtml(__('Not installed')) ?></span>
+            <p class="am-note"><?= $block->escapeHtml(__('Users will see available promotions on vivid banners in cart, category pages, etc. See more details ')) ?>
+                    <a href="<?=$block->escapeUrl('https://amasty.com/promo-banners-for-magento-2.html?utm_source=extension&utm_medium=link&utm_campaign=sp-pbanners-m2') ?>"
+                       title="<?= $block->escapeHtml(__('Amasty Promo Banners')) ?>"
+                       target="_blank"><?= $block->escapeHtml(__('here')) ?></a>.
+            </p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="am-promo-module ">
+    <label class="am-label"><?= $block->escapeHtml(__('Product Labels functionality')) ?></label>
+    <div class="am-status-wrapper">
+        <?php if ($block->isModuleEnable('Amasty_Label')) : ?>
+            <a class="am-status -installed"
+               href="<?= $block->escapeUrl($block->getUrl('amasty_label/labels')) ?>"
+               title="<?= $block->escapeHtml(__('Amasty Product Labels')) ?>"
+               target="_blank"><?= $block->escapeHtml(__('Configure Labels')) ?></a>
+        <?php else : ?>
+            <span class="am-status -not-installed"><?= $block->escapeHtml(__('Not installed')) ?></span>
+            <p class="am-note">
+                <?= $block->escapeHtml(__('Add labels to products on sale to make them visible in catalog. See more details ')) ?>
+                    <a href="<?=$block->escapeUrl('https://amasty.com/product-labels-for-magento-2.html?utm_source=extension&utm_medium=link&utm_campaign=sp-plabels-m2') ?>"
+                       title="<?= $block->escapeHtml(__('Amasty Product Labels')) ?>"
+                       target="_blank"><?= $block->escapeHtml(__('here')) ?></a>.
+            </p>
+        <?php endif; ?>
+    </div>
+</div>

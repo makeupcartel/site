@@ -1,0 +1,32 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+?>
+<?php
+/** @var \Amasty\Promo\Block\Popup $block */
+$countersMode = $block->getCountersMode();
+?>
+
+<?= $block->getChildHtml('html_calendar') ?>
+<div class="ampromo-overlay" data-role="ampromo-overlay">
+    <div class="ampromo-items-content" data-ampromo-js="items-content">
+        <div class="ampromo-close" data-role="ampromo-popup-hide"></div>
+        <?php if ($countersMode) : ?>
+            <h2 class="ampromo-popup-title">
+                <?= $block->escapeHtml($block->getPopupName()) . ' ('?>
+                <span class="ampromo-counter" data-role="ampromo-popup-common-qty"></span>
+                <?= $block->escapeHtml(__(' left)')) ?>
+            </h2>
+        <?php else : ?>
+            <h2>
+                <?= $block->escapeHtml($block->getPopupName())?>
+            </h2>
+        <?php endif; ?>
+        <div data-role="ampromo-items-container">
+            <?= $block->getChildHtml('items') ?>
+        </div>
+    </div>
+</div>

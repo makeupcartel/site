@@ -1,0 +1,342 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Magento\Catalog\Block\Product\AbstractProduct */
+?>
+
+<?php
+switch ($type = $block->getType()) {
+
+    case 'related-rule':
+        if ($exist = $block->hasItems()) {
+            $type = 'related';
+            $class = $type;
+
+            $image = 'related_products_list';
+            $title = __('Recently Viewed');
+            $items = $block->getAllItems();
+            $limit = $block->getPositionLimit();
+            $shuffle = (int) $block->isShuffled();
+            $canItemsAddToCart = $block->canItemsAddToCart();
+
+            $showAddTo = false;
+            $showCart = true;
+            $templateType = null;
+            $description = false;
+        }
+    break;
+
+    case 'related':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Related $block */
+        if ($exist = $block->getItems()->getSize()) {
+            $type = 'related';
+            $class = $type;
+
+            $image = 'related_products_list';
+            $title = __('Related Products');
+            $items = $block->getItems();
+            $limit = 0;
+            $shuffle = 0;
+            $canItemsAddToCart = $block->canItemsAddToCart();
+
+            $showAddTo = true;
+            $showCart = false;
+            $templateType = null;
+            $description = false;
+        }
+    break;
+
+    case 'upsell-rule':
+        if ($exist = $block->hasItems()) {
+            $type = 'upsell';
+            $class = $type;
+
+            $image = 'upsell_products_list';
+            $title = __('We found other products you might like!');
+            $items = $block->getAllItems();
+            $limit = $block->getPositionLimit();
+            $shuffle = (int) $block->isShuffled();
+
+            $showAddTo = false;
+            $showCart = false;
+            $templateType = null;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'upsell':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Upsell $block */
+        if ($exist = count($block->getItemCollection()->getItems())) {
+            $type = 'upsell';
+            $class = $type;
+
+            $image = 'upsell_products_list';
+            $title = __('We found other products you might like!');
+            $items = $block->getItemCollection()->getItems();
+            $limit = $block->getItemLimit('upsell');
+            $shuffle = 0;
+
+            $showAddTo = false;
+            $showCart = false;
+            $templateType = null;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'crosssell-rule':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
+        if ($exist = $block->hasItems()) {
+            $type = 'crosssell';
+            $class = $type;
+
+            $image = 'cart_cross_sell_products';
+            $title = __('You may also need');
+            $items = $block->getItemCollection();
+
+            $showAddTo = false;
+            $showCart = true;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'crosssell':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
+        if ($exist = count($block->getItems())) {
+            $type = 'crosssell';
+            $class = $type;
+
+            $image = 'cart_cross_sell_products';
+            $title = __('You may also need');
+            $items = $block->getItems();
+
+            $showAddTo = false;
+            $showCart = true;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'new':
+        if ($exist = $block->getProductCollection()) {
+            $type = 'new';
+            $mode = 'grid';
+            $type = $type . ' ' . $mode;
+
+            $class = 'widget' . ' ' . $type;
+
+            $image = 'new_products_content_widget_grid';
+            $title = __('New Products');
+            $items = $exist;
+
+            $showAddTo = true;
+            $showCart = true;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = ($mode == 'list') ? true : false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    default:
+        $exist = null;
+}
+?>
+
+<?php if ($exist):?>
+    <?php $helper = $this->helper('Convert\Catalog\Helper\Data'); ?>
+    <?php if ($type == 'upsell'): ?>
+      <div class="block <?= /* @escapeNotVerified */ $class ?>" data-mage-init='{"upsellProducts":{}}' data-limit="<?= /* @escapeNotVerified */ $limit ?>" data-shuffle="<?= /* @escapeNotVerified */ $shuffle ?>">
+    <?php else: ?>
+        <div class="block <?= /* @escapeNotVerified */ $class ?>">
+    <?php endif; ?>
+    <div class="block-title title">
+        <strong id="block-<?= /* @escapeNotVerified */ $class ?>-heading" role="heading" aria-level="2"><?= /* @escapeNotVerified */ $title ?></strong>
+    </div>
+    <div class="block-content content" aria-labelledby="block-<?= /* @escapeNotVerified */ $class ?>-heading">
+        <div class="products wrapper grid products-grid products-<?= /* @escapeNotVerified */ $type ?>">
+            <div class="products list items product-items swiper-container">
+              <div class="swiper-wrapper">
+                <?php foreach ($items as $_item): ?>
+                <?php $available = ''; ?>
+                <?php if (!$_item->isComposite() && $_item->isSaleable() && $type == 'related'): ?>
+                    <?php if (!$_item->getRequiredOptions()): ?>
+                        <?php $available = 'related-available'; ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if ($type == 'upsell'): ?>
+                    <div class="item product product-item swiper-slide" style="display: none;">
+                <?php else: ?>
+                    <div class="item product product-item swiper-slide">
+                <?php endif; ?>
+                <div class="product-item-info <?= /* @escapeNotVerified */ $available ?>">
+                    <?= /* @escapeNotVerified */ '<!-- ' . $image . '-->' ?>
+                    <a href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
+                        <?= $block->getImage($_item, $image)->toHtml() ?>
+                    </a>
+                    <div class="product details product-item-details">
+                        <div class="product-brand">
+                          <?php echo $_item->getResource()->getAttribute('brand')->getFrontend()->getValue($_item); ?>
+                        </div>
+                        <strong class="product name product-item-name"><a class="product-item-link" title="<?= $block->escapeHtml($_item->getName()) ?>" href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>">
+                            <?= $block->escapeHtml($_item->getName()) ?></a>
+                        </strong>
+
+                        <?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?>
+
+                            <?php if ($showAddTo || $showCart): ?>
+                                <div class="product actions product-item-actions">
+                                    <?php if ($showCart): ?>
+                                        <div class="actions-primary">
+                                            <?php if ($_item->isSaleable()): ?>
+
+                                              <div class="product actions product-item-actions">
+                                                <?php if($helper->isCustomerLoggedIn()): ?>
+                                                  <form  data-role="tocart-form" action="<?php echo $block->getAddToCartUrl($_item); ?>" method="post">
+                                                    <div class="align-swatch">
+                                                      <?php if($_item->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){
+                                                          $swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+                                                              echo $swatchBlock->setProduct($_item)->toHtml();
+                                                      } ?>
+                                                    </div>
+                                                    <div class="control">
+                                                      <span class="btn-qty btn-qty-minus"></span>
+                                                      <input type="number"
+                                                            name="qty"
+                                                            class="qty"
+                                                            maxlength="12"
+                                                            value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() == 0? 1: $block->getProductDefaultQty() * 1  ?>"
+                                                            title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="input-text qty"
+                                                            data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                                                            />
+                                                      <span class="btn-qty btn-qty-plus"></span>
+                                                    </div>
+
+
+                                                    <?php echo $block->getBlockHtml('formkey'); ?>
+                                                    <button type="submit" title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>" class="action tocart primary">
+                                                        <span><?php /* @escapeNotVerified */echo __('Add to Cart'); ?></span>
+                                                    </button>
+                                                  </form>
+                                                <?php else: ?>
+                                                <div class="guest-buttons">
+                                                  <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product_page_button_for_guest')->toHtml(); ?>
+                                                </div>
+                                                <?php endif; ?>
+                                              </div>
+                                            <?php else: ?>
+                                            <div class="product-item-actions">
+                                                <div class="align-swatch"></div>
+                                                <div class="control"></div>
+                                                <?php if ($_item->getIsSalable()): ?>
+                                                    <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
+                                                <?php else: ?>
+                                                    <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
+                                                <?php endif; ?>
+                                            </div>
+                                            <?php endif; ?>
+
+                                            <a href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>"><?php echo __('View details') ?></a>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ($showAddTo): ?>
+                                        <div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+                                            <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                                <?= $addToBlock->setProduct($_item)->getChildHtml() ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach ?>
+              </div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  require([
+    'jquery',
+    'swiper',
+    'owlCarousel'
+    ],function($, Swiper){
+      jQuery(document).ready(function() {
+
+         var width = jQuery(window).width();
+        function alignHeight(selector) {
+            jQuery(selector).css('height', '');
+            var minHeight = 0;
+            jQuery(selector).each(function () {
+                if (minHeight < jQuery(this).outerHeight()) {
+                    minHeight = jQuery(this).outerHeight();
+                }
+            });
+            if (minHeight > 0) {
+                jQuery(selector).css('height', minHeight);
+            }
+        }
+        setTimeout(function () {
+            alignHeight('.crosssell .product-item-photo');
+            alignHeight('.crosssell .product-item-details .product-brand');
+            alignHeight('.crosssell .product-item-details .product-item-name');
+            alignHeight('.crosssell .product-item-details .price-box');
+            alignHeight('.crosssell .product-item-details .product-item-actions .align-swatch');
+            alignHeight('.crosssell .product-item-details .product-item-actions .control');
+        });
+        jQuery(window).resize(function () {
+            setTimeout(function () {
+                alignHeight('.crosssell .product-item-photo');
+                alignHeight('.crosssell .product-item-details .product-brand');
+                alignHeight('.crosssell .product-item-details .product-item-name');
+                alignHeight('.crosssell .product-item-details .price-box');
+                alignHeight('.crosssell .product-item-details .product-item-actions .align-swatch');
+                alignHeight('.crosssell .product-item-details .product-item-actions .control');
+            })
+         });
+
+
+        var swiper = new Swiper('.product-items.swiper-container', {
+          slidesPerView: 3,
+          spaceBetween: 23,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          breakpoints: {
+            // when window width is <= 767px
+            767: {
+              slidesPerView: 'auto',
+              spaceBetween: 16
+            },
+            // when window width is <= 1199px
+            1200: {
+              slidesPerView: 3,
+              spaceBetween: 16
+            }
+          }
+        });
+      });
+    });
+</script>
+
+<?php endif;?>

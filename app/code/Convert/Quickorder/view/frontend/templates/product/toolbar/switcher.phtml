@@ -1,0 +1,37 @@
+<?php
+$stores = $block->getAllStore();
+$currentStore = $this->getRequest()->getParam('store');
+$productListOrder = $this->getRequest()->getParam('product_list_order', false);
+$agruments = [];
+if ($productListOrder) {
+    $agruments['product_list_order'] = $productListOrder;
+}
+?>
+<?php if ($stores): ?>
+    <form action="<?= $block->getUrl('cvquickorder/index/index/', $agruments) ?>" class="quickorder-switcher" id="store_form">
+        <div class="toolbar-store sorter">
+            <select name="store" data-role="stores" class="stores-options sorter-options" id="switcher_store">
+                <?php foreach ($stores as $store): ?>
+                    <option <?php if($currentStore == $store['id']):?>selected<?php endif;?> value="<?= /* @escapeNotVerified */
+                    $store['id'] ?>"><?= $store['name'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </form>
+<?php endif; ?>
+<!--End Store-->
+<script type="text/javascript">
+    require([
+        "jquery",
+    ], function ($) {
+        $('#switcher_store').change(function () {
+            if(!$(this).val()){
+                window.location.href = "<?php echo $this->getUrl('cvquickorder', $agruments);?>";
+                return false;
+            }
+            $('#store_form').submit();
+        });
+    });
+
+</script>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Oaction
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">sales_order_grid.sales_order_grid.sales_order_columns.ids</item>
+                    <item name="component" xsi:type="string">Amasty_Oaction/js/grid/tree-massactions</item>
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+
+            <action name="amasty_oaction_delemiter">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_delemiter</item>
+                        <item name="label" xsi:type="string" translate="true">-------------------</item>
+                        <item name="url" xsi:type="url" path=""/>
+                    </item>
+                </argument>
+            </action>
+
+            <action name="amasty_oaction_invoice">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_invoice</item>
+                        <item name="label" xsi:type="string" translate="true">Invoice</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_invoice_notify</item>
+                        <item name="label" xsi:type="string" translate="true">Notify Customer</item>
+                        <item name="url" xsi:type="url" path="amasty_oaction/massaction/index/type/invoice">
+                            <param name="notify">1</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_invoice_dnotify</item>
+                        <item name="label" xsi:type="string" translate="true">Do Not Notify Customer</item>
+                        <item name="url" xsi:type="url" path="amasty_oaction/massaction/index/type/invoice">
+                            <param name="notify">0</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+
+            <action name="amasty_oaction_invoiceship">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_invoiceship</item>
+                        <item name="label" xsi:type="string" translate="true">Invoice > Ship</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_invoiceship_notify</item>
+                        <item name="label" xsi:type="string" translate="true">Notify Customer</item>
+                        <item name="url" xsi:type="url" path="amasty_oaction/massaction/index/type/invoiceship">
+                            <param name="notify">1</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_invoiceship_dnotify</item>
+                        <item name="label" xsi:type="string" translate="true">Do Not Notify Customer</item>
+                        <item name="url" xsi:type="url" path="amasty_oaction/massaction/index/type/invoiceship">
+                            <param name="notify">0</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="amasty_oaction_ship">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_ship</item>
+                        <item name="label" xsi:type="string" translate="true">Ship</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_ship_notify</item>
+                        <item name="label" xsi:type="string" translate="true">Notify Customer</item>
+                        <item name="url" xsi:type="url" path="amasty_oaction/massaction/index/type/ship">
+                            <param name="notify">1</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_ship_dnotify</item>
+                        <item name="label" xsi:type="string" translate="true">Do Not Notify Customer</item>
+                        <item name="url" xsi:type="url" path="amasty_oaction/massaction/index/type/ship">
+                            <param name="notify">0</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+
+            <action name="amasty_oaction_status">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_status</item>
+                        <item name="amasty_actions" xsi:type="string">1</item>
+                        <item name="label" xsi:type="string" translate="true">Change Status</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="amasty_actions" xsi:type="string">1</item>
+                        <item name="typefield" xsi:type="string">select</item>
+                        <item name="fieldLabel" xsi:type="string" translate="true">Change status to: </item>
+                        <item name="label" xsi:type="string" translate="true">Change Status</item>
+                        <item name="type" xsi:type="string" translate="true">amasty_oaction_status_select</item>
+                        <item name="url" xsi:type="url" path="amasty_oaction/massaction/index/type/status"></item>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Change Status</item>
+                            <item name="message" xsi:type="string" translate="true">Change Status for selected items?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="amasty_oaction_orderattr">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">amasty_oaction_orderattr</item>
+                        <item name="amasty_actions" xsi:type="string">1</item>
+                        <item name="label" xsi:type="string" translate="true">Update Order Attributes</item>
+                        <item name="url" xsi:type="url" path="amasty_oaction/massaction/attribute_edit"></item>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Update Order Attributes</item>
+                            <item name="message" xsi:type="string" translate="true">Update Order Attributes for selected items?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="sales_order_columns">
+        <column name="oaction_shipping" class="Amasty\Oaction\Ui\Component\Listing\Column\Shipping">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Amasty_Oaction/js/grid/columns/shipping</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="label" xsi:type="string" translate="true">Shipping</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

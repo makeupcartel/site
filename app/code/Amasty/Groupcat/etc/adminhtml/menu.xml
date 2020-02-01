@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Groupcat
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Amasty_Groupcat::rule" title="Customer Group Catalog" module="Amasty_Groupcat" sortOrder="40" parent="Magento_Customer::customer" resource="Amasty_Groupcat::rule"/>
+        <add id="Amasty_Groupcat::rule_manage" title="Rules" module="Amasty_Groupcat" sortOrder="10" parent="Amasty_Groupcat::rule" action="amasty_groupcat/rule/" resource="Amasty_Groupcat::rule"/>
+        <add id="Amasty_Groupcat::request" title="Get a Quote Requests" module="Amasty_Groupcat" sortOrder="20" parent="Amasty_Groupcat::rule" action="amasty_groupcat/request/" resource="Amasty_Groupcat::request"/>
+    </menu>
+</config>

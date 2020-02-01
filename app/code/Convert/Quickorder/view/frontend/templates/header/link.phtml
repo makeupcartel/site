@@ -1,0 +1,6 @@
+<?php $helper = $this->helper('Convert\Quickorder\Helper\Data'); ?>
+<?php if ($helper->isLoggedIn()): ?>
+    <ul class="link">
+        <li><a href="<?php echo $this->getUrl('cvquickorder/index/index'); ?>"><?php echo __('Quick Order'); ?></a></li>
+    </ul>
+<?php endif;?>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xsearch
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Amasty_Xsearch::amasty_xsearch" title="Amasty Advanced Search" sortOrder="10419" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Reports::report">
+                    <resource id="Amasty_Xsearch::advanced_search" title="Advanced Search" translate="title" sortOrder="30">
+                        <resource id="Amasty_Xsearch::search_analytics" title="Search Analytics" translate="title" sortOrder="1"/>
+                        <resource id="Amasty_Xsearch::wanted" title="Analytics Most Wanted" sortOrder="2"/>
+                        <resource id="Amasty_Xsearch::activity" title="Analytics Recent Activity" sortOrder="3"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

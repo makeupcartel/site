@@ -1,0 +1,33 @@
+<?php
+/** @var $block \Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\Upload */
+?>
+<div class="messages">
+    <div class="message message-notice notice notice-msg">
+        <div>
+            <?php echo __("This upload tab is currently only a simple tool for uploading small files to the import folder.") ?>
+            <br/>
+            <?php echo __("It will not show existing files in the import folder, only ones you've recently uploaded.") ?>
+            <br/>
+            <?php echo __("Future versions will expand functionality of this tool.") ?>
+        </div>
+    </div>
+</div>
+
+<div class="admin__data-grid-wrap">
+    <table cellspacing="0" class="data-grid .admin__control-table" id="urf-upload-grid">
+        <thead>
+        <tr class="headings">
+            <th class="data-grid-th"><?php echo __('File') ?></th>
+        </tr>
+        </thead>
+        <tbody id="urf-upload-container">
+        </tbody>
+        <tfoot>
+        <tr class="data-grid-tr">
+            <td colspan="100" class="last" style="padding:8px">
+                <?php echo $block->getUploaderHtml() ?>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

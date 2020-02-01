@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+  <system>
+    <section id="usimpleup" translate="label comment" sortOrder="300" type="text" showInDefault="1">
+      <label>Unirgy Installer</label>
+      <tab>advanced</tab>
+      <resource>Unirgy_SimpleUp::system_config</resource>
+      <group id="general" translate="label comment" sortOrder="10" type="text" showInDefault="1">
+        <label>General Settings</label>
+        <field id="check_ioncube" translate="label" sortOrder="20" type="select" showInDefault="1">
+          <label>Check ionCube Loaders Installation</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+        <field id="verify_ssl" translate="label" sortOrder="30" type="select" showInDefault="1">
+          <label>Verify ssl during license check</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+      </group>
+      <group id="ftp" translate="label comment" sortOrder="20" type="text" showInDefault="1">
+        <label>FTP Settings</label>
+        <field id="active" translate="label" sortOrder="10" type="select" showInDefault="1">
+          <label>Use FTP To Install Files</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+          <comment>If you have issues with file permissions during extensions installation, enable this and configure a local FTP user.</comment>
+        </field>
+        <field id="host" translate="label" sortOrder="20" type="text" showInDefault="1">
+          <label>FTP Host</label>
+          <comment>Usually "localhost" or "127.0.0.1"</comment>
+        </field>
+        <field id="port" translate="label" sortOrder="30" type="text" showInDefault="1">
+          <label>FTP Port</label>
+          <comment>Usually "21"</comment>
+        </field>
+        <field id="user" translate="label" sortOrder="40" type="text" showInDefault="1">
+          <label>FTP User name</label>
+          <comment>FTP information will be used only locally,&lt;br/&gt;to work around file write permissions.</comment>
+        </field>
+        <field id="password" translate="label" sortOrder="40" type="obscure" showInDefault="1">
+          <label>FTP Password</label>
+          <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+          <comment>FTP password is stored locally and encrypted,&lt;br/&gt;the same way as your payment gateway credentials.</comment>
+        </field>
+        <field id="path" translate="label" sortOrder="60" type="text" showInDefault="1">
+          <label>FTP Path to Magento</label>
+          <comment>Path relative to FTP account root folder.</comment>
+        </field>
+      </group>
+    </section>
+  </system>
+</config>

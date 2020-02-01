@@ -1,0 +1,5 @@
+<span class="admin__control-thumbnail-placeholder" data-bind="text: imagePlaceholderText" if="!$col.getSrc($row())"/>
+
+<a attr="href: $col.getLink($row())" if="$col.getSrc($row())">
+    <img class="admin__control-thumbnail" attr="src: $col.getSrc($row()), alt: $col.getAlt($row())"/>
+</a>
