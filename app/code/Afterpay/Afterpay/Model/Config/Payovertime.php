@@ -200,6 +200,8 @@ class Payovertime
 
 	/**
 	 * 2020-02-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+	 * «Undefined index: quote_id_3 in app/code/Afterpay/Afterpay/Controller/Payment/Process.php on line 93»:
+	 * https://github.com/makeupcartel/site/issues/1
 	 * The previous implementation:
 	 * https://github.com/afterpay/afterpay-magento-2/blob/345eada2/Afterpay/Afterpay/Model/Config/Payovertime.php#L202-L220
 	 * @return \Magento\Store\Api\Data\StoreInterface
