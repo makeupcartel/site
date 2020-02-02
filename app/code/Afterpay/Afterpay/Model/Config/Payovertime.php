@@ -198,26 +198,14 @@ class Payovertime
         return $url;
     }
 
-
-    public function getStoreObjectFromRequest()
-    {
-        //get the store source
-        $stores = $this->storeManager->getStores();
-
-        if (!empty($_SERVER['HTTP_REFERER'])) {
-            foreach ($stores as $key => $store) {
-                $referrer = $_SERVER['HTTP_REFERER'];
-
-                if (strpos($referrer, $store->getBaseUrl()) !== false) {
-                    return $store;
-                }
-            }
-        } else {
-            foreach ($stores as $key => $store) {
-                return $store;
-            }
-        }
-    }
+	/**
+	 * 2020-02-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+	 * The previous implementation:
+	 * https://github.com/afterpay/afterpay-magento-2/blob/345eada2/Afterpay/Afterpay/Model/Config/Payovertime.php#L202-L220
+	 * @return \Magento\Store\Api\Data\StoreInterface
+	 * @throws \Magento\Framework\Exception\NoSuchEntityException
+	 */
+    function getStoreObjectFromRequest() {return $this->storeManager->getStore();}
 
     public function getWebsiteId()
     {
